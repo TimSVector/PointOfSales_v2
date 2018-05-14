@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manage-config-options version="7">
+  <config/>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
+</manage-config-options>

@@ -1,0 +1,6 @@
+1. Select Start Test
+2. Select Steak Entree
+3. Hit Place Order
+4. Hit Get Check Total
+5. Verify Check Total is $14
+6. Close Application
