@@ -11,6 +11,48 @@
   </config>
   <project-id>1465839427</project-id>
   <factor-config-options>0</factor-config-options>
+  <environment name="ENV_DATABASE" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/982479084</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENV_ENCRYPT" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/801677986</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENV_LINKED_LIST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/2750563006</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENV_MANAGER" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/2669916043</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENV_MATRIX_MULTIPLY" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/1055816108</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENV_WAITING_LIST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/2527481649</original-environment-directory>
+    </config>
+  </environment>
   <environment name="FULL_INTEGRATION_TESTING" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -58,6 +100,12 @@
     <environment name="PointOfSales_Coverage"/>
   </group>
   <group name="UT-Group">
+    <environment name="ENV_DATABASE"/>
+    <environment name="ENV_ENCRYPT"/>
+    <environment name="ENV_LINKED_LIST"/>
+    <environment name="ENV_MANAGER"/>
+    <environment name="ENV_MATRIX_MULTIPLY"/>
+    <environment name="ENV_WAITING_LIST"/>
     <environment name="INTEGRATION_TESTING"/>
   </group>
   <group name="c++_Testing">
@@ -76,8 +124,6 @@
           <value>REDIRECT</value>
           <key>COVERAGE_TYPE</key>
           <value>Statement+Branch</value>
-          <key>METRICS_TOTAL_LEVEL_DISPLAY</key>
-          <value>SUBPROGRAM_DETAIL</value>
           <key>C_COMPILER_TAG</key>
           <value>GNU_C_48</value>
           <key>C_EDG_FLAGS</key>
@@ -86,6 +132,10 @@
           <value></value>
           <key>VCAST_UNCOVERED_LINE_INDICATOR</key>
           <value>'#'</value>
+          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
+          <value>TRUE</value>
+          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
+          <value>TRUE</value>
           <key>VCAST_NO_LONG_DOUBLE</key>
           <value>TRUE</value>
         </config>
@@ -99,9 +149,6 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/utils/src</search-directory>
       </config>
     </compiler>
-    <testsuite name="SystemTesting">
-      <group name="ST-Group"/>
-    </testsuite>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
     </testsuite>
