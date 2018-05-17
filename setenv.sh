@@ -1,3 +1,4 @@
 
 
 export VCAST_DEMO_SRC_BASE=$PWD/CurrentRelease
+export VCAST_SUPPORT_FILES=$PWD/RSP

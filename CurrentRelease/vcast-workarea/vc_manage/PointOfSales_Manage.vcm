@@ -124,6 +124,8 @@
           <value>REDIRECT</value>
           <key>COVERAGE_TYPE</key>
           <value>Statement+Branch</value>
+          <key>C_EXECUTE_CMD</key>
+          <value>$(VCAST_SUPPORT_FILES)/execute.bat</value>
           <key>C_COMPILER_TAG</key>
           <value>GNU_C_48</value>
           <key>C_EDG_FLAGS</key>
