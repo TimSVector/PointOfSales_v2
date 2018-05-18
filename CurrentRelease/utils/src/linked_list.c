@@ -66,7 +66,7 @@ struct Node
 	struct Node *next, *previous; // Pointer to next/previous nodes
 };
 
-static struct Node * linkedList, *linkedListEnd ;
+static struct Node * linkedList = NULL, *linkedListEnd = NULL;
 
 
 /***************************************************************************************
