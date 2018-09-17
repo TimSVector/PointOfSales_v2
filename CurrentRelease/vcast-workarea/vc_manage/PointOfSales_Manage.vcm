@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="17">
+<project version="20">
   <config>
     <config>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
@@ -113,40 +113,26 @@
   </group>
   <compiler>
     <compiler>
-      <name>GNU_Native_4.8_C</name>
+      <name>VectorCAST_MinGW_C++</name>
       <config>
         <config>
           <key>WHITEBOX</key>
           <value>YES</value>
-          <key>STANDARD_OUTPUT</key>
-          <value>REDIRECT</value>
-          <key>STANDARD_ERROR</key>
-          <value>REDIRECT</value>
           <key>COVERAGE_TYPE</key>
           <value>Statement+Branch</value>
           <key>C_COMPILER_TAG</key>
-          <value>GNU_C_48</value>
-          <key>C_EDG_FLAGS</key>
-          <value>-w --gcc --gnu_version 40800</value>
-          <key>VCAST_REPOSITORY</key>
-          <value></value>
-          <key>VCAST_UNCOVERED_LINE_INDICATOR</key>
-          <value>'#'</value>
-          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_NO_LONG_DOUBLE</key>
+          <value>BUILTIN_MINGW_63_CPP</value>
+          <key>VCAST_ALT_WB_METHOD</key>
           <value>TRUE</value>
         </config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/encrypt/inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/encrypt/src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/database/inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/database/src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/order_entry/inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/order_entry/src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/utils/inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)/utils/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
@@ -154,16 +140,6 @@
     </testsuite>
     <testsuite name="UnitTesting_TrustZone">
       <group name="UT-Group"/>
-      <contextual-environment-configurations>
-        <contextual-environment-configuration name="INTEGRATION_TESTING">
-          <config>
-            <config>
-              <key>C_DEFINE_LIST</key>
-              <value>USING_TRUST_ZONE</value>
-            </config>
-          </config>
-        </contextual-environment-configuration>
-      </contextual-environment-configurations>
     </testsuite>
   </compiler>
 </project>
