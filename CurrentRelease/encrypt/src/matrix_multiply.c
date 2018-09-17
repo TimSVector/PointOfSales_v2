@@ -71,8 +71,7 @@ int matrix_multiply(const struct matrix_t * M1, const struct matrix_t * M2, stru
   if ( M1->col != M2->row )
   {
     // Raise an error
-    //printf("Matrices with entered orders can't be multiplied with each other.\n");
-	return FAILURE;
+    return FAILURE;
   }
   else
     // Loop over the rows 
