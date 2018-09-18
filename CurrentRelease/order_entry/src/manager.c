@@ -165,6 +165,9 @@ int Place_Order(table_index_type Table,
        break;
     }
 
+  // add tax
+  Table_Data.Check_Total *= 1.10;
+
   // Updated the database with the new information
   Update_Record(Table, Table_Data);
   return 0;
