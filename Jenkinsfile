@@ -9,7 +9,6 @@ pipeline {
                         label "VectorCAST_MinGW_C++"
                     }
                     steps {
-                        git credentialsId: 'dc4cbd62-9ece-418e-b930-ee727a2ce31e', url: 'https://github.com/TimSVector/PointOfSales_v2.git'
                         bat returnStdout: true, script:  '''
 set WORKSPACE=.
 xcopy /I /E "C:/Program Files (x86)/Jenkins/workspace/git-demo-PointOfSales.vcast.multi/vc_scripts" vc_scripts
@@ -50,5 +49,4 @@ set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
         }
         
     }
-}
 }
