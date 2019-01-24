@@ -1,4 +1,5 @@
 pipeline {
+<<<<<<< HEAD
     agent any
     stages {
         stage('Non-Parallel Stage') {
@@ -16,6 +17,15 @@ pipeline {
                     steps {
                         git credentialsId: 'dc4cbd62-9ece-418e-b930-ee727a2ce31e', url: 'https://github.com/TimSVector/PointOfSales_v2.git'
                         bat '''
+=======
+  agent any
+  stages {
+    stage('Build') {
+      parallel {
+        stage('Build') {
+          steps {
+            bat '''
+>>>>>>> c77af5a7ff6acdd0a229ca3d688af89fc9872401
 set VCAST_DEMO_SRC_BASE=%CD%\\CurrentRelease
 %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --status
 %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --force --release-locks
@@ -23,6 +33,7 @@ set VCAST_DEMO_SRC_BASE=%CD%\\CurrentRelease
 %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --level VectorCAST_MinGW_C++/UnitTesting -e ENV_DATABASE --build-execute --incremental --output VectorCAST_MinGW_C++_UnitTesting_ENV_DATABASE_rebuild.html
 exit /b %ERRORLEVEL%
 '''
+<<<<<<< HEAD
                     }
                 }
                 stage('VectorCAST_MinGW_C++/UnitTesting/ENV_ENCRYPT') {
@@ -239,6 +250,20 @@ exit /b %ERRORLEVEL%
                     }
                 }
             }            
+=======
+          }
+        }
+        stage('error') {
+          steps {
+            bat '\'\'\' set VCAST_DEMO_SRC_BASE=%CD%\\\\CurrentRelease %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --status %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --force --release-locks %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --full-status %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --level VectorCAST_MinGW_C++/UnitTesting -e ENV_MANAGER --build-execute --incremental --output VectorCAST_MinGW_C++_UnitTesting_ENV_MANAGER_rebuild.html exit /b %ERRORLEVEL% \'\'\''
+          }
+        }
+        stage('Pull From Git') {
+          steps {
+            git(url: 'https://github.com/TimSVector/PointOfSales_v2.git', branch: 'master', credentialsId: 'TimSVector')
+            bat '\'\'\' set VCAST_DEMO_SRC_BASE=%CD%\\\\CurrentRelease %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --status %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --force --release-locks %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --full-status %VECTORCAST_DIR%/manage --project CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage --level VectorCAST_MinGW_C++/UnitTesting -e ENV_MANAGER --build-execute --incremental --output VectorCAST_MinGW_C++_UnitTesting_ENV_MANAGER_rebuild.html exit /b %ERRORLEVEL% \'\'\''
+          }
+>>>>>>> c77af5a7ff6acdd0a229ca3d688af89fc9872401
         }
     }
 }
