@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="20">
+<project version="27">
   <config>
     <config>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
@@ -122,6 +122,10 @@
           <value>Statement+Branch</value>
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_CPP</value>
+          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
+          <value>TRUE</value>
+          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
+          <value>TRUE</value>
           <key>VCAST_ALT_WB_METHOD</key>
           <value>TRUE</value>
         </config>
