@@ -1,4 +1,0 @@
-database.c:49:20: fatal error: ctypes.h: No such file or directory
- #include "ctypes.h"
-                    ^
-compilation terminated.

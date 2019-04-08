@@ -84,8 +84,10 @@ void Add_Party_To_Waiting_List(char* Name)
   
   // if waiting list is greater that 9...
   if(WaitingListSize > 9)
+  {
     // clear it out (maybe an error here)
     WaitingListSize = 0;
+  }
   
   // copy the name onto the waiting list (should use strcpy)
   while(Name && *Name) 
@@ -115,8 +117,10 @@ char* Get_Next_Party_To_Be_Seated(void)
 {
   // if the waiting list is over 9
   if(WaitingListIndex > 9)
+  {
     // roll back to beginning(maybe an error here)
     WaitingListIndex = 0;
+  }
 
   // return the name from the list
   return WaitingList[WaitingListIndex++];

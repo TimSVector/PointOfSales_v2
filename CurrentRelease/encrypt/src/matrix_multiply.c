@@ -76,6 +76,7 @@ int matrix_multiply(const struct matrix_t * M1, const struct matrix_t * M2, stru
   else
     // Loop over the rows 
     for ( c = 0 ; c <  M1->row ; c++ )
+    {
         
       // Loop over the colums
       for ( d = 0 ; d < M2->col ; d++ )
@@ -89,6 +90,7 @@ int matrix_multiply(const struct matrix_t * M1, const struct matrix_t * M2, stru
         // Store the results
         result->matrix[c][d] = sum;
       }
+    }
  
   // Store the row count
   result->row = M1->row;

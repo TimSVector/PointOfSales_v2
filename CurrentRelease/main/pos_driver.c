@@ -76,17 +76,18 @@ static int run_order_test(enum entrees entree, int value, const char * name)
     // setup the order
     order.Entree = entree;
     
-
     // place the order
     Place_Order(1, 1, order);
-
-    //printf ("Check Total: %d\nvalue:  %d\nequal? = %d\n", (int) Get_Check_Total(1), (int)value, (Get_Check_Total(1) == value) ? 1 : 0 );
     
     // process the results
     if (Get_Check_Total(1) == value)
+    {
         printf ("%s: PASSED\n", name);
+    }
     else 
+    {
         printf ("%s: FAILED %d\n",name, --ret_val);
+    }
     
     // send the return value
     return ret_val;
@@ -133,7 +134,7 @@ int main(int argc, const char *argv[])
 
     // Loop over the command line arguments
     while (i < argc)
-        
+    {
         // determine which case needs to run
         switch (argv[i++][0])
         {
@@ -155,9 +156,13 @@ int main(int argc, const char *argv[])
             // Pay the bill
             case 'p': case 'P':
                 if (Pay_The_Bill("Tim Schneider", "4568772911000937","919",1) == -1)
+                {
                     printf ("PayBill: FAILED %d\n", --ret_val);
+                }
                 else
+                {
                     printf ("PayBill: PASSED\n");
+                }
                 break;
                 
             // Get the check total
@@ -169,9 +174,13 @@ int main(int argc, const char *argv[])
             case 'T': case 't':
                 Pay_The_Bill("NoOne", "0000","919",1);
                 if (Clear_Table(1) == -1)
+                {
                     printf ("Clear_Table: FAILED %d\n", --ret_val);
+                }
                 else
+                {
                     printf ("Clear_Table: PASSED\n");
+                }
                 break;
                 
             // Add Free Dessert
@@ -181,9 +190,13 @@ int main(int argc, const char *argv[])
                 order.Beverage = MIXED_DRINK;
                 Add_Included_Dessert(&order);
                 if (order.Dessert == PIE)
+                {
                     printf ("Add Dessert: PASSED\n");
+                }
                 else
+                {
                     printf ("Add Dessert: FAILED %d\n", --ret_val);
+                }
                 break;
                 
             // Check Occupied Table Status
@@ -194,9 +207,13 @@ int main(int argc, const char *argv[])
                 
                 // check the status
                 if (Get_Record(1).Is_Occupied)
+                {
                     printf ("Occupied Status: PASSED\n");
+                }
                 else
+                {
                     printf ("Occupied Status: FAILED %d\n", --ret_val);
+                }
                 break;
                 
             // _Sequence Test
@@ -212,18 +229,26 @@ int main(int argc, const char *argv[])
                 
                 // Pay the bill
                 if (Pay_The_Bill("Tim Schneider", "4568772911000937","919",1) == -1)
+                {
                     printf ("PayBill: FAILED %d\n", --ret_val);
+                }
                 else
+                {
                     printf ("PayBill: PASSED\n");
+                }
                 
                 // Get check and clear table
                 printf("The Total is %d\n", (int)Get_Check_Total(1));
                 
                 // Clear the table
                 if (Clear_Table(1) == -1)
+                {
                     printf ("Clear_Table: FAILED %d\n", --ret_val);
+                }
                 else
+                {
                     printf ("Clear_Table: PASSED\n");
+                }
                 
                 // Setup the order for free dessert
                 order.Entree = STEAK;
@@ -235,12 +260,17 @@ int main(int argc, const char *argv[])
                 
                 // check the status
                 if (order.Dessert == PIE)
+                {
                     printf ("Add Dessert: PASSED\n");
+                }
                 else
+                {
                     printf ("Add Dessert: FAILED %d\n", --ret_val);
+                }
                 break;
            default: break;
-	  }
+        }
+    }
 
   // return the number of failures
   return ret_val;

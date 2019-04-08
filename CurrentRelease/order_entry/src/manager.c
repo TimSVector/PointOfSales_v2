@@ -148,7 +148,7 @@ int Place_Order(table_index_type Table,
  
   // Update the check total based on Entree Type
   switch(Order.Entree)
-    {
+  {
     case NO_ENTREE : 
        break;
     case STEAK :
@@ -163,7 +163,7 @@ int Place_Order(table_index_type Table,
     case PASTA :
        Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_PASTA;
        break;
-    }
+  }
 
   // add tax
   // Table_Data.Check_Total *= 1.10;
@@ -192,7 +192,9 @@ int Clear_Table(table_index_type Table)
 
   // can't clear the table is the bill isn't paid
   if (!Table_Data.Is_Bill_Paid)
-	  return -1;
+  {
+    return -1;
+  }
 
   // Remove the record from the database
   Remove_Record(Table);
@@ -237,26 +239,26 @@ float Get_Check_Total(table_index_type Table)
 
 int Pay_The_Bill(const char * name, const char cardNumber[16], const char secCode[3], int Table)
 {
-      // local table dat
-	  struct table_data_type Table_Data = Get_Record(Table);
+  // local table dat
+  struct table_data_type Table_Data = Get_Record(Table);
 
-      // make call to transmit the CC info
-	  if (transmit_Info(name,cardNumber,secCode,Table_Data.Check_Total) == 0)
-	  {
-          // if trasmission was good - set the bill to paid 
-		  Table_Data.Is_Bill_Paid = v_true;
-          
-          // Reset check total
-		  Table_Data.Check_Total = 0;
-          
-          // Push the cleared record back into database
-		  Update_Record(Table, Table_Data);
+  // make call to transmit the CC info
+  if (transmit_Info(name,cardNumber,secCode,Table_Data.Check_Total) == 0)
+  {
+      // if trasmission was good - set the bill to paid 
+	  Table_Data.Is_Bill_Paid = v_true;
+      
+      // Reset check total
+	  Table_Data.Check_Total = 0;
+      
+      // Push the cleared record back into database
+	  Update_Record(Table, Table_Data);
 
-          // return PASSED
-		  return 0;
-	  }
+      // return PASSED
+	  return 0;
+  }
 
-      // return FAILED
-	  return -1;
+  // return FAILED
+  return -1;
 }
 

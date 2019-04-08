@@ -77,8 +77,10 @@ data_type Get_Record(int Table)
   dataItem.table = Table;
 
   // seatch for the data item
+  dPtr = findData(dataItem);
+  
   // if the items was NOT found...
-  if ((dPtr = findData(dataItem)) == NULL)
+  if (dPtr == NULL)
   {
     // Insert the item into the list 
     InsertDataItem(&dataItem);
@@ -114,8 +116,10 @@ void Update_Record(int Table, data_type Data)
   dataItem.table = Table;
 
   // seatch for the data item
+  entry = findData(dataItem);
+  
   // if the items was found...
-  if ((entry = findData(dataItem)) != NULL)
+  if (entry != NULL)
   {
     // set the data
     entry->Data = Data;

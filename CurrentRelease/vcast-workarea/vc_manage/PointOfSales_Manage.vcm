@@ -11,13 +11,6 @@
   </config>
   <project-id>1465839427</project-id>
   <factor-config-options>0</factor-config-options>
-  <environment name="ENV_DATABASE" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>PointOfSales_Manage/build/982479084</original-environment-directory>
-    </config>
-  </environment>
   <environment name="ENV_ENCRYPT" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -44,13 +37,6 @@
     <is-monitored>0</is-monitored>
     <config>
       <original-environment-directory>PointOfSales_Manage/build/1055816108</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="ENV_WAITING_LIST" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>PointOfSales_Manage/build/2527481649</original-environment-directory>
     </config>
   </environment>
   <environment name="FULL_INTEGRATION_TESTING" type="UNIT">
@@ -100,12 +86,10 @@
     <environment name="PointOfSales_Coverage"/>
   </group>
   <group name="UT-Group">
-    <environment name="ENV_DATABASE"/>
     <environment name="ENV_ENCRYPT"/>
     <environment name="ENV_LINKED_LIST"/>
     <environment name="ENV_MANAGER"/>
     <environment name="ENV_MATRIX_MULTIPLY"/>
-    <environment name="ENV_WAITING_LIST"/>
     <environment name="INTEGRATION_TESTING"/>
   </group>
   <group name="c++_Testing">
@@ -143,6 +127,9 @@
       <group name="UT-Group"/>
     </testsuite>
     <testsuite name="UnitTesting_TrustZone">
+      <config>
+        <enabled>0</enabled>
+      </config>
       <group name="UT-Group"/>
     </testsuite>
   </compiler>

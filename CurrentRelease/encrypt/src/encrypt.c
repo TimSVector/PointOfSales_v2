@@ -90,8 +90,10 @@ static int sendData(struct matrix_t data)
     
     static int failureCount = 0;
     
+    ret_val = TZ_Write_Data(data);
+    
     // send data via the Trust Zone Data Write
-    while ((ret_val = TZ_Write_Data(data)) == FAILURE && failureCount < 10)
+    if (ret_val == FAILURE && failureCount < 10)
     {
         
         /* Log the data error */
@@ -102,7 +104,10 @@ static int sendData(struct matrix_t data)
         
         /* Wait for trust zone to reset */
         while (TZ_Wait_Reset(TIMEOUT_10MSEC)) 
+        {
+            // loop until TZ resets
             ;        
+        }
     }
     
     if (failureCount >= 10)
@@ -118,10 +123,14 @@ static int sendData(struct matrix_t data)
    
     // loop over the data rows
     for (i = 0; i < data.row && i < MAX_MATRIX; i++)
+    {
         // loop over the data columns
         for (j = 0; j < data.col && j < MAX_MATRIX; j++)
+        {
             // print the resulting data
             printf ("%02X ",data.matrix[i][j]); 
+        }
+    }
             
     // clean up printf       
     printf ("\n");
@@ -164,10 +173,14 @@ static struct matrix_t generate_private_key(void)
         
         // loop over the matrix rows
  	    for (i = 0; i < MAX_MATRIX; i++)
+        {
             // and loop over the matrix rows
  	        for (j = 0; j < MAX_MATRIX; j++)
+            {
                 // store random data (for now)
                     private_key.matrix[i][j] = rand() & 0xff;    
+            }
+        }
     }
 #endif
     // return the private key
@@ -199,9 +212,10 @@ static struct matrix_t generate_private_key(void)
          
     // call the matrix multiply routine to encrypt the data
     if (matrix_multiply(&data2BSent, private_key, &result) == FAILURE)
-        
+    {
         // if the matrix multiply failed, return FAILURE
         return FAILURE;
+    }
 
     // otherwise send the data
     return sendData (result);
