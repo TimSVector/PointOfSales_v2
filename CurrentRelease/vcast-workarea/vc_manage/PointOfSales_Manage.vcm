@@ -3,7 +3,7 @@
   <config>
     <config>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
-      <value>HTML</value>
+      <value>TEXT</value>
     </config>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
@@ -124,12 +124,6 @@
       </config>
     </compiler>
     <testsuite name="UnitTesting">
-      <group name="UT-Group"/>
-    </testsuite>
-    <testsuite name="UnitTesting_TrustZone">
-      <config>
-        <enabled>0</enabled>
-      </config>
       <group name="UT-Group"/>
     </testsuite>
   </compiler>
