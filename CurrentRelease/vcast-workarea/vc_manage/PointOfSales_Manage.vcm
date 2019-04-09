@@ -112,6 +112,8 @@
           <value>TRUE</value>
           <key>VCAST_ALT_WB_METHOD</key>
           <value>TRUE</value>
+          <key>VCAST_CUSTOM_REPORT_FORMAT</key>
+          <value>HTML</value>
         </config>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
