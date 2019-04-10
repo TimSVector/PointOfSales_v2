@@ -74,6 +74,13 @@
       <original-environment-directory>../vc_coverage</original-environment-directory>
     </config>
   </environment>
+  <environment name="TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PointOfSales_Manage/build/801677986</original-environment-directory>
+    </config>
+  </environment>
   <group name="Group"/>
   <group name="Group_1"/>
   <group name="Group_2"/>
@@ -91,6 +98,7 @@
     <environment name="ENV_MANAGER"/>
     <environment name="ENV_MATRIX_MULTIPLY"/>
     <environment name="INTEGRATION_TESTING"/>
+    <environment name="TEST"/>
   </group>
   <group name="c++_Testing">
     <environment name="MANAGER"/>
