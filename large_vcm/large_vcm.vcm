@@ -2606,6 +2606,11 @@
     <environment name="TEST0322"/>
     <environment name="TEST0323"/>
     <environment name="TEST0324"/>
+  </group>
+  <group name="Group2">
+    <environment name="TEST0322"/>
+    <environment name="TEST0323"/>
+    <environment name="TEST0324"/>
     <environment name="TEST0325"/>
   </group>
   <compiler>
@@ -2614,6 +2619,9 @@
     </compiler>
     <testsuite name="TestSuite">
       <group name="Group"/>
+    </testsuite>
+    <testsuite name="TestSuite2">
+      <group name="Group2"/>
     </testsuite>
   </compiler>
   <search-directory type="TESTABLE_SOURCE_DIR">C:\Users\vaprti\vector\sandbox\large_vcm\regression</search-directory>
