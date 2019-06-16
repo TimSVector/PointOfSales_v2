@@ -2281,104 +2281,6 @@
       <original-environment-directory>.</original-environment-directory>
     </config>
   </environment>
-  <environment name="TEST0326" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0327" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0328" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0329" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0330" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0331" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0332" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0333" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0334" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0335" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0336" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0337" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0338" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
-  <environment name="TEST0341" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>.</original-environment-directory>
-    </config>
-  </environment>
   <group name="Group">
     <environment name="TEST0001"/>
     <environment name="TEST0002"/>
@@ -2705,20 +2607,6 @@
     <environment name="TEST0323"/>
     <environment name="TEST0324"/>
     <environment name="TEST0325"/>
-    <environment name="TEST0326"/>
-    <environment name="TEST0327"/>
-    <environment name="TEST0328"/>
-    <environment name="TEST0329"/>
-    <environment name="TEST0330"/>
-    <environment name="TEST0331"/>
-    <environment name="TEST0332"/>
-    <environment name="TEST0333"/>
-    <environment name="TEST0334"/>
-    <environment name="TEST0335"/>
-    <environment name="TEST0336"/>
-    <environment name="TEST0337"/>
-    <environment name="TEST0338"/>
-    <environment name="TEST0341"/>
   </group>
   <compiler>
     <compiler>
