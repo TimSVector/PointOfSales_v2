@@ -7,7 +7,7 @@
     </config>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
-    <root-source-directory>../../</root-source-directory>
+    <root-source-directory>$(VCAST_DEMO_SRC_BASE)</root-source-directory>
   </config>
   <project-id>1465839427</project-id>
   <factor-config-options>0</factor-config-options>
@@ -97,6 +97,17 @@
   </group>
   <compiler>
     <compiler>
+      <name>GNU_Native_4.8_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>GNU_C_48</value>
+        </config>
+      </config>
+    </compiler>
+  </compiler>
+  <compiler>
+    <compiler>
       <name>VectorCAST_MinGW_C++</name>
       <config>
         <config>
@@ -123,10 +134,15 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
+        <process-environment>
+          <key>VCAST_DEMO_SRC_BASE</key>
+          <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
+        </process-environment>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
     </testsuite>
   </compiler>
+  <environment-variable-name>VCAST_DEMO_SRC_BASE</environment-variable-name>
 </project>
