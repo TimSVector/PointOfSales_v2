@@ -59,6 +59,13 @@
       <original-environment-directory>PluginTesting/build/2146355206</original-environment-directory>
     </config>
   </environment>
+  <environment name="WHITEBOX_C" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>../../sandbox/sharedArchiveDirectoryTest/PluginTesting/2452234310</original-environment-directory>
+    </config>
+  </environment>
   <group name="AdaUTGroup">
     <environment name="SIMPLE_ADA_TEST"/>
   </group>
@@ -66,6 +73,9 @@
     <environment name="SIMPLE_TEST"/>
   </group>
   <group name="CUTGroup"/>
+  <group name="C_test_GROUP">
+    <environment name="WHITEBOX_C"/>
+  </group>
   <group name="Compound_Only_Tests">
     <environment name="ALL_COMPOUND_ONLY"/>
     <environment name="ALL_COMPOUND_ONLY_IN_COMPOUND"/>
@@ -155,6 +165,20 @@
   </compiler>
   <compiler>
     <compiler>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_63_C</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="c_files">
+      <group name="C_test_GROUP"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
       <name>VectorCAST_MinGW_C++</name>
       <config>
         <config>
@@ -164,6 +188,9 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(VECTORCAST_DIR)\Tutorial\cpp</search-directory>
       </config>
     </compiler>
+    <testsuite name="C_Files">
+      <group name="C_test_GROUP"/>
+    </testsuite>
     <testsuite name="Test_CompoundOnly">
       <group name="Compound_Only_Tests"/>
     </testsuite>

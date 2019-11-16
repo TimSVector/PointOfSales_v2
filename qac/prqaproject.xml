@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<prqaproject xmlversion="3.0.0" qafversion="2.2.0">
+ <!-- Config file information... -->
+ <configurations>
+  <cosmetic_name name="PointOfSales_v2"/>
+  <languageFamily name="C/C++"/>
+  <processMonitor>
+   <includeOptionSyntax>
+    <option string="-I"/>
+    <option string="/I"/>
+   </includeOptionSyntax>
+   <defineOptionSyntax>
+    <option string="-D"/>
+    <option string="/D"/>
+   </defineOptionSyntax>
+   <settingsOptionSyntax>
+    <option compiler="Visual Studio" string="@" quotes_escaped="yes" extension=".rsp"/>
+    <option compiler="Windriver" string=" -@" quotes_escaped="yes" extension=""/>
+    <option compiler="Greenhills" string="--Via" quotes_escaped="yes" extension="__i"/>
+   </settingsOptionSyntax>
+   <excludeStrings/>
+   <fileFilterStrings/>
+  </processMonitor>
+  <suppressIncludes active="no"/>
+  <root_paths>
+   <root_path path="${PROJECT_ROOT}" name="SOURCE_ROOT"/>
+  </root_paths>
+  <default_config name="Initial_Config"/>
+  <!-- Individual Configs... -->
+  <config name="Initial_Config">
+   <baselinedSourceRoot baseline="OFF"/>
+   <baselineSnapshot id="" name="" date=""/>
+   <acf name="project.acf"/>
+   <rcf name="project.rcf"/>
+   <ccts>
+    <cct target="C" active="yes" name="MS_VC++_CL_18_x64_C.cct"/>
+   </ccts>
+  </config>
+ </configurations>
+ <!-- Mapping of extension to target_language... -->
+ <file_extensions>
+  <language target="C">
+   <extension ext=".c"/>
+  </language>
+  <language target="C">
+   <extension ext=".C"/>
+  </language>
+  <language target="C++">
+   <extension ext=".cpp"/>
+  </language>
+  <language target="C++">
+   <extension ext=".cxx"/>
+  </language>
+  <language target="C++">
+   <extension ext=".cc"/>
+  </language>
+  <language target="C++">
+   <extension ext=".CPP"/>
+  </language>
+  <language target="C++">
+   <extension ext=".CXX"/>
+  </language>
+  <language target="C++">
+   <extension ext=".CC"/>
+  </language>
+ </file_extensions>
+ <!-- Files in project... -->
+ <files>
+  <!-- Explicit files... -->
+  <file target="C" name="linked_list.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/utils/src"/>
+  <file target="C" name="whitebox.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/utils/src"/>
+  <file target="C" name="manager.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/order_entry/src"/>
+  <file target="C" name="waiting_list.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/order_entry/src"/>
+  <file target="C" name="pos_driver.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/main"/>
+  <file target="C" name="matrix_multiply.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/encrypt/src"/>
+  <file target="C" name="encrypt.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/encrypt/src"/>
+  <file target="C" name="database.c" folder="C:/Users/vaprti/vector/github/PointOfSales_v2/CurrentRelease/database/src"/>
+ </files>
+</prqaproject>
