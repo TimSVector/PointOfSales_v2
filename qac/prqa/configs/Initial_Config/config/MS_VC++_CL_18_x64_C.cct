@@ -1,0 +1,173 @@
+*{
+* "PLATFORM" : "PLATFORM_WIN64",
+* "COMPILER_HIERARCHY" : "Microsoft_VisualStudio_2013",
+* "COMPILER_NAME": "VisualC++",
+* "COMPILER_VERSION": "18",
+* "HOST": "x64",
+* "TARGET": "x64",
+* "SOURCE_LANGUAGE": "C",
+* "COMPILER_CMD": "cl",
+* "ADDITIONAL_INCLUDES":"DATA/MS_VC++_CL_18_x64_C/Stub",
+* "INCLUDE_LIST": [
+* 	{"INCLUDE_STRUCTURE": {
+*		"INCLUDE_TYPE": "MasterScript",
+*		"INCLUDE_VALUE": "DATA/MS_VC++_CL_18_x64_C/Script/MS_VC++_CL_18_x64_C.py"
+*		}
+*	},
+*	{"INCLUDE_STRUCTURE": {
+*   	"INCLUDE_TYPE": "HelperScript",
+*       	"INCLUDE_VALUE": "DATA/common/msvc.py"
+*		}
+*	}
+* ],
+* "SYNCHRONISATION" : {
+*	"INCLUDE_FLAGS":"/I",
+*	"DEFINE_FLAGS":"/D",
+*	"SETTINGS_FILE_OPTIONS":{
+*		"FLAG":"",
+*		"EXTENSION":"",
+*		"LITERAL_QUOTES":""
+*       }
+*	}
+*}
+
+-it "size_t=unsigned long long"
+-it "ptrdiff_t=unsigned long long"
+-it "wchar_t=unsigned short"
+
+
+-d "_VARIANT_BOOL=VARIANT_BOOL"
+-d "__FUNCTION__=__FSTREXP __FUNCTION__"
+-d _INTEGRAL_MAX_BITS=64
+-d _MSC_EXTENSIONS=1
+-d _MSC_FULL_VER=170050727
+-d _MSC_VER=1700
+-d _M_AMD64=100
+-d _M_X64=100
+-d _WIN32=1
+-d _WIN64=1
+-d _AMD64_=1
+-d __COUNTER__=0
+
+*
+* types
+*
+
+-d "__int16=short"
+-d "__int32=int"
+-d "__int64=unsigned long long"
+-d "__int8=char"
+
+
+-s int=32
+-a int=4
+-s char=8
+-a char=1
+-u-
+-s short=16
+-a short=2
+-s long=32
+-a long=4
+-s longlong=64
+-a longlong=8
+-s float=32
+-a float=4
+-s double=64
+-a double=8
+-s ldouble=64
+-a ldouble=8
+-s dataptr=64
+-a dataptr=8
+-s codeptr=64
+-a codeptr=8
+
+
+*
+* Compiler behaviour
+*
+
+-xn 31
+-na 31
+-ar+
+-bits+
+-ex ansipc
+-ex c++
+-ex dollar 
+-ex longlong
+-fpc+
+-sl-
+-xc-
+
+*
+* exceptions
+*
+
+-d "__alignof=1 prl_ignore_paren"
+-d "__asm=asm"
+-d "_asm=asm"
+-d "__cdecl=cdecl"
+-d "__declspec=_ignore_paren"
+-d "__fastcall="
+-d "__forceinline="
+-d "__inline=inline"
+-d "__pragma=_ignore_paren"
+-d "__ptr32="
+-d "__ptr64="
+-d __restrict=
+-d "__sptr="
+-d "__stdcall="
+-d "__unaligned="
+-d "__uptr="
+-d "__w64="
+-d "_cdecl=cdecl"
+-d "_declspec=_ignore_paren"
+-d "_fastcall="
+-d "_inline=inline"
+-d "_prl_null_expression=0 prl_ignore_paren"
+-d "_stdcall="
+-d __assume=
+-d __clrcall=
+-d "__except=_ignore_paren"
+-d __finally=
+-d __has_nothrow_assign=
+-d __has_nothrow_constructor=
+-d __has_nothrow_copy=
+-d __has_nothrow_move_assign=
+-d __has_trivial_assign=
+-d __has_trivial_constructor=
+-d __has_trivial_destructor=
+-d __has_trivial_move_assign=
+-d __has_trivial_move_constructor=
+-d __has_virtual_destructor=
+-d __identifier=
+-d __interface=
+-d __is_abstract=
+-d __is_base_of=
+-d __is_class=
+-d __is_constructible=
+-d __is_convertible_to=
+-d __is_empty=
+-d __is_enum=
+-d __is_literal_type=
+-d __is_nothrow_constructible=
+-d __is_pod=
+-d __is_polymorphic=
+-d __is_ref_class=
+-d __is_standard_layout=
+-d __is_trivial=
+-d __is_trivially_copyable=
+-d __is_union=
+-d __is_value_class=
+-d __leave=
+-d __try=
+-d __underlying_type=
+-d __uuidof=
+-d _uuidof=
+-d prl_ignore_paren=_ignore_paren
+-d static_assert=
+-d _Pragma=_ignore_paren
+-d __section=_ignore_paren
+
+-ex pc
+-ex asm
+-ex longlong
