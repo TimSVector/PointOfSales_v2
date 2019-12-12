@@ -3,7 +3,7 @@
   <components>
     <component version="9.3.1" target="C" name="qac"/>
     <component version="4.1.0" target="C++" name="qacpp"/>
-    <component version="1.5.0" target="C_CPP" name="rcma"/>
+    <component version="1.5.0" target="C_CPP" disabled="yes" name="rcma"/>
     <component version="2.3.0" target="C" name="m3cm"/>
   </components>
   <component_settings>
