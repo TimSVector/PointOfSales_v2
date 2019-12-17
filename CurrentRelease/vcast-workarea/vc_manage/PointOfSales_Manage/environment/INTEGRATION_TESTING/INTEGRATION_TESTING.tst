@@ -1,4 +1,4 @@
--- VectorCAST 18.sp4 (12/20/18)
+-- VectorCAST 19.sp3 (11/13/19)
 -- Test Case Script
 -- 
 -- Environment    : INTEGRATION_TESTING
@@ -16,6 +16,7 @@ TEST.SCRIPT_FEATURE:FULL_PARAMETER_TYPES
 TEST.SCRIPT_FEATURE:STRUCT_DTOR_ADDS_POINTER
 TEST.SCRIPT_FEATURE:STRUCT_FIELD_CTOR_ADDS_POINTER
 TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
+TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
 --
 
 -- Unit: manager
@@ -29,7 +30,7 @@ TEST.NEW
 TEST.NAME:Clear_Table.001
 TEST.COMPOUND_ONLY
 TEST.VALUE:manager.Clear_Table.Table:1
-TEST.EXPECTED:manager.Clear_Table.return:SUCCESS
+TEST.EXPECTED:manager.Clear_Table.return:MACRO=SUCCESS
 TEST.END
 
 -- Subprogram: Get_Check_Total
@@ -41,7 +42,7 @@ TEST.NEW
 TEST.NAME:Get_Check_Total.001
 TEST.COMPOUND_ONLY
 TEST.VALUE:manager.Get_Check_Total.Table:1
-TEST.EXPECTED:manager.Get_Check_Total.return:COST_OF_STEAK
+TEST.EXPECTED:manager.Get_Check_Total.return:MACRO=COST_OF_STEAK
 TEST.END
 
 -- Subprogram: Pay_The_Bill
@@ -59,7 +60,7 @@ TEST.VALUE:manager.Pay_The_Bill.cardNumber:"0000"
 TEST.VALUE:manager.Pay_The_Bill.secCode:<<malloc 4>>
 TEST.VALUE:manager.Pay_The_Bill.secCode:"345"
 TEST.VALUE:manager.Pay_The_Bill.Table:1
-TEST.EXPECTED:manager.Pay_The_Bill.return:SUCCESS
+TEST.EXPECTED:manager.Pay_The_Bill.return:MACRO=SUCCESS
 TEST.END
 
 -- Subprogram: Place_Order
