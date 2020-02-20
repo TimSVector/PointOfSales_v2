@@ -60,12 +60,20 @@ VC_UnstablePhrases = ["Value Line Error - Command Ignored", "groovy.lang","java.
        
 // Return the current console log
 def getConsoleLog() {
-    return Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
+    def consoleText = ""
+    try {
+        consoleText = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
+    }
+    catch (Exception ex) {
+        println "Cannot access console log file.  Please uncheck Use Groovy Sandbox or add approval for scipt calls"
+    }
+    
+    return 
 }       
 
 // setup the manage project to have preset options
 def setupManageProject() {
-    cmds = """        
+    def cmds = """        
         _RM *_rebuild.html
         _VECTORCAST_DIR/vpython "${env.WORKSPACE}/vc_scripts/managewait.py" --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" ${VC_sharedArtifactDirectory} --status"  
         _VECTORCAST_DIR/vpython "${env.WORKSPACE}/vc_scripts/managewait.py" --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --force --release-locks"
