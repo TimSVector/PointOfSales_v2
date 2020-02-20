@@ -68,7 +68,7 @@ def getConsoleLog() {
         println "Cannot access console log file.  Please uncheck Use Groovy Sandbox or add approval for scipt calls"
     }
     
-    return 
+    return consoleText
 }       
 
 // setup the manage project to have preset options
