@@ -40,15 +40,15 @@ object GetEnvironmentInfo : BuildType({
 
     steps {
         script {
-            name = "GetInfo"
-            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getInfo.py PluginTesting.vcm"
-        }
-        script {
             name = "VC_Setup"
             scriptContent = """
                 mkdir vc_scripts
                 xcopy /S /Q C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
             """.trimIndent()
+        }
+        script {
+            name = "GetInfo"
+            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getInfo.py PluginTesting.vcm"
         }
     }
 })
