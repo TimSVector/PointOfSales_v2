@@ -33,6 +33,10 @@ project {
 
 object BuildExecute : BuildType({
     name = "Build-Execute"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 })
 
 object GetEnvironmentInfo : BuildType({
