@@ -47,7 +47,7 @@ object VectorCAST : BuildType({
         }
         script {
             name = "GetJobs"
-            scriptContent = """%env.VECTORCAST_DIR%/vpython %system.agent.work.dir%\vc_scripts/getjobs.py PluginTesting.vcm"""
+            scriptContent = """%env.VECTORCAST_DIR%/vpython "%teamcity.agent.work.dir%"\vc_scripts/getjobs.py PluginTesting.vcm"""
         }
         script {
             name = "Build-Execute"
