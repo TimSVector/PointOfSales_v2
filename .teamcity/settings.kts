@@ -91,5 +91,12 @@ object VectorCAST : BuildType({
             name = "GetJobs"
             scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
         }
+        script {
+            name = "New build step"
+            scriptContent = """
+                set path=%env.Path%;C:\vector\tools\gnat\2019\bin
+                %env.VECTORCAST_DIR%\vpython %system.agent.work.dir%\vc_scripts\managewait.py --wait_time 30 --wait_loops 1 --command_line "--project  "%system.agent.work.dir%\PluginTesting.vcm" --level GNAT/Ada_Tests_Branch -e SIMPLE_ADA_TEST --build-execute --incremental --output GNAT_Ada_Tests_Branch_SIMPLE_ADA_TEST_rebuild.html"
+            """.trimIndent()
+        }
     }
 })
