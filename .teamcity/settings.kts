@@ -32,4 +32,8 @@ project {
 object GetEnvironmentInfo : BuildType({
     name = "Get-Environment-Info"
     description = "Getting Environment Information"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 })
