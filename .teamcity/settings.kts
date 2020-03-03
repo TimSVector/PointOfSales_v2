@@ -74,4 +74,8 @@ object GetEnvironmentInfo : BuildType({
 
 object VectorCAST : BuildType({
     name = "VectorCAST"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 })
