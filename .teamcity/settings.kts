@@ -41,8 +41,8 @@ object VectorCAST : BuildType({
         script {
             name = "VC_Setup"
             scriptContent = """
-                if not exist "vc_scripts" mkdir vc_scripts 
-                xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
+                if not exist %system.agent.work.dir%\"vc_scripts" mkdir %system.agent.work.dir%\vc_scripts 
+                xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* %system.agent.work.dir%\vc_scripts
             """.trimIndent()
         }
         script {
