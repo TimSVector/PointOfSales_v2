@@ -29,6 +29,7 @@ project {
 
     buildType(BuildExecute)
     buildType(GetEnvironmentInfo)
+    buildType(VectorCAST)
 }
 
 object BuildExecute : BuildType({
@@ -69,4 +70,8 @@ object GetEnvironmentInfo : BuildType({
             scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
         }
     }
+})
+
+object VectorCAST : BuildType({
+    name = "VectorCAST"
 })
