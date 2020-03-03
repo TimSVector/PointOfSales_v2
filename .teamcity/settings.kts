@@ -41,13 +41,13 @@ object VectorCAST : BuildType({
         script {
             name = "VC_Setup"
             scriptContent = """
-                if not exist "vc_scripts" mkdir vc_scripts 
+                if not exist "vc_scripts" mkdir  %system.agent.work.dir%\vc_scripts 
                 xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
             """.trimIndent()
         }
         script {
             name = "GetJobs"
-            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
+            scriptContent = "%env.VECTORCAST_DIR%/vpython  %system.agent.work.dir%\vc_scripts/getjobs.py PluginTesting.vcm"
         }
         script {
             name = "New build step"
