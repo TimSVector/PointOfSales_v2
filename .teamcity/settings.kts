@@ -53,7 +53,7 @@ object VectorCAST : BuildType({
             name = "Build-Execute"
             scriptContent = """
                 set path=%env.Path%;C:\vector\tools\gnat\2019\bin
-                %env.VECTORCAST_DIR%\vpython "%teamcity.agent.work.dir%"\vc_scripts\managewait.py --wait_time 30 --wait_loops 1 --command_line "--project  "%teamcity.agent.work.dir%\PluginTesting.vcm" --level GNAT/Ada_Tests_Branch -e SIMPLE_ADA_TEST --build-execute --incremental --output GNAT_Ada_Tests_Branch_SIMPLE_ADA_TEST_rebuild.html"
+                %env.VECTORCAST_DIR%\vpython vc_scripts\managewait.py --wait_time 30 --wait_loops 1 --command_line "--project  PluginTesting.vcm --level GNAT/Ada_Tests_Branch -e SIMPLE_ADA_TEST --build-execute --incremental --output GNAT_Ada_Tests_Branch_SIMPLE_ADA_TEST_rebuild.html"
             """.trimIndent()
         }
     }
