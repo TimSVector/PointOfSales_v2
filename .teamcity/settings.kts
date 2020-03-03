@@ -69,10 +69,6 @@ object VectorCASTGnatAdaTestsFailedNoEVSimpleAdaTest : BuildType({
 
     steps {
         script {
-            name = "GetJobs"
-            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
-        }
-        script {
             name = "Build-Execute"
             scriptContent = """
                 set path=%env.Path%;C:\vector\tools\gnat\2019\bin
