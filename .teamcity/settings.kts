@@ -27,8 +27,13 @@ version = "2019.2"
 
 project {
 
+    buildType(BuildExecute)
     buildType(GetEnvironmentInfo)
 }
+
+object BuildExecute : BuildType({
+    name = "Build-Execute"
+})
 
 object GetEnvironmentInfo : BuildType({
     name = "Get-Environment-Info"
