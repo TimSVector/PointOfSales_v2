@@ -42,7 +42,7 @@ object GetEnvironmentInfo : BuildType({
         script {
             name = "VC_Setup"
             scriptContent = """
-                mkdir vc_scripts
+                if not exist "vc_scripts" mkdir vc_scripts 
                 xcopy /S /Q C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
             """.trimIndent()
         }
