@@ -87,5 +87,9 @@ object VectorCAST : BuildType({
                 xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
             """.trimIndent()
         }
+        script {
+            name = "GetJobs"
+            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
+        }
     }
 })
