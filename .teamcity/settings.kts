@@ -47,8 +47,8 @@ object GetEnvironmentInfo : BuildType({
             """.trimIndent()
         }
         script {
-            name = "GetInfo"
-            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getInfo.py PluginTesting.vcm"
+            name = "GetJobs"
+            scriptContent = "%env.VECTORCAST_DIR%/vpython vc_scripts/getjobs.py PluginTesting.vcm"
         }
     }
 })
