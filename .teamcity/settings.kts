@@ -31,7 +31,7 @@ project {
 }
 
 object VectorCAST : BuildType({
-    name = "VectorCAST"
+    name = "VectorCAST_GNAT_Ada_Tests_Branch_SIMPLE_ADA_TEST"
 
     vcs {
         root(DslContext.settingsRoot)
