@@ -38,20 +38,16 @@ object VectorCAST : BuildType({
     }
 
     steps {
-        script {
-            name = "VC_Setup"
-            scriptContent = """
-                if not exist "vc_scripts" mkdir  %system.agent.work.dir%\vc_scripts 
-                xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
-            """.trimIndent()
-        }
+
         script {
             name = "GetJobs"
             scriptContent = "%env.VECTORCAST_DIR%/vpython  %system.agent.work.dir%\vc_scripts/getjobs.py PluginTesting.vcm"
         }
         script {
-            name = "New build step"
+            name = "Build-Execute Step"
             scriptContent = """
+                if not exist "vc_scripts" mkdir  %system.agent.work.dir%\vc_scripts 
+                xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
                 set path=%env.Path%;C:\vector\tools\gnat\2019\bin
                 %env.VECTORCAST_DIR%\vpython %system.agent.work.dir%\vc_scripts\managewait.py --wait_time 30 --wait_loops 1 --command_line "--project  "%system.agent.work.dir%\PluginTesting.vcm" --level GNAT/Ada_Tests_Branch -e SIMPLE_ADA_TEST --build-execute --incremental --output GNAT_Ada_Tests_Branch_SIMPLE_ADA_TEST_rebuild.html"
             """.trimIndent()
