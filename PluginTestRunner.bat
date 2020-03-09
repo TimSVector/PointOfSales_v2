@@ -8,7 +8,7 @@ set COMPILER=%2
 set TESTSUITE=%3
 set ENVIRONMENT=%4
 
-if "%COMPILER%" == "" and  and "%ENVIRONMENT%" == "" (
+if "%COMPILER%" == "" (
     if "%TESTSUITE%" == "" (
         %VECTORCAST_DIR%/manage --project %PROJECT% --build-execute --incremental --output %PROJECT%_RebuildReport.html > build.log
     ) else (
