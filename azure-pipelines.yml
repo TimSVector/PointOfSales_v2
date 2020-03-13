@@ -9,8 +9,6 @@ trigger:
 pool: Default
 
 steps:
-- script: dir
-  displayName: 'Run a one-line script'
 
 - script: |
 if not exist "vc_scripts" mkdir vc_scripts 
