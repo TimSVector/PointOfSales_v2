@@ -11,10 +11,11 @@ pool: Default
 steps:
 
 - script: |
+    @echo on
     if not exist "vc_scripts" mkdir vc_scripts 
-    xcopy /S /Q /Y "C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.*" vc_scripts
-    $Env:Path += ";C:\vector\tools\gnat\2019\bin"
-    Add-Content -Path $Profile.CurrentUserAllHosts -Value '$Env:WORKSPACE = "%cd%"'
+    xcopy /S /Q /Y C:\Users\vaprti\vector\github\vectorcast-execution-plugin-tms-pipeline\src\main\resources\scripts\*.* vc_scripts
+    set PATH=%PATH%;C:\vector\tools\gnat\2019\bin
+    set WORKSPACE=%cd%
 
     %VECTORCAST_DIR%/manage --project PluginTesting.vcm --build-execute --incremental --output RebuildReport.html > build.log
     %VECTORCAST_DIR%/manage --project PluginTesting.vcm --create-report=metrics --output=MetricsReport.html
