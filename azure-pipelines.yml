@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  default: 'VAPRTI5115NBJ'
 
 steps:
 - script: set
