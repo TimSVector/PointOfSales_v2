@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  default: VAPRTI5115NBJ
+  default: default
 
 steps:
 - script: set
