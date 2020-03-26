@@ -10,7 +10,7 @@
 VC_Manage_Project     = "PluginTesting.vcm"
 VC_EnvSetup        = '''set PATH=%PATH%;C://vector//tools//gnat//2019//bin'''
 VC_Build_Preamble  = ""
-VC_EnvTeardown     = ''''''
+VC_EnvTeardown     = '''''' 
 def scmStep () { git 'https://github.com/TimSVector/PointOfSales_v2.git' }
 VC_usingSCM = true
 VC_sharedArtifactDirectory = '''--workspace=c:/users/vaprti/vector/sandbox/sharedArchiveDirectoryTest/PluginTesting_pipe'''
