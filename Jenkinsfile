@@ -149,7 +149,7 @@ def transformIntoStep(inputString) {
     def (compiler, test_suite, environment) = inputString.split()
     
     // set the stashed file name for later
-    String stashName = "${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage"
+    String stashName = "${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage".replace("/","_")
     
     // return the auto-generated node and job
     // node is based on compiler label
