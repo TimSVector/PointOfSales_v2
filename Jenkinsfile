@@ -210,7 +210,7 @@ def transformIntoStep(inputString) {
 
                 // no cleanup - possible CBT
                 // use individual names
-                def fixedJobName = "${env.JOB_NAME}".replace("/","_")
+                def fixedJobName = "${env.JOB_NAME}".replace("/","_") 
                 stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
                 
                 println "Finished Build-Execute Stage for ${compiler}/${test_suite}/${environment}"
