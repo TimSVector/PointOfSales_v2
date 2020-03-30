@@ -91,7 +91,7 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:PASTA
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:12.0
+TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:12.6
 TEST.END
 
 -- Test Case: BASIS-PATH-002
