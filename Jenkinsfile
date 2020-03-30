@@ -13,7 +13,7 @@ VC_Build_Preamble  = ""
 VC_EnvTeardown     = '''''' 
 def scmStep () { git branch: 'multi-branch-test', url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
 VC_usingSCM = true
-VC_sharedArtifactDirectory = '''--workspace=c:/users/vaprti/vector/sandbox/sharedArchiveDirectoryTest/PluginTesting_pipe'''
+VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
 VC_waitLoops = '1'
