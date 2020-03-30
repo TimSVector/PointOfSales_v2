@@ -176,12 +176,16 @@ def transformIntoStep(inputString) {
 
                 // get the manage projects full name and base name
                 def mpFullName = VC_Manage_Project.split("/")[-1]
-                def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
+                def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
+                
+                if (env.BRANCH_NAME != null) {
+                    mpName = "${env.BRANCH_NAME}_" + mpName 
+                }
                 
                 // setup the commands for building, executing, and transferring information
                 cmds =  """
                     ${VC_EnvSetup}
-                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${compiler}_${test_suite}_${environment}_rebuild.html"
+                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output $(mpName}_${compiler}_${test_suite}_${environment}_rebuild.html"
                     ${VC_EnvTeardown}
                 """.stripIndent()
                 
@@ -211,7 +215,7 @@ def transformIntoStep(inputString) {
                 // no cleanup - possible CBT
                 // use individual names
                 def fixedJobName = "${env.JOB_NAME}".replace("/","_") 
-                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
+                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${mpName}_${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
                 
                 println "Finished Build-Execute Stage for ${compiler}/${test_suite}/${environment}"
 
