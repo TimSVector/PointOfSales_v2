@@ -63,7 +63,7 @@
     <language>1</language>
     <is-monitored>0</is-monitored>
     <config>
-      <original-environment-directory>../../sandbox/sharedArchiveDirectoryTest/PluginTesting/2452234310</original-environment-directory>
+      <original-environment-directory>PluginTesting/2452234310</original-environment-directory>
     </config>
   </environment>
   <group name="AdaUTGroup">
