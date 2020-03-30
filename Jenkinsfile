@@ -362,7 +362,7 @@ pipeline {
                     def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
                     
                     if (env.BRANCH_NAME != null) {
-                        mpName = "${env.BRANCH_NAME}_" + mpName
+                        mpName = "${env.BRANCH_NAME}_" + mpName 
                     }
                     
                     def buildLogText = ""
