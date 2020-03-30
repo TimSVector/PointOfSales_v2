@@ -359,7 +359,12 @@ pipeline {
                     
                     // get the manage projects full name and base name
                     def mpFullName = VC_Manage_Project.split("/")[-1]
-                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
+                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
+                    
+                    if (env.BRANCH_NAME != null) {
+                        mpName = "{env.BRANCH_NAME}_" + mpName
+                    }
+                    
                     def buildLogText = ""
                     
                     // if we are using SCM and not using a shared artifact directory...
