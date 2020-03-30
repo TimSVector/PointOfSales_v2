@@ -58,6 +58,8 @@ int Place_Order(table_index_type Table,
        Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_PASTA;
        break;
     }
+    
+  Table_Data.Check_Total *= 1.05;
   
   Update_Table_Record(Table, Table_Data);
   return 0;
