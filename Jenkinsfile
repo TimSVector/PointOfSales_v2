@@ -8,7 +8,7 @@
 // ===============================================================
 
 VC_Manage_Project     = "PluginTesting.vcm"
-VC_EnvSetup        = '''set PATH=%PATH%;C://vector//tools//gnat//2019//bin'''
+VC_EnvSetup        = ''''''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = '''''' 
 def scmStep () { git branch: 'multi-branch-test', url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
