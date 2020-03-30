@@ -22,7 +22,7 @@ void Add_Included_Dessert(struct order_type* Order)
             Order->Salad == GREEN &&
             Order->Beverage == WINE) {
     
-    Order->Dessert = CAKE;  
+    Order->Dessert = FRUIT;  
   }
 }
 
