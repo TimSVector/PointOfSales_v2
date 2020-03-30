@@ -11,9 +11,9 @@ VC_Manage_Project     = "PluginTesting.vcm"
 VC_EnvSetup        = '''set PATH=%PATH%;C://vector//tools//gnat//2019//bin'''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = '''''' 
-def scmStep () { git branch: 'multi-branch-test', url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
+def scmStep () { url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
 VC_usingSCM = true
-VC_sharedArtifactDirectory = '''--workspace=c:/users/vaprti/vector/sandbox/sharedArchiveDirectoryTest/PluginTesting_pipe'''
+VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
 VC_waitLoops = '1'
