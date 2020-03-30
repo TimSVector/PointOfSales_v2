@@ -7,7 +7,7 @@
 //
 // ===============================================================
 
-VC_Manage_Project     = "PluginTesting.vcm"
+VC_Manage_Project     = "fast_test/fast_test.vcm"
 VC_EnvSetup        = ''''''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = '''''' 
