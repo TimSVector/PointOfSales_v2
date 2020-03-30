@@ -1,0 +1,24 @@
+--  QuickParse File Version: QP_DROP_CTOR_TESTABLE_INCLUDES  --
+HOME_DIRECTORY C:\VCAST\tutorial\cpp
+BEGIN_RECORD manager.cpp
+CHECKSUM 3146966691
+BLACKLIST FALSE
+DEFINED_OBJECTS
+   AddIncludedDessert__7ManagerFP9OrderType
+   AddPartyToWaitingList__7ManagerFPc
+   ClearTable__7ManagerFUi
+   GetCheckTotal__7ManagerFUi
+   GetNextPartyToBeSeated__7ManagerFv
+   PlaceOrder__7ManagerFUiT19OrderType
+   __ct__7ManagerFv
+CALLED_OBJECTS
+   DeleteRecord__8DataBaseFi
+   GetTableRecord__8DataBaseFiP13TableDataType
+   UpdateTableRecord__8DataBaseFiP13TableDataType
+   __ct__8DataBaseFv
+   __dt__8DataBaseFv
+STATIC_MEMBERS_DECLARED
+STATIC_MEMBERS_NEEDED
+GLOBAL_OBJECTS_NEEDED
+GLOBAL_OBJECTS_DEFINED
+END_RECORD manager.cpp
