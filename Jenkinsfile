@@ -17,7 +17,7 @@ VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
 VC_waitLoops = '1'
-VC_useOneCheckoutDir = false
+VC_useOneCheckoutDir = true
 VC_createdWithVersion = '0.62-SNAPSHOT (private-b414e1bc-vaprti)'
 
 
