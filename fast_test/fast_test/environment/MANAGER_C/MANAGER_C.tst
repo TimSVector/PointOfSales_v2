@@ -32,7 +32,7 @@ This is an automatically generated test case.
 TEST.END_NOTES:
 TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
 TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:NO_ENTREE
-TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Entree:NO_ENTREE
+TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Entree:FRUIT
 TEST.END
 
 -- Test Case: BASIS-PATH-002
