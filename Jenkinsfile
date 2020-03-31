@@ -11,8 +11,8 @@ VC_Manage_Project     = "fast_test/fast_test.vcm"
 VC_EnvSetup        = ''''''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = '''''' 
-def scmStep () { url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
-VC_usingSCM = true
+def scmStep () { }
+VC_usingSCM = false
 VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
@@ -140,6 +140,10 @@ def runCommands(cmds, useLocalCmds = true) {
     return log
 }
 
+// Fixup name so it doesn't include / or %## or any other special characters
+def fixUpName(name) {
+    return name.replace("/","_").replaceAll('\\%..','_').replaceAll('\\W','_')
+}
 // transform environment data, a line at a time, into an execution node 
 // inputString is a space separated string = <<compiler>> <<testsuite>> <<environment>>
 // return a node definition based on compiler for the specific job
@@ -149,7 +153,7 @@ def transformIntoStep(inputString) {
     def (compiler, test_suite, environment) = inputString.split()
     
     // set the stashed file name for later
-    String stashName = "${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage".replace("/","_") 
+    String stashName = fixUpName("${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage")
     
     // return the auto-generated node and job
     // node is based on compiler label
@@ -176,16 +180,12 @@ def transformIntoStep(inputString) {
 
                 // get the manage projects full name and base name
                 def mpFullName = VC_Manage_Project.split("/")[-1]
-                def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
-                
-                if (env.BRANCH_NAME != null) {
-                    //mpName = "${env.BRANCH_NAME}_" + mpName 
-                }
+                def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
                 
                 // setup the commands for building, executing, and transferring information
                 cmds =  """
                     ${VC_EnvSetup}
-                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${mpName}_${compiler}_${test_suite}_${environment}_rebuild.html"
+                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${compiler}_${test_suite}_${environment}_rebuild.html"
                     ${VC_EnvTeardown}
                 """.stripIndent()
                 
@@ -205,7 +205,7 @@ def transformIntoStep(inputString) {
                     buildLogText += runCommands("""_VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/generate-results.py ${VC_Manage_Project} --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --level ${compiler}/${test_suite} -e ${environment} --junit --buildlog build.log""")
 
                     if (VC_usingSCM && !VC_useOneCheckoutDir) {
-                        def fixedJobName = "${env.JOB_NAME}".replace("/","_")
+                        def fixedJobName = fixUpName("${env.JOB_NAME}")
                         buildLogText = runCommands("""_VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/copy_build_dir.py ${VC_Manage_Project} ${compiler}/${test_suite} ${fixedJobName}_${compiler}_${test_suite}_${environment} ${environment}""" )
                     }
                 }
@@ -214,8 +214,8 @@ def transformIntoStep(inputString) {
 
                 // no cleanup - possible CBT
                 // use individual names
-                def fixedJobName = "${env.JOB_NAME}".replace("/","_") 
-                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${mpName}_${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
+                def fixedJobName = fixUpName("${env.JOB_NAME}")
+                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
                 
                 println "Finished Build-Execute Stage for ${compiler}/${test_suite}/${environment}"
 
@@ -348,7 +348,7 @@ pipeline {
                     // unstash each of the files
                     EnvList.each {
                         (compiler, test_suite, environment) = it.split()
-                        String stashName = "${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage".replace("/","_")
+                        String stashName = fixUpName("${env.JOB_NAME}_${compiler}_${test_suite}_${environment}-build-execute-stage")
                         
                         try {
                             unstash stashName as String
@@ -363,12 +363,7 @@ pipeline {
                     
                     // get the manage projects full name and base name
                     def mpFullName = VC_Manage_Project.split("/")[-1]
-                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
-                    
-                    if (env.BRANCH_NAME != null) {
-                        //mpName = "${env.BRANCH_NAME}_" + mpName 
-                    }
-                    
+                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
                     def buildLogText = ""
                     
                     // if we are using SCM and not using a shared artifact directory...
