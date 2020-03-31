@@ -1,4 +1,4 @@
-# this demo is trying to expand the usefulness of the restaurant point of sales terminal
+# this demo is trying to expand the usefulness of the restaurant point of sales terminal -- data
 
 * Tools:
     * External MinGW v4.8 (trying to avoid VectorCAST MinGW since Linux doesn't have it.  This may change)
