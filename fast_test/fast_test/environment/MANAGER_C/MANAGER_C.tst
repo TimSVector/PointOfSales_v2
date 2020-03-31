@@ -74,6 +74,106 @@ TEST.VALUE:manager.Add_Included_Dessert.Order[0].Beverage:MIXED_DRINK
 TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:PIE
 TEST.END
 
+-- Subprogram: Add_Party_To_Waiting_List
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MIN>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<null>>
+TEST.END
+
+-- Test Case: BASIS-PATH-002
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
+TEST.NEW
+TEST.NAME:BASIS-PATH-002
+TEST.BASIS_PATH:2 of 3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MIN>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<malloc 1>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name[0]:<<MIN>>
+TEST.END
+
+-- Test Case: BASIS-PATH-003
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
+TEST.NEW
+TEST.NAME:BASIS-PATH-003
+TEST.BASIS_PATH:3 of 3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 3
+      (1) if (WaitingListSize > (9)) ==> TRUE
+      (2) while (Name && *Name) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MAX>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<null>>
+TEST.END
+
+-- Subprogram: Get_Check_Total
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Check_Total
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 1
+TEST.NOTES:
+   No branches in subprogram
+TEST.END_NOTES:
+TEST.VALUE:manager.Get_Check_Total.Table:<<MIN>>
+TEST.END
+
+-- Subprogram: Get_Next_Party_To_Be_Seated
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Next_Party_To_Be_Seated
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (WaitingListIndex > (9)) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListIndex:<<MIN>>
+TEST.END
+
+-- Test Case: BASIS-PATH-002
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Next_Party_To_Be_Seated
+TEST.NEW
+TEST.NAME:BASIS-PATH-002
+TEST.BASIS_PATH:2 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (WaitingListIndex > (9)) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListIndex:<<MAX>>
+TEST.END
+
 -- Subprogram: Place_Order
 
 -- Test Case: BASIS-PATH-001
@@ -91,7 +191,7 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:PASTA
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:12.6
+TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:12.0
 TEST.END
 
 -- Test Case: BASIS-PATH-002
