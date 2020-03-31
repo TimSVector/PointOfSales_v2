@@ -10,19 +10,19 @@
 VC_Manage_Project     = "fast_test/fast_test.vcm"
 VC_EnvSetup        = ''''''
 VC_Build_Preamble  = ""
-VC_EnvTeardown     = '''''' 
-def scmStep () { git branch: 'multi-branch-test', url: 'https://github.com/TimSVector/PointOfSales_v2.git' }
-VC_usingSCM = true
+VC_EnvTeardown     = ''''''
+def scmStep () {  }
+VC_usingSCM = false
 VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
 VC_waitLoops = '1'
 VC_useOneCheckoutDir = true
-VC_createdWithVersion = '0.62-SNAPSHOT (private-b414e1bc-vaprti)'
+VC_createdWithVersion = '0.62-SNAPSHOT (private-30fa6381-vaprti)'
 
 
 /* DEBUG JSON RESPONSE: 
-{"manageProjectName":"PluginTesting.vcm","":[false,true,true],"waitLoops":"1","waitTime":"30","sharedArtifactDir":"c:\\users\\vaprti\\vector\\sandbox\\sharedArchiveDirectoryTest\\PluginTesting_pipe","jobName":"","nodeLabel":"master","environmentSetup":"set PATH=%PATH%;C://vector//tools//gnat//2019//bin","executePreamble":"","environmentTeardown":"","singleCheckout":false,"scmSnippet":"git 'https://github.com/TimSVector/PointOfSales_v2.git'","Jenkins-Crumb":"b1a762b780efaa71a7b597981f36c26dcab2a60b7219f1897f3e189a13f389ca"}
+{"manageProjectName":"fast_test\\fast_test.vcm","":[false,false,false],"waitLoops":"1","waitTime":"30","sharedArtifactDir":"","jobName":"","nodeLabel":"master","environmentSetup":"","executePreamble":"","environmentTeardown":"","singleCheckout":true,"scmSnippet":"","Jenkins-Crumb":"d1e41d084cefa1bdedd5b61d661a8a98d1f533eaefcc0226db647d553076a9d3"}
 */
 
 // Code Coverage threshold numbers
@@ -176,16 +176,12 @@ def transformIntoStep(inputString) {
 
                 // get the manage projects full name and base name
                 def mpFullName = VC_Manage_Project.split("/")[-1]
-                def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
-                
-                if (env.BRANCH_NAME != null) {
-                    //mpName = "${env.BRANCH_NAME}_" + mpName 
-                }
+                def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
                 
                 // setup the commands for building, executing, and transferring information
                 cmds =  """
                     ${VC_EnvSetup}
-                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${mpName}_${compiler}_${test_suite}_${environment}_rebuild.html"
+                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${compiler}_${test_suite}_${environment}_rebuild.html"
                     ${VC_EnvTeardown}
                 """.stripIndent()
                 
@@ -215,7 +211,7 @@ def transformIntoStep(inputString) {
                 // no cleanup - possible CBT
                 // use individual names
                 def fixedJobName = "${env.JOB_NAME}".replace("/","_") 
-                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${mpName}_${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
+                stash includes: "${compiler}_${test_suite}_${environment}_build.log, **/${compiler}_${test_suite}_${environment}_rebuild.html, **/*.css, **/*.png, execution/*.html, management/*${compiler}_${test_suite}_${environment}*, xml_data/*${compiler}_${test_suite}_${environment}*, ${fixedJobName}_${compiler}_${test_suite}_${environment}_build.tar", name: stashName as String
                 
                 println "Finished Build-Execute Stage for ${compiler}/${test_suite}/${environment}"
 
@@ -363,12 +359,7 @@ pipeline {
                     
                     // get the manage projects full name and base name
                     def mpFullName = VC_Manage_Project.split("/")[-1]
-                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.')) 
-                    
-                    if (env.BRANCH_NAME != null) {
-                        // mpName = "${env.BRANCH_NAME}_" + mpName 
-                    }
-                    
+                    def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
                     def buildLogText = ""
                     
                     // if we are using SCM and not using a shared artifact directory...
