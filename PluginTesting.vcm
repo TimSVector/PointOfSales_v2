@@ -2,6 +2,8 @@
 <project version="28">
   <config>
     <config>
+      <key>C_DEFINE_LIST</key>
+      <value>VCAST_PARALLEL_PROCESS_COUNT=4</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
@@ -29,6 +31,13 @@
     <is-monitored>0</is-monitored>
     <config>
       <original-environment-directory>PluginTesting/build/2519348723</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="COMPOUND_FAILS" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>PluginTesting/build/698804184</original-environment-directory>
     </config>
   </environment>
   <environment name="NO_TEST" type="UNIT">
@@ -80,6 +89,7 @@
     <environment name="ALL_COMPOUND_ONLY"/>
     <environment name="ALL_COMPOUND_ONLY_IN_COMPOUND"/>
     <environment name="COMP_IN_COMP_AS_COMP_ONLY"/>
+    <environment name="COMPOUND_FAILS"/>
     <environment name="ONE_COMPOUND_ONLY"/>
   </group>
   <group name="No_Coverage_Group">
