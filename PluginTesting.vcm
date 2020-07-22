@@ -197,7 +197,7 @@
           <key>C_DEFINE_LIST</key>
           <value>VCAST_PARALLEL_PROCESS_COUNT=8 VCAST_NO_PTR_TO_UNCON_ARRAY_SUPPORT</value>
         </config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VECTORCAST_DIR)/Tutorial/cpp</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VECTORCAST_DIR)/tutorial/cpp</search-directory>
       </config>
     </compiler>
     <testsuite name="C_Files">
