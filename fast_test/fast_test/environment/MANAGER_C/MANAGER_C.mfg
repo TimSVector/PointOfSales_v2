@@ -4,5 +4,5 @@
     <key>COVERAGE_TYPE</key>
     <value>STATEMENT+BRANCH</value>
   </config>
-  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial/c</search-directory>
 </manage-config-options>
