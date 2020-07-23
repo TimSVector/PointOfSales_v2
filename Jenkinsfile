@@ -7,22 +7,24 @@
 //
 // ===============================================================
 
-VC_Manage_Project     = "fast_test/fast_test.vcm"
-VC_EnvSetup        = ''''''
+VC_Manage_Project     = "" + 'CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage'
+VC_EnvSetup        = '''call %WORKSPACE%/setenv.bat'''
 VC_Build_Preamble  = ""
-VC_EnvTeardown     = '''''' 
-def scmStep () { }
-VC_usingSCM = false
+VC_EnvTeardown     = ''''''
+def scmStep () { git 'https://github.com/TimSVector/PointOfSales_v2.git' }
+VC_usingSCM = true
 VC_sharedArtifactDirectory = ''''''
 VC_Agent_Label = 'master'
 VC_waitTime = '30'
 VC_waitLoops = '1'
 VC_useOneCheckoutDir = true
-VC_createdWithVersion = '0.62-SNAPSHOT (private-b414e1bc-vaprti)'
+VC_UseCILicense = 0
+VC_useCBT = "--incremental"
+VC_createdWithVersion = '0.64-SNAPSHOT (private-d7501a10-vaprti)'
 
 
 /* DEBUG JSON RESPONSE: 
-{"manageProjectName":"PluginTesting.vcm","":[false,true,true],"waitLoops":"1","waitTime":"30","sharedArtifactDir":"c:\\users\\vaprti\\vector\\sandbox\\sharedArchiveDirectoryTest\\PluginTesting_pipe","jobName":"","nodeLabel":"master","environmentSetup":"set PATH=%PATH%;C://vector//tools//gnat//2019//bin","executePreamble":"","environmentTeardown":"","singleCheckout":false,"scmSnippet":"git 'https://github.com/TimSVector/PointOfSales_v2.git'","Jenkins-Crumb":"b1a762b780efaa71a7b597981f36c26dcab2a60b7219f1897f3e189a13f389ca"}
+{"manageProjectName":"CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage","useCBT":true,"useCiLicense":false,"useParameters":false,"":[false,true,true],"waitLoops":"1","waitTime":"30","sharedArtifactDir":"","jobName":"getmyscript","nodeLabel":"master","environmentSetup":"call %WORKSPACE%/setenv.bat","executePreamble":"","environmentTeardown":"","singleCheckout":true,"scmSnippet":"git 'https://github.com/TimSVector/PointOfSales_v2.git'","Jenkins-Crumb":"ed7fb95afb8957e39e1816e08d690d0576dd1639376638df09daad64b7688cc7"}
 */
 
 // Code Coverage threshold numbers
@@ -55,9 +57,16 @@ VC_FailurePhrases = ["No valid edition(s) available",
                   "NOT_LINKED",
                   "Preprocess Failed",
                   "Abnormal Termination on Environment",
-                  "not recognized as an internal or external command"]
+                  "not recognized as an internal or external command",
+                  "Another Workspace with this path already exists",
+                  "Destination directory or database is not writable",
+                  "Could not acquire a read lock on the project's vcm file",
+                  "No environments found in ",
+                  ".vcm is invalid",
+                  "Please ensure that the project has the proper permissions and that the environment is not being accessed by another process."
+                  ]
                 
-VC_UnstablePhrases = ["Value Line Error - Command Ignored", "groovy.lang","java.lang.Exception"]                       
+VC_UnstablePhrases = ["Value Line Error - Command Ignored"]                       
 
 // setup the manage project to have preset options
 def setupManageProject() {
@@ -113,6 +122,9 @@ def runCommands(cmds, useLocalCmds = true) {
             ${VC_EnvSetup}
             export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
             export VCAST_RPTS_SELF_CONTAINED=FALSE
+            export VCAST_NO_FILE_TRUNCATION=1
+            export VCAST_USING_HEADLESS_MODE=${VC_UseCILicense}
+            
             """.stripIndent()
         if (useLocalCmds) {
             cmds = localCmds + cmds
@@ -126,6 +138,8 @@ def runCommands(cmds, useLocalCmds = true) {
             ${VC_EnvSetup}
             set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
             set VCAST_RPTS_SELF_CONTAINED=FALSE
+            set VCAST_NO_FILE_TRUNCATION=1
+            set VCAST_USING_HEADLESS_MODE=${VC_UseCILicense}
             """.stripIndent()
         if (useLocalCmds) {
             cmds = localCmds + cmds
@@ -159,8 +173,25 @@ def transformIntoStep(inputString) {
     // node is based on compiler label
     // this will route the job to a specific node matching that label 
     return {
-        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-            node ( compiler as String ){
+        try { //catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+        
+            // Try to use VCAST_FORCE_NODE_EXEC_NAME parameter.  
+            // If 0 length or not present, use the compiler name as a node label
+            def nodeID = "default"
+            try {
+                if ("${VCAST_FORCE_NODE_EXEC_NAME}".length() > 0) {
+                    nodeID = "${VCAST_FORCE_NODE_EXEC_NAME}"
+                }
+                else {
+                    nodeID = compiler
+                }
+            } catch (exe) {
+               nodeID = compiler
+            }
+            
+            print "Using NodeID = " + nodeID
+            
+            node ( nodeID as String ){
             
                 println "Starting Build-Execute Stage for ${compiler}/${test_suite}/${environment}"
             
@@ -172,7 +203,6 @@ def transformIntoStep(inputString) {
                 // Run the setup step to copy over the scripts
                 step([$class: 'VectorCASTSetup'])
 
-                
                 if (VC_usingSCM && !VC_useOneCheckoutDir) {
                     // set options for each manage project pulled out out of SCM
                     setupManageProject()
@@ -185,7 +215,7 @@ def transformIntoStep(inputString) {
                 // setup the commands for building, executing, and transferring information
                 cmds =  """
                     ${VC_EnvSetup}
-                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute --incremental --output ${compiler}_${test_suite}_${environment}_rebuild.html"
+                    ${VC_Build_Preamble} _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}" --level ${compiler}/${test_suite} -e ${environment} --build-execute ${VC_useCBT} --output ${compiler}_${test_suite}_${environment}_rebuild.html"
                     ${VC_EnvTeardown}
                 """.stripIndent()
                 
@@ -222,8 +252,16 @@ def transformIntoStep(inputString) {
                 (foundKeywords, failure, unstable) = checkLogsForErrors(buildLogText) 
                 
                 if (failure) {
-                    throw new Exception ("Error in Commands: " + foundKeywords)
+                    throw new Exception ("From VectorCAST: Error in Commands: " + foundKeywords)
                 }
+            }
+        } catch (Exception e) {
+            if (e.toString().contains("VectorCAST")) {
+                unstable('Error From VectorCAST Build/Execution!')
+            }
+            else {
+                print "Non VectorCAST Exception: " + e.toString()
+                throw e
             }
         }
     }
@@ -262,7 +300,20 @@ pipeline {
         stage('Single-Checkout') {
             steps {
                 script {
-                    if (VC_useOneCheckoutDir) {
+                    def usingExternalRepo = false;
+
+                    try {
+                        if ("${VCAST_FORCE_NODE_EXEC_NAME}".length() > 0) {
+                            usingExternalRepo = true
+                        }
+                        else {
+                            usingExternalRepo = false
+                        }
+                    } catch (exe) {
+                       usingExternalRepo = false
+                    }
+                
+                    if (VC_useOneCheckoutDir && !usingExternalRepo) {
                         VC_OriginalWorkspace = "${env.WORKSPACE}"
                         println "scmStep executed here: " + VC_OriginalWorkspace
                         scmStep()
@@ -270,16 +321,29 @@ pipeline {
                         VC_Manage_Project = VC_OriginalWorkspace + "/" + VC_Manage_Project
                         
                         def origSetup = VC_EnvSetup
+                        def origTeardown = VC_EnvTeardown
+                        def orig_VC_sharedArtifactDirectory = VC_sharedArtifactDirectory
                         if (isUnix()) {
                             VC_EnvSetup = VC_EnvSetup.replace("\$WORKSPACE" ,VC_OriginalWorkspace)
+                            VC_EnvTeardown = VC_EnvTeardown.replace("\$WORKSPACE" ,VC_OriginalWorkspace)
+                            VC_sharedArtifactDirectory = VC_sharedArtifactDirectory.replace("\$WORKSPACE" ,VC_OriginalWorkspace)
                         } else {
                             VC_OriginalWorkspace = VC_OriginalWorkspace.replace('\\','/')
                             VC_EnvSetup = VC_EnvSetup.replace("%WORKSPACE%",VC_OriginalWorkspace)
+                            VC_EnvTeardown = VC_EnvTeardown.replace("%WORKSPACE%",VC_OriginalWorkspace)
+                            VC_sharedArtifactDirectory = VC_sharedArtifactDirectory.replace("%WORKSPACE%" ,VC_OriginalWorkspace)
                         }
-                        print "Updating " + origSetup + " \nto: " + VC_EnvSetup
+                        print "Updating setup script " + origSetup + " \nto: " + VC_EnvSetup
+                        print "Updating teardown script " + origTeardown + " \nto: " + origTeardown
+                        print "Updating shared artifact directory " + orig_VC_sharedArtifactDirectory + " \nto: " + VC_sharedArtifactDirectory
                         }
                     else {
-                        println "Not using Single Checkout"
+                        if (usingExternalRepo) {
+                            println "Using ${VCAST_FORCE_NODE_EXEC_NAME}/${VC_Manage_Project} as single checkout directory"
+                        }
+                        else {
+                            println "Not using Single Checkout"
+                        }
                     }
                 }
             }
@@ -295,7 +359,7 @@ pipeline {
                         scmStep()
                     }
                     
-                    println "Created with VectorCAST Execution Version:  " + VC_createdWithVersion
+                    println "Created with VectorCAST Execution Version: " + VC_createdWithVersion
 
                     // Run the setup step to copy over the scripts
                     step([$class: 'VectorCASTSetup'])
@@ -382,7 +446,7 @@ pipeline {
                     }
                     cmds =  """                         
                         _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/incremental_build_report_aggregator.py --rptfmt HTML
-                        _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}"  --full-status=${mpName}_full_report.html"
+                        _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/full_report_no_toc.py "${VC_Manage_Project}"
                         _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}"  --create-report=aggregate   --output=${mpName}_aggregate_report.html"
                         _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}"  --create-report=metrics     --output=${mpName}_metrics_report.html"
                         _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}"  --create-report=environment --output=${mpName}_environment_report.html"
@@ -424,10 +488,10 @@ pipeline {
         
         stage('Check-Build-Log') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE', 
-                    message : "Failure while checking reports...Please see the console for more information") {
-                    script {
-                                                    
+                script {
+                    try { // (buildResult: 'SUCCESS', stageResult: 'FAILURE', 
+                          // message : "Failure while checking reports...Please see the console for more information") {
+                                                                               
                         // get the console log - this requires running outside of the Groovy Sandbox
                         def logContent = readFile 'complete_build.log'
                             
@@ -451,21 +515,57 @@ pipeline {
                         }
                                             
                         // Make sure the build completed and we have two key reports
-                        //   - CombinedReport.html (combined rebuild reports from all the environments)
+                        //   - Using CBT - CombinedReport.html (combined rebuild reports from all the environments)
                         //   - full status report from the manage project
-                        if (fileExists('CombinedReport.html') && fileExists("${mpName}_full_report.html")) {
-                            // If we have both of these, add them to the summary in the "normal" job view
-                            // Blue ocean view doesn't have a summary
+                        if (VC_useCBT) {
+                            if (fileExists('combined_incr_rebuild.tmp') && fileExists("${mpName}_full_report.html_tmp")) {
+                                // If we have both of these, add them to the summary in the "normal" job view
+                                // Blue ocean view doesn't have a summary
 
-                            def summaryText = readFile('CombinedReport.html') + "<br> " + readFile("${mpName}_full_report.html")
-                            createSummary icon: "monitor.gif", text: summaryText
+                                def summaryText = readFile('combined_incr_rebuild.tmp') + "<br> " + readFile("${mpName}_full_report.html_tmp")
+                                createSummary icon: "monitor.gif", text: summaryText
+                                
                             
+                            } else {
+                                if (fileExists('combined_incr_rebuild.tmp')) { 
+                                    print "combined_incr_rebuild.tmp found" 
+                                } else {
+                                    print "combined_incr_rebuild.tmp missing" 
+                                }
+                                if (fileExists("${mpName}_full_report.html_tmp")) { 
+                                    print "${mpName}_full_report.html_tmp found" 
+                                } else {
+                                    print "${mpName}_full_report.html_tmp missing" 
+                                }
+                                
+                                // If not, something went wrong... Make the build as unstable 
+                                currentBuild.result = 'UNSTABLE'
+                                createSummary icon: "warning.gif", text: "General Failure"
+                                currentBuild.description = "General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information\n"
+                            }                     
                         } else {
-                            // If not, something went wrong... Make the build as unstable 
-                            currentBuild.result = 'UNSTABLE'
-                            createSummary icon: "warning.gif", text: "General Failure"
-                            currentBuild.description = "General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information\n"
-                        }                     
+                            if (fileExists("${mpName}_full_report.html_tmp")) {
+                                // If we have both of these, add them to the summary in the "normal" job view
+                                // Blue ocean view doesn't have a summary
+
+                                def summaryText = readFile("${mpName}_full_report.html_tmp")
+                                createSummary icon: "monitor.gif", text: summaryText
+                            
+                            } else {
+                                // If not, something went wrong... Make the build as unstable 
+                                currentBuild.result = 'UNSTABLE'
+                                createSummary icon: "warning.gif", text: "General Failure"
+                                currentBuild.description = "General Failure, Full Report Not Present. Please see the console for more information\n"
+                            }                                             
+                        }
+
+                        // Remove temporary files used for summary page
+                        def cmds = """        
+                            _RM combined_incr_rebuild.tmp
+                            _RM ${mpName}_full_report.html_tmp
+                        """.stripIndent()
+                        
+                        runCommands(cmds)
 
                         if (unstable) {
                             currentBuild.result = 'UNSTABLE'
@@ -473,7 +573,15 @@ pipeline {
                         if (failure) {
                             currentBuild.result = 'FAILURE'
                             println "Throwing exception: " + "Problematic data found in console output, search the console output for the following phrases: " + foundKeywords
-                            throw new Exception ("Problematic data found in console output, search the console output for the following phrases: " + foundKeywords)
+                            throw new Exception ("From VectorCAST: Problematic data found in console output, search the console output for the following phrases: " + foundKeywords)
+                        }
+                    } catch (Exception e) {
+                        if (e.toString().contains("VectorCAST")) {
+                            unstable('Error From VectorCAST Build/Execution!')
+                        }
+                        else {
+                            print "Non VectorCAST Exception: " + e.toString()
+                            throw e
                         }
                     }
                 }
