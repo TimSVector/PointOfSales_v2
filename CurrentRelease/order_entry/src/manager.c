@@ -137,6 +137,8 @@ int Place_Order(table_index_type Table,
     case PASTA :
        Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_PASTA;
        break;
+    default:
+        break;
   }
 
   // add sales tax
