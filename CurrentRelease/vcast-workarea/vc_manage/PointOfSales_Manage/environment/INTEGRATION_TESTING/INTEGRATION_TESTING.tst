@@ -22,6 +22,24 @@ TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
 
 -- Unit: manager
 
+-- Subprogram: Add_Included_Dessert
+
+-- Test Case: Add_Included_Dessert.001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Included_Dessert
+TEST.NEW
+TEST.NAME:Add_Included_Dessert.001
+TEST.IMPORT_FAILURES:
+(E) @LINE: 32 TEST.REQUIREMENT_KEY:FR27.1
+    >>> Requirement with Key 'FR27.1' does not exist in the Repository.
+TEST.END_IMPORT_FAILURES:
+TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Salad:CAESAR
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:STEAK
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Beverage:MIXED_DRINK
+TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:PIE
+TEST.END
+
 -- Subprogram: Clear_Table
 
 -- Test Case: Clear_Table.001
