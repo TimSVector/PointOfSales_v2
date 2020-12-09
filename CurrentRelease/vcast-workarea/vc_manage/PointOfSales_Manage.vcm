@@ -39,13 +39,6 @@
       <original-environment-directory>PointOfSales_Manage/build/1055816108</original-environment-directory>
     </config>
   </environment>
-  <environment name="ENV_WAITING_LIST" type="UNIT">
-    <language>2</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>PointOfSales_Manage/build/3609966161</original-environment-directory>
-    </config>
-  </environment>
   <environment name="FULL_INTEGRATION_TESTING" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -97,7 +90,6 @@
     <environment name="ENV_LINKED_LIST"/>
     <environment name="ENV_MANAGER"/>
     <environment name="ENV_MATRIX_MULTIPLY"/>
-    <environment name="ENV_WAITING_LIST"/>
     <environment name="INTEGRATION_TESTING"/>
   </group>
   <group name="c++_Testing">
