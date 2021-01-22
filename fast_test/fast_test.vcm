@@ -10,6 +10,13 @@
   </config>
   <project-id>1585580782</project-id>
   <factor-config-options>0</factor-config-options>
+  <environment name="DISABLED" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>fast_test/build/1207159954</original-environment-directory>
+    </config>
+  </environment>
   <environment name="MANAGER_C" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -17,8 +24,17 @@
       <original-environment-directory>fast_test/build/1600721014</original-environment-directory>
     </config>
   </environment>
+  <environment name="NO_CODE" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>fast_test/build/2478316814</original-environment-directory>
+    </config>
+  </environment>
   <group name="Group">
+    <environment name="DISABLED"/>
     <environment name="MANAGER_C"/>
+    <environment name="NO_CODE"/>
   </group>
   <compiler>
     <compiler>
@@ -32,6 +48,9 @@
     </compiler>
     <testsuite name="TestSuite">
       <group name="Group"/>
+      <disabled>
+        <environment name="DISABLED"/>
+      </disabled>
     </testsuite>
   </compiler>
 </project>
