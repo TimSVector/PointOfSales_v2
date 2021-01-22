@@ -1,4 +1,4 @@
--- VectorCAST 20.sp4 (11/04/20)
+-- VectorCAST 20.sp5 (12/16/20)
 -- Test Case Script
 --
 -- Environment    : MANAGER_C
@@ -260,13 +260,4 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:LOBSTER
-TEST.END
-
--- Subprogram: forever
-
--- Test Case: forever.001
-TEST.UNIT:manager
-TEST.SUBPROGRAM:forever
-TEST.NEW
-TEST.NAME:forever.001
 TEST.END
