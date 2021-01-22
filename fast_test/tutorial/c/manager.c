@@ -12,6 +12,9 @@ static unsigned int WaitingListIndex = 0;
    entree, salad, and beverage choice */
 void Add_Included_Dessert(struct order_type* Order)
 {
+  if (Order == 0)
+     return;
+     
   if(Order->Entree == STEAK &&
      Order->Salad == CAESAR &&
      Order->Beverage == MIXED_DRINK) {
