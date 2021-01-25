@@ -281,3 +281,12 @@ TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:LOBSTER
 TEST.END
+
+-- Subprogram: forever
+
+-- Test Case: forever.001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:forever
+TEST.NEW
+TEST.NAME:forever.001
+TEST.END
