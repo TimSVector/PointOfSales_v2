@@ -116,3 +116,10 @@ char* Get_Next_Party_To_Be_Seated(void)
     WaitingListIndex = 0;
   return WaitingList[WaitingListIndex++];
 }
+
+void forever(void)
+{
+
+   while(1) ;
+
+}
