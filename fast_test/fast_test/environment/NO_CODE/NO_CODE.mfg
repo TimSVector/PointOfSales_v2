@@ -4,5 +4,5 @@
     <key>COVERAGE_TYPE</key>
     <value>STATEMENT+MCDC</value>
   </config>
-  <search-directory type="TESTABLE_SOURCE_DIR">C:\Users\vaprti\vector\github\PointOfSales_v2\fast_test\tutorial\c</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c</search-directory>
 </manage-config-options>
