@@ -34,7 +34,6 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_C</value>
         </config>
-        <search-directory type="TESTABLE_SOURCE_DIR">C:\Users\vaprti\vector\github\PointOfSales_v2\fast_test\tutorial\c</search-directory>
       </config>
     </compiler>
     <testsuite name="TestSuite">
