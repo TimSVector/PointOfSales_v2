@@ -1,13 +1,14 @@
--- VectorCAST 20 revision 32ad9c3 (03/24/20)
+-- VectorCAST 20.sp5 (12/16/20)
 -- Test Case Script
--- 
+--
 -- Environment    : MANAGER_C
 -- Unit(s) Under Test: manager
--- 
+--
 -- Script Features
 TEST.SCRIPT_FEATURE:C_DIRECT_ARRAY_INDEXING
 TEST.SCRIPT_FEATURE:CPP_CLASS_OBJECT_REVISION
 TEST.SCRIPT_FEATURE:MULTIPLE_UUT_SUPPORT
+TEST.SCRIPT_FEATURE:REMOVED_CL_PREFIX
 TEST.SCRIPT_FEATURE:MIXED_CASE_NAMES
 TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
 TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
@@ -22,17 +23,14 @@ TEST.UNIT:manager
 TEST.SUBPROGRAM:Add_Included_Dessert
 TEST.NEW
 TEST.NAME:BASIS-PATH-001
-TEST.BASIS_PATH:1 of 3
+TEST.BASIS_PATH:1 of 4
 TEST.NOTES:
 This is an automatically generated test case.
    Test Path 1
-      (1) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> FALSE
-      (2) if ((Order->Entree == (LOBSTER) && Order->Salad == (GREEN)) && Order->Beverage == (WINE)) ==> FALSE
+      (1) if (Order == (0)) ==> TRUE
    Test Case Generation Notes:
 TEST.END_NOTES:
-TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
-TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:NO_ENTREE
-TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Entree:FRUIT
+TEST.VALUE:manager.Add_Included_Dessert.Order:<<null>>
 TEST.END
 
 -- Test Case: BASIS-PATH-002
@@ -40,12 +38,33 @@ TEST.UNIT:manager
 TEST.SUBPROGRAM:Add_Included_Dessert
 TEST.NEW
 TEST.NAME:BASIS-PATH-002
-TEST.BASIS_PATH:2 of 3
+TEST.BASIS_PATH:2 of 4
 TEST.NOTES:
 This is an automatically generated test case.
    Test Path 2
-      (1) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> FALSE
-      (2) if ((Order->Entree == (LOBSTER) && Order->Salad == (GREEN)) && Order->Beverage == (WINE)) ==> TRUE
+      (1) if (Order == (0)) ==> FALSE
+      (2) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> FALSE
+      (3) if ((Order->Entree == (LOBSTER) && Order->Salad == (GREEN)) && Order->Beverage == (WINE)) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:NO_ENTREE
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Dessert:FRUIT
+TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:FRUIT
+TEST.END
+
+-- Test Case: BASIS-PATH-003
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Included_Dessert
+TEST.NEW
+TEST.NAME:BASIS-PATH-003
+TEST.BASIS_PATH:3 of 4
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 3
+      (1) if (Order == (0)) ==> FALSE
+      (2) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> FALSE
+      (3) if ((Order->Entree == (LOBSTER) && Order->Salad == (GREEN)) && Order->Beverage == (WINE)) ==> TRUE
    Test Case Generation Notes:
 TEST.END_NOTES:
 TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
@@ -55,23 +74,125 @@ TEST.VALUE:manager.Add_Included_Dessert.Order[0].Beverage:WINE
 TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:CAKE
 TEST.END
 
--- Test Case: BASIS-PATH-003
+-- Test Case: BASIS-PATH-004
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Add_Included_Dessert
+TEST.NEW
+TEST.NAME:BASIS-PATH-004
+TEST.BASIS_PATH:4 of 4
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 4
+      (1) if (Order == (0)) ==> FALSE
+      (2) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Salad:CAESAR
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:STEAK
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Dessert:NO_DESSERT
+TEST.VALUE:manager.Add_Included_Dessert.Order[0].Beverage:MIXED_DRINK
+TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:PIE
+TEST.END
+
+-- Subprogram: Add_Party_To_Waiting_List
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MIN>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<null>>
+TEST.END
+
+-- Test Case: BASIS-PATH-002
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
+TEST.NEW
+TEST.NAME:BASIS-PATH-002
+TEST.BASIS_PATH:2 of 3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MIN>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<malloc 1>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name[0]:<<MIN>>
+TEST.END
+
+-- Test Case: BASIS-PATH-003
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Add_Party_To_Waiting_List
 TEST.NEW
 TEST.NAME:BASIS-PATH-003
 TEST.BASIS_PATH:3 of 3
 TEST.NOTES:
 This is an automatically generated test case.
    Test Path 3
-      (1) if ((Order->Entree == (STEAK) && Order->Salad == (CAESAR)) && Order->Beverage == (MIXED_DRINK)) ==> TRUE
+      (1) if (WaitingListSize > (9)) ==> TRUE
+      (2) while (Name && *Name) ==> FALSE
    Test Case Generation Notes:
 TEST.END_NOTES:
-TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
-TEST.VALUE:manager.Add_Included_Dessert.Order[0].Salad:CAESAR
-TEST.VALUE:manager.Add_Included_Dessert.Order[0].Entree:STEAK
-TEST.VALUE:manager.Add_Included_Dessert.Order[0].Beverage:MIXED_DRINK
-TEST.EXPECTED:manager.Add_Included_Dessert.Order[0].Dessert:PIE
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListSize:<<MAX>>
+TEST.VALUE:manager.Add_Party_To_Waiting_List.Name:<<null>>
+TEST.END
+
+-- Subprogram: Get_Check_Total
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Check_Total
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 1
+TEST.NOTES:
+   No branches in subprogram
+TEST.END_NOTES:
+TEST.VALUE:manager.Get_Check_Total.Table:<<MIN>>
+TEST.END
+
+-- Subprogram: Get_Next_Party_To_Be_Seated
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Next_Party_To_Be_Seated
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (WaitingListIndex > (9)) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListIndex:<<MIN>>
+TEST.END
+
+-- Test Case: BASIS-PATH-002
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Get_Next_Party_To_Be_Seated
+TEST.NEW
+TEST.NAME:BASIS-PATH-002
+TEST.BASIS_PATH:2 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (WaitingListIndex > (9)) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.WaitingListIndex:<<MAX>>
 TEST.END
 
 -- Subprogram: Place_Order
@@ -91,7 +212,6 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:PASTA
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:12.0
 TEST.END
 
 -- Test Case: BASIS-PATH-002
@@ -109,7 +229,6 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:NO_ENTREE
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:0.0
 TEST.END
 
 -- Test Case: BASIS-PATH-003
@@ -127,7 +246,6 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:STEAK
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:14.0
 TEST.END
 
 -- Test Case: BASIS-PATH-004
@@ -145,7 +263,6 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:CHICKEN
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:10.0
 TEST.END
 
 -- Test Case: BASIS-PATH-005
@@ -163,5 +280,22 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:LOBSTER
-TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:18.0
 TEST.END
+
+-- Subprogram: forever
+
+-- Test Case: forever.001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:forever
+TEST.NEW
+TEST.NAME:forever.001
+TEST.END
+
+-- COMPOUND TESTS
+
+TEST.SUBPROGRAM:<<COMPOUND>>
+TEST.NEW
+TEST.NAME:<<COMPOUND>>.001
+TEST.SLOT: "1", "manager", "forever", "1", "forever.001"
+TEST.END
+--

@@ -1,0 +1,6 @@
+﻿idx,id,campaign,suite,category,priority,name,description,creation date,last update,status,exec_date,duration,link
+1,TST_FUNC_001,Campaign 01,TS_001,GUI,1,Func Test 001,Functional test 001,6/10/2018,6/17/2018,Passed,1/1/2019,515,
+2,TST_FUNC_002,Campaign 01,TS_001,GUI,2,Func Test 002,Functional test 002,6/10/2018,6/17/2018,Passed,1/1/2019,337,
+3,TST_FUNC_003,Campaign 01,TS_001,GUI,4,Func Test 003,Functional test 003,6/10/2018,6/17/2018,Passed,1/1/2019,211,
+4,TST_FUNC_004,Campaign 01,TS_002,API,1,Func Test 004,Functional test 004,6/24/2018,6/17/2018,Passed,1/1/2019,883,
+5,TST_FUNC_005,Campaign 01,TS_002,API,1,Func Test 005,Functional test 005,6/24/2018,6/17/2018,Passed,1/1/2019,723,

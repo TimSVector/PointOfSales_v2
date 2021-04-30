@@ -1,0 +1,47 @@
+Sprint,Project,Category,Time Estimate,Status,Type,Target Version,Fixed in Version,Summary,Priority,Severity,Reporter,Assigned To,ID,Date Submitted,Updated,Due Date,Workload,Company
+1,R&D,Documentation,8,Closed,Evolution,17.0.0,19.0.5,Publish Benchmark Test Results,P2,major,Coop,Coop,1,4/19/2016,5/18/2017,,,White Lodge Inc.
+2,Hotline,System,4,Closed,Problem,17.0.0,17.0.0,Compiler Warnings on Windows hosts,P2,major,Coop,Coop,3,4/29/2017,5/17/2017,,,Great Northern
+2,R&D,Server,none,Closed,Problem,17.0.0,19.0.5,Runtime Changes not saved to config file,P1,serious,Laura,Nadine,4,5/16/2017,5/17/2017,,,White Lodge Inc.
+1,Hotline,VSPlugin,none,Closed,Problem,,19.0.5,Plugin data from earlier versions does not load,P2,blocker,Lucy,support,2,5/9/2017,5/17/2017,,,Double R
+4,Hotline,VSPlugin,none,Closed,Problem,,17.0.2,New versions not compatible with VSPlugin,P2,minor,Albert,Coop,6,5/17/2017,5/17/2017,,,Roadhouse
+3,R&D,Server,none,Open,Problem,15.x,17.0.2,Fetch telemetry on restart then periodically,P3,minor,Harry S.,Harry S.,5,12/10/2015,5/17/2017,,,White Lodge Inc.
+4,R&D,Reporting,none,Closed,Problem,17.0.0,17.0.2,Duplicated results in export files,P2,blocker,Coop,Harry S.,7,3/15/2017,5/17/2017,,,White Lodge Inc.
+4,R&D,Documentation,1,Closed,Evolution,17.0.0,17.0.2,Update Prerequisites,P2,minor,Laura,Coop,8,5/16/2017,5/17/2017,,,Double T
+3,R&D,Documentation,4,Closed,Problem,17.0.0,17.0.0,Out of date Reliability Statistics,P1,blocker,Jeffries,Coop,9,4/19/2017,5/17/2017,,,Double T
+4,R&D,Configuration,8,Closed,Problem,17.0.0,17.0.0,Remove useless values in default config files,P0,blocker,Diane,Diane,10,2/21/2017,5/17/2017,,,White Lodge Inc.
+5,R&D,Integrations,none,Closed,Evolution,19.0.0,17.0.2,Integrate with customer data,P2,major,Coop,Nadine,11,5/17/2017,5/17/2017,,,White Lodge Inc.
+5,R&D,System,none,Closed,Problem,17.0.0,17.0.0,Plan for data growth in before next release,P2,major,Ronette,Coop,12,12/15/2011,5/17/2017,,,Great Northern
+6,R&D,Integrations,8,Closed,Questions,17.0.1,17.0.1,Updates for GUI,P2,major,Coop,Coop,13,5/17/2017,5/17/2017,,,Upper Deck
+6,R&D,System,4,Closed,User Story,17.0.1,17.0.2,Backend setup,P2,major,Coop,Coop,14,6/17/2017,6/17/2017,,,Upper Deck
+6,R&D,Documentation,none,Closed,Task,17.0.1,17.0.2,Updates for GUI,P1,serious,Laura,Nadine,15,8/17/2017,8/17/2017,,,Great Northern
+7,Hotline,Reporting,none,Closed,Problem,17.0.2,17.0.2,Reporting of individual and group items,P2,blocker,Lucy,support,16,1/2/2019,3/1/2019,,,Upper Deck
+7,R&D,Server,none,Closed,Evolution,17.0.2,17.0.2,Reporting of individual and group items,P2,minor,Albert,Coop,17,1/2/2019,3/1/2019,,,Upper Deck
+7,R&D,Documentation,none,Closed,Task,17.0.2,17.0.2,Reporting of individual and group items,P2,major,Harry S.,Coop,18,1/2/2019,3/1/2019,,,Great Northern
+8,R&D,Configuration,none,Closed,Problem,18.0.0,18.0.3,Setup for new property,P1,major,Coop,Coop,19,1/2/2019,3/1/2019,,,Wilderness Lodge
+8,Hotline,Integrations,1,Closed,Evolution,18.0.0,19.0.5,Backend setup,P2,serious,Coop,Nadine,20,3/1/2019,5/17/2017,,,Wilderness Lodge
+8,Hotline,System,4,Closed,User Story,18.0.0,18.0.3,Backend setup,P2,blocker,Laura,support,21,3/1/2019,4/2/2019,,,Local Deli
+8,R&D,Documentation,8,Closed,Task,18.0.0,18.0.3,Backend setup,P3,minor,Lucy,Coop,22,3/1/2019,4/2/2019,,,Local Deli
+9,Hotline,VSPlugin,none,Closed,Problem,18.0.4,18.0.5,Updates for GUI,P2,minor,Albert,Harry S.,23,3/1/2019,3/28/2019,,,Local Deli
+9,R&D,VSPlugin,none,Closed,Evolution,18.0.4,18.0.4,Updates for GUI,P2,blocker,Harry S.,Harry S.,24,4/2/2019,5/17/2019,,,Local Deli
+9,R&D,Documentation,8,Closed,Task,18.0.4,18.0.4,Updates for GUI,P1,minor,Coop,Coop,25,4/2/2019,5/17/2019,,,Double T
+10,R&D,Server,4,Closed,Problem,18.0.5,18.0.5,Backend update,P0,blocker,Laura,Coop,26,5/1/2019,5/17/2019,,,Double T
+10,Hotline,Configuration,none,Closed,Evolution,18.0.5,18.0.5,Backend update,P2,blocker,Jeffries,Diane,27,5/1/2019,5/17/2019,,,Wilderness Lodge
+10,Hotline,Integrations,none,Open,User Story,18.0.5,,Backend update,P2,major,Diane,Nadine,28,5/1/2019,5/17/2019,,,Wilderness Lodge
+10,R&D,Documentation,none,Open,Task,18.0.5,,Backend update,P2,major,Coop,Coop,29,5/1/2019,5/17/2019,,,Double T
+11,R&D,Integrations,8,Closed,Questions,18.0.5,18.0.5,Backend setup,P1,minor,Coop,Coop,30,6/1/2019,6/17/2019,,,Upper Deck
+11,R&D,System,4,Closed,User Story,18.0.5,18.0.5,Updates for GUI,P2,major,Coop,Coop,31,6/1/2019,6/17/2019,,,Upper Deck
+11,R&D,Documentation,none,Closed,Task,18.0.5,18.0.5,Reporting of individual and group items,P2,major,Laura,Nadine,32,6/1/2019,6/17/2019,,,Great Northern
+12,Hotline,Reporting,none,Closed,Problem,18.0.5,18.0.5,Reporting of individual and group items,P3,minor,Lucy,support,33,6/1/2019,6/17/2019,,,Upper Deck
+12,R&D,Server,none,Closed,Evolution,18.0.5,18.0.5,Reporting of individual and group items,P2,minor,Albert,Coop,34,6/1/2019,6/17/2019,,,Upper Deck
+12,R&D,Documentation,none,Closed,Task,18.0.5,18.0.5,Setup for new property,P2,major,Harry S.,Coop,35,6/1/2019,6/17/2019,,,Great Northern
+13,R&D,Configuration,none,Closed,Problem,18.0.6,18.0.7,Backend setup,P1,major,Coop,Coop,36,8/1/2019,10/31/2019,,,Wilderness Lodge
+13,Hotline,Integrations,1,Closed,Evolution,18.0.6,18.0.7,Backend setup,P0,serious,Coop,Nadine,37,8/1/2019,10/31/2019,,,Wilderness Lodge
+13,Hotline,System,4,Closed,User Story,18.0.6,18.0.7,Backend setup,P2,blocker,Laura,support,38,8/1/2019,10/31/2019,,,Local Deli
+13,R&D,Documentation,8,Closed,Task,18.0.6,18.0.7,Updates for GUI,P2,minor,Lucy,Coop,39,8/1/2019,10/31/2019,,,Local Deli
+14,Hotline,VSPlugin,none,Closed,Problem,18.0.6,18.0.8,Updates for GUI,P2,minor,Albert,Harry S.,40,9/3/2019,10/31/2019,,,Local Deli
+14,R&D,VSPlugin,none,Closed,Evolution,18.0.6,18.0.8,Updates for GUI,P2,blocker,Harry S.,Harry S.,41,9/3/2019,10/31/2019,,,Local Deli
+14,R&D,Documentation,8,Closed,Task,18.0.6,18.0.8,Backend update,P1,minor,Coop,Coop,42,9/3/2019,10/31/2019,,,Double T
+15,R&D,Server,4,Closed,Problem,18.0.6,18.0.8,Backend update,P2,blocker,Laura,Coop,43,9/3/2019,10/31/2019,,,Double T
+15,Hotline,Configuration,none,Closed,Evolution,18.0.6,18.0.8,Backend update,P2,blocker,Jeffries,Diane,44,9/3/2019,10/31/2019,,,Wilderness Lodge
+15,Hotline,Integrations,none,Open,User Story,18.0.6,,Backend update,P2,major,Diane,Nadine,45,9/3/2019,10/31/2019,,,Wilderness Lodge
+15,R&D,Documentation,none,Open,Task,18.0.6,,Reporting of individual and group items,P1,major,Coop,Coop,46,9/3/2019,10/31/2019,,,Double T

@@ -1,63 +1,38 @@
 /***************************************************************************************
- *       _______ _______________________ _______                 *
- *  |\   /(  ____ (  ____ \__   __(  ___  (  ____ )                *
- *  | )   ( | (  \| (  \/  ) (  | (   ) | (  )|                *
- *  | |   | | (__   | |    | |  | |   | | (____)|                *
- *  ( (   ) |  __)  | |    | |  | |   | |   __)                *
- *   \ \_/ /| (   | |    | |  | |   | | (\ (                   *
- *    \   / | (____/| (____/\  | |  | (___) | ) \ \__                *
- *     \_/  (_______(_______/  )_(  (_______|/   \__/                *
- *                                           *
- *         _______ _______ ________________    _______ _______ _______   *
- *        (  ____ (  ___  (  ____ \__   __|\   /(  ___  (  ____ (  ____ \  *
- *        | (  \| (   ) | (  \/  ) (  | )   ( | (   ) | (  )| (  \/  *
- *        | (_____| |   | | (__    | |  | | _ | | (___) | (____)| (__    *
- *        (_____  | |   | |  __)   | |  | |( )| |  ___  |   __|  __)     *
- *            ) | |   | | (    | |  | || || | (   ) | (\ (  | (      *
- *        /\____) | (___) | )    | |  | () () | )   ( | ) \ \_| (____/\  *
- *        \_______(_______|/     )_(  (_______|/   \|/   \__(_______/  *
- *                                           *
- *                                           *
- *   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   *
- *                                           *
- *                Vector Software (c) 2017                 *
- *                                           *
+ * Unit: linked_list.c                                                                 *
+ *                                                                                     *
+ * Purpose: Provides linked list services                                              *
+ *                                                                                     *
+ * Public API:                                                                         *
+ *    - int RemoveDataItem(struct DataItem * Data)                                     *
+ *    - struct DataItem * findData (struct DataItem searchData)                        *
+ *    - int InsertDataItem(struct DataItem * Data)                                     *
+ *    - void initLinkList(void)                                                        *
+ *    - void destroyLinkedList(void)                                                   *
+ *                                                                                     *
+ * Private API:                                                                        *
+ *    - struct Node * findDataNode (struct DataItem * Data)                            *
+ *    - struct DataItem * getData(int table)                                           *
+ *    - void RemoveAllDataItems(void)                                                  *
+ *                                                                                     *
+ *                                                                                     *
  ***************************************************************************************/
 
 /***************************************************************************************
- * Unit: linked_list.c                                 *
- *                                           *
- * Purpose: Provides linked list services                        *
- *                                           *
- * Public API:                                     *
- *    - int RemoveDataItem(struct DataItem * Data)                   *
- *    - struct DataItem * findData (struct DataItem searchData)            *
- *    - int InsertDataItem(struct DataItem * Data)                   *
- *    - void initLinkList(void)                            *
- *    - void destroyLinkedList(void)                         *
- *                                           *
- * Private API:                                    *
- *    - struct Node * findDataNode (struct DataItem * Data)              *
- *    - struct DataItem * getData(int table)                     *
- *    - void RemoveAllDataItems(void)                        *
- *                                           *
- *                                           *
+ *                             System Headers                                          *
  ***************************************************************************************/
 
-/***************************************************************************************
- *               System Headers                      *
- ***************************************************************************************/
 
 #include "ctypes.h"
 
 /***************************************************************************************
- *               Program Headers                     *
+ *                             Program Headers                                         *
  ***************************************************************************************/
 
 #include "linked_list.h"
 
 /***************************************************************************************
- *            Private local variables                    *
+ *                        Private local variables                                      *
  ***************************************************************************************/
 
 struct Node
@@ -70,7 +45,7 @@ static struct Node * linkedList = NULL, *linkedListEnd = NULL;
 
 
 /***************************************************************************************
- *            Private functions                      *
+ *                           Private functions                                         *
  ***************************************************************************************/
 
 static struct Node * findDataNode (struct DataItem * Data);
@@ -78,16 +53,16 @@ static struct DataItem * getData(int table);
 static void RemoveAllDataItems(void);
 
 /**************************************************************************************
- *  Subprogram: RemoveAllDataItems                          *
- *                                          * 
- *  Purpose: Removes all the data items in the linked list              *
- *                                          * 
- *  Inputs:                                       *
- *     - None                                     *
- *                                          * 
- *  Outputs:                                      *
- *     - None                                     *
- *                                          * 
+ *  Subprogram: RemoveAllDataItems                                                    *
+ *                                                                                    * 
+ *  Purpose: Removes all the data items in the linked list                            *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - None                                                                         *
+ *                                                                                    *
+ *  Outputs:                                                                          *
+ *     - None                                                                         *
+ *                                                                                    *                                                                                  * 
  **************************************************************************************/
 static void RemoveAllDataItems(void)
 {
@@ -100,16 +75,16 @@ static void RemoveAllDataItems(void)
 }
 
 /**************************************************************************************
- *  Subprogram: initLinkList                              *
- *                                          * 
- *  Purpose: Initializes the linked list data                     *
- *                                          * 
- *  Inputs:                                       *
- *     - None                                     *
- *                                          * 
- *  Outputs:                                      *
- *     - None                                     *
- *                                          * 
+ *  Subprogram: initLinkList                                                          *
+ *                                                                                    * 
+ *  Purpose: Initializes the linked list data                                         *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - None                                                                         *
+ *                                                                                    *
+ *  Outputs:                                                                          *
+ *     - None                                                                         *
+ *                                                                                    * 
  **************************************************************************************/
 void initLinkList(void)
 {
@@ -118,16 +93,16 @@ void initLinkList(void)
 }
 
 /**************************************************************************************
- *  Subprogram: destroyLinkedList                           *
- *                                          * 
- *  Purpose: Destroys the linked list by removing all the data items          *
- *                                          * 
- *  Inputs:                                       *
- *     - None                                     *
- *                                          * 
- *  Outputs:                                      *
- *     - None                                     *
- *                                          * 
+ *  Subprogram: destroyLinkedList                                                     *
+ *                                                                                    * 
+ *  Purpose: Destroys the linked list by removing all the data items                  *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - None                                                                         *
+ *                                                                                    *
+ *  Outputs:                                                                          *
+ *     - None                                                                         *
+ *                                                                                    *                                                                                    * 
  **************************************************************************************/
 void destroyLinkedList(void)
 {
@@ -136,16 +111,16 @@ void destroyLinkedList(void)
 }
 
 /**************************************************************************************
- *  Subprogram: findDataNode                              *
- *                                          * 
- *  Purpose: Finds the data node based off the Data.Table number            *
- *                                          * 
- *  Inputs:                                       *
- *     - Data - struct DataItem *                           *
- *                                          * 
- *  Outputs:                                      *
- *     - struct Node *                                *
- *                                          * 
+ *  Subprogram: findDataNode                                                          *
+ *                                                                                    * 
+ *  Purpose: Finds the data node based off the Data.Table number                      *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - Data - struct DataItem *                                                     *
+ *                                                                                    * 
+ *  Outputs:                                                                          *
+ *     - struct Node *                                                                *
+ *                                                                                    * 
  **************************************************************************************/
 static struct Node * findDataNode (struct DataItem * Data)
 {
@@ -173,16 +148,16 @@ static struct Node * findDataNode (struct DataItem * Data)
 }
 
 /**************************************************************************************
- *  Subprogram: getData                                 *
- *                                          * 
- *  Purpose: Sets the index (Table #) and returns the data from findData        *
- *                                          * 
- *  Inputs:                                       *
- *     - table - int - table number                         *
- *                                          * 
- *  Outputs:                                      *
- *     - struct DataItem * - Retrieved data or NULL                 *
- *                                          * 
+ *  Subprogram: getData                                                               *
+ *                                                                                    * 
+ *  Purpose: Sets the index (Table #) and returns the data from findData              *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - table - int - table number                                                   *
+ *                                                                                    * 
+ *  Outputs:                                                                          *
+ *     - struct DataItem * - Retrieved data or NULL                                   *
+ *                                                                                    * 
  **************************************************************************************/
 static struct DataItem * getData(int table)
 {
@@ -196,17 +171,17 @@ static struct DataItem * getData(int table)
 }
 
 /**************************************************************************************
- *  Subprogram: Add_Included_Dessert                          *
- *                                          * 
- *  Purpose: Add a free dessert to specific orders based on the             *
- *       entree, salad, and beverage choice                     *
- *                                          * 
- *  Inputs:                                       *
- *     - Data - struct DataItem*                          *
- *                                          * 
- *  Outputs:                                      *
- *     - int - SUCCESS/FAILURE                            *
- *                                          * 
+ *  Subprogram: Add_Included_Dessert                                                  *
+ *                                                                                    * 
+ *  Purpose: Add a free dessert to specific orders based on the                       *
+ *       entree, salad, and beverage choice                                           *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - Data - struct DataItem*                                                      *
+ *                                                                                    * 
+ *  Outputs:                                                                          *
+ *     - int - SUCCESS/FAILURE                                                        *
+ *                                                                                    * 
  **************************************************************************************/
 int InsertDataItem(struct DataItem * Data)
 {
@@ -252,16 +227,16 @@ int InsertDataItem(struct DataItem * Data)
 }
 
 /**************************************************************************************
- *  Subprogram: RemoveDataItem                            *
- *                                          * 
- *  Purpose: Find and remove a data item from the linked list             * 
- *                                          * 
- *  Inputs:                                       *
- *     - Data - struct DataItem*                          *
- *                                          * 
- *  Outputs:                                      *
- *     - int - SUCCESS/FAILURE                            *
- *                                          * 
+ *  Subprogram: RemoveDataItem                                                        *
+ *                                                                                    * 
+ *  Purpose: Find and remove a data item from the linked list                         * 
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - Data - struct DataItem*                                                      *
+ *                                                                                    * 
+ *  Outputs:                                                                          *
+ *     - int - SUCCESS/FAILURE                                                        *
+ *                                                                                    * 
  **************************************************************************************/
 int RemoveDataItem(struct DataItem * Data)
 {
@@ -321,16 +296,16 @@ int RemoveDataItem(struct DataItem * Data)
 
 
 /**************************************************************************************
- *  Subprogram: findData                                *
- *                                          * 
- *  Purpose: Find a specific node in the linked list                  *
- *                                          * 
- *  Inputs:                                       *
- *     - searchData struct DataItem                         *
- *                                          * 
- *  Outputs:                                      *
- *     - struct DataItem * - NULL = not found                     *
- *                                          * 
+ *  Subprogram: findData                                                              *
+ *                                                                                    * 
+ *  Purpose: Find a specific node in the linked list                                  *
+ *                                                                                    * 
+ *  Inputs:                                                                           *
+ *     - searchData struct DataItem                                                   *
+ *                                                                                    * 
+ *  Outputs:                                                                          *
+ *     - struct DataItem * - NULL = not found                                         *
+ *                                                                                    * 
  **************************************************************************************/
 struct DataItem * findData (struct DataItem searchData)
 {

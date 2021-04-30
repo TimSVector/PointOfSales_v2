@@ -16,7 +16,7 @@ file_path = sys.argv[sys.argv.index("-f") + 1]
 f = open(file_path,"w+")
 
 # Insert header
-header = "Type	Filename	Filename with path	Base filename	Line	Column	Column(0 indexed)	Message level	Message number	Message number (4 digits)	Message text	Message help file	Verbose text	Rule	Group id"
+header = "Type	Filename	Filename with path	Line	Column	Column(0 indexed)	Message level	Message number	Message number (4 digits)	Message text	Message help file	Verbose text	Rule	Group id"
 f.write(header)
 
 # Generate the QAC command line
