@@ -7,8 +7,8 @@
 //
 // ===============================================================
 
-VC_Manage_Project     = "" + 'CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage.vcm'
-VC_EnvSetup        = '''call  %WORKSPACE%/setenv.bat'''
+VC_Manage_Project     = "" + 'PluginTesting.vcm'
+VC_EnvSetup        = '''call %WORKSPACE%\\setenv.bat'''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = ''''''
 def scmStep () { git 'https://github.com/TimSVector/PointOfSales_v2.git' }
@@ -20,7 +20,7 @@ VC_waitLoops = '1'
 VC_useOneCheckoutDir = true
 VC_UseCILicense = ""
 VC_useCBT = "--incremental"
-VC_createdWithVersion = '0.64-SNAPSHOT (private-fb30a20b-vaprti)'
+VC_createdWithVersion = '0.67-SNAPSHOT (private-c120f7fc-vaprti)'
 
 // Code Coverage threshold numbers
 // Basis path coverage is no longer support after VectorCAST 2019SP1
@@ -64,7 +64,7 @@ VC_FailurePhrases = ["No valid edition(s) available",
                   "Error: That command is not permitted in continuous integration mode"
                   ]
                 
-VC_UnstablePhrases = ["Value Line Error - Command Ignored"]                       
+VC_UnstablePhrases = ["Value Line Error - Command Ignored", "INFO: Problem parsing test results file", "INFO: File System Error ", "ERROR: Error accessing DataAPI", "ERROR: Undefined Error"]                       
 
 // setup the manage project to have preset options
 def setupManageProject() {
@@ -78,6 +78,30 @@ def setupManageProject() {
     runCommands(cmds)
 }
 
+// gets the manage project name without the .vcm if present
+
+def getMPname() {
+    // get the manage projects full name and base name
+    def mpFullName = VC_Manage_Project.split("/")[-1]
+    def mpName = ""
+    if (mpFullName.toLowerCase().endsWith(".vcm")) {
+        mpName = mpFullName.take(mpFullName.lastIndexOf('.'))
+    } else {
+        mpName = mpFullName
+    }
+    return mpName
+}
+def getMPpath() {
+    // get the manage projects full name and base name
+    def mpFullName = VC_Manage_Project
+    def mpPath = ""
+    if (mpFullName.toLowerCase().endsWith(".vcm")) {
+        mpPath = mpFullName.take(mpFullName.lastIndexOf('.'))
+    } else {
+        mpPath = mpFullName
+    }
+    return mpPath
+}
 // check log for errors
 def checkLogsForErrors(log) {
 
@@ -110,19 +134,31 @@ def checkLogsForErrors(log) {
 
     return [foundKeywords, failure, unstable_flag]
 }
+
+def formatPath(inPath) {
+    def outPath = inPath
+    if (!isUnix()) {
+        outPath = inPath.replace("/","\\")
+    }
+    return outPath
+}
 // run commands on Unix (Linux) or Windows
 def runCommands(cmds) {
     def boolean failure = false;
     def boolean unstable_flag = false;
     def foundKeywords = ""
     def localCmds = """"""
-     
+    
+    // clear that old command log
+    writeFile file: "command.log", text: ""
+    
     // if its Linux run the sh command and save the stdout for analysis
     if (isUnix()) {
         localCmds = """
             ${VC_EnvSetup}
             export VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
             export VCAST_NO_FILE_TRUNCATION=1
+            export VCAST_RPTS_SELF_CONTAINED=FALSE
             
             """.stripIndent()
         cmds = localCmds + cmds
@@ -136,6 +172,8 @@ def runCommands(cmds) {
             ${VC_EnvSetup}
             set VCAST_RPTS_PRETTY_PRINT_HTML=FALSE
             set VCAST_NO_FILE_TRUNCATION=1
+            set VCAST_RPTS_SELF_CONTAINED=FALSE
+            
             """.stripIndent()
         cmds = localCmds + cmds
         cmds = cmds.replaceAll("_VECTORCAST_DIR","%VECTORCAST_DIR%").replaceAll("_RM","DEL /Q ")
@@ -204,9 +242,6 @@ def transformIntoStep(inputString) {
                     setupManageProject()
                 }
 
-                // get the manage projects full name and base name
-                def mpFullName = VC_Manage_Project.split("/")[-1]
-                def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
                 
                 // setup the commands for building, executing, and transferring information
                 cmds =  """
@@ -226,11 +261,10 @@ def transformIntoStep(inputString) {
                 (foundKeywords, failure, unstable_flag) = checkLogsForErrors(buildLogText) 
                 
                 if (!failure && VC_sharedArtifactDirectory.length() == 0) {
-                    writeFile file: "build.log", text: buildLogText
 
                     if (VC_usingSCM && !VC_useOneCheckoutDir) {
                         def fixedJobName = fixUpName("${env.JOB_NAME}")
-                        buildLogText = runCommands("""_VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/copy_build_dir.py ${VC_Manage_Project} ${compiler}/${test_suite} ${fixedJobName}_${compiler}_${test_suite}_${environment} ${environment}""" )
+                        buildLogText += runCommands("""_VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/copy_build_dir.py ${VC_Manage_Project} ${compiler}/${test_suite} ${fixedJobName}_${compiler}_${test_suite}_${environment} ${environment}""" )
                     }
                 }
                 
@@ -317,9 +351,20 @@ pipeline {
                             VC_sharedArtifactDirectory = VC_sharedArtifactDirectory.replace("\$WORKSPACE" ,VC_OriginalWorkspace)
                         } else {
                             VC_OriginalWorkspace = VC_OriginalWorkspace.replace('\\','/')
-                            VC_EnvSetup = VC_EnvSetup.replace("%WORKSPACE%",VC_OriginalWorkspace)
-                            VC_EnvTeardown = VC_EnvTeardown.replace("%WORKSPACE%",VC_OriginalWorkspace)
-                            VC_sharedArtifactDirectory = VC_sharedArtifactDirectory.replace("%WORKSPACE%" ,VC_OriginalWorkspace)
+                            
+                            def tmpInfo = ""
+                            
+                            // replace case insensitive workspace with WORKSPACE
+                            tmpInfo = VC_EnvSetup.replaceAll("(?i)%WORKSPACE%","%WORKSPACE%")
+                            VC_EnvSetup = tmpInfo.replace("%WORKSPACE%",VC_OriginalWorkspace)
+                            
+                            // replace case insensitive workspace with WORKSPACE
+                            tmpInfo = VC_EnvTeardown.replaceAll("(?i)%WORKSPACE%","%WORKSPACE%")
+                            VC_EnvTeardown = tmpInfo.replace("%WORKSPACE%",VC_OriginalWorkspace)
+                            
+                            // replace case insensitive workspace with WORKSPACE
+                            tmpInfo = VC_sharedArtifactDirectory.replaceAll("(?i)%WORKSPACE%","%WORKSPACE%")
+                            VC_sharedArtifactDirectory = tmpInfo.replace("%WORKSPACE%" ,VC_OriginalWorkspace)
                         }
                         print "Updating setup script " + origSetup + " \nto: " + VC_EnvSetup
                         print "Updating teardown script " + origTeardown + " \nto: " + origTeardown
@@ -416,14 +461,23 @@ pipeline {
                         } 
                         
                         // get the manage projects full name and base name
-                        def mpFullName = VC_Manage_Project.split("/")[-1]
-                        def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
+                        def mpName = getMPname()
+                                                
                         def buildLogText = ""
                         
                         // if we are using SCM and not using a shared artifact directory...
                         if (VC_usingSCM && !VC_useOneCheckoutDir && VC_sharedArtifactDirectory.length() == 0) {
-                            // run a script to extract stashed files and process data into xml reports                        
-                            buildLogText += runCommands("""_VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/extract_build_dir.py""" )
+                            // run a script to extract stashed files and process data into xml reports
+                            def mpPath = getMPpath()
+                            def coverDBpath = formatPath(mpPath + "/build/vcast_data/cover.db")
+                               
+                            cmds = """
+                                _RM ${coverDBpath}
+                                _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/extract_build_dir.py
+                                _VECTORCAST_DIR/vpython "${env.WORKSPACE}"/vc_scripts/managewait.py --wait_time ${VC_waitTime} --wait_loops ${VC_waitLoops} --command_line "--project "${VC_Manage_Project}"  ${VC_UseCILicense} --refresh"
+                            """
+                            buildLogText += runCommands(cmds)
+                            
                         }        
                         // use unstashed build logs to get the skipped data
                         writeFile file: "unstashed_build.log", text: unstashedBuildLogText
@@ -475,8 +529,7 @@ pipeline {
                         // get the console log - this requires running outside of the Groovy Sandbox
                         def logContent = readFile 'complete_build.log'
                             
-                        def mpFullName = VC_Manage_Project.split("/")[-1]
-                        def mpName = mpFullName.take(mpFullName.lastIndexOf('.'))  
+                        def mpName = getMPname()
                         
                         def foundKeywords = ""
                         def boolean failure = false
@@ -488,7 +541,7 @@ pipeline {
                         // set the build description accordingly
                         currentBuild.description = ""
                         if (foundKeywords.size() > 0) {
-                            currentBuild.description = "Problematic data found in console output, search the console output for the following phrases: " + foundKeywords + "\n"
+                            currentBuild.description += "Problematic data found in console output, search the console output for the following phrases: " + foundKeywords + "\n"
                         }
                                             
                         // Make sure the build completed and we have two key reports
@@ -518,7 +571,7 @@ pipeline {
                                 // If not, something went wrong... Make the build as unstable 
                                 currentBuild.result = 'UNSTABLE'
                                 createSummary icon: "warning.gif", text: "General Failure"
-                                currentBuild.description = "General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information\n"
+                                currentBuild.description += "General Failure, Incremental Build Report or Full Report Not Present. Please see the console for more information\n"
                             }                     
                         } else {
                             if (fileExists("${mpName}_full_report.html_tmp")) {
@@ -532,7 +585,7 @@ pipeline {
                                 // If not, something went wrong... Make the build as unstable 
                                 currentBuild.result = 'UNSTABLE'
                                 createSummary icon: "warning.gif", text: "General Failure"
-                                currentBuild.description = "General Failure, Full Report Not Present. Please see the console for more information\n"
+                                currentBuild.description += "General Failure, Full Report Not Present. Please see the console for more information\n"
                             }                                             
                         }
 
@@ -547,7 +600,7 @@ pipeline {
                         def unitTestErrorCount = ""
                         unitTestErrorCount = readFile "unit_test_fail_count.txt"
                         if (unitTestErrorCount != "0") {
-                            currentBuild.description += "Failed test cases, Junit will mark at least as UNSTABLE"
+                            currentBuild.description += "Failed test cases, Junit will mark at least as UNSTABLE\n"
                         }
                         if (failure) {
                             currentBuild.result = 'FAILURE'
