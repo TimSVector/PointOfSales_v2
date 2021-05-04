@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="28">
+<project version="29">
   <config>
     <config>
       <key>C_DEFINE_LIST</key>
@@ -68,6 +68,16 @@
       <original-environment-directory>PluginTesting/build/2146355206</original-environment-directory>
     </config>
   </environment>
+  <environment name="SystemTesting" type="COVER">
+    <system-test-module>SystemTesting_system_tests</system-test-module>
+    <system-test-template>Default</system-test-template>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>PluginTesting/build/2106423853</original-environment-directory>
+    </config>
+  </environment>
   <environment name="WHITEBOX_C" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -97,6 +107,9 @@
   </group>
   <group name="No_Test_Group">
     <environment name="NO_TEST"/>
+  </group>
+  <group name="ST-Group">
+    <environment name="SystemTesting"/>
   </group>
   <compiler>
     <compiler>
@@ -183,6 +196,9 @@
         </config>
       </config>
     </compiler>
+    <testsuite name="SystemTesting">
+      <group name="ST-Group"/>
+    </testsuite>
     <testsuite name="c_files">
       <group name="C_test_GROUP"/>
     </testsuite>
