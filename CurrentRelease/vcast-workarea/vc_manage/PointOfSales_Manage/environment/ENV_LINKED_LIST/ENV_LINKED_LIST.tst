@@ -1,4 +1,4 @@
--- VectorCAST 20.sp3 (09/15/20)
+-- VectorCAST 20.sp6 (02/02/21)
 -- Test Case Script
 --
 -- Environment    : ENV_LINKED_LIST
@@ -19,3 +19,37 @@ TEST.SCRIPT_FEATURE:STRUCT_FIELD_CTOR_ADDS_POINTER
 TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
 TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
 --
+
+-- Unit: linked_list
+
+-- Subprogram: RemoveAllDataItems
+
+-- Test Case: BASIS-PATH-001
+TEST.UNIT:linked_list
+TEST.SUBPROGRAM:RemoveAllDataItems
+TEST.NEW
+TEST.NAME:BASIS-PATH-001
+TEST.BASIS_PATH:1 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) while (linkedList != (void *)0) ==> FALSE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:linked_list.<<GLOBAL>>.linkedList:<<null>>
+TEST.END
+
+-- Test Case: BASIS-PATH-002
+TEST.UNIT:linked_list
+TEST.SUBPROGRAM:RemoveAllDataItems
+TEST.NEW
+TEST.NAME:BASIS-PATH-002
+TEST.BASIS_PATH:2 of 2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) while (linkedList != (void *)0) ==> TRUE
+   Test Case Generation Notes:
+TEST.END_NOTES:
+TEST.VALUE:linked_list.<<GLOBAL>>.linkedList:<<malloc 1>>
+TEST.END

@@ -196,9 +196,6 @@
         </config>
       </config>
     </compiler>
-    <testsuite name="SystemTesting">
-      <group name="ST-Group"/>
-    </testsuite>
     <testsuite name="c_files">
       <group name="C_test_GROUP"/>
     </testsuite>
