@@ -7,7 +7,7 @@
 //
 // ===============================================================
 
-VC_Manage_Project     = "" + 'PluginTesting.vcm'
+VC_Manage_Project     = "" + 'CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage.vcm'
 VC_EnvSetup        = '''call %WORKSPACE%\\setenv.bat'''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = ''''''
