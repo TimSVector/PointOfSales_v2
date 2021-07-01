@@ -30,12 +30,12 @@ from vector.apps.DataAPI.vcproject_api import VCProjectApi
 if os.name == 'nt':
     script_cmds = """
     - Start-Process -NoNewWindow -wait ./setenv.bat
-    - Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\\vpython.exe  -ArgumentList ".\\vc_scripts\\gitlab_exec.py `"$VC_Manage_Project`" $VC_UseCILicense $VC_useCBT --level %s/%s --environment %s --execute"
+    - Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\\vpython.exe  -ArgumentList ".\\vc_scripts\\gitlab_exec.py "$VC_Manage_Project" $VC_UseCILicense $VC_useCBT --level %s/%s --environment %s --execute"
     """
     
     reporting_cmds = """
     - Start-Process -NoNewWindow -wait ./setenv.bat
-    - Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\\vpython.exe  -ArgumentList ".\\vc_scripts\\gitlab_exec.py `"$VC_Manage_Project`" $VC_UseCILicense $VC_useCBT --reports --metrics"
+    - Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\\vpython.exe  -ArgumentList ".\\vc_scripts\\gitlab_exec.py "$VC_Manage_Project" $VC_UseCILicense $VC_useCBT --reports --metrics"
     """
 else:
     script_cmds = """

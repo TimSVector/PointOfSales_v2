@@ -22,31 +22,41 @@
 # THE SOFTWARE.
 #
 
-vectorcast_execute:
-  stage: build
+
+##NOT CURRENTLY SUPPORTED
+
+
+trigger: none
   
-  variables:
-    GIT_CLEAN_FLAGS: none
-    
-    # Relative path from checkout to the VectorCAST Project
-    VC_Manage_Project: "Project.vcm"
+variables:
+  GIT_CLEAN_FLAGS: none
+  
+  # Relative path from checkout to the VectorCAST Project
+  VC_Manage_Project: "Project.vcm"
 
-    # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
-    VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
+  # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
+  VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
 
-    # Using VecteorCAST Change Based Testing otherwise set to ""
-    VC_useCBT: "--incremental"
+  # Using VecteorCAST Change Based Testing otherwise set to ""
+  VC_useCBT: "--incremental"
 
-  tags:
-    - vectorcast
+  # Set parallel build count (Will use VectorCAST licenses)
+  VC_jobCount: 4
 
-  script:
-    - "$VC_UseCILicense" 
-    - %VECTORCAST_DIR%\vpython.exe .\vc_scripts\generate_azure_yaml.py "$VC_Manage_Project" $VC_useCBT
 
-  artifacts:
-    paths:
-      - vectorcast_execute.yml
+pool:
+  vmImage: windows-latest
+
+name: vectorcast
+
+steps:
+
+- script: |
+    "$VC_UseCILicense" 
+    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\generate_azure_yaml.py "$VC_Manage_Project" $VC_useCBT
+    %VECTORCAST_DIR%\manage.exe --project "$VC_Manage_Project" --execute 
+    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\azure_exec.py "$VC_Manage_Project"  --metrics --reports --buildlog complete_build.lo
+  displayName: 'VectorCAST Parallel Build-Execute'
 
 
 vectorcast_child:
