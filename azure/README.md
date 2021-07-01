@@ -1,4 +1,4 @@
-# vectorcast_gitlab
+# vectorcast_azure
 
 Initial Integration Between VectorCAST and Microsoft Azure DevOps Pipeline
 
@@ -23,7 +23,7 @@ Six YAML CI files are provided:
 
 By default the integration expects a ./setup.sh or .\setup.bat to be present to setup
 environment variables or paths that you would normally have set.  That can be changed by
-editing the vc_scripts/generate_gitlab_yaml the remove/replace those calls
+editing the vc_scripts/generate_azure_yaml the remove/replace those calls
 
 # Licensing Information
 
