@@ -39,31 +39,38 @@ variables:
 pool:
   vmImage: ubuntu-latest
 
-#tags:
-#  - vectorcast
+name: vectorcast
 
 steps:
 
-- script:
-  - "$VC_UseCILicense" 
-  - %VECTORCAST_DIR%\manage.exe  --project "$VC_Manage_Project" --build-execute $VC_useCBT > complete_build.log
-  - %VECTORCAST_DIR%\vpython.exe .\vc_scripts\gitlab_exec.py "$VC_Manage_Project" --metrics --reports --buildlog complete_build.log
-  display_name: 'VectorCAST Build-Execute'
-  
+- script: |
+    "$VC_UseCILicense" 
+    %VECTORCAST_DIR%\manage.exe  --project "$VC_Manage_Project" --build-execute $VC_useCBT > complete_build.log
+    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\gitlab_exec.py "$VC_Manage_Project" --metrics --reports --buildlog complete_build.log
+  displayName: 'VectorCAST Build-Execute'
 
-task: PublishTestResults
-  display_name: 'Publish VectorCAST Test Results (JUnit)'
+
+- task: PublishTestResults@2
   inputs:
-    testResultsFiles: xml_data/test_results*.xml
-    testResultsFormat: JUnit
-    testResultsTitle: VectorCAST Test Results
-    
-    
-    
-    
-    - xml_data/coverage_results*.xml
-    - html_reports/*.html
-    - ./*.html
-  reports:
-    junit: xml_data/test_results*.xml
-    cobertura: xml_data/coverage_results*.xml
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'xml_data/test_results*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/azure'
+    testRunTitle: 'VectorCAST Test Results'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage_results*.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
+    failIfCoverageEmpty: true
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/azure'
+    artifact: |
+      "**/*.html"
+      "html_reports/*.html"
+      "xml_data/*"
+      "complete_build.log"
+    publishLocation: 'pipeline'
