@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<!-- VectorCAST Report header -->
+<html lang="en">
+  <head>
+    <title>Full Report</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="vector_style.css" />
+  </head>
+  <body>
+    <div id='page'><!-- ReportTitle -->
+<div id="title-bar">
+  <div class="title-bar-logo">
+    <img src="vector_logo.png"/>
+  </div>
+</div><!-- TableOfContents -->
+<div class='contents-block'>
+  <a id="TableOfContents"></a>
+  <h3 class="toc-title-small">Contents</h3>
+  <ul class="toc-level1">
+        <li class=""><a href="#ConfigurationData">Configuration Data</a></li>
+        <li class=""><a href="#OverallResults">Overall Results</a></li>
+        <li class=" collapsible-toc" title="User Code">
+      <label for="collapsible-6">User Code</label>
+        <input type="checkbox" id="collapsible-6"/>
+        <label class="expand" for="collapsible-6">►</label>
+        <label class="collapse" for="collapsible-6">▼</label>
+      <ul>
+          <li class=""><a href="#EnvironmentUserCode">Environment User Code</a></li>
+        
+          <li class=""><a href="#EnvironmentUserCodeUNIT_APPENDIX_USER_CODE_FILE">- Unit Appendix User Code:encrypt</a></li>
+        </ul>
+    </li>
+        <li class=" collapsible-toc" title="Test Cases">
+      <label for="collapsible-7">Test Cases</label>
+        <input type="checkbox" id="collapsible-7"/>
+        <label class="expand" for="collapsible-7">►</label>
+        <label class="collapse" for="collapsible-7">▼</label>
+      <ul>
+          <li class="tc-item tc-passed " title="encrypt.transmit_Info.failure">
+      <label for="collapsible-9">
+          <a href="#TestCase_encrypt.transmit_Info.failure">encrypt.transmit_Info.failure</a></label><ul>
+          <li class=""><a href="#TestCaseConfiguration_1">Test Case Configuration</a></li>
+        
+          <li class=""><a href="#TestCaseData_1">Test Case Data</a></li>
+        
+          <li class=""><a href="#ExecutionResults_1">Execution Results</a></li>
+        </ul>
+    </li>
+        
+          <li class="tc-item tc-passed " title="encrypt.transmit_Info.good">
+      <label for="collapsible-14">
+          <a href="#TestCase_encrypt.transmit_Info.good">encrypt.transmit_Info.good</a></label><ul>
+          <li class=""><a href="#TestCaseConfiguration_2">Test Case Configuration</a></li>
+        
+          <li class=""><a href="#TestCaseData_2">Test Case Data</a></li>
+        
+          <li class=""><a href="#ExecutionResults_2">Execution Results</a></li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+        <li class=" collapsible-toc" title="Aggregate Coverage">
+      <label for="collapsible-19">Aggregate Coverage</label>
+        <input type="checkbox" id="collapsible-19"/>
+        <label class="expand" for="collapsible-19">►</label>
+        <label class="collapse" for="collapsible-19">▼</label>
+      <ul>
+          <li class=""><a href="#coverage_for_unit_9">encrypt.c</a></li>
+        </ul>
+    </li>
+        <li class=""><a href="#Metrics">Metrics</a></li>
+        <li class=""><a href="#ProbePoints">Probe Points</a></li>
+  </ul>
+</div>
+  <div class="report-body" id="main-scroller">
+    <div id="report-title">Full Report</div>
+<!-- ConfigData -->
+      <div class='report-block'>
+        <h2><a id="ConfigurationData"></a>Configuration Data</h2>
+        <table class='table table-small'>
+          <tr><th>Environment Name</th><td>ENV_ENCRYPT</td></tr>
+          <tr><th>Date of Report Creation</th><td>24 JUN 2021</td></tr>
+          <tr><th>Time of Report Creation</th><td>1:33:59 PM</td></tr>
+        </table>
+      </div>
+<!-- OverallResults -->
+      <div class='report-block'>
+        <div class="row">
+          <div class="col-md-10">
+            <h2><a id="OverallResults"></a>Overall Results</h2>
+          </div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <table class='table table-small'>
+          <tr class="success">
+            <th>Testcases</th>
+            <td id="overall-results-testcases">2 / 2 PASS</td>
+          </tr>
+          <tr class="success">
+            <th>Expecteds</th>
+            <td id="overall-results-expecteds">2 / 2 PASS</td>
+          </tr>
+        
+        <tr class="success">
+            <th>Statement Coverage</th>
+            <td id="overall-results-statements">39 / 39 (100%)</td>
+        </tr>
+        
+        <tr class="warning">
+            <th>Branch Coverage</th>
+            <td id="overall-results-branches">25 / 27 (92%)</td>
+        </tr>
+        
+        <tr class="success">
+            <th>Function Call Coverage</th>
+            <td id="overall-results-function-calls">12 / 12 (100%)</td>
+        </tr>
+        </table>
+      </div>
+<!-- UserCode -->
+      <div class='report-block'>
+        <div class="row">
+          <div class="col-md-10">
+            <h2><a id="UserCode"></a>User Code</h2>
+          </div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <a id="EnvironmentUserCode"></a><h3>Environment User Code</h3>
+          <a id="EnvironmentUserCodeUNIT_APPENDIX_USER_CODE_FILE"></a><h4>Unit Appendix User Code:encrypt</h4>
+          <pre>//uauc</pre>
+      </div>
+<!-- TestcaseSectionsHeader -->
+      <div class='testcase'>
+        <a id="TestCase_encrypt.transmit_Info.failure"> </a>
+        <h2 class="testcase_section"><span class="testcase_name">encrypt.transmit_Info.failure</span></h2><!-- FullTestCaseConfigData -->
+
+  <div class='report-block'>
+    <h3><a id="TestCaseConfiguration_1"></a>Test Case Configuration</h3>
+
+    <table class='table table-small'>
+      <tbody>
+          <tr><th>Unit Under Test</th><td>encrypt</td></tr><tr><th>Subprogram</th><td>transmit_Info</td></tr>
+        <tr><th>Test Case Name</th><td>encrypt.transmit_Info.failure</td></tr>
+        <tr><th>Date of Creation</th><td>24 JUN 2021  1:27:55 PM</td></tr>
+          <tr><th>Date of Execution</th><td>24 JUN 2021  1:27:57 PM</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+   
+
+ <!-- TestCaseData -->
+    <div class='report-block'>
+      <h3><a id="TestCaseData_1"></a>Test Case Data</h3>
+      <table class='table table-condensed data-table'>
+        <tbody>
+          <tr><th>Test Case</th><td class="testcase_name">encrypt.transmit_Info.failure</td></tr>
+          <tr><th>File Name</th><td class="testcase_file">C-000001.DAT</td></tr>
+        </tbody>
+      </table>
+        <div>
+          <h4>Input Test Data</h4>
+<table class='table table-small table-hover'>
+  <tbody>
+    <tr>
+      <td class='i0'>UUT: encrypt.c</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Subprogram: generate_private_key</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Subprogram: transmit_Info</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>number</td>
+      <td>string</td>
+      <td>&#34;0000111122223333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>secCode</td>
+      <td>string</td>
+      <td>&#34;012&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>Stubbed Subprograms:</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Unit: matrix_multiply.h</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>Subprogram: matrix_multiply</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i3'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+        <div>
+          <h4>Expected Test Data</h4>
+<table class='table table-small table-hover'>
+  <tbody>
+    <tr>
+      <td class='i0'>UUT: encrypt.c</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Subprogram: transmit_Info</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>return</td>
+      <td>int</td>
+      <td>MACRO=FAILURE</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+
+      <div>
+        <h4>Test Case / Parameter Input User Code</h4><p>This test has no input user code.</p></div>
+
+      <div>
+        <h4>Test Case / Parameter Expected User Code</h4><p>This test has no expected user code.</p></div>
+
+    </div>
+<!-- ExecutionResults/testcase_header -->
+  <div class='report-block'>
+    <h3 title="Execution Results">
+      <a id="ExecutionResults_1"></a>Execution Results (PASS)</h3>
+        <div class='test-timeline bs-callout bs-callout-success'>
+
+      <div class='event bs-callout' style="position: relative">
+        <div class='event test-action-header'><h4 class='test-start-header'>Start of encrypt.transmit_Info.failure</h4></div>
+      </div>
+<!-- ExecutionResults/slot_header -->
+            <div class='slot'>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 1
+                  - Calling transmit_Info</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: encrypt.c</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">transmit_Info</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>number</td>
+      <td>string</td>
+      <td>&#34;000011112222333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>secCode</td>
+      <td>string</td>
+      <td>&#34;01&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 2
+                  - Stubbed generate_private_key</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: encrypt.c</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">generate_private_key</span></div>
+                </div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 3
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 4
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 5
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 6
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 7
+                  - Returned from transmit_Info</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: encrypt.c</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">transmit_Info</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>number</td>
+      <td>string</td>
+      <td>&#34;000011112222333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>secCode</td>
+      <td>string</td>
+      <td>&#34;01&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+    <tr class="success">
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>-1</td>
+      <td class='success-marker'>&lt;match&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/slot_footer -->
+            </div>
+<!-- ExecutionResult/testcase_footer -->
+            <div class='bs-callout bs-callout-info'>
+              <div class='test-action-header'>
+                <h4>UUT Returned control to Driver, end of test case</h4>
+              </div>
+            </div>
+          </div> <!-- div opened in testcase_header -->
+            <div class='testcase-result'>
+              <h4 class="test-result-pass">Result - PASS</h4>
+              <table class='table table-small testcase-results'>
+                <tr class="success">
+                  <td>Expected Results matched 100%</td>
+                  <td>1/1</td>
+                  <td>PASS</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+<!-- TestcaseSectionsFooter -->
+      </div>
+<!-- TestcaseSectionsHeader -->
+      <div class='testcase'>
+        <a id="TestCase_encrypt.transmit_Info.good"> </a>
+        <h2 class="testcase_section"><span class="testcase_name">encrypt.transmit_Info.good</span></h2><!-- FullTestCaseConfigData -->
+
+  <div class='report-block'>
+    <h3><a id="TestCaseConfiguration_2"></a>Test Case Configuration</h3>
+
+    <table class='table table-small'>
+      <tbody>
+          <tr><th>Unit Under Test</th><td>encrypt</td></tr><tr><th>Subprogram</th><td>transmit_Info</td></tr>
+        <tr><th>Test Case Name</th><td>encrypt.transmit_Info.good</td></tr>
+        <tr><th>Date of Creation</th><td>24 JUN 2021  1:27:55 PM</td></tr>
+          <tr><th>Date of Execution</th><td>24 JUN 2021  1:27:58 PM</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+   
+
+ <!-- TestCaseData -->
+    <div class='report-block'>
+      <h3><a id="TestCaseData_2"></a>Test Case Data</h3>
+      <table class='table table-condensed data-table'>
+        <tbody>
+          <tr><th>Test Case</th><td class="testcase_name">encrypt.transmit_Info.good</td></tr>
+          <tr><th>File Name</th><td class="testcase_file">C-000002.DAT</td></tr>
+        </tbody>
+      </table>
+        <div>
+          <h4>Input Test Data</h4>
+<table class='table table-small table-hover'>
+  <tbody>
+    <tr>
+      <td class='i0'>UUT: encrypt.c</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Subprogram: transmit_Info</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>number</td>
+      <td>string</td>
+      <td>&#34;0000111122223333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>secCode</td>
+      <td>string</td>
+      <td>&#34;012&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+        <div>
+          <h4>Expected Test Data</h4>
+<table class='table table-small table-hover'>
+  <tbody>
+    <tr>
+      <td class='i0'>UUT: encrypt.c</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i1'>Subprogram: transmit_Info</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i2'>return</td>
+      <td>int</td>
+      <td>MACRO=SUCCESS</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+
+      <div>
+        <h4>Test Case / Parameter Input User Code</h4><p>This test has no input user code.</p></div>
+
+      <div>
+        <h4>Test Case / Parameter Expected User Code</h4><p>This test has no expected user code.</p></div>
+
+    </div>
+<!-- ExecutionResults/testcase_header -->
+  <div class='report-block'>
+    <h3 title="Execution Results">
+      <a id="ExecutionResults_2"></a>Execution Results (PASS)</h3>
+        <div class='test-timeline bs-callout bs-callout-success'>
+
+      <div class='event bs-callout' style="position: relative">
+        <div class='event test-action-header'><h4 class='test-start-header'>Start of encrypt.transmit_Info.good</h4></div>
+      </div>
+<!-- ExecutionResults/slot_header -->
+            <div class='slot'>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 1
+                  - Calling transmit_Info</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: encrypt.c</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">transmit_Info</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>number</td>
+      <td>string</td>
+      <td>&#34;000011112222333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>secCode</td>
+      <td>string</td>
+      <td>&#34;01&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 2
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 3
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 4
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 5
+                  - Stubbed matrix_multiply</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: matrix_multiply.h</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">matrix_multiply</span></div>
+                </div>
+              </div>
+<!-- ExecutionResults/event -->
+              <div class='event bs-callout rel-pos'>
+
+              <h4 class="event">Event 6
+                  - Returned from transmit_Info</h4>
+                <div class='event-info'>
+                  <div class='text-muted'>UUT: encrypt.c</div>
+                  <div class='text-muted'>Subprogram: <span class="subprogram">transmit_Info</span></div>
+                </div>
+                <div class='bs-callout'>
+<table class='table table-small table-hover'>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Actual Value</th>
+      <th>Expected Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class='i0'>name</td>
+      <td>string</td>
+      <td>&#34;Tim Schneider&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>number</td>
+      <td>string</td>
+      <td>&#34;000011112222333&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>secCode</td>
+      <td>string</td>
+      <td>&#34;01&#34;</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class='i0'>Info</td>
+      <td>float</td>
+      <td>12.34</td>
+      <td></td>
+    </tr>
+    <tr class="success">
+      <td class='i0'>return</td>
+      <td>int</td>
+      <td>0</td>
+      <td class='success-marker'>&lt;match&gt;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+              </div>
+<!-- ExecutionResults/slot_footer -->
+            </div>
+<!-- ExecutionResult/testcase_footer -->
+            <div class='bs-callout bs-callout-info'>
+              <div class='test-action-header'>
+                <h4>UUT Returned control to Driver, end of test case</h4>
+              </div>
+            </div>
+          </div> <!-- div opened in testcase_header -->
+            <div class='testcase-result'>
+              <h4 class="test-result-pass">Result - PASS</h4>
+              <table class='table table-small testcase-results'>
+                <tr class="success">
+                  <td>Expected Results matched 100%</td>
+                  <td>1/1</td>
+                  <td>PASS</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+<!-- TestcaseSectionsFooter -->
+      </div>
+<!-- AggregateCoverage -->
+      <div class='report-block-coverage'>
+        <div class="row">
+          <div class="col-md-10">
+            <h2><a id="AggregateCoverage"></a>Aggregate Coverage</h2>
+          </div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <div class="row">
+          <div class="col-md-10"><h3><a id="coverage_for_unit_9"></a>Code Coverage for encrypt</h3></div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <table class='table table-small'>
+          <thead>
+          </thead>
+          <tbody>
+          <tr>
+            <th>Coverage Type</th><td>Statement+Branch+Function Call</td>
+          </tr>
+          <tr>
+            <th>Unit</th><td>encrypt</td>
+          </tr>
+          <tr>
+            <th>Test Case</th><td>Aggregate</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <pre class="aggregate-coverage"><span class="na-cvg">               /***************************************************************************************</span>
+<span class="na-cvg">                * Unit: encrypt.c                                                                     *</span>
+<span class="na-cvg">                *                                                                                     *</span>
+<span class="na-cvg">                * Purpose: Provides psuedo encryption services                                        *</span>
+<span class="na-cvg">                *                                                                                     *</span>
+<span class="na-cvg">                * Public API:                                                                         *</span>
+<span class="na-cvg">                *      - void Add_Included_Dessert(struct order_type* Order)                          *</span>
+<span class="na-cvg">                *                                                                                     *</span>
+<span class="na-cvg">                * Private API:                                                                        *</span>
+<span class="na-cvg">                *      - None                                        *                                *</span>
+<span class="na-cvg">                *                                                                                     *</span>
+<span class="na-cvg">                *                                                                                     *</span>
+<span class="na-cvg">                ***************************************************************************************/</span>
+<span class="na-cvg">               /***************************************************************************************</span>
+<span class="na-cvg">                *                            Program Headers                                          *</span>
+<span class="na-cvg">                ***************************************************************************************/</span>
+<span class="na-cvg">               #include &#34;C:/VECTOR/TOOLS/JENKINS/WORKSPACE/COFFEE_WITH_VECTOR_DEMO/CURRENTRELEASE/ORDER_ENTRY/inc/ctypes.h&#34;</span>
+<span class="na-cvg">               #include &#34;C:/VECTOR/TOOLS/JENKINS/WORKSPACE/COFFEE_WITH_VECTOR_DEMO/CURRENTRELEASE/ENCRYPT/inc/matrix_multiply.h&#34;</span>
+<span class="na-cvg">               /***************************************************************************************</span>
+<span class="na-cvg">                *                            External Defintions                                      *</span>
+<span class="na-cvg">                ***************************************************************************************/</span>
+<span class="na-cvg">               /***************************************************************************************</span>
+<span class="na-cvg">                *                            Private Prototypes                                       *</span>
+<span class="na-cvg">                ***************************************************************************************/</span>
+<span class="na-cvg">               static int sendData(struct matrix_t data);</span>
+<span class="na-cvg">               static struct matrix_t generate_private_key(void);</span>
+<span class="na-cvg">               static int Encrypt_Info(const struct matrix_t* private_key, const char * name, const char number[16], const char secCode[3], float Info);</span>
+<span class="na-cvg">               static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t* private_key);</span>
+<span class="na-cvg">               /**************************************************************************************</span>
+<span class="na-cvg">                *  Subprogram: sendData                                                              *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Purpose: Sesnd the &#34;encrypted&#34; data to the appropriate place                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Inputs:                                                                           *</span>
+<span class="na-cvg">                *       - data - struct matrix_t                                                     *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Outputs:                                                                          *</span>
+<span class="na-cvg">                *       - int - SUCCESS/FAILURE                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                **************************************************************************************/</span>
+<span class="na-cvg">               static int sendData(struct matrix_t data)</span>
+<span class="na-cvg">               {</span>
+<span class="na-cvg">                   int i,j;</span>
+<span class="na-cvg">                   // display result matrix</span>
+<span class="full-cvg success-marker">1 0     (T)    sendData</span>
+<span class="full-cvg success-marker">1 1      *     </span>
+<span class="full-cvg success-marker">1 2     [*]      printf (&#34;ENCRYPTED DATA (%dx%d): &#34;, data.row, data.col);</span>
+<span class="na-cvg">                   // loop over the data rows</span>
+<span class="full-cvg success-marker">1 3     (T)(F)   for (i = 0; i &lt; data.row &amp;&amp; i &lt; 4; i++)</span>
+<span class="na-cvg">                   {</span>
+<span class="na-cvg">                       // loop over the data columns</span>
+<span class="full-cvg success-marker">1 4     (T)(F)     for (j = 0; j &lt; data.col &amp;&amp; j &lt; 4; j++)</span>
+<span class="na-cvg">                       {</span>
+<span class="na-cvg">                           // print the resulting data</span>
+<span class="full-cvg success-marker">1 5      *     </span>
+<span class="full-cvg success-marker">1 6     [*]          printf (&#34;%02X &#34;,data.matrix[i][j]);</span>
+<span class="na-cvg">                       }</span>
+<span class="na-cvg">                   }</span>
+<span class="na-cvg">                   // clean up printf       </span>
+<span class="full-cvg success-marker">1 7      *     </span>
+<span class="full-cvg success-marker">1 8     [*]      printf (&#34;\n&#34;);</span>
+<span class="full-cvg success-marker">1 9      *       return SUCCESS;</span>
+<span class="na-cvg">               }</span>
+<span class="na-cvg">               /**************************************************************************************</span>
+<span class="na-cvg">                *  Subprogram: generate_private_key                                                  *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Purpose: Generate a &#34;private&#34; key                                                 *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Inputs:                                                                           *</span>
+<span class="na-cvg">                *       - None                                                                       *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Outputs:                                                                          *</span>
+<span class="na-cvg">                *       - struct matrix_t - random data for now                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                **************************************************************************************/</span>
+<span class="na-cvg">               static struct matrix_t generate_private_key(void)</span>
+<span class="na-cvg">               {</span>
+<span class="na-cvg">                   // set up default key</span>
+<span class="na-cvg">                   static struct matrix_t private_key = {-1,-1,};</span>
+<span class="na-cvg">                   // local variables</span>
+<span class="full-cvg success-marker">2 0     (T)    generate_private_key</span>
+<span class="full-cvg success-marker">2 1      *       int i = 0,j = 0;</span>
+<span class="na-cvg">                   // if no data corruption has occurred...</span>
+<span class="part-cvg success-marker fail-marker">2 2     (T)( )   if (private_key.row == -1 &amp;&amp; private_key.col == -1)</span>
+<span class="na-cvg">                   {</span>
+<span class="na-cvg">                       // set the private key to be 4x4</span>
+<span class="full-cvg success-marker">2 3      *         private_key.row = 4;</span>
+<span class="full-cvg success-marker">2 4      *         private_key.col = 4;</span>
+<span class="na-cvg">                       // loop over the matrix rows</span>
+<span class="full-cvg success-marker">2 5     (T)(F)     for (i = 0; i &lt; 4; i++)</span>
+<span class="na-cvg">                       {</span>
+<span class="na-cvg">                           // and loop over the matrix rows</span>
+<span class="full-cvg success-marker">2 6     (T)(F)       for (j = 0; j &lt; 4; j++)</span>
+<span class="na-cvg">                           {</span>
+<span class="na-cvg">                               // store random data (for now)</span>
+<span class="full-cvg success-marker">2 7      *             private_key.matrix[i][j] = </span>
+<span class="full-cvg success-marker">2 8     [*]            rand() &amp; 0xff;</span>
+<span class="na-cvg">                           }</span>
+<span class="na-cvg">                       }</span>
+<span class="na-cvg">                   }</span>
+<span class="na-cvg">                   // return the private key</span>
+<span class="full-cvg success-marker">2 9      *       return private_key;</span>
+<span class="na-cvg">               }</span>
+<span class="na-cvg">               /**************************************************************************************</span>
+<span class="na-cvg">                *  Subprogram: encrypt_and_send                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Purpose: Encrypts the information and transmits it                                * </span>
+<span class="na-cvg">                *  Inputs:                                                                           *</span>
+<span class="na-cvg">                *       - inData - const char *                                                      *</span>
+<span class="na-cvg">                *       - row - int                                                                  *</span>
+<span class="na-cvg">                *       - column - int                                                               *</span>
+<span class="na-cvg">                *       - private_key - void *                                                       *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Outputs:                                                                          *</span>
+<span class="na-cvg">                *       - int - SUCCESS/FAILURE                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                **************************************************************************************/</span>
+<span class="na-cvg">                static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t* private_key)</span>
+<span class="na-cvg">                {</span>
+<span class="na-cvg">                    // Initialize the local variables</span>
+<span class="full-cvg success-marker">3 0     (T)    encrypt_and_send</span>
+<span class="full-cvg success-marker">3 1      *       struct matrix_t data2BSent = {4,4, { {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, } };</span>
+<span class="full-cvg success-marker">3 2      *       struct matrix_t result = {4,4, { {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, } };</span>
+<span class="na-cvg">                   // sets the data into the out matrix</span>
+<span class="part-cvg success-marker fail-marker">3 3     (T)( )   if (inData) { </span>
+<span class="full-cvg success-marker">3 4      *         int i,j,inEnd = 0; </span>
+<span class="full-cvg success-marker">3 5     (T)(F)     for (i = 0; i &lt; row; i++) </span>
+<span class="full-cvg success-marker">3 6     (T)(F)       for (j = 0; j &lt; col ; j++) { </span>
+<span class="full-cvg success-marker">3 7     (T)(F)         if (*inData == &#39;\0&#39;) </span>
+<span class="full-cvg success-marker">3 8      *               inEnd = 1; </span>
+<span class="full-cvg success-marker">3 9     (T)(F)         if (!inEnd) </span>
+<span class="full-cvg success-marker">3 10     *               data2BSent.matrix[i][j] = *inData++; else </span>
+<span class="full-cvg success-marker">3 11     *               data2BSent.matrix[i][j] = 0; } </span>
+<span class="full-cvg success-marker">3 12     *         data2BSent.row = row; </span>
+<span class="full-cvg success-marker">3 13     *         data2BSent.col = col; }</span>
+<span class="full-cvg success-marker">3 14     *       ;</span>
+<span class="na-cvg">                   // call the matrix multiply routine to encrypt the data</span>
+<span class="full-cvg success-marker">3 15    (T)(F)   if (</span>
+<span class="full-cvg success-marker">3 16    [*]      matrix_multiply(&amp;data2BSent, private_key, &amp;result) == FAILURE)</span>
+<span class="na-cvg">                   {</span>
+<span class="na-cvg">                       // if the matrix multiply failed, return FAILURE</span>
+<span class="full-cvg success-marker">3 17     *         return FAILURE;</span>
+<span class="na-cvg">                   }</span>
+<span class="na-cvg">                   // otherwise send the data</span>
+<span class="full-cvg success-marker">3 18     *       return </span>
+<span class="full-cvg success-marker">3 19    [*]      sendData (result);</span>
+<span class="na-cvg">                }</span>
+<span class="na-cvg">               /**************************************************************************************</span>
+<span class="na-cvg">                *  Subprogram: Encrypt_Info                                                          *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Purpose: Encrypts the credit card information and transmits it in chucks          * </span>
+<span class="na-cvg">                *  Inputs:                                                                           *</span>
+<span class="na-cvg">                *       - private_key - void *                                                       *</span>
+<span class="na-cvg">                *       - name        - const char *                                                 *</span>
+<span class="na-cvg">                *       - number      - const char[16]                                               *</span>
+<span class="na-cvg">                *       - secCode     - const char [3]                                               *</span>
+<span class="na-cvg">                *       - Info  - float                                                              *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Outputs:                                                                          *</span>
+<span class="na-cvg">                *       - int - SUCCESS/FAILURE                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                **************************************************************************************/</span>
+<span class="na-cvg">               static int Encrypt_Info(const struct matrix_t* private_key, const char * name, const char number[16], const char secCode[3], float Info)</span>
+<span class="na-cvg">               {</span>
+<span class="na-cvg">                   // init the return value</span>
+<span class="full-cvg success-marker">4 0     (T)    Encrypt_Info</span>
+<span class="full-cvg success-marker">4 1      *       int ret_val = SUCCESS;</span>
+<span class="na-cvg">                   // send the name</span>
+<span class="full-cvg success-marker">4 2      *       ret_val |= </span>
+<span class="full-cvg success-marker">4 3     [*]      encrypt_and_send(name , 4, 4, private_key);</span>
+<span class="na-cvg">                   // send the cardNumber</span>
+<span class="full-cvg success-marker">4 4      *       ret_val |= </span>
+<span class="full-cvg success-marker">4 5     [*]      encrypt_and_send(number, 4, 4, private_key);</span>
+<span class="na-cvg">                   // send the secCode</span>
+<span class="full-cvg success-marker">4 6      *       ret_val |= </span>
+<span class="full-cvg success-marker">4 7     [*]      encrypt_and_send(secCode , 1 , 4, private_key);</span>
+<span class="na-cvg">                   // send the total</span>
+<span class="full-cvg success-marker">4 8      *       ret_val |= </span>
+<span class="full-cvg success-marker">4 9     [*]      encrypt_and_send((const char *)&amp;Info, 4, 4, private_key);</span>
+<span class="na-cvg">                   // return SUCCESS/FAILURE</span>
+<span class="full-cvg success-marker">4 10     *       return ret_val;</span>
+<span class="na-cvg">               }</span>
+<span class="na-cvg">               /**************************************************************************************</span>
+<span class="na-cvg">                *  Subprogram: transmit_Info                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Purpose: Transmit the credit card information                                     *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Inputs:                                                                           *</span>
+<span class="na-cvg">                *       - name        - const char *                                                 *</span>
+<span class="na-cvg">                *       - number      - const char[16]                                               *</span>
+<span class="na-cvg">                *       - secCode     - const char [3]                                               *</span>
+<span class="na-cvg">                *       - Info        - float                                                        *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                *  Outputs:                                                                          *</span>
+<span class="na-cvg">                *       - int - SUCCESS/FAILURE                                                      *</span>
+<span class="na-cvg">                *                                                                                    * </span>
+<span class="na-cvg">                **************************************************************************************/</span>
+<span class="na-cvg">               int transmit_Info (const char * name, const char number[16], const char secCode[3], float Info)</span>
+<span class="na-cvg">               {</span>
+<span class="na-cvg">                   // generate a private key</span>
+<span class="full-cvg success-marker">5 0     (T)    transmit_Info</span>
+<span class="full-cvg success-marker">5 1      *       struct matrix_t private_key = </span>
+<span class="full-cvg success-marker">5 2     [*]      generate_private_key();</span>
+<span class="na-cvg">                   // Encrypt and send the data</span>
+<span class="full-cvg success-marker">5 3      *       return </span>
+<span class="full-cvg success-marker">5 4     [*]      Encrypt_Info(&amp;private_key,name,number,secCode, Info);</span>
+<span class="na-cvg">               }</span>
+</pre>
+
+        <h4>TEST COVERAGE SUMMARY</h4>
+        <p>
+   39 of 39 Lines Covered ( 100% )</p>
+        <p>
+   25 of 27 Branches Covered ( 92% )</p>
+        <p>
+   12 of 12 Function Calls Covered ( 100% )</p>
+      </div>
+<!-- Metrics -->
+      <div class='report-block'>
+        <div class="row">
+          <div class="col-md-10">
+            <h2><a id="Metrics"></a>Metrics</h2>
+          </div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <h3 id="coverage_type">Statement+Branch+Function Call</h3>
+        <table class='table table-small table-hover table-bordered'>
+          <thead class="thead-default">
+            <tr>
+              <th class="col_unit">Unit</th><th class="col_subprogram">Subprogram</th><th class="col_complexity">Complexity</th><th class="col_metric">Function Coverage</th><th class="col_metric">Statements</th><th class="col_metric">Branches</th><th class="col_metric">Function Calls</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col_unit">encrypt</td><td class="col_subprogram">sendData</td><td class="col_complexity">3</td><td class="success col_metric">100%</td><td class="success col_metric">6 / 6 (100%)</td><td class="success col_metric">5 / 5 (100%)</td><td class="success col_metric">3 / 3 (100%)</td>
+            </tr>
+            <tr>
+              <td class="col_unit">&nbsp;</td><td class="col_subprogram">generate_private_key</td><td class="col_complexity">4</td><td class="success col_metric">100%</td><td class="success col_metric">8 / 8 (100%)</td><td class="warning col_metric">6 / 7 (85%)</td><td class="success col_metric">1 / 1 (100%)</td>
+            </tr>
+            <tr>
+              <td class="col_unit">&nbsp;</td><td class="col_subprogram">encrypt_and_send</td><td class="col_complexity">7</td><td class="success col_metric">100%</td><td class="success col_metric">17 / 17 (100%)</td><td class="warning col_metric">12 / 13 (92%)</td><td class="success col_metric">2 / 2 (100%)</td>
+            </tr>
+            <tr>
+              <td class="col_unit">&nbsp;</td><td class="col_subprogram">Encrypt_Info</td><td class="col_complexity">1</td><td class="success col_metric">100%</td><td class="success col_metric">6 / 6 (100%)</td><td class="success col_metric">1 / 1 (100%)</td><td class="success col_metric">4 / 4 (100%)</td>
+            </tr>
+            <tr>
+              <td class="col_unit">&nbsp;</td><td class="col_subprogram">transmit_Info</td><td class="col_complexity">1</td><td class="success col_metric">100%</td><td class="success col_metric">2 / 2 (100%)</td><td class="success col_metric">1 / 1 (100%)</td><td class="success col_metric">2 / 2 (100%)</td>
+            </tr>
+            <tr>
+              <th class="col_unit">TOTALS</th><th class="col_subprogram">5</th><th class="col_complexity">16</th><th class="success col_metric">5 / 5 (100%)</th><th class="success col_metric">39 / 39 (100%)</th><th class="warning col_metric">25 / 27 (92%)</th><th class="success col_metric">12 / 12 (100%)</th>
+            </tr>
+            <tr>
+              <th class="col_unit">GRAND TOTALS</th><th class="col_subprogram">5</th><th class="col_complexity">16</th><th class="success col_metric">5 / 5 (100%)</th><th class="success col_metric">39 / 39 (100%)</th><th class="warning col_metric">25 / 27 (92%)</th><th class="success col_metric">12 / 12 (100%)</th>
+            </tr>
+          </tbody>
+        </table>
+      </div><!-- ProbePoint -->
+      <div class='report-block'>
+        <div class="row">
+          <div class="col-md-10">
+            <h2><a id="ProbePoints"></a>Probe Points</h2>
+          </div>
+          <div class="return-to-top col-md-2"><span class="pull-right"><a href="#TableOfContents">Top</a></span></div>
+        </div>
+        <h3 class="subtitle">No probe points exist</h3>
+      </div>
+<!-- VectorCAST Report footer -->
+    </div></div>
+  </body>
+</html>

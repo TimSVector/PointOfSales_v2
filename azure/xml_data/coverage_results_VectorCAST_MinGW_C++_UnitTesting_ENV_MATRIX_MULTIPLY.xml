@@ -1,0 +1,33 @@
+<!-- VectorCAST/Jenkins Integration, Generated 24 JUN 2021  1:34:06 PM -->
+<report>
+  <version value="3"/>
+  <stats>
+    <environments value="1"/>
+    <units value="1"/>
+    <subprograms value="1"/>
+  </stats>
+  <data>
+    <all name="all environments">
+      <coverage type="statement, %" value="100% (12 / 12)"/>
+      <coverage type="branch, %" value="100% (9 / 9)"/>
+      <coverage type="complexity, %" value="0% (5 / 0)"/>
+
+      <environment name="VectorCAST_MinGW_C++_UnitTesting_ENV_MATRIX_MULTIPLY">
+        <coverage type="statement, %" value="100% (12 / 12)"/>
+        <coverage type="branch, %" value="100% (9 / 9)"/>
+        <coverage type="complexity, %" value="0% (5 / 0)"/>
+
+        <unit name="matrix_multiply">
+          <coverage type="statement, %" value="100% (12 / 12)"/>
+          <coverage type="branch, %" value="100% (9 / 9)"/>
+          <coverage type="complexity, %" value="0% (5 / 0)"/>
+          <subprogram name="matrix_multiply">
+            <coverage type="statement, %" value="100% (12 / 12)"/>
+            <coverage type="branch, %" value="100% (9 / 9)"/>
+            <coverage type="complexity, %" value="0% (5 / 0)"/>
+          </subprogram>
+        </unit>
+      </environment>
+    </all>
+  </data>
+</report>
