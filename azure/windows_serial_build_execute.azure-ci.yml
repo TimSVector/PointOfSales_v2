@@ -55,7 +55,7 @@ steps:
     searchFolder: '$(System.DefaultWorkingDirectory)/azure'
     testRunTitle: 'VectorCAST Test Results'
 
- - task: PublishCodeCoverageResults@1
+- task: PublishCodeCoverageResults@1
    inputs:
      codeCoverageTool: 'Cobertura'
      summaryFileLocation: 'coverage_results*.xml'
@@ -63,7 +63,7 @@ steps:
      reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
      failIfCoverageEmpty: true
 
- - task: PublishPipelineArtifact@1
+- task: PublishPipelineArtifact@1
    inputs:
      targetPath: '$(Pipeline.Workspace)/azure'
      artifact: |
