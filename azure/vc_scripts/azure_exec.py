@@ -30,7 +30,7 @@ import generate_results
 import cobertura
 
 
-class GitLabExecute(object):
+class AzureExecute(object):
     def __init__(self, ManageProject, useCILicense, useCBT, level, environment, verbose, print_exc, timing, buildlog):
 
         # setup default values
@@ -122,7 +122,7 @@ class GitLabExecute(object):
                 os.remove(file);
             except:
                 print("Error removing file after failed to remove directory: " +  file)
-        cobertura.gitlab = True
+        cobertura.azure = True
         cobertura.generateCoverageResults(self.FullMP)
 
     def runReports(self):
@@ -169,7 +169,7 @@ if __name__ == '__main__':
         print "exiting..."
         sys.exit(-1)
 
-    glExec = GitLabExecute(args.ManageProject, args.ci, args.incremental, args.level, args.environment, args.verbose, args.print_exc, args.timing, args.buildlog)
+    glExec = AzureExecute(args.ManageProject, args.ci, args.incremental, args.level, args.environment, args.verbose, args.print_exc, args.timing, args.buildlog)
 
     if args.execute:
         glExec.runExec()

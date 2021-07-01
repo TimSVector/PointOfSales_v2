@@ -41,7 +41,7 @@ vectorcast_execute:
     - vectorcast
 
   script:
-    - $VECTORCAST_DIR/vpython  vc_scripts/generate_gitlab_yaml.py $VC_Manage_Project $VC_UseCILicense $VC_useCBT
+    - $VECTORCAST_DIR/vpython  vc_scripts/generate_azure_yaml.py $VC_Manage_Project $VC_UseCILicense $VC_useCBT
 
   artifacts:
     paths:

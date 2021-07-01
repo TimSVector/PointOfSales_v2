@@ -1,11 +1,11 @@
 # vectorcast_gitlab
 
-Initial Integration Between VectorCAST and GitLab
+Initial Integration Between VectorCAST and Microsoft Azure DevOps Pipeline
 
 # Summary
 
 This integration allows the user to execute
-[VectorCAST](http://vector.com/vectorcast) projects in GitLab
+[VectorCAST](http://vector.com/vectorcast) projects in Azure
 
 Results are published in **_Junit_** and **_Cobertura_**
 
@@ -13,10 +13,10 @@ Results are published in **_Junit_** and **_Cobertura_**
 
 Six YAML CI files are provided:
 
-- linux/windows_serial_build_execute.gitlab-ci.yml   - Serial build-execute of a VectorCAST Project 
-- linux/windows_parallel_build.gitlab-ci.yml         - Parallel build and serial execute of a VectorCAST Project 
-- linux/windows_parallel_build_execute.gitlab-ci.yml - Parallel build and execute of a VectorCAST Project 
-    - In this case a child pipeline is created and due to the limitations of GitLab the 
+- linux/windows_serial_build_execute.azure-ci.yml   - Serial build-execute of a VectorCAST Project 
+- linux/windows_parallel_build.azure-ci.yml         - Parallel build and serial execute of a VectorCAST Project 
+- linux/windows_parallel_build_execute.azure-ci.yml - Parallel build and execute of a VectorCAST Project 
+    - In this case a child pipeline is created and due to the limitations of Azure the 
       results are disconnected from the original pipeline
 
 # Notes for parallel build-execute workflow

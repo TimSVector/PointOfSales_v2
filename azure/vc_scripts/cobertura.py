@@ -32,8 +32,8 @@ from collections import defaultdict
 
 
 fileList = []
-global gitlab
-gitlab = False
+global azure
+azure = False
 
 def write_xml(x, name, verbose = False):
     if verbose:
@@ -44,7 +44,7 @@ def write_xml(x, name, verbose = False):
 
 def getFileXML(testXml, coverAPI):
 
-    global gitlab
+    global azure
     
     fname = coverAPI.path
     
@@ -53,7 +53,7 @@ def getFileXML(testXml, coverAPI):
     
     file = None
     
-    if gitlab:
+    if azure:
         checkName = fname
     else:
         checkName = os.path.basename(fname)
@@ -80,7 +80,7 @@ def getFileXML(testXml, coverAPI):
 #  <coverage branch-rate="0.621853898097" line-rate="0.0848430253895" timestamp="1356956242" version="gcovr 2.5-prerelease (r2774)">
 # XX  <sources>
 # XX     <source>
-# XX       C:\gitlab\project
+# XX       C:\azure\project
 # XX     </source>
 # XX   </sources>
 #    <packages>
@@ -233,12 +233,12 @@ def runCoverageResultsMP(classes, mpFile):
 
 def generateCoverageResults(inFile):
 
-    global gitlab
+    global azure
     
     #coverage results
     coverages=etree.Element("coverage")
     
-    if not gitlab:
+    if not azure:
         sources = etree.SubElement(coverages, "sources")
     packages = etree.SubElement(coverages, "packages")
 #   <package branch-rate="0.607142857143" complexity="0.0" line-rate="0.22962962963" name="Common">
@@ -267,7 +267,7 @@ def generateCoverageResults(inFile):
     name = os.path.splitext(os.path.basename(inFile))[0]
     package.attrib['name'] = name
     print "coverage: " + str(line_rate*100.0) + "% of statements"
-    if not gitlab:
+    if not azure:
         for path in fileList:
             source = etree.SubElement(sources, "source")
             source.text = path
@@ -278,13 +278,13 @@ if __name__ == '__main__':
     
     inFile = sys.argv[1]
     try:
-        if "--gitlab" == sys.argv[2]:
-            gitlab = True
-            print "using gitlab"
+        if "--azure" == sys.argv[2]:
+            azure = True
+            print "using azure"
         else:
-            gitlab = False
+            azure = False
     except Exception as e:
-        gitlab = False        
+        azure = False        
         
     generateCoverageResults(inFile)
 
