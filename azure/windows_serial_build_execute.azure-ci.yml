@@ -56,19 +56,19 @@ steps:
     testRunTitle: 'VectorCAST Test Results'
 
 - task: PublishCodeCoverageResults@1
-   inputs:
-     codeCoverageTool: 'Cobertura'
-     summaryFileLocation: 'coverage_results*.xml'
-     pathToSources: '$(System.DefaultWorkingDirectory)'
-     reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
-     failIfCoverageEmpty: true
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage_results*.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
+    failIfCoverageEmpty: true
 
 - task: PublishPipelineArtifact@1
-   inputs:
-     targetPath: '$(Pipeline.Workspace)/azure'
-     artifact: |
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/azure'
+    artifact: |
        "**/*.html"
        "html_reports/*.html"
        "xml_data/*"
        "complete_build.log"
-     publishLocation: 'pipeline'
+    publishLocation: 'pipeline'
