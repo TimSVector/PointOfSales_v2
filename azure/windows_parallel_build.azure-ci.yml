@@ -22,38 +22,59 @@
 # THE SOFTWARE.
 #
 
-vectorcast_execute:
-  stage: test
+trigger: none
   
-  variables:
-    GIT_CLEAN_FLAGS: none
-    
-    # Relative path from checkout to the VectorCAST Project
-    VC_Manage_Project: "Project.vcm"
+variables:
+  GIT_CLEAN_FLAGS: none
+  
+  # Relative path from checkout to the VectorCAST Project
+  VC_Manage_Project: "Project.vcm"
 
-    # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
-    VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
+  # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
+  VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
 
-    # Set parallel build count (Will use VectorCAST licenses)
-    VC_jobCount: 4
+  # Using VecteorCAST Change Based Testing otherwise set to ""
+  VC_useCBT: "--incremental"
 
-  tags:
-    - vectorcast
+  # Set parallel build count (Will use VectorCAST licenses)
+  VC_jobCount: 4
 
-  script:
-    - "$VC_UseCILicense" 
-    - %VECTORCAST_DIR%\vpython.exe  .\vc_scripts\parallel_build.py --project `"$VC_Manage_Project`"  --jobs $VC_jobCount
-    - %VECTORCAST_DIR%\manage.exe --project "$VC_Manage_Project" --execute 
-    - %VECTORCAST_DIR%\vpython.exe .\vc_scripts\azure_exec.py "$VC_Manage_Project"  --metrics --reports --buildlog complete_build.log
 
-  artifacts:
-    untracked: false
-    expire_in: 30 days    
-    paths:
-      - xml_data/test_results*.xml
-      - xml_data/coverage_results*.xml
-      - html_reports/*.html
-      - ./*.html
-    reports:
-      junit: xml_data/test_results*.xml
-      cobertura: xml_data/coverage_results*.xml
+pool:
+  vmImage: windows-latest
+
+name: vectorcast
+
+steps:
+
+- script: |
+    "$VC_UseCILicense" 
+    %VECTORCAST_DIR%\vpython.exe  .\vc_scripts\parallel_build.py --project "$VC_Manage_Project"  --jobs $VC_jobCount
+    %VECTORCAST_DIR%\manage.exe --project "$VC_Manage_Project" --execute 
+    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\azure_exec.py "$VC_Manage_Project"  --metrics --reports --buildlog complete_build.lo
+  displayName: 'VectorCAST Parallel Build-Execute'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'xml_data/test_results*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/azure'
+    testRunTitle: 'VectorCAST Test Results'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage_results*.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
+    failIfCoverageEmpty: true
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/azure'
+    artifact: |
+       "**/*.html"
+       "html_reports/*.html"
+       "xml_data/*"
+       "complete_build.log"
+    publishLocation: 'pipeline'
