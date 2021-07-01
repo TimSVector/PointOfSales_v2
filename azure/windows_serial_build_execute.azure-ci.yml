@@ -36,8 +36,7 @@ variables:
   # Using VecteorCAST Change Based Testing otherwise set to ""
   VC_useCBT: "--incremental"
 
-pool:
-  vmImage: windows-latest
+pool: TimS-VCAST
 
 name: vectorcast
 
