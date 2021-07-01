@@ -44,7 +44,7 @@ steps:
 
 - script: |
     "$VC_UseCILicense" 
-    rem %VECTORCAST_DIR/vpython.exe ./vc_scripts/azure_exec.py "$VC_Manage_Project" $VC_useCBT --execute --metrics --reports --buildlog complete_build.log
+    %VECTORCAST_DIR/vpython.exe ./vc_scripts/azure_exec.py "$VC_Manage_Project" $VC_useCBT --execute --metrics --reports --buildlog complete_build.log
   displayName: 'VectorCAST Build-Execute'
 
 - task: PublishTestResults@2
