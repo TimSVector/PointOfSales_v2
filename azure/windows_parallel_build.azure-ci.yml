@@ -51,7 +51,7 @@ steps:
     "$VC_UseCILicense" 
     %VECTORCAST_DIR%\vpython.exe  .\vc_scripts\parallel_build.py --project "$VC_Manage_Project"  --jobs $VC_jobCount
     %VECTORCAST_DIR%\manage.exe --project "$VC_Manage_Project" --execute 
-    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\azure_exec.py "$VC_Manage_Project"  --metrics --reports --buildlog complete_build.lo
+    %VECTORCAST_DIR%\vpython.exe .\vc_scripts\azure_exec.py "$VC_Manage_Project"  --metrics --reports --buildlog complete_build.log
   displayName: 'VectorCAST Parallel Build-Execute'
 
 - task: PublishTestResults@2
