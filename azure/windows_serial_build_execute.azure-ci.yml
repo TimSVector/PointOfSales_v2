@@ -59,32 +59,16 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: 'xml_data/coverage_results*.xml'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/xml_data/coverage_results*.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)'
     reportDirectory: 'html_reports'
     failIfCoverageEmpty: false
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'html_reports/*.html'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
+    ArtifactName: |
+      'html_reports/*.html'
+      'complete_build.log'
+      'xml_data/*'
     publishLocation: 'Container'
-    
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: "complete_build.log"
-    publishLocation: 'pipeline'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: "html_reports/*.html"
-    publishLocation: 'pipeline'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: "xml_data/*"
-    publishLocation: 'pipeline'
-
