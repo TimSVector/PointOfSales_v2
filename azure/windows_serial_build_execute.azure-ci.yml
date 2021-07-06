@@ -57,10 +57,10 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/xml_data/coverage_results*.xml'
+    summaryFileLocation: 'xml_data/coverage_results*.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/html_reports/'
-    failIfCoverageEmpty: true
+    reportDirectory: 'html_reports'
+    failIfCoverageEmpty: false
 
 - task: PublishPipelineArtifact@1
   inputs:
