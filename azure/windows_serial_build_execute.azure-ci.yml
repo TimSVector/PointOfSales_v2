@@ -30,7 +30,7 @@ variables:
   System.Debug: true
   
   # Relative path from checkout to the VectorCAST Project
-  VC_Manage_Project: "Project.vcm"
+  VC_Manage_Project: "fast_test/fast_test.vcm"
 
   # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
   VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
