@@ -70,5 +70,5 @@ steps:
     ArtifactName: |
       'html_reports/*.html'
       'complete_build.log'
-      'xml_data/*'
+      'xml_data/*.xml'
     publishLocation: 'Container'
