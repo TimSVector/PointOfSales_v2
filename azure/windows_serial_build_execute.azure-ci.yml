@@ -56,7 +56,7 @@ steps:
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'xml_data/test_results*.xml'
-    searchFolder: '$(System.DefaultWorkingDirectory)/azure'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VectorCAST Test Results'
 
 - task: PublishCodeCoverageResults@1
