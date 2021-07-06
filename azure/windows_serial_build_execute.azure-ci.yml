@@ -66,6 +66,12 @@ steps:
     reportDirectory: 'html_reports'
     failIfCoverageEmpty: false
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'html_reports/*.html'
+    publishLocation: 'Container'
+    
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
@@ -83,3 +89,4 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     artifact: "xml_data/*"
     publishLocation: 'pipeline'
+
