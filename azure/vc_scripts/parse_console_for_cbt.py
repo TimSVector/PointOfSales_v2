@@ -40,7 +40,7 @@ class ParseConsoleForCBT(object):
 
     def checkForSave(self, compoundTests, initTests, simpleTestcases):
         if len(compoundTests) > 0 or len(initTests) > 0 or  len(simpleTestcases) > 0:
-            #print "saved", compoundTests, len(compoundTests) , initTests, len(initTests), simpleTestcases, len(simpleTestcases)
+            #print ("saved", compoundTests, len(compoundTests) , initTests, len(initTests), simpleTestcases, len(simpleTestcases))
             return True
         else:
             return False

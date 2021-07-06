@@ -165,8 +165,8 @@ if __name__ == '__main__':
 
 
     if not os.path.isfile(args.ManageProject):
-        print "Manage project (.vcm file) provided does not exist: " + args.ManageProject
-        print "exiting..."
+        print ("Manage project (.vcm file) provided does not exist: " + args.ManageProject)
+        print ("exiting...")
         sys.exit(-1)
 
     glExec = AzureExecute(args.ManageProject, args.ci, args.incremental, args.level, args.environment, args.verbose, args.print_exc, args.timing, args.buildlog)

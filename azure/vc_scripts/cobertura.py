@@ -39,7 +39,7 @@ def write_xml(x, name, verbose = False):
     if verbose:
         print(etree.tostring(x,pretty_print=True))
     
-    open(name + ".xml", "w").write(etree.tostring(x,pretty_print=True))
+    open(name + ".xml", "w").write(str(etree.tostring(x,pretty_print=True)))
    
 
 def getFileXML(testXml, coverAPI):
@@ -266,7 +266,7 @@ def generateCoverageResults(inFile):
     package.attrib['complexity'] = str(complexity)
     name = os.path.splitext(os.path.basename(inFile))[0]
     package.attrib['name'] = name
-    print "coverage: " + str(line_rate*100.0) + "% of statements"
+    print ("coverage: " + str(line_rate*100.0) + "% of statements")
     if not azure:
         for path in fileList:
             source = etree.SubElement(sources, "source")
@@ -280,7 +280,7 @@ if __name__ == '__main__':
     try:
         if "--azure" == sys.argv[2]:
             azure = True
-            print "using azure"
+            print ("using azure")
         else:
             azure = False
     except Exception as e:
