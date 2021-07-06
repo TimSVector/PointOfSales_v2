@@ -76,11 +76,11 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
-    ArtifactName: '/.html'
+    ArtifactName: '*.html'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
+    PathtoPublish: '$(System.DefaultWorkingDirectory'
     ArtifactName: 'complete_build.log'
     publishLocation: 'Container'
