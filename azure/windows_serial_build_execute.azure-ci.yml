@@ -46,8 +46,6 @@ steps:
 
 - script: |
     $(VC_UseCILicense)
-    cd
-    dir "$(VC_Manage_Project)"
     %VECTORCAST_DIR%\vpython.exe .\azure\vc_scripts\azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --execute --metrics --reports --buildlog complete_build.log
   displayName: 'VectorCAST Build-Execute'
 
