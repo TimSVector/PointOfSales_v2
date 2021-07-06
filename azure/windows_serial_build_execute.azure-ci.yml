@@ -30,7 +30,7 @@ variables:
   System.Debug: true
   
   # Relative path from checkout to the VectorCAST Project
-  VC_Manage_Project: "Project.vcm"
+  VC_Manage_Project: "./fast_test/fast_test.vcm"
 
   # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
   VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
@@ -46,31 +46,42 @@ steps:
 
 - script: |
     $(VC_UseCILicense)
-    cd
-    dir /s *
-    %VECTORCAST_DIR%\vpython.exe .\azure\vc_scripts\azure_exec.py "$(VC_Manage_Project) $(VC_useCBT)" --execute --metrics --reports --buildlog complete_build.log
+    %VECTORCAST_DIR%\vpython.exe .\azure\vc_scripts\azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --execute --metrics --reports --buildlog complete_build.log
+    dir complete_build.log 
+    dir html_reports\*.* 
+    dir xml_data\*.*
   displayName: 'VectorCAST Build-Execute'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'xml_data/test_results*.xml'
-    searchFolder: '$(System.DefaultWorkingDirectory)/azure'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VectorCAST Test Results'
 
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: 'xml_data/coverage_results*.xml'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/xml_data/coverage_results*.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)'
     reportDirectory: 'html_reports'
     failIfCoverageEmpty: false
 
-- task: PublishPipelineArtifact@1
+- task: PublishBuildArtifacts@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: |
-       "html_reports/*.html"
-       "xml_data/*"
-       "complete_build.log"
-    publishLocation: 'pipeline'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
+    ArtifactName: 'coverage_results_fast_test.xml'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
+    ArtifactName: 'complete_build.log'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
+    ArtifactName: 'VectorCAST_MinGW_C_TestSuite_MANAGER_C.html'
+    publishLocation: 'Container'
+
