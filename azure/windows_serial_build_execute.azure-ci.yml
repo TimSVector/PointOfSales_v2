@@ -57,9 +57,9 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: 'coverage_results*.xml'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/azure/xml_data/coverage_results*.xml'
     pathToSources: '$(System.DefaultWorkingDirectory)'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/azure/html_reports/'
     failIfCoverageEmpty: true
 
 - task: PublishPipelineArtifact@1
