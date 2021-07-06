@@ -70,7 +70,7 @@ steps:
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     artifact: |
-       "html_reports/*.html"
+       "**/html_reports/*.html"
        "xml_data/*"
        "complete_build.log"
     publishLocation: 'pipeline'
