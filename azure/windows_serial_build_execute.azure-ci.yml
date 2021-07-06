@@ -47,6 +47,7 @@ steps:
 - script: |
     $(VC_UseCILicense)
     %VECTORCAST_DIR%\vpython.exe .\azure\vc_scripts\azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --execute --metrics --reports --buildlog complete_build.log
+    dir $(System.DefaultWorkingDirectory)/complete_build.log $(System.DefaultWorkingDirectory)/html_reports/*.* $(System.DefaultWorkingDirectory)/xml_data/*.*
   displayName: 'VectorCAST Build-Execute'
 
 - task: PublishTestResults@2
@@ -66,14 +67,14 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
-    ArtifactName: 'xml_data/*.xml'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
+    ArtifactName: '*.xml'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
-    ArtifactName: 'html_reports/*.html'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
+    ArtifactName: '/.html'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
