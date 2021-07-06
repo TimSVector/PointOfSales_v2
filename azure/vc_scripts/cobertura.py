@@ -39,7 +39,7 @@ def write_xml(x, name, verbose = False):
     if verbose:
         print(etree.tostring(x,pretty_print=True))
     
-    open(name + ".xml", "w").write(str(etree.tostring(x,pretty_print=True)))
+    open(name + ".xml", "w").write(etree.tostring(x,pretty_print=True).decode())
    
 
 def getFileXML(testXml, coverAPI):
