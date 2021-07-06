@@ -69,8 +69,17 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
-    artifact: |
-       "**/html_reports/*.html"
-       "xml_data/*"
-       "complete_build.log"
+    artifact: "complete_build.log"
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: "html_reports/*.html"
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: "xml_data/*"
     publishLocation: 'pipeline'
