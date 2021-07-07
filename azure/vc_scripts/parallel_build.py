@@ -87,7 +87,13 @@ class ParallelBuild(object):
         
         print ("Disabling range check globally")
         
-        self.api = VCProjectApi(self.manageProject)
+        try:
+            self.api = VCProjectApi(self.manageProject)
+        except:
+            statusCmd = VCD + "/manage --project " + self.manageProject + self.useCI + " --status"
+            self.runManageCmd(statusCmd)
+            self.api = VCProjectApi(self.manageProject)
+            
         self.oldRangeCheck = self.api.project.options["enums"]["RANGE_CHECK"][0]
         self.api.close()
 
