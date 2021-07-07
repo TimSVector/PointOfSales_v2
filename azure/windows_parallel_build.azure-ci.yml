@@ -53,7 +53,7 @@ steps:
     $(VC_UseCILicense)
     set VCAST_DEMO_SRC_BASE=%CD%\CurrentRelease
     set path=%path%;c:\vector\tools\gnat\2017\bin
-    %VECTORCAST_DIR%\vpython.exe  .\vc_scripts\parallel_build.py --project "$VC_Manage_Project"  --jobs $VC_jobCount
+    %VECTORCAST_DIR%\vpython.exe  .\azure\vc_scripts\parallel_build.py --project "$VC_Manage_Project"  --jobs $VC_jobCount
     %VECTORCAST_DIR%\manage.exe --project "$VC_Manage_Project" --execute 
     %VECTORCAST_DIR%\vpython.exe .\azure\vc_scripts\azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --metrics --reports --buildlog complete_build.log
   displayName: 'VectorCAST Parallel Build-Execute'
