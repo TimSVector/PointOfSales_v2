@@ -13,8 +13,14 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    copy C:\Users\vaprti\vector\demos\cobertura\coverage.xml .
     pwd
     dir *.*
   displayName: 'Run a multi-line script'
+  
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: 'coverage.xml'
+    pathToSources: 'c:\'
+    reportDirectory: 'html_files'
