@@ -32,12 +32,22 @@ from collections import defaultdict
 
 
 fileList = []
+global gitlab
+gitlab = False
+
+global azure
+azure = False
 
 def write_xml(x, name, verbose = False):
+	global azure
+	
     if verbose:
         print(etree.tostring(x,pretty_print=True))
-    
-    xml_str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+
+    if (azure):
+    	xml_str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+	else:
+		xml_str = ""
     
     xml_str += etree.tostring(x,pretty_print=True).decode()
 
@@ -46,6 +56,7 @@ def write_xml(x, name, verbose = False):
 
 def getFileXML(testXml, coverAPI):
 
+    global gitlab
     
     fname = coverAPI.path
     
@@ -54,7 +65,10 @@ def getFileXML(testXml, coverAPI):
     
     file = None
     
-    checkName = os.path.basename(fname)
+    if gitlab:
+        checkName = fname
+    else:
+        checkName = os.path.basename(fname)
         
     for element in testXml.iter():
         if element.tag == "class" and element.attrib['filename'] == checkName:
@@ -78,7 +92,7 @@ def getFileXML(testXml, coverAPI):
 #  <coverage branch-rate="0.621853898097" line-rate="0.0848430253895" timestamp="1356956242" version="gcovr 2.5-prerelease (r2774)">
 # XX  <sources>
 # XX     <source>
-# XX       C:\azure\project
+# XX       C:\gitlab\project
 # XX     </source>
 # XX   </sources>
 #    <packages>
@@ -231,11 +245,13 @@ def runCoverageResultsMP(classes, mpFile):
 
 def generateCoverageResults(inFile):
 
+    global gitlab, AZUE
     
     #coverage results
     coverages=etree.Element("coverage")
     
-    sources = etree.SubElement(coverages, "sources")
+    if not gitlab:
+        sources = etree.SubElement(coverages, "sources")
     packages = etree.SubElement(coverages, "packages")
 #   <package branch-rate="0.607142857143" complexity="0.0" line-rate="0.22962962963" name="Common">
     package  = etree.SubElement(packages, "package")
@@ -254,12 +270,14 @@ def generateCoverageResults(inFile):
         
     coverages.attrib['branch-rate'] = str(branch_rate)
     coverages.attrib['line-rate'] = str(line_rate)    
-    coverages.attrib['timestamp'] = "1592248008"
-    coverages.attrib['version'] = "1.9"
-    coverages.attrib['lines-covered'] = str(cov_st)
-    coverages.attrib['lines-valid'] = str(total_st)
-    coverages.attrib['branches-covered'] = str(cov_br)
-    coverages.attrib['branches-valid'] = str(total_br)
+    coverages.attrib['timestamp'] = "0"
+    coverages.attrib['version'] = "VectorCAST 2020"
+	
+	if azure:
+	    coverages.attrib['lines-covered'] = str(cov_st)
+	    coverages.attrib['lines-valid'] = str(total_st)
+	    coverages.attrib['branches-covered'] = str(cov_br)
+	    coverages.attrib['branches-valid'] = str(total_br)
         
     package.attrib['branch-rate'] = str(branch_rate)
     package.attrib['line-rate'] = str(line_rate)    
@@ -267,15 +285,35 @@ def generateCoverageResults(inFile):
     name = os.path.splitext(os.path.basename(inFile))[0]
     package.attrib['name'] = name
     print ("coverage: " + str(line_rate*100.0) + "% of statements")
-    for path in fileList:
-        source = etree.SubElement(sources, "source")
-        source.text = path
+    if not gitlab:
+        for path in fileList:
+            source = etree.SubElement(sources, "source")
+            source.text = path
         
     write_xml(coverages, "xml_data/coverage_results_" + name)
              
 if __name__ == '__main__':
     
+	global azure, gitlab
+	
     inFile = sys.argv[1]
+    try:
+        if "--gitlab" == sys.argv[2]:
+            gitlab = True
+            print ("using gitlab mode")
+        else:
+            gitlab = False
+    except Exception as e:
+        gitlab = False        
+
+    try:
+        if "--azure" == sys.argv[2]:
+            azure = True
+            print ("using azure mode")
+        else:
+            azure = False
+    except Exception as e:
+        azure = False        
         
     generateCoverageResults(inFile)
 
