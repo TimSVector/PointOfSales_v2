@@ -9,11 +9,9 @@ trigger:
 pool: TimS-VCAST
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
 - script: |
-    copy C:\Users\vaprti\vector\demos\cobertura\coverage.xml .
+    copy C:\Users\vaprti\vector\github\PointOfSales_v2\xml_data\coverage_results_fast_test.xml.
     pwd
     dir *.*
   displayName: 'Run a multi-line script'
@@ -21,6 +19,6 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: 'coverage.xml'
+    summaryFileLocation: 'coverage_results_fast_test.xml'
     pathToSources: 'c:\'
     reportDirectory: 'html_files'
