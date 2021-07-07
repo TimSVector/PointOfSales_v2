@@ -73,19 +73,18 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
-    ArtifactName: 'coverage_results_fast_test.xml'
-    publishLocation: 'Container'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/'
-    ArtifactName: 'complete_build.log'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/complete_build.log'
+    ArtifactName: 'VectorCAST Build Log'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
-    ArtifactName: 'VectorCAST_MinGW_C_TestSuite_MANAGER_C.html'
+    ArtifactName: 'VectorCAST HTML Reports'
     publishLocation: 'Container'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
+    ArtifactName: 'Test and Code Coverage Results Files'
+    publishLocation: 'Container'
