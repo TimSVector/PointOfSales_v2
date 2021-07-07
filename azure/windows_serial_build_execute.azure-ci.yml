@@ -27,8 +27,6 @@ trigger:
   
 variables:
   GIT_CLEAN_FLAGS: none
-
-  System.Debug: true
   
   # Relative path from checkout to the VectorCAST Project
   VC_Manage_Project: "./CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage.vcm"
@@ -37,7 +35,7 @@ variables:
   VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
 
   # Using VecteorCAST Change Based Testing otherwise set to ""
-  VC_useCBT: ""
+  VC_useCBT: "--incremental"
 
 pool: TimS-VCAST
 
