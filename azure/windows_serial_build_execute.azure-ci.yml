@@ -75,12 +75,12 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports/*.html'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
     ArtifactName: 'VectorCAST HTML Reports'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data/*.xml'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
     ArtifactName: 'Test and Code Coverage Results Files'
     publishLocation: 'Container'
