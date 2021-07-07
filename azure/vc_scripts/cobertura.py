@@ -32,19 +32,20 @@ from collections import defaultdict
 
 
 fileList = []
-global azure
-azure = False
 
 def write_xml(x, name, verbose = False):
     if verbose:
         print(etree.tostring(x,pretty_print=True))
     
-    open(name + ".xml", "w").write(etree.tostring(x,pretty_print=True).decode())
+    xml_str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+    
+    xml_str += etree.tostring(x,pretty_print=True).decode()
+
+    open(name + ".xml", "w").write(xml_str)
    
 
 def getFileXML(testXml, coverAPI):
 
-    global azure
     
     fname = coverAPI.path
     
@@ -53,10 +54,7 @@ def getFileXML(testXml, coverAPI):
     
     file = None
     
-    if azure:
-        checkName = fname
-    else:
-        checkName = os.path.basename(fname)
+    checkName = os.path.basename(fname)
         
     for element in testXml.iter():
         if element.tag == "class" and element.attrib['filename'] == checkName:
@@ -233,13 +231,11 @@ def runCoverageResultsMP(classes, mpFile):
 
 def generateCoverageResults(inFile):
 
-    global azure
     
     #coverage results
     coverages=etree.Element("coverage")
     
-    if not azure:
-        sources = etree.SubElement(coverages, "sources")
+    sources = etree.SubElement(coverages, "sources")
     packages = etree.SubElement(coverages, "packages")
 #   <package branch-rate="0.607142857143" complexity="0.0" line-rate="0.22962962963" name="Common">
     package  = etree.SubElement(packages, "package")
@@ -267,24 +263,15 @@ def generateCoverageResults(inFile):
     name = os.path.splitext(os.path.basename(inFile))[0]
     package.attrib['name'] = name
     print ("coverage: " + str(line_rate*100.0) + "% of statements")
-    if not azure:
-        for path in fileList:
-            source = etree.SubElement(sources, "source")
-            source.text = path
+    for path in fileList:
+        source = etree.SubElement(sources, "source")
+        source.text = path
         
     write_xml(coverages, "xml_data/coverage_results_" + name)
              
 if __name__ == '__main__':
     
     inFile = sys.argv[1]
-    try:
-        if "--azure" == sys.argv[2]:
-            azure = True
-            print ("using azure")
-        else:
-            azure = False
-    except Exception as e:
-        azure = False        
         
     generateCoverageResults(inFile)
 
