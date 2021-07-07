@@ -107,10 +107,12 @@ class AzureExecute(object):
             
         cbt = ParseConsoleForCBT(args.verbose)
         cbtDict = None
-        if self.build_log:
-            cbtDict = cbt.parse(self.build_log)
-        else:
-            print("Could not find any build logs...skipping CBT Analysis")
+        
+        # don't show skipped tests as Azure shows them as "Other" instead of skipped
+#        if self.build_log:
+#            cbtDict = cbt.parse(self.build_log)
+#        else:
+#            print("Could not find any build logs...skipping CBT Analysis")
             
         generate_results.verbose = self.verbose
         generate_results.print_exc = self.print_exc
