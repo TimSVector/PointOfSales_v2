@@ -39,15 +39,15 @@ global azure
 azure = False
 
 def write_xml(x, name, verbose = False):
-	global azure
-	
+    global azure
+    
     if verbose:
         print(etree.tostring(x,pretty_print=True))
 
-    if (azure):
-    	xml_str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-	else:
-		xml_str = ""
+    if azure:
+        xml_str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+    else:
+        xml_str = ""
     
     xml_str += etree.tostring(x,pretty_print=True).decode()
 
@@ -245,7 +245,8 @@ def runCoverageResultsMP(classes, mpFile):
 
 def generateCoverageResults(inFile):
 
-    global gitlab, AZUE
+    global gitlab
+    global azure
     
     #coverage results
     coverages=etree.Element("coverage")
@@ -272,12 +273,12 @@ def generateCoverageResults(inFile):
     coverages.attrib['line-rate'] = str(line_rate)    
     coverages.attrib['timestamp'] = "0"
     coverages.attrib['version'] = "VectorCAST 2020"
-	
-	if azure:
-	    coverages.attrib['lines-covered'] = str(cov_st)
-	    coverages.attrib['lines-valid'] = str(total_st)
-	    coverages.attrib['branches-covered'] = str(cov_br)
-	    coverages.attrib['branches-valid'] = str(total_br)
+    
+    if azure:
+        coverages.attrib['lines-covered'] = str(cov_st)
+        coverages.attrib['lines-valid'] = str(total_st)
+        coverages.attrib['branches-covered'] = str(cov_br)
+        coverages.attrib['branches-valid'] = str(total_br)
         
     package.attrib['branch-rate'] = str(branch_rate)
     package.attrib['line-rate'] = str(line_rate)    
@@ -294,8 +295,6 @@ def generateCoverageResults(inFile):
              
 if __name__ == '__main__':
     
-	global azure, gitlab
-	
     inFile = sys.argv[1]
     try:
         if "--gitlab" == sys.argv[2]:
