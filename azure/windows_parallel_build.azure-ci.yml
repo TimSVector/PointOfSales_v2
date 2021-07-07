@@ -31,15 +31,15 @@ variables:
   # Relative path from checkout to the VectorCAST Project
   VC_Manage_Project: "./CurrentRelease/vcast-workarea/vc_manage/PointOfSales_Manage.vcm"
 
-  # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
-  VC_UseCILicense: "export VCAST_USE_CI_LICENSES=TRUE"
-  
   # Environment Setup Script
   VC_EnvSetup: "
     set VCAST_DEMO_SRC_BASE=%CD%/CurrentRelease
     set path=%path%;c:/vector/tools/gnat/2017/bin
     "
 
+  # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
+  VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
+  
   # Using VecteorCAST Change Based Testing otherwise set to ""
   VC_useCBT: "--incremental"
 
