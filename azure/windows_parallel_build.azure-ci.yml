@@ -36,8 +36,8 @@ variables:
   
   # Environment Setup Script
   VC_EnvSetup: "
-    export VCAST_DEMO_SRC_BASE=%CD%/CurrentRelease
-    export path=%path%;c:/vector/tools/gnat/2017/bin
+    set VCAST_DEMO_SRC_BASE=%CD%/CurrentRelease
+    set path=%path%;c:/vector/tools/gnat/2017/bin
     "
 
   # Using VecteorCAST Change Based Testing otherwise set to ""
@@ -55,6 +55,7 @@ steps:
 
 - script: |
     $(VC_UseCILicense)
+    $(VC_EnvSetup)
     %VECTORCAST_DIR%/vpython.exe  ./azure/vc_scripts/parallel_build.py --project "$(VC_Manage_Project)"  --jobs $(VC_jobCount)
     %VECTORCAST_DIR%/manage.exe --project "$(VC_Manage_Project)" --execute 
     %VECTORCAST_DIR%/vpython.exe ./azure/vc_scripts/azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --metrics --reports --buildlog complete_build.log

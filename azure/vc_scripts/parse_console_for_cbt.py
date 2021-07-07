@@ -71,6 +71,7 @@ class ParseConsoleForCBT(object):
             if line.startswith("Processing options file"):
 
                 build_dir = "/".join(line.replace("\\","/").split(" ")[-1].strip().split("/")[:-1]).upper()
+                build_dir = "/".join(build_dir.split("/")[-2:])
                 
                 # Unicode-objects must be encoded before hashing in Python 3
                 if sys.version_info[0] >= 3:
@@ -79,7 +80,7 @@ class ParseConsoleForCBT(object):
                 hashCode = hashlib.md5(build_dir).hexdigest()
                 
                 if self.verbose:
-                    print ("Dir: " + build_dir+ " Hash: " +hashCode)
+                    print ("Parse Dir: " + str(build_dir) + " Hash: " + hashCode)
                 
                 started = True
                 if hashCode not in  self.environmentDict.keys():
