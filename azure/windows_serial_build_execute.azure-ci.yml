@@ -22,7 +22,8 @@
 # THE SOFTWARE.
 #
 
-trigger: master
+trigger:
+- master
   
 variables:
   GIT_CLEAN_FLAGS: none
