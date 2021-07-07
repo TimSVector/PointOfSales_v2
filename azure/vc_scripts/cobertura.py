@@ -226,7 +226,7 @@ def runCoverageResultsMP(classes, mpFile):
     if total_st > 0:
         line_rate = float(cov_st) / float(total_st)
         
-    return branch_rate, line_rate, vg
+    return total_st, cov_st, total_br, cov_br, branch_rate, line_rate, vg
             
 
 def generateCoverageResults(inFile):
@@ -249,14 +249,18 @@ def generateCoverageResults(inFile):
     elif inFile.endswith(".vcp"):
         api=CoverAPI(inFile)
         runCoverageCover(classes, api)
-    else:
-        branch_rate, line_rate, complexity  = runCoverageResultsMP(classes, inFile)
+    else:        
+        total_st, cov_st, total_br, cov_br, branch_rate, line_rate, complexity  = runCoverageResultsMP(classes, inFile)
         
     coverages.attrib['branch-rate'] = str(branch_rate)
     coverages.attrib['line-rate'] = str(line_rate)    
-    coverages.attrib['timestamp'] = "0"
-    coverages.attrib['version'] = "VectorCAST 2020"
-    
+    coverages.attrib['timestamp'] = "1592248008"
+    coverages.attrib['version'] = "1.9"
+    coverages.attrib['lines-covered'] = str(cov_st)
+    coverages.attrib['lines-valid'] = str(total_st)
+    coverages.attrib['branches-covered'] = str(cov_br)
+    coverages.attrib['branches-valid'] = str(total_br)
+        
     package.attrib['branch-rate'] = str(branch_rate)
     package.attrib['line-rate'] = str(line_rate)    
     package.attrib['complexity'] = str(complexity)
