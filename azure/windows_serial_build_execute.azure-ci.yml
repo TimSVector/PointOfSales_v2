@@ -62,7 +62,7 @@ steps:
     failIfCoverageEmpty: false
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/complete_build.log'
+    targetPath: '$(Pipeline.DefaultWorkingDirectory)/complete_build.log'
     artifact: 'VectorCAST Complete Build Log'
     publishLocation: 'pipeline'
 - task: PublishPipelineArtifact@1
