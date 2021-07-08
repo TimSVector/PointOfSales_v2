@@ -72,7 +72,7 @@ steps:
     publishLocation: 'pipeline'
 - task: PublishPipelineArtifact@1
   inputs:
-    artifactName: 'Test and Code Coverage Results Files'
     targetPath: 'xml_data'
+    artifactName: 'Test and Code Coverage Results Files'
     publishLocation: 'pipeline'
 
