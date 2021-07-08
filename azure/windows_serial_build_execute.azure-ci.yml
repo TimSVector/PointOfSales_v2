@@ -70,14 +70,19 @@ steps:
     ArtifactName: 'VectorCAST Build Log'
     publishLocation: 'Container'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
-    ArtifactName: 'VectorCAST HTML Reports'
-    publishLocation: 'Container'
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'complete_build.log'
+    publishLocation: 'pipeline'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@0
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
-    ArtifactName: 'Test and Code Coverage Results Files'
-    publishLocation: 'Container'
+    artifactName: 'VectorCAST HTML Reports'
+    targetPath: $(System.DefaultWorkingDirectory)/html_reports'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'Test and Code Coverage Results Files'
+    targetPath: $(System.DefaultWorkingDirectory)/xml_data'
+
