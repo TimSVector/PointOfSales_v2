@@ -23,7 +23,7 @@
 #
 
 trigger:
-- master
+- none
   
 variables:
   GIT_CLEAN_FLAGS: none
