@@ -75,21 +75,19 @@ steps:
     pathToSources: '$(System.DefaultWorkingDirectory)'
     reportDirectory: 'html_reports'
     failIfCoverageEmpty: false
-
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/complete_build.log'
-    ArtifactName: 'VectorCAST Build Log'
-    publishLocation: 'Container'
-
-- task: PublishBuildArtifacts@1
+    targetPath: 'complete_build.log'
+    artifact: 'VectorCAST Complete Build Log'
+    publishLocation: 'pipeline'
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/html_reports'
-    ArtifactName: 'VectorCAST HTML Reports'
-    publishLocation: 'Container'
-
-- task: PublishBuildArtifacts@1
+    targetPath: 'html_reports'
+    artifactName: 'VectorCAST HTML Reports'
+    publishLocation: 'pipeline'
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/xml_data'
-    ArtifactName: 'Test and Code Coverage Results Files'
-    publishLocation: 'Container'
+    targetPath: 'xml_data'
+    artifactName: 'Test and Code Coverage Results Files'
+    publishLocation: 'pipeline'
+
