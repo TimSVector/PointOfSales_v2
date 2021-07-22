@@ -1,7 +1,7 @@
 #
 # The MIT License
 #
-# Copyright 2016 Vector Software, East Greenwich, Rhode Island USA
+# Copyright 2020 Vector Informatik, GmbH.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -31,43 +31,52 @@ variables:
   VC_Manage_Project: "Project.vcm"
 
   # Using VectorCAST Continuous Integration (headless) licenses otherwise set to ""
-  VC_UseCILicense: "set VCAST_USE_CI_LICENSES=TRUE"
+  VC_UseCILicense: "export VCAST_USE_CI_LICENSES=TRUE"
 
   # Using VecteorCAST Change Based Testing otherwise set to ""
   VC_useCBT: "--incremental"
 
-pool: TimS-VCAST
+pool: VCAST
 
 name: vectorcast
 
 steps:
 
 - script: |
-    "$VC_UseCILicense" 
-    %VECTORCAST_DIR/vpython.exe ./vc_scripts/azure_exec.py "$VC_Manage_Project" $VC_useCBT --execute --metrics --reports --buildlog complete_build.log
+    $(VC_UseCILicense) 
+    $VECTORCAST_DIR/vpython ./vc_scripts/azure_exec.py "$(VC_Manage_Project)" $(VC_useCBT) --execute --metrics --reports --buildlog complete_build.log
   displayName: 'VectorCAST Build-Execute'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'xml_data/test_results*.xml'
-    searchFolder: '$(System.DefaultWorkingDirectory)/azure'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
     testRunTitle: 'VectorCAST Test Results'
 
- - task: PublishCodeCoverageResults@1
-   inputs:
-     codeCoverageTool: 'Cobertura'
-     summaryFileLocation: 'coverage_results*.xml'
-     pathToSources: '$(System.DefaultWorkingDirectory)'
-     reportDirectory: '$(System.DefaultWorkingDirectory)/azure/xml_data/'
-     failIfCoverageEmpty: true
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/xml_data/coverage_results*.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    reportDirectory: 'html_reports'
+    failIfCoverageEmpty: false
 
- - task: PublishPipelineArtifact@1
-   inputs:
-     targetPath: '$(Pipeline.Workspace)/azure'
-     artifact: |
-       "**/*.html"
-       "html_reports/*.html"
-       "xml_data/*"
-       "complete_build.log"
-     publishLocation: 'pipeline'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'complete_build.log'
+    artifact: 'VectorCAST Complete Build Log'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'html_reports'
+    artifactName: 'VectorCAST HTML Reports'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'xml_data'
+    artifactName: 'Test and Code Coverage Results Files'
+    publishLocation: 'pipeline'
+
