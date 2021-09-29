@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cover>
+ <version>1</version>
+ <options>
+  <name>cover_demo</name>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </options>
+ <base>
+  <name>COVER_DEMO</name>
+  <path>cover_demo/</path>
+  <wl>.</wl>
+ </base>
+ <source>
+  <regressionable_path>
+   <base>COVER_DEMO</base>
+   <subpath>database.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_MCDC</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>COVER_DEMO</base>
+   <subpath>manager.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_MCDC</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>COVER_DEMO</base>
+   <subpath>manager_driver.c</subpath>
+  </regressionable_path>
+  <append_cover_io>true</append_cover_io>
+  <coverage>STATEMENT_MCDC</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>COVER_DEMO</base>
+   <subpath>whitebox.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_MCDC</coverage>
+ </source>
+</cover>
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="31">
+  <config>
+    <config>
+      <key>COVERAGE_TYPE</key>
+      <value>Statement+MCDC</value>
+      <key>VCAST_REPOSITORY</key>
+      <value>$(demo_dir)rgw</value>
+      <key>VCAST_CUSTOM_REPORT_FORMAT</key>
+      <value>HTML</value>
+    </config>
+    <search-directory type="TESTABLE_SOURCE_DIR">cover_demo/</search-directory>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1619768176</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="cover_demo" type="COVER">
+    <system-test-module>cover_demo_system_tests</system-test-module>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>cover_demo</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="INT_MAN_DAT" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>qa_demo/build/3947326155</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="UUT_DATABASE" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>qa_demo/build/3106577526</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="UUT_MANAGER" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>qa_demo/build/3914003100</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="UUT_WHITEBOX" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>qa_demo/build/3543028158</original-environment-directory>
+    </config>
+  </environment>
+  <group name="Group">
+    <environment name="cover_demo"/>
+  </group>
+  <group name="IntegrationTest">
+    <environment name="INT_MAN_DAT"/>
+  </group>
+  <group name="_UnitTest">
+    <environment name="UUT_DATABASE"/>
+    <environment name="UUT_MANAGER"/>
+    <environment name="UUT_WHITEBOX"/>
+  </group>
+  <compiler>
+    <compiler>
+      <name>GCC_MinGW</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_63_C</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">cover_demo/</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="ModuleTest">
+      <group name="IntegrationTest"/>
+      <group name="_UnitTest"/>
+    </testsuite>
+    <testsuite name="TestSuite">
+      <group name="Group"/>
+    </testsuite>
+  </compiler>
+</project>

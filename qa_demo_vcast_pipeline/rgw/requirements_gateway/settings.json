@@ -1,0 +1,22 @@
+{
+    "repository_path": "D:\\test\\jenkins_qa_demo\\rgw\\requirements_gateway\\repository.json",
+    "current_gateway": "polarion",
+    "csv": {},
+    "polarion": {
+        "auth_servers_visible": true,
+        "auth_use_proxy": true,
+        "auth_proxy_server": "gateway.zscloud.net:9480",
+        "auth_use_ssl_unverified_context": true,
+        "auth_protocol": "https",
+        "auth_server": "almdemo.polarion.com",
+        "auth_port": "",
+        "auth_username": "Vector",
+        "auth_password": "VectorGW",
+        "import_project_id": "Diner",
+        "import_work_item_type_id": "softwarerequirement",
+        "import_query_refinement": "",
+        "import_work_item_id_attr": "id",
+        "import_work_item_title_attr": "title",
+        "import_work_item_description_attr": "description"
+    }
+}
