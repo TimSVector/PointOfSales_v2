@@ -1,4 +1,4 @@
-set VECTORCAST_DIR=c:\vcast\2021sp3
+set VECTORCAST_DIR=c:\vcast\2021sp4
 
 
 set demo_dir=%~dp0
