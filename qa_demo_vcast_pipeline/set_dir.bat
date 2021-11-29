@@ -1,3 +1,5 @@
-call set_env.bat
-%~d0
-cd %demo_dir%\
+set demo_dir=%~dp0
+
+cd %demo_dir%
+
+call %demo_dir%\set_env.bat
