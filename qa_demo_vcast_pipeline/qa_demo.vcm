@@ -75,6 +75,9 @@
       </config>
     </compiler>
     <testsuite name="ModuleTest">
+      <config>
+        <enabled>0</enabled>
+      </config>
       <group name="IntegrationTest"/>
       <group name="_UnitTest"/>
     </testsuite>
