@@ -142,7 +142,7 @@ int Place_Order(table_index_type Table,
   }
 
   // add sales tax
-  Table_Data.Check_Total *= 1.03;
+  Table_Data.Check_Total *= 1.06;
 
   // Updated the database with the new information
   Update_Record(Table, Table_Data);

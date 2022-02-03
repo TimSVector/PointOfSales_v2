@@ -1,4 +1,4 @@
--- VectorCAST 20.sp3 (09/15/20)
+-- VectorCAST 21.sp6 (01/11/22)
 -- Test Case Script
 --
 -- Environment    : INTEGRATION_TESTING
@@ -30,8 +30,9 @@ TEST.SUBPROGRAM:Add_Included_Dessert
 TEST.NEW
 TEST.NAME:Add_Included_Dessert.001
 TEST.IMPORT_FAILURES:
-(E) @LINE: 32 TEST.REQUIREMENT_KEY:FR27.1
-    >>> Requirement with Key 'FR27.1' does not exist in the Repository.
+(E) Errors from previous script import(s)
+    >>> (E) @LINE: 32 TEST.REQUIREMENT_KEY:FR27.1
+    >>>     >>> Requirement with Key 'FR27.1' does not exist in the Repository.
 TEST.END_IMPORT_FAILURES:
 TEST.VALUE:manager.Add_Included_Dessert.Order:<<malloc 1>>
 TEST.VALUE:manager.Add_Included_Dessert.Order[0].Salad:CAESAR
@@ -61,7 +62,7 @@ TEST.NEW
 TEST.NAME:Get_Check_Total.001
 TEST.COMPOUND_ONLY
 TEST.VALUE:manager.Get_Check_Total.Table:1
-TEST.EXPECTED:manager.Get_Check_Total.return:14.84
+TEST.EXPECTED:manager.Get_Check_Total.return:MACRO=COST_OF_STEAK
 TEST.END
 
 -- Subprogram: Pay_The_Bill
