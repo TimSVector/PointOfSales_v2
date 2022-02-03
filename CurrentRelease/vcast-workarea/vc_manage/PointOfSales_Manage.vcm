@@ -108,6 +108,46 @@
   </compiler>
   <compiler>
     <compiler>
+      <name>TRUST_ZONE</name>
+      <config>
+        <config>
+          <key>WHITEBOX</key>
+          <value>YES</value>
+          <key>COVERAGE_TYPE</key>
+          <value>Statement+Branch</value>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_63_CPP</value>
+          <key>C_DEFINE_LIST</key>
+          <value>VCAST_NO_PTR_TO_UNCON_ARRAY_SUPPORT USING_TRUST_ZONE</value>
+          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
+          <value>TRUE</value>
+          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
+          <value>TRUE</value>
+          <key>VCAST_ALT_WB_METHOD</key>
+          <value>TRUE</value>
+          <key>VCAST_CUSTOM_REPORT_FORMAT</key>
+          <value>HTML</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
+        <process-environment>
+          <key>VCAST_DEMO_SRC_BASE</key>
+          <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
+        </process-environment>
+      </config>
+    </compiler>
+    <testsuite name="UnitTesting">
+      <group name="UT-Group"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
       <name>VectorCAST_MinGW_C++</name>
       <config>
         <config>

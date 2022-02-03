@@ -1,4 +1,4 @@
--- VectorCAST 20.sp3 (09/15/20)
+-- VectorCAST 21.sp6 (01/11/22)
 -- Test Case Script
 --
 -- Environment    : ENV_ENCRYPT
@@ -38,7 +38,7 @@ TEST.VALUE:encrypt.transmit_Info.secCode:<<malloc 4>>
 TEST.VALUE:encrypt.transmit_Info.secCode:"012"
 TEST.VALUE:encrypt.transmit_Info.Info:12.34
 TEST.VALUE:uut_prototype_stubs.matrix_multiply.return:-1
-TEST.EXPECTED:encrypt.transmit_Info.return:FAILURE
+TEST.EXPECTED:encrypt.transmit_Info.return:MACRO=FAILURE
 TEST.END
 
 -- Test Case: encrypt.transmit_Info.good
@@ -53,5 +53,5 @@ TEST.VALUE:encrypt.transmit_Info.number:"0000111122223333"
 TEST.VALUE:encrypt.transmit_Info.secCode:<<malloc 4>>
 TEST.VALUE:encrypt.transmit_Info.secCode:"012"
 TEST.VALUE:encrypt.transmit_Info.Info:12.34
-TEST.EXPECTED:encrypt.transmit_Info.return:SUCCESS
+TEST.EXPECTED:encrypt.transmit_Info.return:MACRO=SUCCESS
 TEST.END
