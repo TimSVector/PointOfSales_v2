@@ -249,10 +249,14 @@ static int Encrypt_Info(const struct matrix_t* private_key, const char * name, c
 
 int transmit_Info (const char * name, const char number[16], const char secCode[3], float Info)
 {
+    // init the return value
+    int ret_val = SUCCESS;
+
     // generate a private key
     struct matrix_t private_key = generate_private_key();
 
     // Encrypt and send the data
-    return Encrypt_Info(&private_key,name,number,secCode, Info);
-   
+    ret_val |= Encrypt_Info(&private_key,name,number,secCode, Info);
+
+    return ret_val;
 }
