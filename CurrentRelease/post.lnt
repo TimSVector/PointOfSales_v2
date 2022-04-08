@@ -1,0 +1,12 @@
+-iC:\VCAST\2022\MinGW\x86_64-w64-mingw32\include
+-iC:\VCAST\2022\MinGW\lib\gcc\x86_64-w64-mingw32\10.2.0\include
+-iencrypt\inc 
+-iorder_entry\inc 
+-idatabase\inc 
+-iutils\inc
+-d_WIN32
+-d__GNUC__
+-v
+-width(0)
+-"format=%f(%l): %t %n: %m"
+-hs1 
