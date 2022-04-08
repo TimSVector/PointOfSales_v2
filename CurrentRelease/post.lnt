@@ -10,3 +10,5 @@
 -width(0)
 -"format=%f(%l): %t %n: %m"
 -hs1 
+-e534
+-e2466
