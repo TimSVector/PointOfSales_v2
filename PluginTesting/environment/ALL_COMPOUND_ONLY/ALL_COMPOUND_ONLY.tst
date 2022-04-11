@@ -29,7 +29,7 @@ TEST.SUBPROGRAM:(cl)Manager::PlaceOrder
 TEST.NEW
 TEST.NAME:(cl)Manager::PlaceOrder.001
 TEST.COMPOUND_ONLY
-TEST.VALUE:manager.(cl)Manager::PlaceOrder.Table:1
+TEST.VALUE:manager.(cl)Manager::PlaceOrder.Table:2
 TEST.VALUE:manager.(cl)Manager::PlaceOrder.Seat:1
 TEST.VALUE:manager.(cl)Manager::PlaceOrder.Order.Entree:Steak
 TEST.END
