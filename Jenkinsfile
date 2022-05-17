@@ -14,7 +14,7 @@ VC_EnvTeardown     = ''''''
 def scmStep () { git 'https://github.com/TimSVector/PointOfSales_v2.git' }
 VC_usingSCM = true
 VC_sharedArtifactDirectory = ''''''
-VC_Agent_Label = 'master'
+VC_Agent_Label = 'Host_Test_Node'
 VC_waitTime = '30'
 VC_waitLoops = '1'
 VC_useOneCheckoutDir = true
