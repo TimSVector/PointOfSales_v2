@@ -12,8 +12,8 @@ rem set VCAST_NUM_JOBS=8
 
 REM goto :END
 REM if EXECUTOR_NUMBER exists and hasn't already been appended to VECTORCAST_DIR...
-if "%EXECUTOR_NUMBER%" == "" goto :END
-if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
+REM if "%EXECUTOR_NUMBER%" == "" goto :END
+REM if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
 
 
 set VECTORCAST_DIR=%VECTORCAST_DIR%@%EXECUTOR_NUMBER%
