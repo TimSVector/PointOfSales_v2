@@ -14,9 +14,9 @@ REM goto :END
 REM if EXECUTOR_NUMBER exists and hasn't already been appended to VECTORCAST_DIR...
 REM if "%EXECUTOR_NUMBER%" == "" goto :END
 REM if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
+REM if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
 
-
-set VECTORCAST_DIR=%VECTORCAST_DIR%@%EXECUTOR_NUMBER%
+REM set VECTORCAST_DIR=%VECTORCAST_DIR%@%EXECUTOR_NUMBER%
 
 
 :END
