@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manage-config-options version="7">
+  <config/>
+  <search-directory type="TESTABLE_SOURCE_DIR">C:\VCAST\2022sp6\examples\cover\lua_demo\src</search-directory>
+</manage-config-options>
