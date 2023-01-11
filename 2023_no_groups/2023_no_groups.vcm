@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="33">
+  <config>
+    <config>
+      <key>COVERAGE_TYPE</key>
+      <value>Statement+Branch</value>
+      <key>VCAST_CUSTOM_REPORT_FORMAT</key>
+      <value>HTML</value>
+    </config>
+    <base-directories>
+      <key>VCAST_SourceRoot</key>
+      <value>D:/vector/github/PointOfSales_v2/2018_fast_test/tutorial</value>
+    </base-directories>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1673371273</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="DISABLED_GROUP_LEVEL" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>2023_no_groups/build/3014552563</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="DISABLED_TS_LEVEL" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>2023_no_groups/build/3014552563</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENABLED_GROUP_LEVEL" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>2023_no_groups/build/3014552563</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="ENABLED_TS_LEVEL" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>2023_no_groups/build/3014552563</original-environment-directory>
+    </config>
+  </environment>
+  <group name="Group">
+    <environment name="DISABLED_GROUP_LEVEL"/>
+    <environment name="ENABLED_GROUP_LEVEL"/>
+  </group>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <group name="Group"/>
+      <environment name="DISABLED_TS_LEVEL"/>
+      <environment name="ENABLED_TS_LEVEL"/>
+      <disabled>
+        <environment name="DISABLED_GROUP_LEVEL"/>
+        <environment name="DISABLED_TS_LEVEL"/>
+      </disabled>
+    </testsuite>
+  </compiler>
+</project>
