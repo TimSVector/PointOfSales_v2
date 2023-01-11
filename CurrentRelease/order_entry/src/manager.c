@@ -142,7 +142,7 @@ int Place_Order(table_index_type Table,
   }
 
   // add sales tax
-  Table_Data.Check_Total *= 1.06;
+  Table_Data.Check_Total *= 1.05;
 
   // Updated the database with the new information
   Update_Record(Table, Table_Data);
@@ -163,20 +163,25 @@ int Place_Order(table_index_type Table,
  **************************************************************************************/
 int Clear_Table(table_index_type Table)
 {
+  // Local return value
+  int ret_val = 0;
+
   // Local Table Data
   struct table_data_type Table_Data = Get_Record(Table);
 
   // can't clear the table is the bill isn't paid
   if (!Table_Data.Is_Bill_Paid)
   {
-    return -1;
+    ret_val = -1;
+  }
+  else
+  {
+    // Remove the record from the database
+    Remove_Record(Table);
   }
 
-  // Remove the record from the database
-  Remove_Record(Table);
-
   // return pass
-  return 0;
+  return ret_val;
 }
 
 /**************************************************************************************
