@@ -4,7 +4,7 @@ rem set VECTORCAST_DIR=c:\vcast\2019sp2
 
 call setenv.bat
 
-set VCAST_REPORT_ENGINE=LEGACY
+rem set VCAST_REPORT_ENGINE=LEGACY
 
 pushd %CD%\CurrentRelease\vcast-workarea\vc_manage
 

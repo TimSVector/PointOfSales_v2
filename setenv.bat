@@ -6,7 +6,7 @@ rem Set path to gnat compiler to default path
 set path=%path%;d:\vector\tools\gnat\2021\bin
 
 rem Set path to pclp64 to default path
-set PATH=%PATH%;d:\Vector\tools\pc-lint-plus\1.4.1\windows
+set PATH=%PATH%;d:\Vector\tools\pc-lint-plus\1.4.1\windows;C:\VCAST\Vector.TestInsights.Cli.1.0.125+109
 
 rem set VCAST_NUM_JOBS=8
 
