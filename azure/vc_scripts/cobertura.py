@@ -185,7 +185,7 @@ def procesCoverage(coverXML, coverApi):
                                  
 def runCoverageResultsMP(classes, mpFile):
 
-    vcproj = VCProject(mpFile)
+    vcproj = VCProjectApi(mpFile)
     api = vcproj.cover_api
 
     return runCoverageResults(classes,api)
