@@ -1,6 +1,6 @@
 
 REM set PATH=c:\vcast\mingw\bin;%PATH%
-set VCAST_DEMO_SRC_BASE=%CD%\CurrentRelease
+set VCAST_DEMO_SRC_BASE=%~dp0CurrentRelease
 
 rem Set path to gnat compiler to default path
 set path=%path%;d:\vector\tools\gnat\2021\bin
