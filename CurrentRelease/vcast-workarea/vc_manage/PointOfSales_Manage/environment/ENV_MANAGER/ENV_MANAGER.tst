@@ -1,4 +1,4 @@
--- VectorCAST 20.sp3 (09/15/20)
+-- VectorCAST 22.sp7 (12/04/22)
 -- Test Case Script
 --
 -- Environment    : ENV_MANAGER
