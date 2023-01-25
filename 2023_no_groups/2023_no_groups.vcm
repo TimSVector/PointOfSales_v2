@@ -68,4 +68,25 @@
       </disabled>
     </testsuite>
   </compiler>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C2</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+        </config>
+        <enabled>0</enabled>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <group name="Group"/>
+      <environment name="DISABLED_TS_LEVEL"/>
+      <environment name="ENABLED_TS_LEVEL"/>
+      <disabled>
+        <environment name="DISABLED_GROUP_LEVEL"/>
+        <environment name="DISABLED_TS_LEVEL"/>
+      </disabled>
+    </testsuite>
+  </compiler>
 </project>
