@@ -5,6 +5,10 @@
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
+    <base-directories>
+      <key>POST_BASE_DIRECTORY</key>
+      <value>$(VCAST_DEMO_SRC_BASE)</value>
+    </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
     <root-source-directory>$(VCAST_DEMO_SRC_BASE)</root-source-directory>
@@ -105,17 +109,6 @@
   </group>
   <compiler>
     <compiler>
-      <name>GNU_Native_4.8_C</name>
-      <config>
-        <config>
-          <key>C_COMPILER_TAG</key>
-          <value>GNU_C_48</value>
-        </config>
-      </config>
-    </compiler>
-  </compiler>
-  <compiler>
-    <compiler>
       <name>TRUST_ZONE</name>
       <config>
         <config>
@@ -136,14 +129,14 @@
           <key>VCAST_CUSTOM_REPORT_FORMAT</key>
           <value>HTML</value>
         </config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\src</search-directory>
         <process-environment>
           <key>VCAST_DEMO_SRC_BASE</key>
           <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
@@ -177,14 +170,14 @@
           <key>VCAST_CUSTOM_REPORT_FORMAT</key>
           <value>HTML</value>
         </config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_DEMO_SRC_BASE)\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\src</search-directory>
         <process-environment>
           <key>VCAST_DEMO_SRC_BASE</key>
           <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
