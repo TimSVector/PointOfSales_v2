@@ -120,6 +120,26 @@ TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Beverage:WINE
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Check_Total:0.0..20.0
 TEST.END
 
+
+-- Subprogram: Place_Order
+
+-- Test Case: manager_Place_Order_Fish
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Place_Order
+TEST.NEW
+TEST.NAME:manager_Place_Order_Fish
+TEST.VALUE:manager.Place_Order.Table:1
+TEST.VALUE:manager.Place_Order.Seat:1
+TEST.VALUE:manager.Place_Order.Order.Entree:FISH
+TEST.VALUE:manager.Place_Order.Order.Beverage:WINE
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Is_Occupied:v_true
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Number_In_Party:1
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Soup:ONION
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Entree:FISH
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Beverage:WINE
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Check_Total:0.0..20.0
+TEST.END
+
 -- Test Case: manager_Place_Order_SeatCount
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Place_Order
