@@ -5,9 +5,9 @@
     <source>./</source>
   </sources>
   <packages>
-    <package name="fast_test/tutorial/c/database" line-rate="0.5" branch-rate="0.0" complexity="2">
+    <package name="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/database" line-rate="0.5" branch-rate="0.0" complexity="2">
       <classes>
-        <class name="database_c" filename="fast_test/tutorial/c/database/database.c" line-rate="1.0" branch-rate="1.0" complexity="2">
+        <class name="database_c" filename="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/database/database.c" line-rate="1.0" branch-rate="1.0" complexity="2">
           <lines>
             <line number="7" hits="1" branch="false"/>
             <line number="12" hits="1" branch="false"/>
@@ -25,9 +25,9 @@
         </class>
       </classes>
     </package>
-    <package name="fast_test/tutorial/c/order_entry" line-rate="0.2289156626506024" branch-rate="0.0" complexity="18">
+    <package name="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/order_entry" line-rate="0.2289156626506024" branch-rate="0.0" complexity="18">
       <classes>
-        <class name="manager_c" filename="fast_test/tutorial/c/order_entry/manager.c" line-rate="0.3392857142857143" branch-rate="0.2962962962962963" complexity="18">
+        <class name="manager_c" filename="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/order_entry/manager.c" line-rate="0.3392857142857143" branch-rate="0.2962962962962963" complexity="18">
           <lines>
             <line number="44" hits="1" branch="false"/>
             <line number="52" hits="0" branch="false"/>
@@ -174,9 +174,9 @@
         </class>
       </classes>
     </package>
-    <package name="fast_test/tutorial/c/order_entry/main" line-rate="0.2571428571428571" branch-rate="0.0" complexity="8">
+    <package name="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/order_entry/main" line-rate="0.2571428571428571" branch-rate="0.0" complexity="8">
       <classes>
-        <class name="manager_driver_c" filename="fast_test/tutorial/c/order_entry/main/manager_driver.c" line-rate="0.34615384615384615" branch-rate="0.2222222222222222" complexity="8">
+        <class name="manager_driver_c" filename="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/order_entry/main/manager_driver.c" line-rate="0.34615384615384615" branch-rate="0.2222222222222222" complexity="8">
           <lines>
             <line number="33" hits="0" branch="true" condition-coverage="0.0% (0/1)">
               <conditions>
@@ -225,9 +225,9 @@
         </class>
       </classes>
     </package>
-    <package name="fast_test.tutorial.c.util" line-rate="0.0" branch-rate="0.0" complexity="3">
+    <package name="d:.vector.github.pointofsales_v2.fast_test.tutorial.c.util" line-rate="0.0" branch-rate="0.0" complexity="3">
       <classes>
-        <class name="whitebox_c" filename="fast_test/tutorial/c/utils/whitebox.c" line-rate="0.0" branch-rate="0.0" complexity="3">
+        <class name="whitebox_c" filename="d:/vector/github/pointofsales_v2/fast_test/tutorial/c/utils/whitebox.c" line-rate="0.0" branch-rate="0.0" complexity="3">
           <lines>
             <line number="17" hits="0" branch="false"/>
             <line number="29" hits="0" branch="false"/>
