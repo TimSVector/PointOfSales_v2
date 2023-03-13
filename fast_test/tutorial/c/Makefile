@@ -22,16 +22,16 @@ GCOV_FLAGS=
 endif
 
 %.o: %.c
-        $(CC) -c $(GCOV_FLAGS) $(CFLAGS) -o $@ $< 
+            $(CC) -c $(GCOV_FLAGS) $(CFLAGS) -o $@ $< 
 
 $(EXE) : $(OBJS)
-        $(CC)    $(GCOV_FLAGS) -o  $@ $^ 
+            $(CC)    $(GCOV_FLAGS) -o  $@ $^ 
 
 test: $(EXE)
-        ./$(EXE)
+            ./$(EXE)
 
 coco:
-        $(PYTHON) generate_cobertura_coco.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR}
+            $(PYTHON) generate_cobertura_coco.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR}
 
 clean: 
         $(RM) $(EXE) $(OBJS) $(GCOV_DATA)
