@@ -2,35 +2,35 @@
 <testsuites>
     <testsuite errors="5" tests="23" failures="5" name="MANAGER_C" id="1">
 
-        <testcase name="manager.Add_Included_Dessert.BASIS-PATH-001" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Included_Dessert.BASIS-PATH-001" classname="Add_Included_Dessert" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Included_Dessert.BASIS-PATH-002" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Included_Dessert.BASIS-PATH-002" classname="Add_Included_Dessert" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Entree =&gt; NO_ENTREE (0)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Entree =&gt; NO_ENTREE (0)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Included_Dessert.BASIS-PATH-003" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Included_Dessert.BASIS-PATH-003" classname="Add_Included_Dessert" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-003&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; GREEN (2)&#xA;           Entree =&gt; LOBSTER (3)&#xA;           Beverage =&gt; WINE (1)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; GREEN (2)&#xA;           Entree =&gt; LOBSTER (3)&#xA;           Beverage =&gt; WINE (1)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Included_Dessert.BASIS-PATH-004" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Included_Dessert.BASIS-PATH-004" classname="Add_Included_Dessert" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-004&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; CAESAR (1)&#xA;           Entree =&gt; STEAK (1)&#xA;           Beverage =&gt; MIXED_DRINK (3)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; CAESAR (1)&#xA;           Entree =&gt; STEAK (1)&#xA;           Beverage =&gt; MIXED_DRINK (3)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Place_Order.BASIS-PATH-001" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Place_Order.BASIS-PATH-001" classname="Place_Order" time="0.0">
             
             <failure type="failure"/>
 
@@ -39,7 +39,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="manager.Place_Order.BASIS-PATH-002" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Place_Order.BASIS-PATH-002" classname="Place_Order" time="0.0">
             
             <failure type="failure"/>
 
@@ -48,7 +48,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="manager.Place_Order.BASIS-PATH-003" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Place_Order.BASIS-PATH-003" classname="Place_Order" time="0.0">
             
             <failure type="failure"/>
 
@@ -57,7 +57,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="manager.Place_Order.BASIS-PATH-004" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Place_Order.BASIS-PATH-004" classname="Place_Order" time="0.0">
             
             <failure type="failure"/>
 
@@ -66,7 +66,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="manager.Place_Order.BASIS-PATH-005" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Place_Order.BASIS-PATH-005" classname="Place_Order" time="0.0">
             
             <failure type="failure"/>
 
@@ -75,63 +75,63 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="manager.Clear_Table.BASIS-PATH-001-PARTIAL" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Clear_Table.BASIS-PATH-001-PARTIAL" classname="Clear_Table" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001-PARTIAL&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Clear_Table&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Get_Table_Record&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 3                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Update_Table_Record&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 4                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Clear_Table&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Clear_Table.BASIS-PATH-002-PARTIAL" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Clear_Table.BASIS-PATH-002-PARTIAL" classname="Clear_Table" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002-PARTIAL&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Clear_Table&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Get_Table_Record&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 3                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Update_Table_Record&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 4                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Clear_Table&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Get_Check_Total.BASIS-PATH-001" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Get_Check_Total.BASIS-PATH-001" classname="Get_Check_Total" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Get_Check_Total&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Get_Table_Record&#xA;       return&#xA;         Number_In_Party =&gt; 0&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 3                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Get_Check_Total&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Get_Check_Total.BASIS-PATH-002" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Get_Check_Total.BASIS-PATH-002" classname="Get_Check_Total" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Get_Check_Total&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Stub called: manager.c&#xA;     Subprogram: Get_Table_Record&#xA;       return&#xA;         Number_In_Party =&gt; 65535&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 3                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Get_Check_Total&#xA;       Table =&gt; 0&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Party_To_Waiting_List.BASIS-PATH-001-PARTIAL" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Party_To_Waiting_List.BASIS-PATH-001-PARTIAL" classname="Add_Party_To_Waiting_List" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001-PARTIAL&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Party_To_Waiting_List.BASIS-PATH-002-PARTIAL" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Party_To_Waiting_List.BASIS-PATH-002-PARTIAL" classname="Add_Party_To_Waiting_List" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002-PARTIAL&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name&#xA;         [0] =&gt; -128&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name&#xA;         [0] =&gt; -128&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Add_Party_To_Waiting_List.BASIS-PATH-003-PARTIAL" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Add_Party_To_Waiting_List.BASIS-PATH-003-PARTIAL" classname="Add_Party_To_Waiting_List" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-003-PARTIAL&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Party_To_Waiting_List&#xA;       Name =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Get_Next_Party_To_Be_Seated.BASIS-PATH-001-TEMPLATE" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Get_Next_Party_To_Be_Seated.BASIS-PATH-001-TEMPLATE" classname="Get_Next_Party_To_Be_Seated" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001-TEMPLATE&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Get_Next_Party_To_Be_Seated&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Get_Next_Party_To_Be_Seated&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="manager.Get_Next_Party_To_Be_Seated.BASIS-PATH-002-TEMPLATE" classname="VectorCAST_MinGW_C.TestSuite.MANAGER_C" time="0.0">
+        <testcase name="VectorCAST_MinGW_C.TestSuite.MANAGER_C.manager.Get_Next_Party_To_Be_Seated.BASIS-PATH-002-TEMPLATE" classname="Get_Next_Party_To_Be_Seated" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002-TEMPLATE&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Get_Next_Party_To_Be_Seated&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Get_Next_Party_To_Be_Seated&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
