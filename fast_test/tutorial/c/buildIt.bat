@@ -11,6 +11,8 @@ rem gcc -g manager_driver.c manager.c database.c whitebox.c -o managerDriver.exe
 rem This compile command builds an executable that does not need stdin
 gcc -g -DCHECK -fprofile-arcs -ftest-coverage -fPIC -O0 -I./inc order_entry/main/manager_driver.c order_entry/manager.c database/database.c utils/whitebox.c -o managerDriver.exe 
 
+exit 
+
 managerDriver
 
 popd

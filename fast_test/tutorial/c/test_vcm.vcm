@@ -6,21 +6,35 @@
   </config>
   <project-id>1639440654</project-id>
   <factor-config-options>0</factor-config-options>
+  <environment name="MANAGER_C" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>test_vcm/build/1600721014</original-environment-directory>
+    </config>
+  </environment>
   <environment name="test" type="COVER">
     <system-test-module>test_system_tests</system-test-module>
     <language>1</language>
     <is-monitored>0</is-monitored>
     <config>
-      <apply-inst>NEVER</apply-inst>
+      <apply-inst>BUILD</apply-inst>
       <original-environment-directory>.</original-environment-directory>
     </config>
   </environment>
   <group name="Group">
+    <environment name="MANAGER_C"/>
     <environment name="test"/>
   </group>
   <compiler>
     <compiler>
-      <name>Compiler_Template_Not_Used</name>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+        </config>
+      </config>
     </compiler>
     <testsuite name="TestSuite">
       <group name="Group"/>

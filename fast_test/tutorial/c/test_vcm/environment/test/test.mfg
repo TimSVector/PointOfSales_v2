@@ -4,6 +4,6 @@
     <key>COVERAGE_TYPE</key>
     <value>STATEMENT+BRANCH</value>
   </config>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\gitlab\pointofsales_v2\fast_test\tutorial\c\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:/vector/github/gitlab/pointofsales_v2/fast_test/tutorial/c</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\pointofsales_v2\fast_test\tutorial\c\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:/vector/github/pointofsales_v2/fast_test/tutorial/c</search-directory>
 </manage-config-options>

@@ -7,9 +7,16 @@
  </options>
  <base>
   <name>SourceRoot</name>
-  <path>D:/vector/github/gitlab/pointofsales_v2/fast_test/tutorial/c</path>
+  <path>D:/vector/github/pointofsales_v2/fast_test/tutorial/c</path>
   <wl>.</wl>
  </base>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>utils/no_code.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </source>
  <source>
   <regressionable_path>
    <base>SourceRoot</base>
