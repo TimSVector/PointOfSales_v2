@@ -39,7 +39,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-002" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-002" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <failure type="failure"/>
 
@@ -48,7 +48,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-003" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-003" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <failure type="failure"/>
 
@@ -57,7 +57,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-004" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-004" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <failure type="failure"/>
 
@@ -66,7 +66,7 @@ FAIL 0 / 1  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-00
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-005" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-005" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <failure type="failure"/>
 
