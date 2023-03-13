@@ -2,35 +2,35 @@
 <testsuites>
     <testsuite errors="5" tests="23" failures="5" name="VectorCAST_MinGW_C.TestSuite.MANAGER_C" id="1">
 
-        <testcase name="BASIS-PATH-001" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-001" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-001&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order =&gt; &lt;&lt;null&gt;&gt;&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-002" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-002" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-002&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Entree =&gt; NO_ENTREE (0)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Entree =&gt; NO_ENTREE (0)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-003" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-003" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-003&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; GREEN (2)&#xA;           Entree =&gt; LOBSTER (3)&#xA;           Beverage =&gt; WINE (1)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; GREEN (2)&#xA;           Entree =&gt; LOBSTER (3)&#xA;           Beverage =&gt; WINE (1)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-004" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-004" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <system-out>
 PASS 0 / 0  &#xA;&#xA;Execution Report:&#xA; Start of Test Case:   BASIS-PATH-004&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 1                           -----&#xA;----------------------------------------------------------------------&#xA;   Calling UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; CAESAR (1)&#xA;           Entree =&gt; STEAK (1)&#xA;           Beverage =&gt; MIXED_DRINK (3)&#xA;&#xA;&#xA;----------------------------------------------------------------------&#xA;-----                          Event 2                           -----&#xA;----------------------------------------------------------------------&#xA;   Returned from UUT: manager.c&#xA;     Subprogram: Add_Included_Dessert&#xA;       Order&#xA;         [0] &#xA;           Salad =&gt; CAESAR (1)&#xA;           Entree =&gt; STEAK (1)&#xA;           Beverage =&gt; MIXED_DRINK (3)&#xA;&#xA;&#xA;   UUT Returned control to Driver ...&#xA;&#xA;End of Test Case&#xA;&#xA;&#xA;&#xA;Test Status                                                       PASS&#xA;&#xA;                     
             </system-out>
         </testcase>
 
-        <testcase name="BASIS-PATH-001" classname="fast_test/tutorial/c/order_entry/manager.c" time="0.0">
+        <testcase name="BASIS-PATH-001" classname="fast_test/tutorial/c/order_entry/manager\.c" time="0.0">
             
             <failure type="failure"/>
 
