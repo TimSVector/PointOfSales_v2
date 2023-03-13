@@ -20,3 +20,7 @@ jobs:
     - name: make coco
       run: export CI_PROJECT_DIR=`pwd`;cd fast_test/tutorial/c;make coco
     - uses: 5monkeys/cobertura-action@master
+      with:
+          path: fast_test/tutorial/c/coverage.xml.xml
+          minimum_coverage: 10
+
