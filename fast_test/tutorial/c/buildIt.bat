@@ -17,4 +17,4 @@ popd
 
 if "" == "%CI_PROJECT_DIR%" set CI_PROJECT_DIR=%cd%
 
-%VECTORCAST_DIR%\vpython %~dp0test.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root %CI_PROJECT_DIR%
+%VECTORCAST_DIR%\vpython %~dp0generate_cobertura_coco.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root %CI_PROJECT_DIR%

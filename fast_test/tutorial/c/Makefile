@@ -27,7 +27,7 @@ test: $(EXE)
 	./$(EXE)
     
 coco:
-	${VECTORCAST_DIR}/vpython test.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR}
+	${VECTORCAST_DIR}/vpython generate_cobertura_coco.py --xml-pretty --exclude-unreachable-branches --print-summary -o coverage.xml --root ${CI_PROJECT_DIR}
     
 clean:
 	$(RM) $(OBJS) *.gcda *.gcno $(EXE) > nul 2>&1

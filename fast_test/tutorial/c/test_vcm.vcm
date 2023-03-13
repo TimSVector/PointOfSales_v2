@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="33">
+  <config>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1639440654</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="test" type="COVER">
+    <system-test-module>test_system_tests</system-test-module>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>NEVER</apply-inst>
+      <original-environment-directory>.</original-environment-directory>
+    </config>
+  </environment>
+  <group name="Group">
+    <environment name="test"/>
+  </group>
+  <compiler>
+    <compiler>
+      <name>Compiler_Template_Not_Used</name>
+    </compiler>
+    <testsuite name="TestSuite">
+      <group name="Group"/>
+    </testsuite>
+  </compiler>
+  <search-directory type="TESTABLE_SOURCE_DIR">C:\Users\vaprti\vector\gitlab\pointofsales_v2\fast_test\tutorial\c</search-directory>
+</project>
