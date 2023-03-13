@@ -38,5 +38,7 @@ jobs:
         report_paths: '**/xml_data/test_results*.xml'
         detailed_summary: true
         fail_on_failure: true
+        include_passed: true
+        annotate_notice: true
         
       
