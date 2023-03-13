@@ -18,4 +18,4 @@ jobs:
     - name: make_gcov
       run: cd fast_test/tutorial/c;make test GCOV=1
     - name: make coco
-      run: cd fast_test/tutorial/c;make coco
+      run: export CI_PROJECT_DIR=`pwd`;cd fast_test/tutorial/c;make coco
