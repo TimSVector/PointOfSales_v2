@@ -29,7 +29,7 @@ jobs:
     - name: Publish Cobertura Report
       uses: 5monkeys/cobertura-action@master
       with:
-          path: 'xml_data/coverage_results*.xml'
+          path: '**/xml_data/coverage_results*.xml'
           minimum_coverage: 0  
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v3
@@ -37,9 +37,6 @@ jobs:
       with:
         report_paths: '**/xml_data/test_results*.xml'
         detailed_summary: true
-        fail_on_failures: true
+        fail_on_failure: true
         
-        
-        
-
-
+      
