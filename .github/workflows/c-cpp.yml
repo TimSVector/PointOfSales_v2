@@ -36,5 +36,10 @@ jobs:
       if: success() || failure() # always run even if the previous step fails
       with:
         report_paths: '**/xml_data/test_results*.xml'
+        detailed_summary: true
+        fail_on_failures: true
+        
+        
+        
 
 
