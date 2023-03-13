@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manage-config-options version="7">
+  <config>
+    <key>COVERAGE_TYPE</key>
+    <value>STATEMENT+BRANCH</value>
+  </config>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\gitlab\pointofsales_v2\fast_test\tutorial\c\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:/vector/github/gitlab/pointofsales_v2/fast_test/tutorial/c</search-directory>
+</manage-config-options>

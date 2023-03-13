@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cover>
+ <version>1</version>
+ <options>
+  <name>test</name>
+  <coverage>STATEMENT</coverage>
+ </options>
+ <base>
+  <name>SourceRoot</name>
+  <path>D:/vector/github/gitlab/pointofsales_v2/fast_test/tutorial/c</path>
+  <wl>.</wl>
+ </base>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>database/database.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>order_entry/main/manager_driver.c</subpath>
+  </regressionable_path>
+  <append_cover_io>true</append_cover_io>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>order_entry/manager.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </source>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>utils/whitebox.c</subpath>
+  </regressionable_path>
+  <coverage>STATEMENT_BRANCH</coverage>
+ </source>
+</cover>
+
