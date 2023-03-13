@@ -62,7 +62,7 @@ int Place_Order(table_index_type Table,
     }
 	
   // Donation to charity
-  Table_Data.Check_Total += 1.00;
+  Table_Data.Check_Total += 1.50;
       
   Update_Table_Record(Table, Table_Data);
   return 0;
