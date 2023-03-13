@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="31">
+<project version="33">
   <config>
     <config>
+      <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
+      <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
