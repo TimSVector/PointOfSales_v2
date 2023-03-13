@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: pip install gcovr
+      run: pip install gcovr
     - name: make_gcov
       run: cd fast_test/tutorial/c;make test GCOV=1
     - name: make coco
