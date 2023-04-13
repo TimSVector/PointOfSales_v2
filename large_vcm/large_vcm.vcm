@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="27">
+<project version="33">
   <config>
+    <config>
+      <key>COVERAGE_TYPE</key>
+      <value>STATEMENT</value>
+      <key>C_COMPILER_TAG</key>
+      <value>BUILTIN_MINGW_63_C</value>
+      <key>VCAST_ASSEMBLY_FILE_EXTENSIONS</key>
+      <value>asm s</value>
+      <key>VCAST_CUSTOM_REPORT_FORMAT</key>
+      <value>HTML</value>
+    </config>
+    <search-directory type="TESTABLE_SOURCE_DIR">$(TUTORIAL)</search-directory>
+    <base-directories>
+      <key>TUTORIAL</key>
+      <value>$(VECTORCAST_DIR)/tutorial/c</value>
+    </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
   </config>
@@ -2608,20 +2623,87 @@
     <environment name="TEST0324"/>
   </group>
   <group name="Group2">
+    <environment name="TEST0273"/>
+    <environment name="TEST0274"/>
+    <environment name="TEST0275"/>
+    <environment name="TEST0276"/>
+    <environment name="TEST0277"/>
+    <environment name="TEST0278"/>
+    <environment name="TEST0279"/>
+    <environment name="TEST0280"/>
+    <environment name="TEST0281"/>
+    <environment name="TEST0282"/>
+    <environment name="TEST0283"/>
+    <environment name="TEST0284"/>
+    <environment name="TEST0285"/>
+    <environment name="TEST0286"/>
+    <environment name="TEST0287"/>
+    <environment name="TEST0288"/>
+    <environment name="TEST0289"/>
+    <environment name="TEST0290"/>
+    <environment name="TEST0291"/>
+    <environment name="TEST0292"/>
+    <environment name="TEST0293"/>
+    <environment name="TEST0294"/>
+    <environment name="TEST0295"/>
+    <environment name="TEST0296"/>
+    <environment name="TEST0297"/>
+    <environment name="TEST0298"/>
+    <environment name="TEST0299"/>
+    <environment name="TEST0300"/>
+    <environment name="TEST0301"/>
+    <environment name="TEST0302"/>
+    <environment name="TEST0303"/>
+    <environment name="TEST0304"/>
+    <environment name="TEST0305"/>
+    <environment name="TEST0306"/>
+    <environment name="TEST0307"/>
+    <environment name="TEST0308"/>
+    <environment name="TEST0309"/>
+    <environment name="TEST0310"/>
+    <environment name="TEST0311"/>
     <environment name="TEST0322"/>
     <environment name="TEST0323"/>
     <environment name="TEST0324"/>
     <environment name="TEST0325"/>
   </group>
+  <group name="Group_1"/>
+  <compiler>
+    <compiler>
+      <name>ARM_Clang_Bare_Board_ARM_Cortex_M0_Keil_Simulator_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>ARMCLANG_CORTEXM0_KEIL_C</value>
+          <key>VCAST_STARTUP_FILE</key>
+          <value>$(VECTORCAST_DIR)/DATA/arm_clang/exceptions.c;$(VECTORCAST_DIR)/DATA/vcast_custom_output.c;$(VECTORCAST_DIR)/DATA/arm_clang/keil_sim/rb_lib_init.c</value>
+        </config>
+        <enabled>0</enabled>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <group name="Group2"/>
+      <disabled>
+        <environment name="TEST0286"/>
+      </disabled>
+    </testsuite>
+  </compiler>
   <compiler>
     <compiler>
       <name>VectorCAST_MinGW_C</name>
     </compiler>
     <testsuite name="TestSuite">
       <group name="Group"/>
+      <disabled>
+        <environment name="TEST0001"/>
+        <environment name="TEST0286"/>
+      </disabled>
     </testsuite>
     <testsuite name="TestSuite2">
       <group name="Group2"/>
+      <disabled>
+        <environment name="TEST0286"/>
+      </disabled>
     </testsuite>
   </compiler>
   <search-directory type="TESTABLE_SOURCE_DIR">C:\Users\vaprti\vector\sandbox\large_vcm\regression</search-directory>
