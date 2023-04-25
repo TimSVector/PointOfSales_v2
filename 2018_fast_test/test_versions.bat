@@ -1,9 +1,10 @@
+echo on
 
 set ORIG_PATH=%PATH%
 
 for %%v in (2018sp5, 2019sp6, 2020sp7, 2021sp8, 2022sp8) do (
 
-    echo set VECTORCAST_DIR=c:\vcast\%%v
+    set VECTORCAST_DIR=c:\vcast\%%v
     set path=%VECTORCAST_DIR%;%PATH%
     git clean -fxd
     git reset --hard HEAD
