@@ -2,6 +2,8 @@
 <project version="33">
   <config>
     <config>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+      <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
