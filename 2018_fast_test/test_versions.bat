@@ -25,7 +25,7 @@ set VECTORCAST_DIR=c:\vcast\2018sp5
 set path=%VECTORCAST_DIR%;%PATH%
 git clean -fxd
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
@@ -49,7 +49,7 @@ set VECTORCAST_DIR=c:\vcast\2019sp6
 set path=%VECTORCAST_DIR%;%PATH%
 git clean -fxd
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
@@ -73,7 +73,7 @@ set VECTORCAST_DIR=c:\vcast\2020sp7
 set path=%VECTORCAST_DIR%;%PATH%
 git clean -fxd
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
@@ -97,7 +97,7 @@ set VECTORCAST_DIR=c:\vcast\2021sp8
 set path=%VECTORCAST_DIR%;%PATH%
 git clean -fxd
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
@@ -121,7 +121,7 @@ set VECTORCAST_DIR=c:\vcast\2022sp8
 set path=%VECTORCAST_DIR%;%PATH%
 git clean -fxd
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
