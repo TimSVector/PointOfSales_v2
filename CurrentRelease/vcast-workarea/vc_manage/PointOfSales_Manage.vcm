@@ -87,6 +87,16 @@
       <original-environment-directory>../vc_coverage</original-environment-directory>
     </config>
   </environment>
+  <environment name="System_Test" type="COVER">
+    <system-test-module>System_Test_system_tests</system-test-module>
+    <system-test-template>default</system-test-template>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>PointOfSales_Manage/build/4011715859</original-environment-directory>
+    </config>
+  </environment>
   <group name="Group"/>
   <group name="Group_1"/>
   <group name="Group_2"/>
@@ -95,6 +105,9 @@
   <group name="Group_5"/>
   <group name="IT-Group"/>
   <group name="New_Name"/>
+  <group name="ST">
+    <environment name="System_Test"/>
+  </group>
   <group name="ST-Group">
     <environment name="PointOfSales_Coverage"/>
   </group>
@@ -191,6 +204,20 @@
       <disabled>
         <environment name="LUA"/>
       </disabled>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C++_ST</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_CPP</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="ST">
+      <group name="ST"/>
     </testsuite>
   </compiler>
   <environment-variable-name>VCAST_DEMO_SRC_BASE</environment-variable-name>
