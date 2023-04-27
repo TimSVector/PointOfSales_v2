@@ -87,8 +87,8 @@
       <original-environment-directory>../vc_coverage</original-environment-directory>
     </config>
   </environment>
-  <environment name="System_Teting" type="COVER">
-    <system-test-module>System_Teting_system_tests</system-test-module>
+  <environment name="System_Testing" type="COVER">
+    <system-test-module>System_Testing_system_tests</system-test-module>
     <system-test-template>default</system-test-template>
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -106,7 +106,7 @@
   <group name="IT-Group"/>
   <group name="New_Name"/>
   <group name="ST">
-    <environment name="System_Teting"/>
+    <environment name="System_Testing"/>
   </group>
   <group name="ST-Group">
     <environment name="PointOfSales_Coverage"/>
