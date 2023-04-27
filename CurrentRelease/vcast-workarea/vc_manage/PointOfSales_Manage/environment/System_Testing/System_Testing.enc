@@ -2,7 +2,7 @@
 <cover>
  <version>1</version>
  <options>
-  <name>System_Teting</name>
+  <name>System_Testing</name>
   <coverage>STATEMENT</coverage>
  </options>
  <base>
