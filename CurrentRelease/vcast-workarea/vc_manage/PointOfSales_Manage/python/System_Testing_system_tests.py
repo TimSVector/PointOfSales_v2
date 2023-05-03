@@ -36,7 +36,8 @@ class SystemTestsConfiguration:
 
         # These are the environment's variables for spawned processes
         # For example: self.environmentVariables = {'VAR1': 'value1', 'VAR2': 'value2'}
-        self.environmentVariables = {'PATH': os.pathsep.join([r'C:/VCAST/20202sp8/MinGW/bin', os.environ['PATH']])}
+        if os.name == 'nt':
+            self.environmentVariables = {'PATH': os.pathsep.join([r'C:/VCAST/20202sp8/MinGW/bin', os.environ['PATH']])}
 
         # This is the path to where the build or make command should be executed
         # For example: self.locationWhereWeRunMake = '/home/mySourceCode/locationOfMyMakeFile'
@@ -44,7 +45,10 @@ class SystemTestsConfiguration:
 
         # This is the top level make command needed to build the application
         # For example: self.topLevelMakeCommand = 'make'
-        self.topLevelMakeCommand = 'make_post.bat -DRUN_TESTS'
+        if os.name == 'nt':
+            self.topLevelMakeCommand = 'make_post.bat'
+        else:
+            self.topLevelMakeCommand = 'bash make_post.sh'
 
         # This is the location where we should run the tests.
         # For example: self.locationWhereWeRunTests = '/home/locationWhereWeRunTests'
@@ -52,7 +56,10 @@ class SystemTestsConfiguration:
 
         # This is the name of the test application to be invoked when running a test
         # For example: self.nameOfTestExecutable = 'myApplication'
-        self.nameOfTestExecutable = r'post.exe'
+        if os.name == 'nt':
+            self.nameOfTestExecutable = r'post.exe'
+        else:
+            self.nameOfTestExecutable = r'post'
 
         # List of TestCase to run against the instrumented executable
         # For example: self.masterListOfTestCases = [TestCase('Test1'), TestCase('Test2')]
