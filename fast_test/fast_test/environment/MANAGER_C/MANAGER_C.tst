@@ -1,4 +1,4 @@
--- VectorCAST 20.sp5 (12/16/20)
+-- VectorCAST 22.sp8 (01/31/23)
 -- Test Case Script
 --
 -- Environment    : MANAGER_C
@@ -280,6 +280,20 @@ TEST.END_NOTES:
 TEST.VALUE:manager.Place_Order.Table:<<MIN>>
 TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:LOBSTER
+TEST.END
+-- Test Case: Place_Order.fish.001
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Place_Order
+TEST.NEW
+TEST.NAME:Place_Order.fish.001
+TEST.IMPORT_FAILURES:
+(E) @LINE: 21 TEST.NAME:Place_Order.fish
+    >>> Invalid Test Case Name - Duplicate Test Case Name
+    >>> Using Automatic Name: Place_Order.fish.001
+TEST.END_IMPORT_FAILURES:
+TEST.VALUE:manager.Place_Order.Table:1
+TEST.VALUE:manager.Place_Order.Seat:1
+TEST.VALUE:manager.Place_Order.Order.Entree:STEAK
 TEST.END
 
 -- Subprogram: forever
