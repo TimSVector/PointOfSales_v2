@@ -36,6 +36,7 @@ class SystemTestsConfiguration:
 
         # These are the environment's variables for spawned processes
         # For example: self.environmentVariables = {'VAR1': 'value1', 'VAR2': 'value2'}
+        self.environmentVariables = {}
         if os.name == 'nt':
             self.environmentVariables = {'PATH': os.pathsep.join([r'C:/VCAST/20202sp8/MinGW/bin', os.environ['PATH']])}
 
