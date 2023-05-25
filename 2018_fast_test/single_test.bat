@@ -24,7 +24,9 @@ if "%DO_IMPORT%" == "1" (
 )
 
 :: modify manager.c to trigger CBT with changes
-if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
+if "%DO_MODIFY%" == "1" (
+    echo void change_code(void) {} >> tutorial\c\manager.c
+)
 
 :: CBT run
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
@@ -41,7 +43,9 @@ if "%DO_MERGE%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
     
     :: modify manager.c to trigger CBT with changes
-    if "%DO_MODIFY%" == "1" echo void change_code2(void) {} >> tutorial\c\manager.c
+    if "%DO_MODIFY%" == "1" ( 
+        echo void change_code2(void) {} >> tutorial\c\manager.c
+    )
 )
 
 
