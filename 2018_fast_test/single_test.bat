@@ -7,7 +7,7 @@ set DO_MERGE=%5
 
 git clean -fxd 
 git reset --hard HEAD
-xcopy \E \S \Y \I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
 if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
