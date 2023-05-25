@@ -10,13 +10,13 @@ git reset --hard HEAD
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
+if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 %VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --type
 
 :: do original clean build
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
 
-if "%DO_IMPORT%" == "1" (
+if "%DO_IMPORT%"=="1" (
     :: get the results, clean, import
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
@@ -24,12 +24,12 @@ if "%DO_IMPORT%" == "1" (
 )
 
 :: modify manager.c to trigger CBT with changes
-if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
+if "%DO_MODIFY%"=="1" echo void change_code(void) {} >> tutorial\c\manager.c
 
 :: CBT run
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
 
-if "%DO_MERGE%" == "1" (
+if "%DO_MERGE%"=="1" (
     :: copy original results then get the current results, remove original results, clean, merge, import
     copy temp_result.vcr orig_temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
@@ -37,11 +37,12 @@ if "%DO_MERGE%" == "1" (
     %VECTORCAST_DIR%\vpython  vc_scripts\merge_vcr.py --orig orig_temp_result.vcr --new  temp_result.vcr    
     %VECTORCAST_DIR%\manage -p 2018_fast_test --import-result temp_result.vcr
     
+    :: modify manager.c to trigger CBT with changes
+    if "%DO_MODIFY%"=="1" echo void change_code2(void) {} >> tutorial\c\manager.c
+
     :: secondary CBT run with no changes
     %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
     
-    :: modify manager.c to trigger CBT with changes
-    if "%DO_MODIFY%" == "1" echo void change_code2(void) {} >> tutorial\c\manager.c
 )
 
 
