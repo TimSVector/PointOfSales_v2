@@ -30,11 +30,12 @@ if "%DO_MODIFY%"=="1" echo void change_code(void) {} >> tutorial\c\manager.c
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
 
 if "%DO_MERGE%"=="1" (
+    echo doing the merge
     :: copy original results then get the current results, remove original results, clean, merge, import
     copy temp_result.vcr orig_temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --remove-imported-result temp_result.vcr
-    %VECTORCAST_DIR%\vpython  vc_scripts\merge_vcr.py --orig orig_temp_result.vcr --new  temp_result.vcr    
+    %VECTORCAST_DIR%\vpython  vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr    
     %VECTORCAST_DIR%\manage -p 2018_fast_test --import-result temp_result.vcr
     
     :: modify manager.c to trigger CBT with changes
