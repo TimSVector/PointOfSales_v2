@@ -13,13 +13,6 @@
       <original-environment-directory>2018_fast_test/build/1600721014</original-environment-directory>
     </config>
   </environment>
-  <environment name="DATABASE_C_2" type="UNIT">
-    <language>1</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>2018_fast_test/build/3169882342</original-environment-directory>
-    </config>
-  </environment>
   <environment name="MANAGER_C" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -29,12 +22,10 @@
   </environment>
   <group name="Group">
     <environment name="DATABASE_C"/>
-    <environment name="DATABASE_C_2"/>
     <environment name="MANAGER_C"/>
   </group>
   <group name="Group2">
     <environment name="DATABASE_C"/>
-    <environment name="DATABASE_C_2"/>
   </group>
   <compiler>
     <compiler>
@@ -53,9 +44,6 @@
     </testsuite>
     <testsuite name="TestSuite2">
       <group name="Group2"/>
-      <disabled>
-        <environment name="DATABASE_C_2"/>
-      </disabled>
     </testsuite>
   </compiler>
 </project>
