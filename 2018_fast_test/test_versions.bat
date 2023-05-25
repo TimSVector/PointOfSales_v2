@@ -1,19 +1,14 @@
 @echo off
 set DO_SFP=
 set DO_IMPORT=
+set DO_MODIFY=
 
-if "%1"=="SFP" (
-set DO_SFP=1
-)
-if "%2"=="SFP" (
-set DO_SFP=1
-)
-if "%1"=="IMPORT" (
-set DO_IMPORT=1
-)
-if "%2"=="IMPORT" (
-set DO_IMPORT=1
-)
+echo %* | findstr /i SFP    > nul
+if "%errorlevel%"=="0" set DO_SFP=1
+echo %* | findstr /i IMPORT    > nul
+if "%errorlevel%"=="0" set DO_IMPORT=1
+echo %* | findstr /i MODIFY    > nul
+if "%errorlevel%"=="0" set DO_MODIFY=1
 
 set workspace=%cd%
 
@@ -30,6 +25,8 @@ xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
+
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
 
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
@@ -55,6 +52,8 @@ if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_CO
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
 
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
+
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
@@ -78,6 +77,8 @@ xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
+
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
 
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
@@ -103,6 +104,8 @@ if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_CO
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
 
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
+
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
@@ -126,6 +129,8 @@ xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
+
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
 
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
@@ -151,6 +156,8 @@ xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 if "%DO_SFP%" == "1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 %VECTORCAST_DIR%/vpython  vc_scripts/getjobs.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --type
 %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log 
+
+if "%DO_MODIFY%" == "1" echo void change_code(void) {} >> tutorial\c\manager.c
 
 if "%DO_IMPORT%" == "1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
