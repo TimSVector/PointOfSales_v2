@@ -17,7 +17,7 @@ if "%errorlevel%"=="0" set DO_MERGE=1
 set workspace=%cd%
 
 set ORIG_VCD=%VECTORCAST_DIR%
-1
+
 @echo on
 call single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
 call single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
