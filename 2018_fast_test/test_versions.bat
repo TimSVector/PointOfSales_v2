@@ -1,4 +1,3 @@
-@echo off
 set DO_SFP=0
 set DO_IMPORT=0
 set DO_MODIFY=0
