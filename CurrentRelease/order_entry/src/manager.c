@@ -51,6 +51,8 @@ static name_type WaitingList[10];
 static unsigned int WaitingListSize = 0;
 static unsigned int WaitingListIndex = 0;
 
+#define TAX_RATE 1.05
+
 /**************************************************************************************
  *  Subprogram: Add_Included_Dessert                                                  *
  *                                                                                    * 
@@ -165,6 +167,7 @@ int Clear_Table(table_index_type Table)
 {
   // Local return value
   int ret_val = 0;
+  int Seat = 0;
 
   // Local Table Data
   struct table_data_type Table_Data = Get_Record(Table);
@@ -176,6 +179,22 @@ int Clear_Table(table_index_type Table)
   }
   else
   {
+    Table_Data.Is_Occupied = v_false;
+    Table_Data.Number_In_Party = 0;
+	Table_Data.Is_Bill_Paid = 0;
+
+    for (Seat=0; Seat < SEATS_AT_ONE_TABLE; Seat++){
+      Table_Data.Order[Seat].Soup     = NO_SOUP;
+      Table_Data.Order[Seat].Salad    = NO_SALAD;
+      Table_Data.Order[Seat].Entree   = NO_ENTREE;
+      Table_Data.Order[Seat].Dessert  = NO_DESSERT;
+      Table_Data.Order[Seat].Beverage = NO_BEVERAGE;
+    }
+	  
+    Table_Data.Check_Total = 0;
+ 
+    Update_Record(Table, Table_Data);
+    
     // Remove the record from the database
     Remove_Record(Table);
   }
@@ -198,8 +217,22 @@ int Clear_Table(table_index_type Table)
  **************************************************************************************/
 float Get_Check_Total(table_index_type Table)
 {
+  float largePartyAutoTip = 0;
+
+  struct table_data_type Table_Data;
+  Table_Data = Get_Record(Table);
+
+  // Parties over 8 get an automatic large party tip added
+  if (Table_Data.Number_In_Party >= 8)
+  {
+    largePartyAutoTip = Table_Data.Check_Total * 0.12;
+  }
+  
+  Table_Data.Check_Total *= TAX_RATE;
+  Table_Data.Check_Total += largePartyAutoTip;
+  
   // return the check total for the table
-  return (Get_Record(Table).Check_Total);
+  return (Table_Data.Check_Total);
 }
 
 /**************************************************************************************
