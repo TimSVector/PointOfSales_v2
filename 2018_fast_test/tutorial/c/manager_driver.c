@@ -12,23 +12,12 @@ extern FLOAT Get_Check_Total(table_index_type Table);
 
 extern void Add_Included_Dessert(struct order_type* Order);
 
-int main()
+int main(int argc, const char *argv[])
 {
   struct order_type order;
   int Total;
 
-  char line[10];
-
-#if defined (ORDER)
-  line[0] = 'P';
-#elif defined (CHECK)
-  line[0] = 'G';
-#else
-  printf("P=Place_Order C=ClearTable G=Get_Check_Total A=AddIncludedDessert : ");
-  scanf("%s",line);
-#endif
-
-  switch (line[0])
+  switch (argv[1][0])
   {
     case 'p': case 'P':
       order.Entree = STEAK;
