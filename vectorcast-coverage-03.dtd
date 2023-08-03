@@ -1,4 +1,4 @@
-<!DOCTYPE report
+<!DOCTYPE note
 [
   <!ELEMENT report (version,stats,data)>
   
@@ -38,4 +38,3 @@
   <!ELEMENT coverage>
   <!ATTLIST coverage type     (#PCDATA) #REQUIRED>
   <!ATTLIST coverage value    (#PCDATA) #REQUIRED>
-]>
