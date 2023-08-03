@@ -1,40 +1,30 @@
-<!DOCTYPE note
-[
   <!ELEMENT report (version,stats,data)>
   
-  <!ELEMENT version>
-  <!ATTLIST value                 CDATA #REQUIRED>
+  <!ELEMENT version EMPTY>
+  <!ATTLIST version value       CDATA #REQUIRED>
   
   <!ELEMENT stats (environments,units,subprograms)>
-  <!ELEMENT environments>
-  <!ATTLIST value             CDATA #REQUIRED>
-  <!ELEMENT units>
-  <!ATTLIST value             CDATA #REQUIRED>
-  <!ELEMENT subprograms>
-  <!ATTLIST value             CDATA #REQUIRED>
+  <!ELEMENT environments EMPTY>
+  <!ATTLIST environments value      CDATA #REQUIRED>
+  <!ELEMENT units EMPTY>
+  <!ATTLIST units value             CDATA #REQUIRED>
+  <!ELEMENT subprograms EMPTY>
+  <!ATTLIST subprograms value       CDATA #REQUIRED>
   
-  <!ELEMENT data>
+  <!ELEMENT data (all)>
   
   <!ELEMENT all (coverage*, environment*)>
-  <!ATTLIST name                  CDATA #REQUIRED>
-  <!ELEMENT coverage>
-  <!ATTLIST coverage type     (#PCDATA) #REQUIRED>
-  <!ATTLIST coverage value    (#PCDATA) #REQUIRED>
+  <!ATTLIST all name          CDATA #REQUIRED>
 
   <!ELEMENT environment (coverage*, unit*)>
-  <!ATTLIST name              CDATA #REQUIRED>
-  <!ELEMENT coverage>
-  <!ATTLIST coverage type     (#PCDATA) #REQUIRED>
-  <!ATTLIST coverage value    (#PCDATA) #REQUIRED>
+  <!ATTLIST environment name              CDATA #REQUIRED>
   
-  <!ELEMENT unit (coverage*, subprogram*)>
-  <!ATTLIST name              CDATA #REQUIRED>
-  <!ELEMENT coverage>
-  <!ATTLIST coverage type     (#PCDATA) #REQUIRED>
-  <!ATTLIST coverage value    (#PCDATA) #REQUIRED>
+  <!ELEMENT unit (coverage*, subprogram*) >
+  <!ATTLIST unit name              CDATA #REQUIRED>
   
   <!ELEMENT subprogram (coverage*)>
-  <!ATTLIST name              CDATA #REQUIRED>
-  <!ELEMENT coverage>
-  <!ATTLIST coverage type     (#PCDATA) #REQUIRED>
-  <!ATTLIST coverage value    (#PCDATA) #REQUIRED>
+  <!ATTLIST subprogram name              CDATA #REQUIRED>
+  
+  <!ELEMENT coverage EMPTY>
+  <!ATTLIST coverage type    CDATA #REQUIRED>
+  <!ATTLIST coverage value    CDATA #REQUIRED>
