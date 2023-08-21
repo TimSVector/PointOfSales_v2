@@ -44,6 +44,4 @@ if "%DO_MERGE%"=="1" (
 )
 
 %VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-%VECTORCAST_DIR%\vpython  vc_scripts\generate_squore_results.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm squore_output
 dir xml_data
-dir squore_output
