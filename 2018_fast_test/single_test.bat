@@ -34,7 +34,7 @@ if "%DO_MERGE%"=="1" (
     
     :: copy original results then get the current results, remove original results, clean, merge, import
     copy temp_result.vcr orig_temp_result.vcr
-    %VECTORCAST_DIR%\manage -p 2018_fast_test --export-result temp_result.vcr
+    %VECTORCAST_DIR%\manage -p 2018_fast_test --force --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p 2018_fast_test --remove-imported-result temp_result.vcr
     %VECTORCAST_DIR%\vpython  vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr   
     %VECTORCAST_DIR%\manage -p 2018_fast_test --import-result temp_result.vcr
