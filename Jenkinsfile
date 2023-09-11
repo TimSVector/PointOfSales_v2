@@ -7,33 +7,14 @@
 //
 // ===============================================================
 
-VC_Manage_Project     = "" + 'win_to_lx.vcm'
-VC_EnvSetup        = '''set VECTORCAST_DIR=D:/VCAST/2023_sp1
-set VECTOR_LICENSE_FILE=27000@localhost
-set PATH=%VECTORCAST_DIR%/mingw/bin;%PATH%'''
+VC_Manage_Project     = "" + 'CurrentRelease\\vcast-workarea\\vc_manage\\PointOfSales_Manage.vcm'
+VC_EnvSetup        = '''call setenv.bat'''
 VC_Build_Preamble  = ""
 VC_EnvTeardown     = ''''''
-def scmStep () { if (isUnix()) {
-
-} else {
-    bat "if exist win_to_lx.vcm  del win_to_lx.vcm"  
-    bat "if exist win_to_lx  rd /s /q win_to_lx"  
-    bat "copy D:\\vcast_work\\demo\\deleteme\\manage_prepare_windows_execute_linux\\win_to_lx.vcm"
-    bat "mkdir win_to_lx"
-    bat "mkdir win_to_lx\\environment"
-    bat "mkdir win_to_lx\\environment\\MANAGER"
-    bat "copy D:\\vcast_work\\demo\\deleteme\\manage_prepare_windows_execute_linux\\win_to_lx\\environment\\MANAGER\\* win_to_lx\\environment\\MANAGER"
-    bat "if exist source rd /s /q source"
-    bat "mkdir source"
-    bat "mkdir source\\src"
-    bat "mkdir source\\inc"
-    bat "copy %VECTORCAST_DIR%\\Tutorial\\c\\manager.c source\\src"
-    bat "copy %VECTORCAST_DIR%\\Tutorial\\c\\*.h source\\inc"    
-    bat copy 
-} }
+def scmStep () { }
 VC_usingSCM = true
 VC_sharedArtifactDirectory = ''''''
-VC_Agent_Label = 'master'
+VC_Agent_Label = 'Host_Test_Node'
 VC_waitTime = '30'
 VC_waitLoops = '1'
 VC_useOneCheckoutDir = false
