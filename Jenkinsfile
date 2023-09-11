@@ -526,6 +526,18 @@ origManageProject = VC_Manage_Project
 
 pipeline {
 
+    node {
+      stage('SCM') {
+        checkout scm
+      }
+      stage('SonarQube Analysis') {
+        def scannerHome = tool 'SonarScanner';
+        withSonarQubeEnv() {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
+      }
+    }
+
     // Use the input from the job creation label as for the "main job"
     agent {label VC_Agent_Label as String}
     
