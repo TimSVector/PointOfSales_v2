@@ -594,16 +594,6 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'SonarScanner';
-                    withSonarQubeEnv() {
-                        bat "${scannerHome}\\bin\\sonar-scanner"
-                    }
-                }
-            }
-        }
         
         // If we are using a single checkout directory option, do the checkout here
         // This stage also includes the implementation for the parameterized Jenkins job
@@ -1095,7 +1085,20 @@ pipeline {
                 }
             }
         }
-        
+        stage('SonarQube Build Wrapper') {
+            bat '''
+                set SQ_INSTALL_DIR=D:\\vector\\tools\\sonarqube-10.2.1.78527\\bin\\windows-x86-64
+                set path=%SQ_INSTALL_DIR%\\jdk-17.0.8.1\\bin;%SQ_INSTALL_DIR%\\build-wrapper-win-x86;%SQ_INSTALL_DIR%\\sonar-scanner-5.0.1.3006-windows\\bin;%PATH%
+                build-wrapper-win-x86-64 --out-dir bw-output CurrentRelease/make_post.bat
+            '''
+        }     
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+                bat "%scannerHome%/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.cfamily.cobertura.reportPaths=xml_data/coverage_results*.xml -Dsonar.junit.reportPaths=xml_data/test_results_*.xml"
+            }
+        }
+
         // Place holder for previous stages the customer may need to use
         stage('Next-Stage') {
             steps {
