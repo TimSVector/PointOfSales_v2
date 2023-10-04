@@ -1,6 +1,8 @@
 rem @echo off
 pushd %~dp0
 
+call ..\setup.bat
+
 echo Making POST.exe %1 %2 %3
 
 del /q post.exe > nul 2>&1
