@@ -1,6 +1,6 @@
 rem @echo off
 pushd %~dp0
-call ..\setup.bat
+call ..\setenv.bat
 
 echo Making POST.exe %1 %2 %3
 
