@@ -1,6 +1,7 @@
 rem @echo off
 echo Making POST.exe %1 %2 %3
 
+pushd %~dp0
 
 del /q post.exe > nul 2>&1
 del /q build\*.o > nul 2>&1
@@ -36,6 +37,8 @@ gcc build/*.o -o %EXEC% >> build.log 2>&1
 @echo Completed Make >> build.log
 
 type build.log 
+
+popd
 
 if EXIST "%EXEC%" exit /b 0
 
