@@ -41,7 +41,7 @@ jobs:
         shell: powershell
         run: |
           $env:Path += ";$HOME/.sonar/build-wrapper-win-x86;$HOME/.sonar/sonar-scanner-5.0.1.3006-windows/bin"
-          build-wrapper-win-x86-64 --out-dir bw-output <your clean build command>
+          build-wrapper-win-x86-64 --out-dir bw-output CurrentRelease/make_post.bat
           sonar-scanner.bat "-Dsonar.cfamily.build-wrapper-output=bw-output"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
