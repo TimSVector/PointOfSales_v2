@@ -594,14 +594,16 @@ pipeline {
             }
         }
 
+        stage('SonarQube Build Wrapper') {
+            powershell '''
+                $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
+                build-wrapper-win-x86-64 --out-dir bw-output CurrentRelease/make_post.bat
+            '''
+        }     
         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'SonarScanner';
-                    withSonarQubeEnv() {
-                        bat "${scannerHome}\\bin\\sonar-scanner"
-                    }
-                }
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+                powershell "${scannerHome}/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output"
             }
         }
         
