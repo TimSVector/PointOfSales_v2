@@ -1,0 +1,4 @@
+TRUST_ZONE/UnitTesting/ENV_ENCRYPT
+VectorCAST_MinGW_C++/UnitTesting/ENV_LINKED_LIST
+VectorCAST_MinGW_C++/UnitTesting/ENV_MANAGER
+VectorCAST_MinGW_C++/UnitTesting/INTEGRATION_TESTING
