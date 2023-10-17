@@ -1,14 +1,85 @@
-void encrypt_transmit_Info_failure(void) {}
-void encrypt_transmit_Info_good(void) {}
-void BASIS_PATH_001(void) {}
-void BASIS_PATH_002(void) {}
-void manager_add_included_dessert_cake(void) {}
-void manager_add_included_dessert_none(void) {}
-void manager_add_included_dessert_null(void) {}
-void manager_add_included_dessert_pie(void) {}
-void manager_Place_Order_All_Entrees(void) {}
-void manager_Place_Order_SeatCount(void) {}
-void manager_Place_Order_TableCount(void) {}
-void manager_Place_Order_Fish(void) {}
+int encrypt_transmit_Info_failure(void)  {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
 
-// D:\dev\PointOfSales_v2\xml_data\sonarqube\test.cpp
+int encrypt_transmit_Info_good(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int BASIS_PATH_001(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int BASIS_PATH_002(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_add_included_dessert_cake(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_add_included_dessert_none(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_add_included_dessert_null(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_add_included_dessert_pie(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_Place_Order_All_Entrees(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_Place_Order_SeatCount(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_Place_Order_TableCount(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+int manager_Place_Order_Fish(void) {
+    
+    // placeholder for sonarqube test
+    
+    return 1;
+}
+
+// D:\dev\PointOfSales_v2\CurrentRelease\test-data\test.cpp

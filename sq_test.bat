@@ -4,9 +4,4 @@ call %~dp0setenv.bat > nul 2>&1
 
 build-wrapper-win-x86-64 --out-dir bw-output CurrentRelease\make_post.bat
 
-sonar-scanner.bat -Dsonar.projectKey=Post_AVT -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=http://localhost:9900 -Dsonar.token=sqp_d9c6a701aa93e33b204badf5f9b56cab6eb4e484 -Dsonar.lauguage=cpp -Dsonar.sources=CurrentRelease -Dsonar.exclusions=CurrentRelease/vcast-workarea/** -Dsonar.test.inclusions=CurrentRelease/test-data/test.cpp -Dsonar.testExecutionReportPaths=xml_data/sonarqube/test_results_PointOfSales_Manage.xml -Dsonar.cfamily.cobertura.reportPaths=xml_data/cobertura/coverage_results_PointOfSales_Manage.xml
-
-
-
-
-
+sonar-scanner.bat -Dsonar.projectKey=Post_AVT -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.host.url=http://localhost:9900 -Dsonar.token=sqp_d9c6a701aa93e33b204badf5f9b56cab6eb4e484 -Dsonar.lauguage=cpp -Dsonar.sources=CurrentRelease -Dsonar.exclusions=CurrentRelease/vcast-workarea/** -Dsonar.test.inclusions=CurrentRelease/test-data/test.cpp -Dsonar.testExecutionReportPaths=xml_data/sonarqube/test_results_PointOfSales_Manage.xml -Dsonar.cfamily.cobertura.reportPaths=xml_data/cobertura/coverage_results_PointOfSales_Manage.xml -X > sonar_x.log 2>&1
