@@ -1,4 +1,4 @@
-rem @echo off
+@echo off
 pushd %~dp0
 call ..\setenv.bat
 
