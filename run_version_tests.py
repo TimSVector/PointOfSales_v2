@@ -23,7 +23,6 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
-    os.chdir(orig_dir)
     os.chdir(directory)
     
     for coverage_type in coverage_types:
@@ -33,7 +32,9 @@ for directory in directories:
             print(directory, coverage_type, " ".join(callCmd))
             p = subprocess.Popen(callCmd, universal_newlines=True)
             p.wait()
+    os.chdir(orig_dir)
 
-            
-    
-    
+## Additional tests -- plugin testing
+PluginTestRunner.bat
+p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
+p.wait()
