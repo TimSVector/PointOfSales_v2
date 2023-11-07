@@ -10,7 +10,7 @@ git reset --hard HEAD
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
-%VECTORCAST_DIR%\manage -p 2018_fast_test --config=COVERAGE_TYPE=%VCAST_COVERAGE_TYPE%
+%VECTORCAST_DIR%\manage -p 2018_fast_test --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
 
 
 if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
