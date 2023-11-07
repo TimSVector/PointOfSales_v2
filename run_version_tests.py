@@ -35,6 +35,8 @@ for directory in directories:
     os.chdir(orig_dir)
 
 ## Additional tests -- plugin testing
-PluginTestRunner.bat
-p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
-p.wait()
+
+for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
+    os.environ['VECTORCAST_DIR'] = vcd
+    p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
+    p.wait()
