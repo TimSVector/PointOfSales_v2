@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="27">
+<project version="34">
   <config>
+    <config>
+      <key>COVERAGE_TYPE</key>
+      <value>STATEMENT</value>
+    </config>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
   </config>
@@ -32,8 +36,6 @@
       <name>VectorCAST_MinGW_C</name>
       <config>
         <config>
-          <key>COVERAGE_TYPE</key>
-          <value>STATEMENT+BRANCH</value>
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_C</value>
         </config>
