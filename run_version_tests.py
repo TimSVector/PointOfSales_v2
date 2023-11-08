@@ -3,6 +3,10 @@
 import os
 import subprocess
 
+from datetime import datetime
+
+print(datetime.now())
+
 cli_args = ["                          ",
             "            MODIFY        ",  
             "    IMPORT                ", 
@@ -23,6 +27,7 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
+    print(datetime.now())
     os.chdir(directory)
     
     for coverage_type in coverage_types:
@@ -37,6 +42,9 @@ for directory in directories:
 ## Additional tests -- plugin testing
 
 for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
+    print(datetime.now())
     os.environ['VECTORCAST_DIR'] = vcd
     p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
     p.wait()
+
+print(datetime.now())

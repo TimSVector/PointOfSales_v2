@@ -1,5 +1,8 @@
 @echo off
 pushd %~dp0
+
+set ORIG_PATH=%PATH%
+
 call ..\setenv.bat
 
 echo Making POST.exe %1 %2 %3
@@ -45,8 +48,12 @@ if EXIST "%EXEC%" goto:end
 :error
 popd
 
+set PATH=%ORIG_PATH%
+
 exit /b -1
 
 :end
 
 popd
+
+set PATH=%ORIG_PATH%
