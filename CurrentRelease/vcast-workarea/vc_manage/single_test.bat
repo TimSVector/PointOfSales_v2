@@ -17,7 +17,7 @@ if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p PointOfSales_Manage --config VCAST
 %VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  PointOfSales_Manage.vcm --type
 
 :: do original clean build
-%VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 8 --incremental
+%VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
 type PointOfSales_Manage_build.log
 copy PointOfSales_Manage_build.log unstashed_build.log
 
@@ -45,7 +45,7 @@ if "%DO_MERGE%"=="1" (
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result temp_result.vcr
 
     :: 3rd build-execute with no changes - should only build system tests
-    %VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 8 --incremental
+    %VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
     type PointOfSales_Manage_build.log
     copy PointOfSales_Manage_build.log unstashed_build.log
 )
