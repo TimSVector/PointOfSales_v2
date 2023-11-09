@@ -7,6 +7,16 @@ from datetime import datetime
 
 print(datetime.now())
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-x', '--2018',   help='Run the tests on the 2018_fast_test project', action="store_true", dest="run_2018", default=False)
+parser.add_argument('-m', '--post',   help='Run the tests on the PoST project',           action="store_true", dest="run_post", default=False)
+parser.add_argument('-v', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
+
+args = parser.parse_args()
+
+
+
 cli_args = ["                          ",
             "            MODIFY        ",  
             "    IMPORT                ", 
@@ -27,6 +37,14 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
+    if directory.startswith("2018") and not args.run_2018:
+        print(f"Skipping {directory} test")
+        continue
+        
+    if directory.startswith("CurrentRelease") and not args.run_post:
+        print(f"Skipping {directory} test")
+        continue
+        
     print(datetime.now())
     os.chdir(directory)
     
@@ -41,10 +59,14 @@ for directory in directories:
 
 ## Additional tests -- plugin testing
 
-for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
-    print(datetime.now())
-    os.environ['VECTORCAST_DIR'] = vcd
-    p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
-    p.wait()
-
+if args.run_plgn:
+    for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
+        print(datetime.now())
+        os.environ['VECTORCAST_DIR'] = vcd
+        p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
+        p.wait()
+else:
+    print(f"Skipping PluginTestRunner.bat")
+    
+    
 print(datetime.now())

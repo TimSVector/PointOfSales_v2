@@ -1,4 +1,7 @@
 
+set orig_path=%PATH%
+call ..\..\..\setenv.bat
+
 set VECTORCAST_DIR=%1
 set DO_SFP=%2
 set DO_IMPORT=%3
@@ -45,3 +48,4 @@ if "%DO_MERGE%"=="1" (
 
 %VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py  PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
 dir xml_data
+set path=%orig_path%
