@@ -12,7 +12,8 @@ print(datetime.now())
 parser = argparse.ArgumentParser()
 parser.add_argument('-x', '--2018',   help='Run the tests on the 2018_fast_test project', action="store_true", dest="run_2018", default=False)
 parser.add_argument('-m', '--post',   help='Run the tests on the PoST project',           action="store_true", dest="run_post", default=False)
-parser.add_argument('-v', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
+parser.add_argument('-p', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
+parser.add_argument('-a', '--all   ', help='Run all the tests',          action="store_true", dest="run_all", default=False)
 
 args = parser.parse_args()
 
@@ -38,11 +39,11 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
-    if directory.startswith("2018") and not args.run_2018:
+    if not args_run_all and directory.startswith("2018") and not args.run_2018:
         print(f"Skipping {directory} test")
         continue
         
-    if directory.startswith("CurrentRelease") and not args.run_post:
+    if not args_run_all and directory.startswith("CurrentRelease") and not args.run_post:
         print(f"Skipping {directory} test")
         continue
         
@@ -60,7 +61,7 @@ for directory in directories:
 
 ## Additional tests -- plugin testing
 
-if args.run_plgn:
+if not args_run_all and args.run_plgn:
     for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
         print(datetime.now())
         os.environ['VECTORCAST_DIR'] = vcd
