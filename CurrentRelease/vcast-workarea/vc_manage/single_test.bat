@@ -29,10 +29,12 @@ if "%DO_IMPORT%"=="1" (
 )
 
 :: modify manager.c to trigger CBT with changes
-if "%DO_MODIFY%"=="1" echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\CurrentRelease\order_entry\src\manager.c
+if "%DO_MODIFY%"=="1" echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 
 :: CBT run
-%VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --incremental > unstashed_build.log & type unstashed_build.log
+%VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
+type PointOfSales_Manage_build.log
+copy PointOfSales_Manage_build.log unstashed_build.log
 
 if "%DO_MERGE%"=="1" (
     echo doing the merge
