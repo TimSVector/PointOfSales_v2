@@ -42,11 +42,11 @@ for directory in directories:
     print("run_version_tests ", directory, " start time", datetime.now())
 
     if not args.run_all and directory.startswith("2018") and not args.run_2018:
-        print(f"Skipping {directory} test")
+        print("Skipping " + directory + " test")
         continue
         
     if not args.run_all and directory.startswith("CurrentRelease") and not args.run_post:
-        print(f"Skipping {directory} test")
+        print("Skipping " + directory + " test")
         continue
         
     print(datetime.now())
