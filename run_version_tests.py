@@ -6,7 +6,7 @@ import argparse
 
 from datetime import datetime
 
-print(datetime.now())
+print("run_version_tests start time", datetime.now())
 
 
 parser = argparse.ArgumentParser()
@@ -39,11 +39,13 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
-    if not args_run_all and directory.startswith("2018") and not args.run_2018:
+    print("run_version_tests ", directory, " start time", datetime.now())
+
+    if not args.run_all and directory.startswith("2018") and not args.run_2018:
         print(f"Skipping {directory} test")
         continue
         
-    if not args_run_all and directory.startswith("CurrentRelease") and not args.run_post:
+    if not args.run_all and directory.startswith("CurrentRelease") and not args.run_post:
         print(f"Skipping {directory} test")
         continue
         
@@ -60,10 +62,11 @@ for directory in directories:
     os.chdir(orig_dir)
 
 ## Additional tests -- plugin testing
+print("run_version_tests PluginTestRunner start time", datetime.now())
 
-if not args_run_all and args.run_plgn:
+if not args.run_all and args.run_plgn:
     for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
-        print(datetime.now())
+        print("run_version_tests PluginTestRunner " + vcd + " start time", datetime.now())
         os.environ['VECTORCAST_DIR'] = vcd
         p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
         p.wait()
@@ -71,4 +74,4 @@ else:
     print(f"Skipping PluginTestRunner.bat")
     
     
-print(datetime.now())
+print("run_version_tests end time", datetime.now())
