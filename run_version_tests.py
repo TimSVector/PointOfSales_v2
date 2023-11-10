@@ -71,7 +71,7 @@ if not args.run_all and args.run_plgn:
         p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
         p.wait()
 else:
-    print(f"Skipping PluginTestRunner.bat")
+    print("Skipping PluginTestRunner.bat")
     
     
 print("run_version_tests end time", datetime.now())
