@@ -39,17 +39,19 @@ directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 orig_dir = os.getcwd()
 
 for directory in directories:
-    print("run_version_tests ", directory, " start time", datetime.now())
 
-    if not args.run_all and directory.startswith("2018") and not args.run_2018:
+    if args.run_all:
+        pass
+    elif args.run_2018 and directory.startswith("2018"):
+        pass
+        
+    elif args.run_post and directory.startswith("CurrentRelease"):
+        pass
+    else:
         print("Skipping " + directory + " test")
         continue
         
-    if not args.run_all and directory.startswith("CurrentRelease") and not args.run_post:
-        print("Skipping " + directory + " test")
-        continue
-        
-    print(datetime.now())
+    print("run_version_tests", directory, "start time", datetime.now())
     os.chdir(directory)
     
     for coverage_type in coverage_types:
