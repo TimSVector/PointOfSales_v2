@@ -275,5 +275,3 @@ int Pay_The_Bill(const char * name, const char cardNumber[16], const char secCod
   // return FAILED
   return -1;
 }
-
-void change_code(void) {} 
