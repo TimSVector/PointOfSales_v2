@@ -66,7 +66,7 @@ for directory in directories:
 ## Additional tests -- plugin testing
 print("run_version_tests PluginTestRunner start time", datetime.now())
 
-if not args.run_all and args.run_plgn:
+if args.run_all or args.run_plgn:
     for vcd in [r'C:\VCAST\2022sp8', r'C:\VCAST\2023sp4']:
         print("run_version_tests PluginTestRunner " + vcd + " start time", datetime.now())
         os.environ['VECTORCAST_DIR'] = vcd
