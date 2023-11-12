@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-x', '--2018',   help='Run the tests on the 2018_fast_test project', action="store_true", dest="run_2018", default=False)
 parser.add_argument('-m', '--post',   help='Run the tests on the PoST project',           action="store_true", dest="run_post", default=False)
 parser.add_argument('-p', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
-parser.add_argument('-a', '--all   ', help='Run all the tests',          action="store_true", dest="run_all", default=False)
+parser.add_argument('-a', '--all   ', help='Run all the tests',                           action="store_true", dest="run_all", default=False)
 
 args = parser.parse_args()
 
@@ -56,8 +56,8 @@ for directory in directories:
     
     for coverage_type in coverage_types:
         os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
-        for args in cli_args:
-            callCmd = ["test_versions.bat"] + args.split()
+        for cargs in cli_args:
+            callCmd = ["test_versions.bat"] + cargs.split()
             print(directory, coverage_type, " ".join(callCmd))
             p = subprocess.Popen(callCmd, universal_newlines=True)
             p.wait()

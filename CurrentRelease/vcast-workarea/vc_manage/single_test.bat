@@ -22,6 +22,7 @@ if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p PointOfSales_Manage --config VCAST
 :: do original clean build
 %VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
 copy PointOfSales_Manage_build.log unstashed_build.log
+type unstashed_build.log
 
 if "%DO_IMPORT%"=="1" (
     :: get the results, clean, import
@@ -36,6 +37,7 @@ if "%DO_MODIFY%"=="1" echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\or
 :: CBT run
 %VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
 copy PointOfSales_Manage_build.log unstashed_build.log
+type unstashed_build.log
 
 if "%DO_MERGE%"=="1" (
     echo doing the merge
@@ -50,6 +52,7 @@ if "%DO_MERGE%"=="1" (
     :: 3rd build-execute with no changes - should only build system tests
     %VECTORCAST_DIR%\vpython D:\vector\github\FAE\FAE\utilities\parallel_build_execute\parallel_build_execute.py -p PointOfSales_Manage --jobs 6 --incremental
     copy PointOfSales_Manage_build.log unstashed_build.log
+    type unstashed_build.log
 )
 
 %VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py  PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
