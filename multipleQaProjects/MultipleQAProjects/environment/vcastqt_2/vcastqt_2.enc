@@ -7,7 +7,7 @@
  </options>
  <base>
   <name>SourceRoot</name>
-  <path>D:/dev/PointOfSales_v2/CurrentRelease</path>
+  <path>%VCAST_DEMO_SRC_ROOT%</path>
   <al>database</al>
   <al>encrypt</al>
   <al>main</al>
