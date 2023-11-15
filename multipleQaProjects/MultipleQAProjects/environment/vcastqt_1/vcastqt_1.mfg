@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manage-config-options version="7">
   <config/>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\CurrentRelease</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\CurrentRelease\database\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\CurrentRelease\encrypt\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\CurrentRelease\order_entry\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\CurrentRelease\utils\inc</search-directory>
 </manage-config-options>

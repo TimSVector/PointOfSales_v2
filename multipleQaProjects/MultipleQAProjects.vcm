@@ -3,7 +3,7 @@
   <config>
     <base-directories>
       <key>SourceRoot</key>
-      <value>D:/dev/PointOfSales_v2/CurrentRelease</value>
+      <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../CurrentRelease</value>
     </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
@@ -40,6 +40,11 @@
           <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
           <value>TRUE</value>
         </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\utils\inc</search-directory>
       </config>
     </compiler>
     <testsuite name="SystemTesting">

@@ -7,7 +7,7 @@
  </options>
  <base>
   <name>SourceRoot</name>
-  <path>%VCAST_DEMO_SRC_ROOT%</path>
+  <path>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../CurrentRelease</path>
   <al>database</al>
   <al>encrypt</al>
   <al>main</al>
