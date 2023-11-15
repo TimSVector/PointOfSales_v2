@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cover>
+ <version>2</version>
+ <options>
+  <name>vcastqt_2</name>
+  <coverage>STATEMENT_MCDC</coverage>
+ </options>
+ <base>
+  <name>SourceRoot</name>
+  <path>D:/dev/PointOfSales_v2/CurrentRelease</path>
+  <al>database</al>
+  <al>encrypt</al>
+  <al>main</al>
+  <al>order_entry</al>
+  <al>utils</al>
+ </base>
+ <source>
+  <regressionable_path>
+   <base>SourceRoot</base>
+   <subpath>utils/src/whitebox.c</subpath>
+  </regressionable_path>
+  <append_cover_io>true</append_cover_io>
+ </source>
+</cover>
+
