@@ -97,11 +97,10 @@ if __name__ == '__main__':
     
     endDT = datetime.now()
     
-    print("Start : ", startDT)
-    print("2018  : ", dt2018,   dtPost-dt2018)
-    print("PoST  : ", dtPost,   pluginDT-dtPost)
-    print("Plugin: ", pluginDT, endDT-pluginDT)
-    print("End   : ", endDT, endDT-startDT)
+    print("2018   : ", dtPost-dt2018)
+    print("PoST   : ", pluginDT-dtPost)
+    print("Plugin : ", endDT-pluginDT)
+    print("Total  : ", endDT-startDT)
     
     
     
