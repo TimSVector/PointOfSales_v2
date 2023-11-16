@@ -25,8 +25,6 @@ if "%VC_VERSION%"=="" (
     call single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
     call single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
     call single_test.bat c:\vcast\2020sp7 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
-    call single_test.bat c:\vcast\2021sp8 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
-    call single_test.bat c:\vcast\2022sp8 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
     call single_test.bat c:\vcast\2023sp4 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
 
 ) else (

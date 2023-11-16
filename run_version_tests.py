@@ -13,6 +13,11 @@ def parse_args():
     parser.add_argument('-p', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
     parser.add_argument('-a', '--all',    help='Run all the tests',                           action="store_true", dest="run_all", default=False)
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store", dest="vc_version", default=None)
+    parser.add_argument('-c', '--cov_types',   
+        help='Run specified test for specifc coverage types [default is all] (STATEMENT+MC/DC,STATEMENT+BRANCH,FUNCTION+FUNCTION_CALL,FUNCTION,MC/DC,BRANCH,STATEMENT)',   
+        action="store", 
+        dest="cov_types", 
+        default=None)
 
     args = parser.parse_args()
 
@@ -21,7 +26,6 @@ def parse_args():
     elif args.vc_version:
         print("VC Version: " + args.vc_version + " does not exist. Exiting")
         sys.exit()
-
         
     return args
     
@@ -43,7 +47,10 @@ def run_2018_post(args):
                 "SFP IMPORT MODIFY         ", 
                 "SFP IMPORT MODIFY DO_MERGE"] 
                 
-    coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
+    if args.cov_types is None:
+        coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
+    else:
+        coverage_types = args.cov_types.split(",")
 
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 
