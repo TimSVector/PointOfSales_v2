@@ -88,7 +88,7 @@ def run_plugin(args):
 if __name__ == '__main__':
 
     print("1. run_version_tests start time", datetime.now())
-    args.parse_args()
+    parse_args()
     
     run_2018_post(args)
     run_plugin(args)
