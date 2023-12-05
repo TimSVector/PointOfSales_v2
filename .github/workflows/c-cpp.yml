@@ -33,7 +33,7 @@ jobs:
     
     # run the VC Project
     - name: VectorCAST Build/Execute
-      run: ${VECTORCAST_DIR}/vpython vc_scripts/vcast_exec.py "$VC_Project" --build-execute --junit --cobertura --aggregate --sonarqube $VC_UseCILicense $VC_useCBT $VC_jobs
+      run: ${VECTORCAST_DIR}\vpython vc_scripts\vcast_exec.py "$VC_Project" --build-execute --junit --cobertura --aggregate --sonarqube $VC_UseCILicense $VC_useCBT $VC_jobs
       
     # Cobertura reporting
     - name: Publish Cobertura Report
