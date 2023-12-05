@@ -209,7 +209,7 @@ if __name__ == '__main__':
 
     print("Printing sys.argv: ")
     print(sys.argv)
-    print("Starting argparse")
+    print("Starting argparse") 
 
     parser = argparse.ArgumentParser()
     parser.add_argument('ManageProject', help='Manager Project Name')
