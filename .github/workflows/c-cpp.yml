@@ -33,7 +33,7 @@ jobs:
     
     # run the VC Project
     - name: VectorCAST Build/Execute
-      run: Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\vpython.exe  -ArgumentList ".\vc_scripts\vcast_exec.py {{$env.VC_Project}} --build-execute --junit --cobertura --aggregate $VC_UseCILicense $VC_useCBT $VC_jobs"
+      run: Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\vpython.exe  -ArgumentList ".\vc_scripts\vcast_exec.py $VC_Project --build-execute --junit --cobertura --aggregate $VC_UseCILicense $VC_useCBT $VC_jobs"
 
        
     # Cobertura reporting
