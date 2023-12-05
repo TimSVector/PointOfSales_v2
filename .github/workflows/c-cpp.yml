@@ -34,8 +34,6 @@ jobs:
     # run the VC Project
     - name: VectorCAST Build/Execute
       run: env
-      run: echo $VECTORCAST_DIR
-      run: echo $env.VECTORCAST_DIR
        
     # Cobertura reporting
     - name: Publish Cobertura Report
