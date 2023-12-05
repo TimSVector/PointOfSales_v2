@@ -33,7 +33,7 @@ jobs:
     
     # run the VC Project
     - name: VectorCAST Build/Execute
-      run: env
+      run: set
        
     # Cobertura reporting
     - name: Publish Cobertura Report
