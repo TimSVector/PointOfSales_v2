@@ -207,6 +207,7 @@ class VectorCASTExecute(object):
 
 if __name__ == '__main__':
 
+    print(sys.argv)
     parser = argparse.ArgumentParser()
     parser.add_argument('ManageProject', help='Manager Project Name')
     
