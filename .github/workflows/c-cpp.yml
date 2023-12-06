@@ -43,6 +43,10 @@ jobs:
     - name: VectorCAST Build/Execute
       run: Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\vpython.exe  -ArgumentList ".\vc_scripts\vcast_exec.py fast_test.vcm --build-execute --junit --cobertura --aggregate $VC_UseCILicense --incremental --jobs 4"
        
+    # run the VC Project
+    - name: Post Execute Verification
+      run: dir
+       
     # Cobertura reporting
     - name: Publish Cobertura Report
       uses: 5monkeys/cobertura-action@master
