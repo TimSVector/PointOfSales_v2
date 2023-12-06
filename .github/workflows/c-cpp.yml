@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "master" ]
     
+permissions:
+    contents: read
+    checks: write
+    id-token: write
+    
 env:
   # Relative path from checkout to the VectorCAST Project
   VC_Project: "fast_test.vcm"
