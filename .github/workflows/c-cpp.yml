@@ -85,6 +85,6 @@ jobs:
       with:
         style: flat
         source: ./fast_test/json_data/coverage-summary.json
-        output: coverage/badges.svg
+        output: badges/coverage.svg
         jsonPath: totals.percent_covered
 
