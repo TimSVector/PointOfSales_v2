@@ -8,6 +8,8 @@ static name_type WaitingList[10];
 static unsigned int WaitingListSize = 0;
 static unsigned int WaitingListIndex = 0;
 
+#define SALES_TAX 1.06
+
 /* This function will add a free dessert to specific orders based on the 
    entree, salad, and beverage choice */
 void Add_Included_Dessert(struct order_type* Order)
@@ -97,12 +99,12 @@ FLOAT Get_Check_Total(table_index_type Table)
 
   if (Table_Data.Number_In_Party > 8)
   {
-    Table_Data.Check_Total *= 1.20;
+    Table_Data.Check_Total *= 1.18;
   }
-  
-  Table_Data.Check_Total *= 1.10;
-  
 
+  # state sale stax
+  Table_Data.Check_Total *= SALES_TAX;
+  
   return (Table_Data.Check_Total);
 }
 
