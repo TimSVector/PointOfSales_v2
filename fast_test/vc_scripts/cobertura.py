@@ -420,29 +420,29 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         
     jsonData = """{
   "totals": {
-    "percent_covered": """ + "{:.2f}%".format(line_rate*100.0) + """,
+    "percent_covered": """ + "{:.2f}".format(line_rate*100.0) + """,
     "coverage_metrics": {
 """    
 
     if total_st > 0:   
         print ("statements: {:.2f}% ({:d} out of {:d})".format(line_rate*100.0, cov_st, total_st))
-        jsonData += "      \"percent_statements\": " + "{:.2f}%".format(line_rate*100.0) + ",\n"
+        jsonData += "      \"percent_statements\": " + "{:.2f}".format(line_rate*100.0) + ",\n"
 
     if total_br > 0:   
         print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
-        jsonData += "      \"percent_branches\": " + "{:.2f}%".format(branch_rate*100.0) + ",\n"
+        jsonData += "      \"percent_branches\": " + "{:.2f}".format(branch_rate*100.0) + ",\n"
 
     if total_func > 0: 
         print ("functions: {:.2f}% ({:d} out of {:d})".format(func_rate*100.0, cov_func, total_func))
-        jsonData += "      \"percent_functions\": " + "{:.2f}%".format(func_rate*100.0) + ",\n"
+        jsonData += "      \"percent_functions\": " + "{:.2f}".format(func_rate*100.0) + ",\n"
 
     if total_fc > 0:   
         print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
-        jsonData += "      \"percent_function_calls\": " + "{:.2f}%".format(FC_rate*100.0) + ",\n"
+        jsonData += "      \"percent_function_calls\": " + "{:.2f}".format(FC_rate*100.0) + ",\n"
 
     if total_mcdc > 0: 
         print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
-        jsonData += "      \"percent_mcdc_pairs\": " + "{:.2f}%".format(MCDC_rate*100.0) + ",\n"
+        jsonData += "      \"percent_mcdc_pairs\": " + "{:.2f}".format(MCDC_rate*100.0) + ",\n"
     
     jsonData += """      "complexity": """ + str(complexity) + """
     }
