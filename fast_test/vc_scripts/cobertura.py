@@ -418,37 +418,53 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         coverages.attrib['branches-covered'] = str(cov_br)
         coverages.attrib['branches-valid'] = str(total_br)
         
-    jsonData = """{
-  "totals": {
-    "percent_covered": """ + "{:.2f}".format(line_rate*100.0) + """,
-    "coverage_metrics": {
-"""    
+    jsonData = {}
 
     if total_st > 0:   
         print ("statements: {:.2f}% ({:d} out of {:d})".format(line_rate*100.0, cov_st, total_st))
-        jsonData += "      \"percent_statements\": " + "{:.2f}".format(line_rate*100.0) + ",\n"
+        jsonSt = {}
+        jsonSt['total'] = total_st
+        jsonSt['covered'] = cov_st
+        jsonSt['pct'] = line_rate*100.0
+        jsonData['statements'] = jsonSt
 
     if total_br > 0:   
         print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
-        jsonData += "      \"percent_branches\": " + "{:.2f}".format(branch_rate*100.0) + ",\n"
+        jsonBr = {}
+        jsonBr['total'] = total_br
+        jsonBr['covered'] = cov_br
+        jsonBr['pct'] = branch_rate*100.0
+        jsonData['branches'] = jsonBr
 
     if total_func > 0: 
         print ("functions: {:.2f}% ({:d} out of {:d})".format(func_rate*100.0, cov_func, total_func))
-        jsonData += "      \"percent_functions\": " + "{:.2f}".format(func_rate*100.0) + ",\n"
+        jsonFunc = {}
+        jsonFunc['total'] = total_func
+        jsonFunc['covered'] = cov_func
+        jsonFunc['pct'] = func_rate*100.0
+        jsonData['funtions'] = jsonFunc
 
     if total_fc > 0:   
         print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
-        jsonData += "      \"percent_function_calls\": " + "{:.2f}".format(FC_rate*100.0) + ",\n"
+        jsonFuncCall = {}
+        jsonFuncCall['total'] = total_fc
+        jsonFuncCall['covered'] = cov_fc
+        jsonFuncCall['pct'] = FC_rate*100.0
+        jsonData['funtioncalls'] = jsonFuncCall
 
     if total_mcdc > 0: 
         print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
-        jsonData += "      \"percent_mcdc_pairs\": " + "{:.2f}".format(MCDC_rate*100.0) + ",\n"
+        print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
+        jsonMCDCPair = {}
+        jsonMCDCPair['total'] = total_mcdc
+        jsonMCDCPair['covered'] = cov_mcdc
+        jsonMCDCPair['pct'] = FC_rate*100.0
+        jsonMCDCPair['mcdc'] = jsonMCDCPair
     
-    jsonData += """      "complexity": """ + str(complexity) + """
-    }
-  }
-}
-"""
+    jsonData['complexity'] = complexity
+    
+    jsonTotals = {}
+    jsonTotals['totals'] = jsonData
     
     print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
     print ("complexity: {:d}".format(complexity))
@@ -456,10 +472,14 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
     if not os.path.exists("json_data"):
         os.makedirs("json_data")
         
+    import json
+    
+    json_object = json.dumps(jsonTotals, indent = 2)
+    
     with open("json_data/coverage-summary.json","w") as fd:
-        fd.write(jsonData)
+        fd.write(json_object)
         
-    print("json data: ", jsonData)
+    print(json_object)
     
     source = etree.SubElement(sources, "source")
     source.text = "./"
