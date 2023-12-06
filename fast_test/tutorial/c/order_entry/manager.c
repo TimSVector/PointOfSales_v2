@@ -102,7 +102,7 @@ FLOAT Get_Check_Total(table_index_type Table)
     Table_Data.Check_Total *= 1.18;
   }
 
-  # state sale stax
+  // state sale stax
   Table_Data.Check_Total *= SALES_TAX;
   
   return (Table_Data.Check_Total);
