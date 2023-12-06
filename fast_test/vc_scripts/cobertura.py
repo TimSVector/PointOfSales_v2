@@ -426,7 +426,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonSt['total'] = total_st
         jsonSt['covered'] = cov_st
         jsonSt['pct'] = line_rate*100.0
-        jsonData['statements'] = jsonSt
+        jsonData['  '] = jsonSt
 
     if total_br > 0:   
         print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
@@ -464,7 +464,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
     jsonData['complexity'] = complexity
     
     jsonTotals = {}
-    jsonTotals['totals'] = jsonData
+    jsonTotals['total'] = jsonData
     
     print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
     print ("complexity: {:d}".format(complexity))
