@@ -84,7 +84,7 @@ jobs:
       uses: jaywcjlove/coverage-badges-cli@main
       with:
         style: flat
-        source: json_data/coverage-summary.json
+        source: ./fast_test/json_data/coverage-summary.json
         output: coverage/badges.svg
         jsonPath: totals.percent_covered
 
