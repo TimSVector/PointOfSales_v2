@@ -81,6 +81,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: HTML Reports
-        path: "./*.html"
+        path: "**/fast_test*.html"
+
+    # Save TEXT Reports
+    - name: Unit Test Fail Count
+      uses: actions/upload-artifact@v3
+      with:
+        name: Unit Test Fail Count
+        path: "unit_test_fail_count.txt"
 
         
