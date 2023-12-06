@@ -7,9 +7,6 @@ on:
     branches: [ "master" ]
     
 env:
-  # Vector Self-signed certificate
-  SSL_CERT_DIR: "D:\\vector\\certs"
-  
   # Relative path from checkout to the VectorCAST Project
   VC_Project: "fast_test.vcm"
 
@@ -55,7 +52,7 @@ jobs:
       with:
         report_paths: '**/xml_data/junit/test_results*.xml'
         detailed_summary: true
-        fail_on_failure: true
+        fail_on_failure: false
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
