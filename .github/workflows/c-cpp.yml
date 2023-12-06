@@ -66,14 +66,14 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         
     # Save metrics artifacts
-    - name: Archive metrics data
+    - name: Metrics XML Files
       uses: actions/upload-artifact@v3
       with:
         name: Metrics XML Files
         path: "**/xml_data"
 
     # Save HTML Reports
-    - name: Archive HTML Reports
+    - name: HTML Reports
       uses: actions/upload-artifact@v3
       with:
         name: HTML Reports
