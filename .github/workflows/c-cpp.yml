@@ -43,7 +43,7 @@ jobs:
       with:
           path: '**/xml_data/cobertura/coverage_results*.xml'
           minimum_coverage: 0  
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           
     # Junit reporting
     - name: Publish Test Report
@@ -54,6 +54,6 @@ jobs:
         detailed_summary: true
         fail_on_failure: false
         include_passed: true
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
       
