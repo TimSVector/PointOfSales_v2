@@ -1,6 +1,6 @@
 {
   "totals": {
-    "percent_covered": 90,
+    "percent_covered": 76.79,
     "coverage_metrics": {
       "percent_statements": 76.79,
       "percent_branches": 85.19,
