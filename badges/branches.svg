@@ -1,0 +1,14 @@
+<svg width="114.2" height="20" viewBox="0 0 1142 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="branches: 85.19%">
+  <title>branches: 85.19%</title>
+  <g>
+    <rect fill="#555" width="602" height="200"/>
+    <rect fill="#a0a127" x="602" width="540" height="200"/>
+  </g>
+  <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
+    <text x="60" y="148" textLength="502" fill="#000" opacity="0.1">branches</text>
+    <text x="50" y="138" textLength="502">branches</text>
+    <text x="657" y="148" textLength="440" fill="#000" opacity="0.1">85.19%</text>
+    <text x="647" y="138" textLength="440">85.19%</text>
+  </g>
+  
+</svg>
