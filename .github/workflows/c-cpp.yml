@@ -28,7 +28,7 @@ env:
   NODE_EXTRA_CA_CERTS: "d:\\vector\\certs\\Vector_Root_CA_2.0.crt"
   
 jobs:
-  build:
+  VectorCAST:
 
     runs-on: self-hosted
     
@@ -42,10 +42,6 @@ jobs:
     # run the VC Project
     - name: VectorCAST Build/Execute
       run: Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\vpython.exe  -ArgumentList ".\vc_scripts\vcast_exec.py fast_test.vcm --build-execute --junit --cobertura --aggregate $VC_UseCILicense --incremental --jobs 4"
-       
-    # run the VC Project
-    - name: Post Execute Verification
-      run: dir
        
     # Cobertura reporting
     - name: Publish Cobertura Report
@@ -68,6 +64,9 @@ jobs:
         fail_on_failure: false
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        summary: true
+        check_name: VectorCAST Test Results
+        annotate_only: true
         
     # Save metrics artifacts
     - name: Metrics XML Files
@@ -81,6 +80,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: HTML Reports
-        path: "./*.html"
-
+        path: "**/fast_test*.html"
         
