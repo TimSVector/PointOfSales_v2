@@ -62,11 +62,12 @@ jobs:
         fail_on_failure: false
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
-              
+        
+    # Save artifacts
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
       with:
         name: Artifacts
-        path: "**/xml_data"
+        path: "**/xml_data,*.html"
 
         
