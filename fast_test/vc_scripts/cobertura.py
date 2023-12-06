@@ -426,7 +426,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonSt['total'] = total_st
         jsonSt['covered'] = cov_st
         jsonSt['pct'] = line_rate*100.0
-        jsonData['  '] = jsonSt
+        jsonData['statements'] = jsonSt
 
     if total_br > 0:   
         print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
@@ -461,7 +461,9 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonMCDCPair['pct'] = FC_rate*100.0
         jsonMCDCPair['mcdc'] = jsonMCDCPair
     
-    jsonData['complexity'] = complexity
+    jsonData['total'] = total_st
+    jsonData['covered'] = cov_st
+    jsonData['pct'] = line_rate
     
     jsonTotals = {}
     jsonTotals['total'] = jsonData
