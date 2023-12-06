@@ -49,6 +49,8 @@ jobs:
       with:
           path: '**/xml_data/cobertura/coverage_results*.xml'
           minimum_coverage: 0  
+          show_line: true
+          show_branch: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           
     # Junit reporting
@@ -63,11 +65,18 @@ jobs:
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
         
-    # Save artifacts
-    - name: Archive code coverage results
+    # Save metrics artifacts
+    - name: Archive metrics data
       uses: actions/upload-artifact@v3
       with:
-        name: Artifacts
-        path: "**/xml_data,*.html"
+        name: Metrics XML Files
+        path: "**/xml_data"
+
+    # Save HTML Reports
+    - name: Archive HTML Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: HTML Reports
+        path: "*.html"
 
         
