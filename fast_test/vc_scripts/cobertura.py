@@ -425,7 +425,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonSt = {}
         jsonSt['total'] = total_st
         jsonSt['covered'] = cov_st
-        jsonSt['pct'] =  line_rate*100.0
+        jsonSt['pct'] = round(line_rate*100.0, 2)
         jsonData['statements'] = jsonSt
 
     if total_br > 0:   
@@ -433,7 +433,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonBr = {}
         jsonBr['total'] = total_br
         jsonBr['covered'] = cov_br
-        jsonBr['pct'] = branch_rate*100.0
+        jsonBr['pct'] = round(branch_rate*100.0, 2)
         jsonData['branches'] = jsonBr
 
     if total_func > 0: 
@@ -441,7 +441,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonFunc = {}
         jsonFunc['total'] = total_func
         jsonFunc['covered'] = cov_func
-        jsonFunc['pct'] = func_rate*100.0
+        jsonFunc['pct'] = round(func_rate*100.0, 2)
         jsonData['funtions'] = jsonFunc
 
     if total_fc > 0:   
@@ -449,7 +449,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonFuncCall = {}
         jsonFuncCall['total'] = total_fc
         jsonFuncCall['covered'] = cov_fc
-        jsonFuncCall['pct'] = FC_rate*100.0
+        jsonFuncCall['pct'] = round(FC_rate*100.0, 2)
         jsonData['funtioncalls'] = jsonFuncCall
 
     if total_mcdc > 0: 
@@ -457,12 +457,12 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonMCDCPair = {}
         jsonMCDCPair['total'] = total_mcdc
         jsonMCDCPair['covered'] = cov_mcdc
-        jsonMCDCPair['pct'] = MCDC_rate*100.0
+        jsonMCDCPair['pct'] = round(MCDC_rate*100.0, 2)
         jsonData['mcdc'] = jsonMCDCPair
     
     jsonData['total'] = total_st
     jsonData['covered'] = cov_st
-    jsonData['pct'] = line_rate*100.0
+    jsonData['pct'] = round(line_rate*100.0, 2)
     
     jsonTotals = {}
     jsonTotals['total'] = jsonData
