@@ -64,6 +64,9 @@ jobs:
         fail_on_failure: false
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        summary: true
+        check_name: VectorCAST Test Results
+        annotate_only: true
         
     # Save metrics artifacts
     - name: Metrics XML Files
