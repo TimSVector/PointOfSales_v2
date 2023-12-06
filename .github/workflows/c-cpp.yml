@@ -28,7 +28,7 @@ env:
   NODE_EXTRA_CA_CERTS: "d:\\vector\\certs\\Vector_Root_CA_2.0.crt"
   
 jobs:
-  build:
+  VectorCAST:
 
     runs-on: self-hosted
     
@@ -42,10 +42,6 @@ jobs:
     # run the VC Project
     - name: VectorCAST Build/Execute
       run: Start-Process -NoNewWindow -wait $env:VECTORCAST_DIR\vpython.exe  -ArgumentList ".\vc_scripts\vcast_exec.py fast_test.vcm --build-execute --junit --cobertura --aggregate $VC_UseCILicense --incremental --jobs 4"
-       
-    # run the VC Project
-    - name: Post Execute Verification
-      run: dir
        
     # Cobertura reporting
     - name: Publish Cobertura Report
