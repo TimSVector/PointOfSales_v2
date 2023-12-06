@@ -1,5 +1,5 @@
-[![cov](https://TimSVector.github.io/PointOfSales_v2/badges/coverage.svg)](https://github.com/TimSVector/PointOfSales_v2/actions)
-
+![Coverage](./badges/statements.svg)
+![Coverage](./badges/branches.svg)
 
 # Summary
 
