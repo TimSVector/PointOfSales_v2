@@ -442,7 +442,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonFunc['total'] = total_func
         jsonFunc['covered'] = cov_func
         jsonFunc['pct'] = round(func_rate*100.0, 2)
-        jsonData['funtions'] = jsonFunc
+        jsonData['functions'] = jsonFunc
 
     if total_fc > 0:   
         print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
@@ -450,7 +450,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonFuncCall['total'] = total_fc
         jsonFuncCall['covered'] = cov_fc
         jsonFuncCall['pct'] = round(FC_rate*100.0, 2)
-        jsonData['funtioncalls'] = jsonFuncCall
+        jsonData['functioncalls'] = jsonFuncCall
 
     if total_mcdc > 0: 
         print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
@@ -460,12 +460,12 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonMCDCPair['pct'] = round(MCDC_rate*100.0, 2)
         jsonData['mcdc'] = jsonMCDCPair
     
-    jsonData['total'] = total_st
-    jsonData['covered'] = cov_st
-    jsonData['pct'] = round(line_rate*100.0, 2)
+    # jsonData['total'] = total_st
+    # jsonData['covered'] = cov_st
+    # jsonData['pct'] = round(line_rate*100.0, 2)
     
     jsonTotals = {}
-    jsonTotals['total'] = jsonData
+    jsonTotals['totals'] = jsonData
     
     print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
     print ("complexity: {:d}".format(complexity))
