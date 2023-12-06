@@ -372,7 +372,22 @@ def runCoverageResultsMP(packages, mpFile, verbose = False):
         MCDC_rate = float(cov_mcdc) / float(total_mcdc)
         
     return total_st, cov_st, total_br, cov_br, total_func, cov_func, total_fc, cov_fc, total_mcdc, cov_mcdc, branch_rate, line_rate, func_rate, FC_rate, MCDC_rate, vg
-            
+
+def jsonDataFile(cov_type, rate, cov, tots):
+    import json
+    jsonData = {}
+    jsonSt = {}
+    jsonSt['total'] = tots
+    jsonSt['covered'] = cov
+    jsonSt['pct'] = round(rate*100.0, 2)
+    jsonData['statements'] = jsonSt
+    jsonTotals = {}
+    jsonTotals['total'] = jsonData
+    json_object = json.dumps(jsonTotals, indent = 2)
+
+    with open("json_data/"+cov_type+".json","w") as fd:
+        fd.write(json_object)
+
 
 def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
     
@@ -418,70 +433,34 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         coverages.attrib['branches-covered'] = str(cov_br)
         coverages.attrib['branches-valid'] = str(total_br)
         
-    jsonData = {}
-
-    if total_st > 0:   
-        print ("statements: {:.2f}% ({:d} out of {:d})".format(line_rate*100.0, cov_st, total_st))
-        jsonSt = {}
-        jsonSt['total'] = total_st
-        jsonSt['covered'] = cov_st
-        jsonSt['pct'] = round(line_rate*100.0, 2)
-        jsonData['statements'] = jsonSt
-
-    if total_br > 0:   
-        print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
-        jsonBr = {}
-        jsonBr['total'] = total_br
-        jsonBr['covered'] = cov_br
-        jsonBr['pct'] = round(branch_rate*100.0, 2)
-        jsonData['branches'] = jsonBr
-
-    if total_func > 0: 
-        print ("functions: {:.2f}% ({:d} out of {:d})".format(func_rate*100.0, cov_func, total_func))
-        jsonFunc = {}
-        jsonFunc['total'] = total_func
-        jsonFunc['covered'] = cov_func
-        jsonFunc['pct'] = round(func_rate*100.0, 2)
-        jsonData['functions'] = jsonFunc
-
-    if total_fc > 0:   
-        print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
-        jsonFuncCall = {}
-        jsonFuncCall['total'] = total_fc
-        jsonFuncCall['covered'] = cov_fc
-        jsonFuncCall['pct'] = round(FC_rate*100.0, 2)
-        jsonData['functioncalls'] = jsonFuncCall
-
-    if total_mcdc > 0: 
-        print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
-        jsonMCDCPair = {}
-        jsonMCDCPair['total'] = total_mcdc
-        jsonMCDCPair['covered'] = cov_mcdc
-        jsonMCDCPair['pct'] = round(MCDC_rate*100.0, 2)
-        jsonData['mcdc'] = jsonMCDCPair
-    
-    # jsonData['total'] = total_st
-    # jsonData['covered'] = cov_st
-    # jsonData['pct'] = round(line_rate*100.0, 2)
-    
-    jsonTotals = {}
-    jsonTotals['totals'] = jsonData
-    
-    print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
-    print ("complexity: {:d}".format(complexity))
-
     if not os.path.exists("json_data"):
         os.makedirs("json_data")
         
-    import json
-    
-    json_object = json.dumps(jsonTotals, indent = 2)
-    
-    with open("json_data/coverage-summary.json","w") as fd:
-        fd.write(json_object)
+    if total_st > 0:   
+        print ("statements: {:.2f}% ({:d} out of {:d})".format(line_rate*100.0, cov_st, total_st))
         
-    print(json_object)
-    
+        jsonDataFile("statements", line_rate, cov_st, total_st)
+        
+        
+    if total_br > 0:   
+        print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
+        jsonDataFile("branches", branch_rate, cov_br, total_br)
+
+    if total_func > 0: 
+        print ("functions: {:.2f}% ({:d} out of {:d})".format(func_rate*100.0, cov_func, total_func))
+        jsonDataFile("functions", func_rate, cov_func, total_func)
+
+    if total_fc > 0:   
+        print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
+        jsonDataFile("functioncalls", FC_rate, cov_fc, total_fc)
+
+    if total_mcdc > 0: 
+        print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
+        jsonDataFile("mcdc", MCDC_rate, cov_mcdc, total_mcdc)
+       
+    print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
+    print ("complexity: {:d}".format(complexity))
+        
     source = etree.SubElement(sources, "source")
     source.text = "./"
 
