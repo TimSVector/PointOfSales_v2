@@ -425,7 +425,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonSt = {}
         jsonSt['total'] = total_st
         jsonSt['covered'] = cov_st
-        jsonSt['pct'] = "{:.2f}".format(line_rate*100.0}
+        jsonSt['pct'] = "{:.2f}".format(line_rate*100.0)
         jsonData['statements'] = jsonSt
 
     if total_br > 0:   
@@ -454,16 +454,15 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
 
     if total_mcdc > 0: 
         print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
-        print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
         jsonMCDCPair = {}
         jsonMCDCPair['total'] = total_mcdc
         jsonMCDCPair['covered'] = cov_mcdc
-        jsonMCDCPair['pct'] = "{:.2f}".format(FC_rate*100.0)
+        jsonMCDCPair['pct'] = "{:.2f}".format(MCDC_rate*100.0)
         jsonMCDCPair['mcdc'] = jsonMCDCPair
     
     jsonData['total'] = total_st
     jsonData['covered'] = cov_st
-    jsonData['pct'] = "{:.2f}".format(FC_rate*100.0)
+    jsonData['pct'] = "{:.2f}".format(line_rate*100.0)
     
     jsonTotals = {}
     jsonTotals['total'] = jsonData
