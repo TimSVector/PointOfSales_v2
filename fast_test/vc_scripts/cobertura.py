@@ -458,7 +458,7 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         jsonMCDCPair['total'] = total_mcdc
         jsonMCDCPair['covered'] = cov_mcdc
         jsonMCDCPair['pct'] = "{:.2f}".format(MCDC_rate*100.0)
-        jsonMCDCPair['mcdc'] = jsonMCDCPair
+        jsonData['mcdc'] = jsonMCDCPair
     
     jsonData['total'] = total_st
     jsonData['covered'] = cov_st
