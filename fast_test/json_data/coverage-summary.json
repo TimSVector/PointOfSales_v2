@@ -1,0 +1,13 @@
+{
+  "totals": {
+    "percent_covered": 90,
+    "coverage_metrics": {
+      "percent_statements": 76.79,
+      "percent_branches": 85.19,
+      "percent_mcdc_pairs": 28.7,
+      "percent_functions": 100,
+      "percent_function_calls": 100,
+      "comlexity": 19
+    }
+  }
+}
