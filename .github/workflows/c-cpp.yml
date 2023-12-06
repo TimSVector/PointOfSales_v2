@@ -79,12 +79,23 @@ jobs:
         name: HTML Reports
         path: "**/fast_test*.html"
         
-    # Coverage Badge
-    - name: Create Coverage Badges
+    # Create Statement Coverage Badges
+    - name: Create Statement Coverage Badges
       uses: jaywcjlove/coverage-badges-cli@main
       with:
         style: flat
         source: ./fast_test/json_data/coverage-summary.json
         output: badges/statements.svg
         jsonPath: totals.statements
+        label: statements
+
+ # Create Branch Coverage Badges
+    - name: Create Statement Coverage Badges
+      uses: jaywcjlove/coverage-badges-cli@main
+      with:
+        style: flat
+        source: ./fast_test/json_data/coverage-summary.json
+        output: badges/branches.svg
+        jsonPath: totals.branches
+        label: branches
 
