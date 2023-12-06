@@ -52,7 +52,7 @@ jobs:
       with:
         report_paths: '**/xml_data/junit/test_results*.xml'
         detailed_summary: true
-        fail_on_failure: false
+        fail_on_failure: true
         include_passed: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
