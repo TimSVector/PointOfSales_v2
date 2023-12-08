@@ -26,7 +26,8 @@ env:
 
   # sets the extra self-signed cert
   NODE_EXTRA_CA_CERTS: "d:\\vector\\certs\\Vector_Root_CA_2.0.crt"
-  
+  REPO_KEY: ${{ secrets.GIT_ACTION_PUSH }}
+
 jobs:
   VectorCAST:
 
@@ -79,9 +80,16 @@ jobs:
         name: HTML Reports
         path: "**/fast_test*.html"
                 
+    # Save Coverage Badges
+    - name: Coverage Badges
+      uses: actions/upload-artifact@v3
+      with:
+        name: Coverage Badges
+        path: "**/badges/*.svg"
+                
     # push badges
     - name: Push badges to repo
-      - run: |
-          git add badges
-          git commit -m "badges"
-          git push
+      run: |
+        git add badges
+        git commit -m "badges"
+        git push
