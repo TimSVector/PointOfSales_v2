@@ -373,21 +373,16 @@ def runCoverageResultsMP(packages, mpFile, verbose = False):
         
     return total_st, cov_st, total_br, cov_br, total_func, cov_func, total_fc, cov_fc, total_mcdc, cov_mcdc, branch_rate, line_rate, func_rate, FC_rate, MCDC_rate, vg
 
-def jsonDataFile(cov_type, rate, cov, tots):
-    import json
-    jsonData = {}
-    jsonSt = {}
-    jsonSt['total'] = tots
-    jsonSt['covered'] = cov
-    jsonSt['pct'] = round(rate*100.0, 2)
-    jsonData['statements'] = jsonSt
-    jsonTotals = {}
-    jsonTotals['total'] = jsonData
-    json_object = json.dumps(jsonTotals, indent = 2)
-
-    with open("json_data/"+cov_type+".json","w") as fd:
-        fd.write(json_object)
-
+badge = None
+def generateBadge(cov_type, pct):
+    global badge
+    
+    from coverage_badges_svg import coverageBadge
+    
+    if badge is None:
+        badge = coverageBadge()
+        
+    badge.generateBadge(cov_type, pct)
 
 def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
     
@@ -438,25 +433,23 @@ def generateCoverageResults(inFile, azure, xml_data_dir = "xml_data"):
         
     if total_st > 0:   
         print ("statements: {:.2f}% ({:d} out of {:d})".format(line_rate*100.0, cov_st, total_st))
-        
-        jsonDataFile("statements", line_rate, cov_st, total_st)
-        
+        generateBadge("statement", line_rate)
         
     if total_br > 0:   
         print ("branches: {:.2f}% ({:d} out of {:d})".format(branch_rate*100.0, cov_br, total_br))
-        jsonDataFile("branches", branch_rate, cov_br, total_br)
+        generateBadge("branch", branch_rate)
 
     if total_func > 0: 
         print ("functions: {:.2f}% ({:d} out of {:d})".format(func_rate*100.0, cov_func, total_func))
-        jsonDataFile("functions", func_rate, cov_func, total_func)
+        generateBadge("function", func_rate)
 
     if total_fc > 0:   
         print ("function calls: {:.2f}% ({:d} out of {:d})".format(FC_rate*100.0, cov_fc, total_fc))
-        jsonDataFile("functioncalls", FC_rate, cov_fc, total_fc)
+        generateBadge("functioncall", FC_rate)
 
     if total_mcdc > 0: 
         print ("mcdc pairs: {:.2f}% ({:d} out of {:d})".format(MCDC_rate*100.0, cov_mcdc, total_mcdc))
-        jsonDataFile("mcdc", MCDC_rate, cov_mcdc, total_mcdc)
+        generateBadge("mcdcpair", MCDC_rate)
        
     print ("coverage: {:.2f}% of statements".format(line_rate*100.0))
     print ("complexity: {:d}".format(complexity))
