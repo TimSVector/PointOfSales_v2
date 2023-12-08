@@ -81,7 +81,7 @@ jobs:
                 
     # push badges
     - name: Push badges to repo
-      - run: |
-          git add badges
-          git commit -m "badges"
-          git push
+      run: |
+        git add badges
+        git commit -m "badges"
+        git push
