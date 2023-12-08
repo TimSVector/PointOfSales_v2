@@ -78,24 +78,10 @@ jobs:
       with:
         name: HTML Reports
         path: "**/fast_test*.html"
-        
-    # Create Statement Coverage Badges
-    - name: Create Statement Coverage Badges
-      uses: jaywcjlove/coverage-badges-cli@main
-      with:
-        style: flat
-        source: ./fast_test/json_data/statements.json
-        output: badges/statements.svg
-        jsonPath: totals.statements.pct
-        label: statements
-
-    # Create Branch Coverage Badges
-    - name: Create Branch Coverage Badges
-      uses: jaywcjlove/coverage-badges-cli@main
-      with:
-        style: flat
-        source: ./fast_test/json_data/branches.json
-        output: badges/branches.svg
-        jsonPath: totals.branches.pct
-        label: branches
-
+                
+    # push badges
+    - name: Push badges to repo
+      - run: |
+          git add badges
+          git commit -m "badges"
+          git push
