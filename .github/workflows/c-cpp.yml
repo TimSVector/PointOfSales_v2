@@ -79,6 +79,13 @@ jobs:
         name: HTML Reports
         path: "**/fast_test*.html"
                 
+    # Save Coverage Badges
+    - name: Coverage Badges
+      uses: actions/upload-artifact@v3
+      with:
+        name: Coverage Badges
+        path: "**/badges/*.svg"
+                
     # push badges
     - name: Push badges to repo
       run: |
