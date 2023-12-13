@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cover>
- <version>1</version>
+ <version>2</version>
  <options>
   <name>System_Testing</name>
   <coverage>STATEMENT</coverage>
@@ -8,32 +8,32 @@
  <base>
   <name>POST_BASE_DIRECTORY</name>
   <path>$(VCAST_DEMO_SRC_BASE)</path>
-  <wl>database</wl>
-  <wl>encrypt</wl>
-  <wl>main</wl>
-  <wl>order_entry</wl>
-  <wl>utils</wl>
+  <al>database</al>
+  <al>encrypt</al>
+  <al>main</al>
+  <al>order_entry</al>
+  <al>utils</al>
  </base>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>database/src/database.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>encrypt/src/encrypt.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>encrypt/src/matrix_multiply.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
@@ -41,35 +41,35 @@
    <subpath>main/pos_driver.c</subpath>
   </regressionable_path>
   <append_cover_io>true</append_cover_io>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>order_entry/src/manager.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>order_entry/src/waiting_list.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>utils/src/linked_list.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>utils/src/whitebox.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_BRANCH</coverage>
+  <coverage>STATEMENT_MCDC</coverage>
  </source>
 </cover>
 
