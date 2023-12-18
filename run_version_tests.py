@@ -85,7 +85,7 @@ def run_plugin(args):
 
     ## Additional tests -- plugin testing
     if args.run_all or args.run_plgn:
-        for vcd in [r'C:\VCAST\2023sp4']:
+        for vcd in [r'C:\VCAST\2023sp5']:
             os.environ['VECTORCAST_DIR'] = vcd
             p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
             p.wait()
