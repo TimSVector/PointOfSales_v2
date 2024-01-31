@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="34">
+<project version="35">
   <config>
     <config>
       <key>WHITEBOX</key>
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
-      <value>Statement+Branch</value>
+      <value>Statement+MCDC</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
       <value>TRUE</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
@@ -169,6 +169,10 @@
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
       <disabled>
+        <environment name="ENV_LINKED_LIST"/>
+        <environment name="ENV_MANAGER"/>
+        <environment name="ENV_MATRIX_MULTIPLY"/>
+        <environment name="INTEGRATION_TESTING"/>
         <environment name="LUA"/>
       </disabled>
     </testsuite>
@@ -206,6 +210,10 @@
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
       <disabled>
+        <environment name="ENV_LINKED_LIST"/>
+        <environment name="ENV_MANAGER"/>
+        <environment name="ENV_MATRIX_MULTIPLY"/>
+        <environment name="INTEGRATION_TESTING"/>
         <environment name="LUA"/>
       </disabled>
     </testsuite>
@@ -222,6 +230,9 @@
     </compiler>
     <testsuite name="ST">
       <group name="ST"/>
+      <disabled>
+        <environment name="System_Testing"/>
+      </disabled>
     </testsuite>
   </compiler>
 </project>
