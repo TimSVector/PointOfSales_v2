@@ -78,13 +78,6 @@
       <original-environment-directory>PointOfSales_Manage/build/1206201697</original-environment-directory>
     </config>
   </environment>
-  <environment name="LUA" type="UNIT">
-    <language>2</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>PointOfSales_Manage/build/2192010779</original-environment-directory>
-    </config>
-  </environment>
   <environment name="MANAGER" type="UNIT">
     <language>2</language>
     <is-monitored>0</is-monitored>
@@ -129,7 +122,6 @@
     <environment name="ENV_MANAGER"/>
     <environment name="ENV_MATRIX_MULTIPLY"/>
     <environment name="INTEGRATION_TESTING"/>
-    <environment name="LUA"/>
   </group>
   <group name="c++_Testing">
     <environment name="MANAGER"/>
@@ -168,9 +160,6 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="LUA"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -205,9 +194,6 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="LUA"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
