@@ -168,13 +168,6 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="ENV_LINKED_LIST"/>
-        <environment name="ENV_MANAGER"/>
-        <environment name="ENV_MATRIX_MULTIPLY"/>
-        <environment name="INTEGRATION_TESTING"/>
-        <environment name="LUA"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -209,13 +202,6 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="ENV_LINKED_LIST"/>
-        <environment name="ENV_MANAGER"/>
-        <environment name="ENV_MATRIX_MULTIPLY"/>
-        <environment name="INTEGRATION_TESTING"/>
-        <environment name="LUA"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -230,9 +216,6 @@
     </compiler>
     <testsuite name="ST">
       <group name="ST"/>
-      <disabled>
-        <environment name="System_Testing"/>
-      </disabled>
     </testsuite>
   </compiler>
 </project>
