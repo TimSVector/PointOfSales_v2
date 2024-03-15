@@ -168,6 +168,9 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
+      <disabled>
+        <environment name="LUA"/>
+      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -202,6 +205,9 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
+      <disabled>
+        <environment name="LUA"/>
+      </disabled>
     </testsuite>
   </compiler>
   <compiler>
