@@ -1,6 +1,11 @@
-rem @echo off
-echo Making POST.exe %1 %2 %3
+@echo off
+pushd %~dp0
 
+set ORIG_PATH=%PATH%
+
+call ..\setenv.bat
+
+echo Making POST.exe %1 %2 %3
 
 del /q post.exe > nul 2>&1
 del /q build\*.o > nul 2>&1
@@ -37,6 +42,18 @@ gcc build/*.o -o %EXEC% >> build.log 2>&1
 
 type build.log 
 
-if EXIST "%EXEC%" exit /b 0
+
+if EXIST "%EXEC%" goto:end
+
+:error
+popd
+
+set PATH=%ORIG_PATH%
 
 exit /b -1
+
+:end
+
+popd
+
+set PATH=%ORIG_PATH%

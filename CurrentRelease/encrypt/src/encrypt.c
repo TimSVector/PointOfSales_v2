@@ -41,8 +41,8 @@ void __SystemReset(const char *);
  ***************************************************************************************/
 static int sendData(struct matrix_t data);
 static struct matrix_t generate_private_key(void);
-static int Encrypt_Info(const struct matrix_t* private_key, const char * name, const char number[16], const char secCode[3],  float Info);
-static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t* private_key);
+static int Encrypt_Info(const struct matrix_t private_key, const char * name, const char number[16], const char secCode[3],  float Info);
+static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t private_key);
 
 /**************************************************************************************
  *  Subprogram: sendData                                                              *
@@ -175,7 +175,7 @@ static struct matrix_t generate_private_key(void)
  *       - int - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
- static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t* private_key)  
+ static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t private_key)  
  {
      // Initialize the local variables
     struct matrix_t data2BSent = NULL_MATRIX;
@@ -185,7 +185,7 @@ static struct matrix_t generate_private_key(void)
     setDataMatrix(inData, data2BSent, row, col);
          
     // call the matrix multiply routine to encrypt the data
-    if (matrix_multiply(&data2BSent, private_key, &result) == FAILURE)
+    if (matrix_multiply(&data2BSent, &private_key, &result) == FAILURE)
     {
         // if the matrix multiply failed, return FAILURE
         return FAILURE;
@@ -210,7 +210,7 @@ static struct matrix_t generate_private_key(void)
  *       - int - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
-static int Encrypt_Info(const struct matrix_t* private_key, const char * name, const char number[16], const char secCode[3],  float Info)
+static int Encrypt_Info(const struct matrix_t private_key, const char * name, const char number[16], const char secCode[3],  float Info)
 {
     // init the return value
     int ret_val = SUCCESS;
@@ -253,10 +253,11 @@ int transmit_Info (const char * name, const char number[16], const char secCode[
     int ret_val = SUCCESS;
 
     // generate a private key
-    struct matrix_t private_key = generate_private_key();
+    // struct matrix_t private_key = generate_private_key();
 
     // Encrypt and send the data
-    ret_val |= Encrypt_Info(&private_key,name,number,secCode, Info);
+    ret_val |= Encrypt_Info(generate_private_key(),name,number,secCode, Info);
 
     return ret_val;
 }
+

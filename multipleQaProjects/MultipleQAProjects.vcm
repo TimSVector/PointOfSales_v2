@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="34">
+  <config>
+    <base-directories>
+      <key>SourceRoot</key>
+      <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../CurrentRelease</value>
+    </base-directories>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1700063747</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="vcastqt_1" type="COVER">
+    <system-test-module>vcastqt_1_system_tests</system-test-module>
+    <system-test-template>default</system-test-template>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>MultipleQAProjects/build/2071408972</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="vcastqt_2" type="COVER">
+    <system-test-module>vcastqt_2_system_tests</system-test-module>
+    <system-test-template>default</system-test-template>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>MultipleQAProjects/build/3799933174</original-environment-directory>
+    </config>
+  </environment>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+          <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+          <value>TRUE</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(SourceRoot)\utils\inc</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="SystemTesting">
+      <environment name="vcastqt_1"/>
+    </testsuite>
+    <testsuite name="SystemTesting2">
+      <environment name="vcastqt_2"/>
+    </testsuite>
+  </compiler>
+</project>

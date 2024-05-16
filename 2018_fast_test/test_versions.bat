@@ -1,142 +1,37 @@
-@echo off
-set DO_SFP=
-set DO_IMPORT=
+set DO_SFP=0
+set DO_IMPORT=0
+set DO_MODIFY=0
+set DO_MERGE=0
 
-if "%1"=="SFP" (
-set DO_SFP=1
-)
-if "%2"=="SFP" (
-set DO_SFP=1
-)
-if "%1"=="IMPORT" (
-set DO_IMPORT=1
-)
-if "%2"=="IMPORT" (
-set DO_IMPORT=1
-)
+echo %*
+
+echo %* | findstr /i SFP    > nul
+if "%errorlevel%"=="0" set DO_SFP=1
+echo %* | findstr /i IMPORT    > nul
+if "%errorlevel%"=="0" set DO_IMPORT=1
+echo %* | findstr /i MODIFY    > nul
+if "%errorlevel%"=="0" set DO_MODIFY=1
+echo %* | findstr /i MERGE    > nul
+if "%errorlevel%"=="0" set DO_MERGE=1
 
 set workspace=%cd%
 
-set ORIG_PATH=%PATH%
 set ORIG_VCD=%VECTORCAST_DIR%
 
 @echo on
-set VECTORCAST_DIR=c:\vcast\2018sp5
-set path=%VECTORCAST_DIR%;%PATH%
-git clean -fxd
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
-manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-manage -p 2018_fast_test --build-execute > unstashed_build.log 
+if "%VC_VERSION%"=="" (
 
-if "%DO_IMPORT%" == "1" (
-    manage -p 2018_fast_test --export-result temp_result.vcr
-    manage -p 2018_fast_test --clean
-    manage -p 2018_fast_test --import-result temp_result.vcr
-    manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
+    call single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
+    call single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
+    call single_test.bat c:\vcast\2020sp7 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
+    call single_test.bat c:\vcast\2023sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
+
+) else (
+    call single_test.bat c:\vcast\%VC_VERSION% %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE%
 )
 
-%VECTORCAST_DIR%/vpython  vc_scripts/generate-results.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-dir xml_data
-set PATH=%ORIG_PATH%
 set VECTORCAST_DIR=%ORIG_VCD%
 
-pause
+:END
 
-set VECTORCAST_DIR=c:\vcast\2019sp6
-set path=%VECTORCAST_DIR%;%PATH%
-git clean -fxd
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-
-manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-manage -p 2018_fast_test --build-execute > unstashed_build.log 
-
-if "%DO_IMPORT%" == "1" (
-    manage -p 2018_fast_test --export-result temp_result.vcr
-    manage -p 2018_fast_test --clean
-    manage -p 2018_fast_test --import-result temp_result.vcr
-    manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
-)
-
-%VECTORCAST_DIR%/vpython  vc_scripts/generate-results.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-dir xml_data
-set PATH=%ORIG_PATH%
-set VECTORCAST_DIR=%ORIG_VCD%
-
-pause
-
-set VECTORCAST_DIR=c:\vcast\2020sp7
-set path=%VECTORCAST_DIR%;%PATH%
-git clean -fxd
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-
-manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-manage -p 2018_fast_test --build-execute > unstashed_build.log 
-
-if "%DO_IMPORT%" == "1" (
-    manage -p 2018_fast_test --export-result temp_result.vcr
-    manage -p 2018_fast_test --clean
-    manage -p 2018_fast_test --import-result temp_result.vcr
-    manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
-) 
-
-%VECTORCAST_DIR%/vpython  vc_scripts/generate-results.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-dir xml_data
-set PATH=%ORIG_PATH%
-set VECTORCAST_DIR=%ORIG_VCD%
-
-pause
-
-set VECTORCAST_DIR=c:\vcast\2021sp8
-set path=%VECTORCAST_DIR%;%PATH%
-git clean -fxd
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-
-manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-manage -p 2018_fast_test --build-execute > unstashed_build.log 
-
-if "%DO_IMPORT%" == "1" (
-    manage -p 2018_fast_test --export-result temp_result.vcr
-    manage -p 2018_fast_test --clean
-    manage -p 2018_fast_test --import-result temp_result.vcr
-    manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
-) 
-
-%VECTORCAST_DIR%/vpython  vc_scripts/generate-results.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-dir xml_data
-set PATH=%ORIG_PATH%
-set VECTORCAST_DIR=%ORIG_VCD%
-
-pause
-
-set VECTORCAST_DIR=c:\vcast\2022sp8
-set path=%VECTORCAST_DIR%;%PATH%
-git clean -fxd
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-
-manage -p 2018_fast_test --clean
-if "%DO_SFP%" == "1" manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-manage -p 2018_fast_test --build-execute > unstashed_build.log 
-
-if "%DO_IMPORT%" == "1" (
-    manage -p 2018_fast_test --export-result temp_result.vcr
-    manage -p 2018_fast_test --clean
-    manage -p 2018_fast_test --import-result temp_result.vcr
-    manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
-) 
-
-%VECTORCAST_DIR%/vpython  vc_scripts/generate-results.py  D:/dev/PointOfSales_v2/2018_fast_test/2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-dir xml_data
-set PATH=%ORIG_PATH%
-set VECTORCAST_DIR=%ORIG_VCD%
-
-pause

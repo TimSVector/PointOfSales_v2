@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="33">
+<project version="35">
   <config>
     <config>
+      <key>WHITEBOX</key>
+      <value>YES</value>
+      <key>COVERAGE_TYPE</key>
+      <value>Statement+MCDC</value>
+      <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
+      <value>TRUE</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
+      <value>TRUE</value>
+      <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
+      <value>TRUE</value>
+      <key>VCAST_WHITEBOX_SEARCH_DIRS_ONLY</key>
+      <value>TRUE</value>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
       <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
@@ -66,13 +78,6 @@
       <original-environment-directory>PointOfSales_Manage/build/1206201697</original-environment-directory>
     </config>
   </environment>
-  <environment name="LUA" type="UNIT">
-    <language>2</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>PointOfSales_Manage/build/2192010779</original-environment-directory>
-    </config>
-  </environment>
   <environment name="MANAGER" type="UNIT">
     <language>2</language>
     <is-monitored>0</is-monitored>
@@ -117,7 +122,6 @@
     <environment name="ENV_MANAGER"/>
     <environment name="ENV_MATRIX_MULTIPLY"/>
     <environment name="INTEGRATION_TESTING"/>
-    <environment name="LUA"/>
   </group>
   <group name="c++_Testing">
     <environment name="MANAGER"/>
@@ -127,22 +131,22 @@
       <name>TRUST_ZONE</name>
       <config>
         <config>
-          <key>WHITEBOX</key>
-          <value>YES</value>
-          <key>COVERAGE_TYPE</key>
-          <value>Statement+Branch</value>
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_CPP</value>
           <key>C_DEFINE_LIST</key>
           <value>VCAST_NO_PTR_TO_UNCON_ARRAY_SUPPORT USING_TRUST_ZONE</value>
-          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_ALT_WB_METHOD</key>
-          <value>TRUE</value>
-          <key>VCAST_CUSTOM_REPORT_FORMAT</key>
-          <value>HTML</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>g++ -E -ftrack-macro-expansion=0 -C</value>
+          <key>C_ALT_PREPROCESS_CMD</key>
+          <value>gcc -E -ftrack-macro-expansion=0 -C </value>
+          <key>C_COMPILE_CMD</key>
+          <value>g++ -c -g</value>
+          <key>C_ALT_COMPILE_CMD</key>
+          <value>gcc -c -g </value>
+          <key>C_EDG_FLAGS</key>
+          <value>-w --g++ --gnu_version 100200 --type_info_in_std --type_traits_helpers --64_bit_target --x86_64 --mingw</value>
+          <key>C_ALT_EDG_FLAGS</key>
+          <value>-w --gcc --gnu_version 100200 --64_bit_target --x86_64 --mingw</value>
         </config>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/src</search-directory>
@@ -152,16 +156,13 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
-        <process-environment>
-          <key>VCAST_DEMO_SRC_BASE</key>
-          <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
-        </process-environment>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
       <disabled>
-        <environment name="LUA"/>
+        <environment name="INTEGRATION_TESTING"/>
       </disabled>
     </testsuite>
   </compiler>
@@ -170,20 +171,20 @@
       <name>VectorCAST_MinGW_C++</name>
       <config>
         <config>
-          <key>WHITEBOX</key>
-          <value>YES</value>
-          <key>COVERAGE_TYPE</key>
-          <value>Statement+Branch</value>
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_CPP</value>
-          <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
-          <value>TRUE</value>
-          <key>VCAST_ALT_WB_METHOD</key>
-          <value>TRUE</value>
-          <key>VCAST_CUSTOM_REPORT_FORMAT</key>
-          <value>HTML</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>g++ -E -ftrack-macro-expansion=0 -C</value>
+          <key>C_ALT_PREPROCESS_CMD</key>
+          <value>gcc -E -ftrack-macro-expansion=0 -C </value>
+          <key>C_COMPILE_CMD</key>
+          <value>g++ -c -g</value>
+          <key>C_ALT_COMPILE_CMD</key>
+          <value>gcc -c -g </value>
+          <key>C_EDG_FLAGS</key>
+          <value>-w --g++ --gnu_version 100200 --type_info_in_std --type_traits_helpers --64_bit_target --x86_64 --mingw</value>
+          <key>C_ALT_EDG_FLAGS</key>
+          <value>-w --gcc --gnu_version 100200 --64_bit_target --x86_64 --mingw</value>
         </config>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/src</search-directory>
@@ -193,16 +194,12 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
-        <process-environment>
-          <key>VCAST_DEMO_SRC_BASE</key>
-          <value>$(VCAST_MANAGE_PROJECT_DIRECTORY)/../../..</value>
-        </process-environment>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
       <disabled>
-        <environment name="LUA"/>
+        <environment name="INTEGRATION_TESTING"/>
       </disabled>
     </testsuite>
   </compiler>
@@ -214,11 +211,11 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_CPP</value>
         </config>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="ST">
       <group name="ST"/>
     </testsuite>
   </compiler>
-  <environment-variable-name>VCAST_DEMO_SRC_BASE</environment-variable-name>
 </project>
