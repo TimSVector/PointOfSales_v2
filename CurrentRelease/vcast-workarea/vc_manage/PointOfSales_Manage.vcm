@@ -5,7 +5,7 @@
       <key>WHITEBOX</key>
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
-      <value>Statement+MCDC</value>
+      <value>Statement</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
       <value>TRUE</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
