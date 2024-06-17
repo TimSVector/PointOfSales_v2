@@ -1,4 +1,9 @@
 
+
+set SOFTCONSOLE_INSTALL=D:\vector\tools\microchip-riscv
+set path=%SOFTCONSOLE_INSTALL%\renode\bin;%SOFTCONSOLE_INSTALL%\riscv-unknown-elf-gcc\bin;%path%
+set path=D:\vector\tools\gcc-toolchain\arm-32b-13\bin;D:\vector\tools\gcc-toolchain\arm-64b-13\bin;c:\qemu-20240423;%path%
+
 REM set PATH=c:\vcast\mingw\bin;%PATH%
 set VCAST_DEMO_SRC_BASE=%~dp0CurrentRelease
 
