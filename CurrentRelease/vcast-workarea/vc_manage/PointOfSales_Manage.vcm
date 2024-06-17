@@ -5,8 +5,10 @@
       <key>WHITEBOX</key>
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
-      <value>Statement</value>
+      <value>Statement+MCDC</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
+      <value>TRUE</value>
+      <key>VCAST_DISPLAY_UNINST_EXPR</key>
       <value>TRUE</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
       <value>TRUE</value>
@@ -156,14 +158,10 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
-        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="INTEGRATION_TESTING"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -198,9 +196,6 @@
     </compiler>
     <testsuite name="UnitTesting">
       <group name="UT-Group"/>
-      <disabled>
-        <environment name="INTEGRATION_TESTING"/>
-      </disabled>
     </testsuite>
   </compiler>
   <compiler>
@@ -211,7 +206,6 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_CPP</value>
         </config>
-        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="ST">

@@ -1,4 +1,4 @@
--- VectorCAST 22.sp7 (12/04/22)
+-- VectorCAST 24 (02/13/24)
 -- Test Case Script
 --
 -- Environment    : ENV_MANAGER
@@ -16,6 +16,7 @@ TEST.SCRIPT_FEATURE:UNDERSCORE_NULLPTR
 TEST.SCRIPT_FEATURE:FULL_PARAMETER_TYPES
 TEST.SCRIPT_FEATURE:STRUCT_DTOR_ADDS_POINTER
 TEST.SCRIPT_FEATURE:STRUCT_FIELD_CTOR_ADDS_POINTER
+TEST.SCRIPT_FEATURE:STRUCT_BASE_CTOR_ADDS_POINTER
 TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
 TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
 --
@@ -120,22 +121,27 @@ TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Beverage:WINE
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Check_Total:0.0..20.0
 TEST.END
 
-
--- Subprogram: Place_Order
-
 -- Test Case: manager_Place_Order_Fish
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Place_Order
 TEST.NEW
 TEST.NAME:manager_Place_Order_Fish
+TEST.IMPORT_FAILURES:
+(E) @LINE: 133 TEST.VALUE:manager.Place_Order.Order.Entree:FISH
+    >>> Value for 'Enumeral' out of range
+    >>>   Read "FISH"
+    >>>   Command Ignored
+(E) @LINE: 138 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Entree:FISH
+    >>> Value for 'Enumeral' out of range
+    >>>   Read "FISH"
+    >>>   Command Ignored
+TEST.END_IMPORT_FAILURES:
 TEST.VALUE:manager.Place_Order.Table:1
 TEST.VALUE:manager.Place_Order.Seat:1
-TEST.VALUE:manager.Place_Order.Order.Entree:FISH
 TEST.VALUE:manager.Place_Order.Order.Beverage:WINE
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Is_Occupied:v_true
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Number_In_Party:1
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Soup:ONION
-TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Entree:FISH
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Beverage:WINE
 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Check_Total:0.0..20.0
 TEST.END
@@ -169,3 +175,26 @@ TEST.SLOT: "3", "manager", "Add_Included_Dessert", "1", "manager_add_included_de
 TEST.SLOT: "4", "manager", "Add_Included_Dessert", "1", "manager_add_included_dessert_pie"
 TEST.END
 --
+
+TEST.SCRIPT_FEATURE:RESET_ALL
+TEST.SCRIPT_FEATURE:C_DIRECT_ARRAY_INDEXING
+TEST.SCRIPT_FEATURE:CPP_CLASS_OBJECT_REVISION
+TEST.SCRIPT_FEATURE:MULTIPLE_UUT_SUPPORT
+TEST.SCRIPT_FEATURE:REMOVED_CL_PREFIX
+TEST.SCRIPT_FEATURE:MIXED_CASE_NAMES
+TEST.SCRIPT_FEATURE:STANDARD_SPACING_R2
+TEST.SCRIPT_FEATURE:OVERLOADED_CONST_SUPPORT
+TEST.SCRIPT_FEATURE:UNDERSCORE_NULLPTR
+TEST.SCRIPT_FEATURE:FULL_PARAMETER_TYPES
+TEST.SCRIPT_FEATURE:STRUCT_DTOR_ADDS_POINTER
+TEST.SCRIPT_FEATURE:STRUCT_FIELD_CTOR_ADDS_POINTER
+TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
+TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
+
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Place_Order
+TEST.ADD
+TEST.NAME:manager_Place_Order_Fish
+TEST.VALUE:manager.Place_Order.Order.Entree:FISH
+TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Entree:FISH
+TEST.END
