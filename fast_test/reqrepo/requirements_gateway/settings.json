@@ -1,0 +1,14 @@
+{
+    "repository_path": "D:\\dev\\PointOfSales_v2\\fast_test\\reqrepo\\requirements_gateway",
+    "current_gateway": "csv",
+    "csv": {
+        "csv_path": "C:/VCAST/2024/examples/RequirementsGW/CSV_Requirements_For_Tutorial.csv",
+        "title_attribute": "Title",
+        "description_attribute": "Description",
+        "filter_on": false,
+        "filter_attribute": "",
+        "filter_attribute_value": "",
+        "key_attribute": "Key",
+        "id_attribute": "ID"
+    }
+}
