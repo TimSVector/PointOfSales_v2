@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="34">
+<project version="35">
   <config>
     <config>
+      <key>VCAST_REPOSITORY</key>
+      <value>D:\dev\PointOfSales_v2\fast_test\reqrepo</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
       <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
@@ -26,6 +28,13 @@
       <original-environment-directory>fast_test/build/1600721014</original-environment-directory>
     </config>
   </environment>
+  <environment name="MANAGER_C_2" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>fast_test/build/1600721014</original-environment-directory>
+    </config>
+  </environment>
   <environment name="NO_CODE" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -36,6 +45,7 @@
   <group name="Group">
     <environment name="DISABLED"/>
     <environment name="MANAGER_C"/>
+    <environment name="MANAGER_C_2"/>
     <environment name="NO_CODE"/>
   </group>
   <compiler>

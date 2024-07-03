@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manage-config-options version="7">
+  <config>
+    <key>COVERAGE_TYPE</key>
+    <value>STATEMENT+BRANCH</value>
+  </config>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c\database</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c\inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c\order_entry</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c\order_entry\main</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c\utils</search-directory>
+</manage-config-options>

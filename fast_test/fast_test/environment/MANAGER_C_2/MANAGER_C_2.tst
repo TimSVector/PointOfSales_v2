@@ -1,7 +1,7 @@
 -- VectorCAST 24 (02/13/24)
 -- Test Case Script
 --
--- Environment    : MANAGER_C
+-- Environment    : MANAGER_C_2
 -- Unit(s) Under Test: manager
 --
 -- Script Features
@@ -282,17 +282,15 @@ TEST.VALUE:manager.Place_Order.Seat:<<MIN>>
 TEST.VALUE:manager.Place_Order.Order.Entree:LOBSTER
 TEST.END
 
--- Test Case: FR11
+-- Test Case: FR17
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Place_Order
 TEST.NEW
-TEST.NAME:FR11
-TEST.REQUIREMENT_KEY:FR11
-TEST.REQUIREMENT_KEY:FR12
-TEST.VALUE:manager.Place_Order.Table:3
-TEST.VALUE:manager.Place_Order.Seat:6
-TEST.EXPECTED:manager.Place_Order.Table:3
-TEST.EXPECTED:manager.Place_Order.Seat:6
+TEST.NAME:FR17
+TEST.REQUIREMENT_KEY:FR17
+TEST.VALUE:manager.Place_Order.Order.Entree:STEAK
+TEST.VALUE:uut_prototype_stubs.Get_Table_Record.return.Check_Total:10.0
+TEST.EXPECTED:uut_prototype_stubs.Update_Table_Record.Data.Check_Total:25.0
 TEST.END
 
 -- Test Case: Place_Order.fish.001
