@@ -62,6 +62,7 @@
       <group name="Group"/>
       <disabled>
         <environment name="DISABLED"/>
+        <environment name="NO_CODE"/>
       </disabled>
     </testsuite>
   </compiler>
