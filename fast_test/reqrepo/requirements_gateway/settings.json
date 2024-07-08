@@ -17,6 +17,6 @@
         "test_status_attribute": true,
         "csv_req_data_export": true,
         "csv_tc_data_export": false,
-        "csv_export_path": "fast_test/export_results.csv"
+        "csv_export_path": "D:/dev/PointOfSales_v2/fast_test/export_results.csv"
     }
 }
