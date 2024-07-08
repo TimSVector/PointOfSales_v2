@@ -1,44 +1,17 @@
 Trace Output for RGW: 
 
 TraceHandler.__init__
-2024-07-08 15:15:37  ||  CsvGateway.init_options
-2024-07-08 15:15:40  ||  CsvGateway.init_options
-2024-07-08 15:15:40  ||  Field(s) retrieved from CSV file:
+2024-07-08 15:45:34  ||  CsvGateway.init_options
+2024-07-08 15:45:34  ||  Field(s) retrieved from CSV file:
 Key
 ID
 Module
 Title
 Description
-2024-07-08 15:15:40  ||  SUCCESS: Connected to the CSV file.
-2024-07-08 15:15:40  ||  Setting 'environment_name_attribute' is not present.
-2024-07-08 15:15:40  ||  Setting 'unit_name_attribute' is not present.
-2024-07-08 15:15:40  ||  Setting 'subprogram_name_attribute' is not present.
-2024-07-08 15:15:40  ||  Setting 'test_name_attribute' is not present.
-2024-07-08 15:15:40  ||  Setting 'test_status_attribute' is not present.
-2024-07-08 15:15:40  ||  Setting 'csv_req_data_export' is not present.
-2024-07-08 15:15:40  ||  Setting 'csv_tc_data_export' is not present.
-2024-07-08 15:15:40  ||  Setting 'csv_export_path' is not present.
-2024-07-08 15:16:23  ||  The CSV file D:/dev/PointOfSales_v2/fast_test/export_results.csv does not exist or can not be found.
-Will create this file.
-2024-07-08 15:16:23  ||  Appending test data to file D:/dev/PointOfSales_v2/fast_test/export_results.csv.
-2024-07-08 15:16:23  ||  File closed
-2024-07-08 15:16:23  ||  Export Completed: True.
-2024-07-08 15:16:23  ||  2/2 test cases exported.
-2024-07-08 15:16:31  ||  The CSV file D:/dev/PointOfSales_v2/fast_test/export_results.csv exists.
+2024-07-08 15:45:34  ||  SUCCESS: Connected to the CSV file.
+2024-07-08 15:45:34  ||  The CSV file D:/dev/PointOfSales_v2/fast_test/export_results.csv exists.
 Will append to this file.
-2024-07-08 15:16:31  ||  Appending test data to file D:/dev/PointOfSales_v2/fast_test/export_results.csv.
-2024-07-08 15:16:31  ||  File closed
-2024-07-08 15:16:31  ||  Export Completed: True.
-2024-07-08 15:16:31  ||  2/2 test cases exported.
-2024-07-08 15:16:32  ||  The CSV file D:/dev/PointOfSales_v2/fast_test/export_results.csv exists.
-Will append to this file.
-2024-07-08 15:16:32  ||  Appending test data to file D:/dev/PointOfSales_v2/fast_test/export_results.csv.
-2024-07-08 15:16:32  ||  File closed
-2024-07-08 15:16:32  ||  Export Completed: True.
-2024-07-08 15:16:32  ||  2/2 test cases exported.
-2024-07-08 15:16:33  ||  The CSV file D:/dev/PointOfSales_v2/fast_test/export_results.csv exists.
-Will append to this file.
-2024-07-08 15:16:33  ||  Appending test data to file D:/dev/PointOfSales_v2/fast_test/export_results.csv.
-2024-07-08 15:16:33  ||  File closed
-2024-07-08 15:16:33  ||  Export Completed: True.
-2024-07-08 15:16:33  ||  2/2 test cases exported.
+2024-07-08 15:45:34  ||  Appending test data to file D:/dev/PointOfSales_v2/fast_test/export_results.csv.
+2024-07-08 15:45:34  ||  File closed
+2024-07-08 15:45:34  ||  Export Completed: True.
+2024-07-08 15:45:34  ||  2/2 test cases exported.
