@@ -14,7 +14,6 @@ set VECTORCAST_DIR=c:\vcast\2023sp5
 %VECTORCAST_DIR%/vpython vc_scripts\incremental_build_report_aggregator.py PluginTesting  --rptfmt HTML
 %VECTORCAST_DIR%/vpython vc_scripts\full_report_no_toc.py PluginTesting.vcm
 %VECTORCAST_DIR%/manage  --project PluginTesting.vcm --create-report=aggregate --output=MetricsReport.html
-%VECTORCAST_DIR%/manage  --project PluginTesting.vcm --create-report=environment --output=EnvironmentReport.html
 %VECTORCAST_DIR%/manage  --project PluginTesting.vcm --full-status=FullStatusReport.html
 
 dir *.html
