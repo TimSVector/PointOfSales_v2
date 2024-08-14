@@ -31,8 +31,6 @@ def parse_args():
     
 def run_2018_post(args):
 
-    dt2018 = datetime.now()
-    dtPost = datetime.now()
         
     cli_args = ["                          ",
                 "            MODIFY        ",  
@@ -55,9 +53,19 @@ def run_2018_post(args):
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 
     orig_dir = os.getcwd()
-
+    
+    
+    dt2018 = datetime.now()
+    dtPost = datetime.now()
+    count =10
     for directory in directories:
-
+        # setup time info
+        if count == 0:
+            dt2018 = datetime.now()
+            count += 1
+        elif count == 1:
+            dtPost = datetime.now()
+            
         if args.run_all:
             pass
         elif args.run_2018 and directory.startswith("2018"):
