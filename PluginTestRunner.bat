@@ -4,7 +4,7 @@ git reset --hard HEAD
 if not exist "vc_scripts" mkdir vc_scripts 
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
-set path=%PATH%;C:\vector\tools\gnat\2019\bin
+set path=%PATH%;C:\vector\tools\gnat\2019\bin;%VECTORCAST_DIR%\mingw\bin
 set WORKSPACE=%CD%
 
 %VECTORCAST_DIR%/manage  --project PluginTesting.vcm --status
