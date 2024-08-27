@@ -17,6 +17,13 @@
       <original-environment-directory>2018_fast_test/build/1600721014</original-environment-directory>
     </config>
   </environment>
+  <environment name="INTEGRATION_TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>2018_fast_test/build/2938589839</original-environment-directory>
+    </config>
+  </environment>
   <environment name="MANAGER_C" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -30,6 +37,7 @@
   </group>
   <group name="Group2">
     <environment name="DATABASE_C"/>
+    <environment name="INTEGRATION_TEST"/>
   </group>
   <compiler>
     <compiler>
