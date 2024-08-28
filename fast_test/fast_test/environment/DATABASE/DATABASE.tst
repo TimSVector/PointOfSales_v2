@@ -1,0 +1,35 @@
+-- VectorCAST 24.sp3 (07/14/24)
+-- Test Case Script
+--
+-- Environment    : DATABASE
+-- Unit(s) Under Test: database
+--
+-- Script Features
+TEST.SCRIPT_FEATURE:C_DIRECT_ARRAY_INDEXING
+TEST.SCRIPT_FEATURE:CPP_CLASS_OBJECT_REVISION
+TEST.SCRIPT_FEATURE:MULTIPLE_UUT_SUPPORT
+TEST.SCRIPT_FEATURE:REMOVED_CL_PREFIX
+TEST.SCRIPT_FEATURE:MIXED_CASE_NAMES
+TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
+TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
+--
+
+-- Unit: database
+
+-- Subprogram: Get_Table_Record
+
+-- Test Case: Get_Table_Record.001
+TEST.UNIT:database
+TEST.SUBPROGRAM:Get_Table_Record
+TEST.NEW
+TEST.NAME:Get_Table_Record.001
+TEST.END
+
+-- Subprogram: Update_Table_Record
+
+-- Test Case: Update_Table_Record.001
+TEST.UNIT:database
+TEST.SUBPROGRAM:Update_Table_Record
+TEST.NEW
+TEST.NAME:Update_Table_Record.001
+TEST.END

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="27">
+<project version="35">
   <config>
     <config>
       <key>COVERAGE_TYPE</key>
       <value>STATEMENT+BRANCH</value>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+      <value>TRUE</value>
     </config>
+    <base-directories>
+      <key>tutorial</key>
+      <value>tutorial\c</value>
+    </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
   </config>
@@ -47,6 +53,7 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_C</value>
         </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(tutorial)</search-directory>
       </config>
     </compiler>
     <testsuite name="TestSuite">

@@ -6,6 +6,8 @@
       <value>D:\dev\PointOfSales_v2\fast_test\reqrepo</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
       <value>TRUE</value>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+      <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
@@ -14,6 +16,13 @@
   </config>
   <project-id>1585580782</project-id>
   <factor-config-options>0</factor-config-options>
+  <environment name="DATABASE" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>fast_test/build/173974623</original-environment-directory>
+    </config>
+  </environment>
   <environment name="DISABLED" type="UNIT">
     <language>1</language>
     <is-monitored>0</is-monitored>
@@ -43,6 +52,7 @@
     </config>
   </environment>
   <group name="Group">
+    <environment name="DATABASE"/>
     <environment name="DISABLED"/>
     <environment name="MANAGER_C"/>
     <environment name="MANAGER_C_2"/>
