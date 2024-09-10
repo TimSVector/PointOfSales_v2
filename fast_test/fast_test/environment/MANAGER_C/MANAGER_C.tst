@@ -1,4 +1,4 @@
--- VectorCAST 24 (02/13/24)
+-- VectorCAST 24.sp3 (07/14/24)
 -- Test Case Script
 --
 -- Environment    : MANAGER_C
@@ -319,14 +319,6 @@ TEST.SUBPROGRAM:forever
 TEST.NEW
 TEST.NAME:forever.001
 TEST.END
-
--- COMPOUND TESTS
-
-TEST.SUBPROGRAM:<<COMPOUND>>
-TEST.NEW
-TEST.NAME:<<COMPOUND>>.001
-TEST.END
---
 
 -- COMPOUND TESTS
 

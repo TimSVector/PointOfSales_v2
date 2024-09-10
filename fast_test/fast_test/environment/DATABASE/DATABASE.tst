@@ -33,3 +33,12 @@ TEST.SUBPROGRAM:Update_Table_Record
 TEST.NEW
 TEST.NAME:Update_Table_Record.001
 TEST.END
+
+-- COMPOUND TESTS
+
+TEST.SUBPROGRAM:<<COMPOUND>>
+TEST.NEW
+TEST.NAME:<<COMPOUND>>.001
+TEST.SLOT: "1", "database", "Update_Table_Record", "10", "Update_Table_Record.001"
+TEST.END
+--
