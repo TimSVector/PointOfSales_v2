@@ -6,6 +6,10 @@
       <value>D:\dev\PointOfSales_v2\fast_test\reqrepo</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
       <value>TRUE</value>
+      <key>VCAST_ENABLE_FUNCTION_CALL_COVERAGE</key>
+      <value>FALSE</value>
+      <key>VCAST_ENABLE_FUNCTION_AND_CALL_COVERAGE</key>
+      <value>TRUE</value>
       <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
       <value>TRUE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
@@ -63,9 +67,22 @@
       <name>VectorCAST_MinGW_C</name>
       <config>
         <config>
+          <key>COVERAGE_TYPE</key>
+          <value>Statement+MCDC</value>
+          <key>TEST_CASE_TIMEOUT</key>
+          <value>3</value>
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_C</value>
+          <key>VCAST_SIMPLIFIED_CONDITION_COVERAGE</key>
+          <value>TRUE</value>
+          <key>VCAST_PACK_INSTRUMENTATION_STORAGE</key>
+          <value>FALSE</value>
         </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\fast_test\tutorial\c\database</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\fast_test\tutorial\c\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\fast_test\tutorial\c\order_entry</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\fast_test\tutorial\c\order_entry\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\fast_test\tutorial\c\utils</search-directory>
       </config>
     </compiler>
     <testsuite name="TestSuite">
