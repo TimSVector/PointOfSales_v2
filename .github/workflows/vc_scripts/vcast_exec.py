@@ -48,7 +48,9 @@ class VectorCASTExecute(object):
         self.sonarqube = args.sonarqube
         self.junit = args.junit
         self.cobertura = args.cobertura
+        self.cobertura_extended = args.cobertura_extended
         self.metrics = args.metrics
+        self.fullstatus = args.fullstatus
         self.aggregate = args.aggregate
         
         self.html_base_dir = args.html_base_dir
@@ -141,7 +143,7 @@ class VectorCASTExecute(object):
         self.cleanup("junit", "test_results_")
         self.cleanup("cobertura", "coverage_results_")
         self.cleanup("sonarqube", "test_results_")
-        self.cleanup("pclp", "pclp_results_")
+        self.cleanup("pclp", "gl-code-quality-report.json")
         self.cleanup(".", self.mpName + "_aggregate_report.html")
         self.cleanup(".", self.mpName + "_metrics_report.html")
         
@@ -185,7 +187,10 @@ class VectorCASTExecute(object):
         self.failed_count, self.passed_count = generate_results.buildReports(self.FullMP,self.level,self.environment, True, self.timing, xml_data_dir = self.xml_data_dir)
         
         # calculate the failed percentage
-        self.failed_pct = 100 * self.failed_count/ (self.failed_count + self.passed_count)
+        if (self.failed_count + self.passed_count > 0):
+            self.failed_pct = 100 * self.failed_count/ (self.failed_count + self.passed_count)
+        else:
+            self.failed_pct = 0
         
         # if the failed percentage is less that the specified limit (default = 0)
         # clear the failed count
@@ -195,9 +200,12 @@ class VectorCASTExecute(object):
         self.needIndexHtml = True
 
     def runCoberturaMetrics(self):
-        print("Creating Cobertura Metrics")
-        cobertura.verbose = self.verbose
-        cobertura.generateCoverageResults(self.FullMP, self.azure, self.xml_data_dir)
+        if self.cobertura_extended:
+            print("Creating Extended Cobertura Metrics")
+        else:
+            print("Creating Cobertura Metrics")
+
+        cobertura.generateCoverageResults(self.FullMP, self.azure, self.xml_data_dir, verbose = self.verbose, extended=self.cobertura_extended)
 
     def runSonarQubeMetrics(self):
         print("Creating SonarQube Metrics")
@@ -206,11 +214,11 @@ class VectorCASTExecute(object):
         
     def runPcLintPlusMetrics(self, input_xml):
         print("Creating PC-lint Plus Metrics")
-        import generate_plcp_reports 
+        import generate_pclp_reports 
         os.makedirs(os.path.join(self.xml_data_dir,"pclp"))
         report_name = os.path.join(self.xml_data_dir,"pclp","gl-code-quality-report.json")
         print("PC-lint Plus Metrics file: ", report_name)
-        generate_plcp_reports.generate_reports(input_xml, output_gitlab = report_name)
+        generate_pclp_reports.generate_reports(input_xml, output_gitlab = report_name)
 
     def runReports(self):
         if self.aggregate:
@@ -218,6 +226,9 @@ class VectorCASTExecute(object):
             self.needIndexHtml = True
         if self.metrics:
             self.manageWait.exec_manage_command ("--create-report=metrics       --output=" + self.mpName + "_metrics_report.html")
+            self.needIndexHtml = True
+        if self.fullstatus:
+            self.manageWait.exec_manage_command ("--full-status                 --output=" + self.mpName + "_full_status_report.html")
             self.needIndexHtml = True
 
     def runExec(self):
@@ -272,8 +283,9 @@ if __name__ == '__main__':
     metricsGroup = parser.add_argument_group('Metrics Options', 'Options generating metrics')
     metricsGroup.add_argument('--output_dir', help='Set the base directory of the xml_data directory. Default is the workspace directory', default = None)
     metricsGroup.add_argument("--html_base_dir", help='Set the base directory of the html_reports directory. The default is the workspace directory', default = "html_reports")
-    metricsGroup.add_argument('--cobertura', help='Builds and exeuctes the VectorCAST Project', action="store_true", default = False)
-    metricsGroup.add_argument('--junit', help='Builds and exeuctes the VectorCAST Project', action="store_true", default = False)
+    metricsGroup.add_argument('--cobertura', help='Generate coverage results in Cobertura xml format', action="store_true", default = False)
+    metricsGroup.add_argument('--cobertura_extended', help='Generate coverage results in extended Cobertura xml format', action="store_true", default = False)
+    metricsGroup.add_argument('--junit', help='Generate test results in Junit xml format', action="store_true", default = False)
     metricsGroup.add_argument('--sonarqube', help='Generate test results in SonarQube Generic test execution report format (CppUnit)', action="store_true", default = False)
     metricsGroup.add_argument('--pclp_input', help='Generate static analysis results from PC-lint Plus XML file to generic static analysis format (codequality)', action="store", default = None)
     metricsGroup.add_argument('--exit_with_failed_count', help='Returns failed test case count as script exit.  Set a value to indicate a percentage above which the job will be marked as failed', 
@@ -282,6 +294,7 @@ if __name__ == '__main__':
     reportGroup = parser.add_argument_group('Report Selection', 'VectorCAST Manage reports that can be generated')
     reportGroup.add_argument('--aggregate', help='Generate aggregate coverage report VectorCAST Project', action="store_true", default = False)
     reportGroup.add_argument('--metrics', help='Genenereate metrics reports for VectorCAST Project', action="store_true", default = False)
+    reportGroup.add_argument('--fullstatus', help='Genenereate full status reports for VectorCAST Project', action="store_true", default = False)
 
     beGroup = parser.add_argument_group('Build/Execution Options', 'Options that effect build/execute operation')
     
@@ -318,7 +331,7 @@ if __name__ == '__main__':
     if args.build_execute or args.build:
         vcExec.runExec()
         
-    if args.cobertura:
+    if args.cobertura or args.cobertura_extended:
         vcExec.runCoberturaMetrics()
 
     if args.junit or vcExec.useJunitFailCountPct:
@@ -330,9 +343,8 @@ if __name__ == '__main__':
     if args.pclp_input:
         vcExec.runPcLintPlusMetrics(args.pclp_input)
 
-    if args.aggregate or args.metrics:
+    if args.aggregate or args.metrics or args.fullstatus:
         vcExec.runReports()
-
 
     if vcExec.useJunitFailCountPct:
         print("--exit_with_failed_count=" + args.exit_with_failed_count + " specified.  Fail Percent = " + str(round(vcExec.failed_pct,0)) + "% Return code: ", str(vcExec.failed_count))
