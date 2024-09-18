@@ -1,31 +1,17 @@
-@echo off
+@echo on
 
 pushd %~dp0
+set FORMAT=
+set EXT=xml
 
-if "%1"=="SQ" goto :SONARQUBE
+pclp64 post.lnt env-xml.lnt database\src\database.c encrypt\src\encrypt.c  encrypt\src\matrix_multiply.c  order_entry\src\manager.c main\pos_driver.c order_entry\src\waiting_list.c utils\src\whitebox.c utils\src\linked_list.c >  post_lint_results.xml
 
-pclp64 post.lnt database\src\database.c        >  post_lint_results.txt   
-pclp64 post.lnt encrypt\src\encrypt.c          >> post_lint_results.txt     
-pclp64 post.lnt encrypt\src\matrix_multiply.c  >> post_lint_results.txt     
-pclp64 post.lnt order_entry\src\manager.c      >> post_lint_results.txt       
-pclp64 post.lnt main\pos_driver.c              >> post_lint_results.txt   
-pclp64 post.lnt order_entry\src\waiting_list.c >> post_lint_results.txt       
-pclp64 post.lnt utils\src\whitebox.c           >> post_lint_results.txt     
-pclp64 post.lnt utils\src\linked_list.c        >> post_lint_results.txt     
-
-goto END
-
-:SONARQUBE
-
-pclp64 post_sq.lnt database\src\database.c        >  post_lint_results.txt   
-pclp64 post_sq.lnt encrypt\src\encrypt.c          >> post_lint_results.txt     
-pclp64 post_sq.lnt encrypt\src\matrix_multiply.c  >> post_lint_results.txt     
-pclp64 post_sq.lnt order_entry\src\manager.c      >> post_lint_results.txt       
-pclp64 post_sq.lnt main\pos_driver.c              >> post_lint_results.txt   
-pclp64 post_sq.lnt order_entry\src\waiting_list.c >> post_lint_results.txt       
-pclp64 post_sq.lnt utils\src\whitebox.c           >> post_lint_results.txt     
-pclp64 post_sq.lnt utils\src\linked_list.c        >> post_lint_results.txt     
-
-:END
+REM pclp64 post.lnt %FORMAT% encrypt\src\encrypt.c          >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% encrypt\src\matrix_multiply.c  >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% order_entry\src\manager.c      >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% main\pos_driver.c              >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% order_entry\src\waiting_list.c >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% utils\src\whitebox.c           >> post_lint_results.%EXT%
+REM pclp64 post.lnt %FORMAT% utils\src\linked_list.c        >> post_lint_results.%EXT%
 
 popd

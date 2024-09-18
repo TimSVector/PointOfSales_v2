@@ -6,10 +6,6 @@
 -iutils\inc
 -d_WIN32
 -d__GNUC__
--v
--width(0)
--"format=%f(%l): %t %n: %m"
--hs1 
 +ffn
 -e534 
 -e2466
