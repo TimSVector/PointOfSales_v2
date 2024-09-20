@@ -4,25 +4,32 @@ set DO_SFP=%2
 set DO_IMPORT=%3
 set DO_MODIFY=%4
 set DO_MERGE=%5
-set DO_COPY_EXTRACT=%5
+set DO_COPY_EXTRACT=%6
 
-git clean -fxd 
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS_DONT_USE%\*.* vc_scripts > nul
+echo %*
+pause
+
+REM git clean -fxd 
+REM git reset --hard HEAD
+REM xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
+REM xcopy /E /S /Y /I %VCAST_VC_SCRIPTS_DONT_USE%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
 %VECTORCAST_DIR%\manage -p 2018_fast_test --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
 
 
 if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
-%VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --type
 
-:: do original clean build
-:: %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log
-%VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log
+:: don't do a full build if only testing copy_extract
+if "%DO_COPY_EXTRACT%" == "" (
+    %VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --type
 
-if "%DO_IMPORT%"=="" if "%DO_MODIFY%"=="" if "%DO_MERGE%"=="" goto END
+    :: do original clean build
+    :: %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log
+    %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log
+)
+
+if "%DO_IMPORT%"=="" if "%DO_MODIFY%"=="" if "%DO_MERGE%"=="" if "%DO_COPY_EXTRACT%" == "" goto END
 
 if "%DO_IMPORT%"=="1" (
     :: get the results, clean, import

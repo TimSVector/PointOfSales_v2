@@ -31,6 +31,20 @@ def parse_args():
         
     return args
     
+def run_copy_extract_test():
+
+    os.environ['VCAST_CODE_COVERAGE_TYPE'] = "STATEMENT+BRANCH"
+    # SFP IMPORT MODIFY DO_MERGE
+    callCmd = ["single_test.bat", os.environ['VECTORCAST_DIR'] ,"0", "0", "0", "0", "1"] 
+    
+    print(callCmd)
+    print(" ".join(callCmd))
+    
+    p = subprocess.Popen(callCmd, universal_newlines=True)
+    p.wait()
+    if not os.path.exists("copy_extract_full_status.html"):
+        sys.exit("Missing copy_extract_full_status.html")
+    
 def run_2018_post(args):
 
         
@@ -60,9 +74,7 @@ def run_2018_post(args):
     dtPost = datetime.now()
     count =10
     for directory in directories:
-        
-        print(args.run_copy_extract and directory.startswith("2018"))
-        
+                
         # setup time info
         if count == 0:
             dt2018 = datetime.now()
@@ -78,16 +90,7 @@ def run_2018_post(args):
                 pass
             elif args.run_copy_extract:
                 os.chdir(directory)
-                os.environ['VC_VERSION'] = "2024sp3"
-                callCmd = ["test_versions.bat", "DO_COPY_EXTRACT"] 
-                p = subprocess.Popen(callCmd, universal_newlines=True)
-                p.wait()
-                if not os.path.exists("copy_extract_full_status.html"):
-                    sys.exit("Missing copy_extract_full_status.html")
-                print("running tests: " + directory)
-                print("running VC Ver: " + os.environ['VC_VERSION'])
-                print("running copy/extract: " + args.run_copy_extract)
-                pprint(callCmd)
+                run_copy_extract_test()
                 os.chdir(orig_dir)
                 continue
                         

@@ -47,6 +47,7 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_63_C</value>
         </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">tutorial\c</search-directory>
       </config>
     </compiler>
     <testsuite name="TestSuite">
