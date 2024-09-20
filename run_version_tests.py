@@ -11,6 +11,7 @@ def parse_args():
     parser.add_argument('-x', '--2018',   help='Run the tests on the 2018_fast_test project', action="store_true", dest="run_2018", default=False)
     parser.add_argument('-m', '--post',   help='Run the tests on the PoST project',           action="store_true", dest="run_post", default=False)
     parser.add_argument('-p', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
+    parser.add_argument('--copy_extract', help='Run the copy/extract test',                   action="store_true", dest="run_copy_extract", default=False)
     parser.add_argument('-a', '--all',    help='Run all the tests',                           action="store_true", dest="run_all", default=False)
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store", dest="vc_version", default=None)
     parser.add_argument('-c', '--cov_types',   
@@ -32,18 +33,18 @@ def parse_args():
 def run_2018_post(args):
 
         
-    cli_args = ["                          ",
-                "            MODIFY        ",  
-                "    IMPORT                ", 
-                "    IMPORT        DO_MERGE", 
-                "    IMPORT MODIFY         ", 
-                "    IMPORT MODIFY DO_MERGE", 
-                "SFP                       ", 
-                "SFP        MODIFY         ", 
-                "SFP IMPORT                ", 
-                "SFP IMPORT        DO_MERGE", 
-                "SFP IMPORT MODIFY         ", 
-                "SFP IMPORT MODIFY DO_MERGE"] 
+    cli_args = ["                                          ",
+                "            MODIFY                        ",  
+                "    IMPORT                                ", 
+                "    IMPORT        DO_MERGE                ", 
+                "    IMPORT MODIFY                         ", 
+                "    IMPORT MODIFY DO_MERGE                ", 
+                "SFP                                       ", 
+                "SFP        MODIFY                         ", 
+                "SFP IMPORT                                ", 
+                "SFP IMPORT        DO_MERGE                ", 
+                "SFP IMPORT MODIFY                         ", 
+                "SFP IMPORT MODIFY DO_MERGE                "] 
                 
     if args.cov_types is None:
         coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
@@ -53,7 +54,6 @@ def run_2018_post(args):
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 
     orig_dir = os.getcwd()
-    
     
     dt2018 = datetime.now()
     dtPost = datetime.now()
@@ -68,8 +68,18 @@ def run_2018_post(args):
             
         if args.run_all:
             pass
+            
         elif args.run_2018 and directory.startswith("2018"):
             pass
+            
+        elif args.run_copy_extract and directory.startswith("2018"):
+            os.environ['VC_VERSION'] = os.environ['VECTORCAST_DIR']
+            callCmd = ["test_versions.bat", "DO_COPY_EXTRACT"] 
+            p = subprocess.Popen(callCmd, universal_newlines=True)
+            p.wait()
+            if not os.file.exists("copy_extract_full_status.html"):
+                sys.exit("Missing copy_extract_full_status.html")
+            continue
             
         elif args.run_post and directory.startswith("CurrentRelease"):
             dtPost = datetime.now()
