@@ -78,7 +78,9 @@ def run_2018_post(args):
                 pass
             elif args.run_copy_extract:
                 os.chdir(directory)
-                os.environ['VC_VERSION'] = os.environ['VECTORCAST_DIR']
+                os.environ['VC_VERSION'] = "2024sp3"
+                print( os.environ['VC_VERSION'] )
+                sys.exit()
                 callCmd = ["test_versions.bat", "DO_COPY_EXTRACT"] 
                 p = subprocess.Popen(callCmd, universal_newlines=True)
                 p.wait()
