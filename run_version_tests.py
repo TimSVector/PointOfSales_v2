@@ -5,6 +5,7 @@ import subprocess
 import argparse
 
 from datetime import datetime
+from pprint import pprint
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -21,7 +22,7 @@ def parse_args():
         default=None)
 
     args = parser.parse_args()
-
+    
     if args.vc_version and os.path.exists("c:/vcast/"+args.vc_version):
         os.environ['VC_VERSION'] = args.vc_version
     elif args.vc_version:
@@ -59,6 +60,9 @@ def run_2018_post(args):
     dtPost = datetime.now()
     count =10
     for directory in directories:
+        
+        print(args.run_copy_extract and directory.startswith("2018"))
+        
         # setup time info
         if count == 0:
             dt2018 = datetime.now()
@@ -69,18 +73,24 @@ def run_2018_post(args):
         if args.run_all:
             pass
             
-        elif args.run_2018 and directory.startswith("2018"):
-            pass
-            
-        elif args.run_copy_extract and directory.startswith("2018"):
-            os.environ['VC_VERSION'] = os.environ['VECTORCAST_DIR']
-            callCmd = ["test_versions.bat", "DO_COPY_EXTRACT"] 
-            p = subprocess.Popen(callCmd, universal_newlines=True)
-            p.wait()
-            if not os.file.exists("copy_extract_full_status.html"):
-                sys.exit("Missing copy_extract_full_status.html")
-            continue
-            
+        elif directory.startswith("2018"):
+            if args.run_2018:
+                pass
+            elif args.run_copy_extract:
+                os.chdir(directory)
+                os.environ['VC_VERSION'] = os.environ['VECTORCAST_DIR']
+                callCmd = ["test_versions.bat", "DO_COPY_EXTRACT"] 
+                p = subprocess.Popen(callCmd, universal_newlines=True)
+                p.wait()
+                if not os.path.exists("copy_extract_full_status.html"):
+                    sys.exit("Missing copy_extract_full_status.html")
+                print("running tests: " + directory)
+                print("running VC Ver: " + os.environ['VC_VERSION'])
+                print("running copy/extract: " + args.run_copy_extract)
+                pprint(callCmd)
+                os.chdir(orig_dir)
+                continue
+                        
         elif args.run_post and directory.startswith("CurrentRelease"):
             dtPost = datetime.now()
             pass
