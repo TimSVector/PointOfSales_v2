@@ -93,6 +93,6 @@ if "%DO_MERGE%"=="1" (
 :END
 
 %VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
-%VECTORCAST_DIR%\vpython  vc_scripts\vcast_exec.py 2018_fast_test.vcm --cobertura_extended --lcov --junit --sonarqube 
+%VECTORCAST_DIR%\vpython  vc_scripts\vcast_exec.py 2018_fast_test.vcm --cobertura_extended --lcov --junit --sonarqube --aggregate --metrics --fullstatus
 
 tree /f xml_data
