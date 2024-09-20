@@ -55,9 +55,7 @@ if "%DO_MERGE%"=="1" (
 
 if "%DO_COPY_EXTRACT%"=="1" (
 
-    pushd ..
     set WORKSPACE=%cd%
-    popd
 
     %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
     %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --level VectorCAST_MinGW_C/TestSuite --environment DATABASE_C
