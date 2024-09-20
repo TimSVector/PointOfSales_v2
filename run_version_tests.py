@@ -35,11 +35,7 @@ def run_copy_extract_test():
 
     os.environ['VCAST_CODE_COVERAGE_TYPE'] = "STATEMENT+BRANCH"
     # SFP IMPORT MODIFY DO_MERGE
-    callCmd = ["single_test.bat", os.environ['VECTORCAST_DIR'] ,"0", "0", "0", "0", "1"] 
-    
-    print(callCmd)
-    print(" ".join(callCmd))
-    
+    callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
     p = subprocess.Popen(callCmd, universal_newlines=True)
     p.wait()
     if not os.path.exists("copy_extract_full_status.html"):
