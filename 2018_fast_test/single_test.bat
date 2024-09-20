@@ -48,10 +48,10 @@ if "%DO_COPY_EXTRACT%"=="1" (
         echo Copy/Extract Test FAILED
     )
     
-    exit /b 0
+    goto END
 )
 
-%VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --type
+%VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  2018_fast_test.vcm --type
 
 :: do original clean build
 :: %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log
@@ -92,6 +92,7 @@ if "%DO_MERGE%"=="1" (
 
 :END
 
-%VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py  D:\dev\PointOfSales_v2\2018_fast_test\2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
+%VECTORCAST_DIR%\vpython  vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog unstashed_build.log --print_exc
+%VECTORCAST_DIR%\vpython  vc_scripts\vcast_exec.py 2018_fast_test.vcm --cobertura_extended --lcov --junit --sonarqube 
 
-dir xml_data
+tree /f xml_data
