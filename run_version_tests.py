@@ -32,7 +32,7 @@ def parse_args():
     return args
     
 def run_copy_extract_test():
-
+    os.environ['VC_VERSION'] = os.environ['VECTORCAST_DIR']
     os.environ['VCAST_CODE_COVERAGE_TYPE'] = "STATEMENT+BRANCH"
     callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
     p = subprocess.Popen(callCmd, universal_newlines=True)

@@ -1,6 +1,6 @@
 
 set orig_path=%PATH%
-call ..\setenv.bat
+call ..\setenv.bat > nul
 
 set VECTORCAST_DIR=%1
 set DO_SFP=%2
