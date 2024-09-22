@@ -1,4 +1,5 @@
 
+set WORKSPACE=%~dp0
 
 set SOFTCONSOLE_INSTALL=D:\vector\tools\microchip-riscv
 set path=%SOFTCONSOLE_INSTALL%\renode\bin;%SOFTCONSOLE_INSTALL%\riscv-unknown-elf-gcc\bin;%path%
