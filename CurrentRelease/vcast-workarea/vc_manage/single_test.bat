@@ -11,9 +11,9 @@ set DO_COPY_EXTRACT=%6
 
 echo %*
 
-REM git clean -fxd 
-REM git reset --hard HEAD
-REM xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
+git clean -fxd 
+git reset --hard HEAD
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
