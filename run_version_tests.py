@@ -34,7 +34,6 @@ def parse_args():
 def run_copy_extract_test():
 
     os.environ['VCAST_CODE_COVERAGE_TYPE'] = "STATEMENT+BRANCH"
-    # SFP IMPORT MODIFY DO_MERGE
     callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
     p = subprocess.Popen(callCmd, universal_newlines=True)
     p.wait()
@@ -78,17 +77,18 @@ def run_2018_post(args):
         elif count == 1:
             dtPost = datetime.now()
             
-        if args.run_all:
+        if args.run_copy_extract:
+            os.chdir(directory)
+            run_copy_extract_test()
+            os.chdir(orig_dir)
+            continue
+
+        elif args.run_all:
             pass
             
         elif directory.startswith("2018"):
             if args.run_2018:
                 pass
-            elif args.run_copy_extract:
-                os.chdir(directory)
-                run_copy_extract_test()
-                os.chdir(orig_dir)
-                continue
                         
         elif args.run_post and directory.startswith("CurrentRelease"):
             dtPost = datetime.now()

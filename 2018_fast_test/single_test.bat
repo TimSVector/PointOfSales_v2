@@ -1,4 +1,7 @@
 
+set orig_path=%PATH%
+call ..\..\..\setenv.bat
+
 set VECTORCAST_DIR=%1
 set DO_SFP=%2
 set DO_IMPORT=%3
@@ -11,7 +14,6 @@ echo %*
 git clean -fxd 
 git reset --hard HEAD
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS_DONT_USE%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
 %VECTORCAST_DIR%\manage -p 2018_fast_test --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
@@ -50,13 +52,13 @@ if "%DO_COPY_EXTRACT%"=="1" (
     
     goto END
 )
-
 %VECTORCAST_DIR%\vpython  vc_scripts\getjobs.py  2018_fast_test.vcm --type
 
 :: do original clean build
-:: %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log & type unstashed_build.log
-%VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute > unstashed_build.log
+%VECTORCAST_DIR%\vpython  vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=6
+copy PointOfSales_Manage_build.log unstashed_build.log
 
+::Skip CBT if we don't import, mnodify, or merge
 if "%DO_IMPORT%"=="" if "%DO_MODIFY%"=="" if "%DO_MERGE%"=="" goto END
 
 if "%DO_IMPORT%"=="1" (
@@ -71,8 +73,8 @@ if "%DO_MODIFY%"=="1" (
     echo void change_code(void) {} >> tutorial\c\manager.c
 
     :: CBT run
-    ::%VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
-    %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
+    %VECTORCAST_DIR%\vpython vc_scripts\vcast_exec.py 2018_fast_test --jobs 6 --incremental
+    copy 2018_fast_test_build.log unstashed_build.log
 )
 
 if "%DO_MERGE%"=="1" (
@@ -86,8 +88,8 @@ if "%DO_MERGE%"=="1" (
     %VECTORCAST_DIR%\manage -p 2018_fast_test --import-result temp_result.vcr
 
     :: 3rd build-execute with no changes - should only build system tests
-    :: %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log & type unstashed_build.log
-    %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --incremental > unstashed_build.log
+    %VECTORCAST_DIR%\vpython vc_scripts\vcast_exec.py 2018_fast_test --jobs 6 --incremental
+    copy 2018_fast_test_build.log unstashed_build.log
 )
 
 :END
@@ -96,3 +98,6 @@ if "%DO_MERGE%"=="1" (
 %VECTORCAST_DIR%\vpython  vc_scripts\vcast_exec.py 2018_fast_test.vcm --cobertura_extended --lcov --junit --sonarqube --aggregate --metrics --fullstatus
 
 tree /f xml_data
+
+dir xml_data
+set path=%orig_path%
