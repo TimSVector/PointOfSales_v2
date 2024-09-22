@@ -9,11 +9,11 @@ set DO_MODIFY=%4
 set DO_MERGE=%5
 set DO_COPY_EXTRACT=%6
 
-echo %*
+echo %* 
 
 git clean -fxd 
 git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_%WORKSPACE%\vc_scripts%\*.* %WORKSPACE%\vc_scripts > nul
+xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%

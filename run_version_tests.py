@@ -21,6 +21,8 @@ def parse_args():
         dest="cov_types", 
         default=None)
 
+    os.environ['WORKSPACE'] = os.getcwd()
+    
     args = parser.parse_args()
     
     if args.vc_version and os.path.exists("c:/vcast/"+args.vc_version):
