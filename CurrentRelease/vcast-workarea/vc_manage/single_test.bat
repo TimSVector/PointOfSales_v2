@@ -11,9 +11,9 @@ set DO_COPY_EXTRACT=%6
 
 echo %*
 
-git clean -fxd 
-git reset --hard HEAD
-xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
+REM git clean -fxd 
+REM git reset --hard HEAD
+REM xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
@@ -25,20 +25,44 @@ if "%DO_COPY_EXTRACT%"=="1" (
     set WORKSPACE=%cd%
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
-    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment INTEGRATION_TESTING
-    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_INTEGRATION_TESTING INTEGRATION_TESTING
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment ENV_ENCRYPT
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_ENV_ENCRYPT ENV_ENCRYPT
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment ENV_LINKED_LIST
     %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_ENV_LINKED_LIST ENV_LINKED_LIST
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
-    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment DATABASE_C
-    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_CPP_UnitTesting_DATABASE_C DATABASE_C
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment ENV_MANAGER
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_ENV_MANAGER ENV_MANAGER
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
-    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level  VectorCAST_MinGW_C++/UnitTesting --environment ENV_ENCRYPT
-    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_CPP_UnitTesting_ENV_ENCRYPT ENV_ENCRYPT
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment ENV_MATRIX_MULTIPLY
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_ENV_MATRIX_MULTIPLY ENV_MATRIX_MULTIPLY
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level TRUST_ZONE/UnitTesting --environment INTEGRATION_TESTING
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm TRUST_ZONE/UnitTesting PointOfSales_Manage_TRUST_ZONE_UnitTesting_INTEGRATION_TESTING INTEGRATION_TESTING
+    
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment ENV_ENCRYPT
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_ENV_ENCRYPT ENV_ENCRYPT
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment ENV_LINKED_LIST
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_ENV_LINKED_LIST ENV_LINKED_LIST
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment ENV_MANAGER
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_ENV_MANAGER ENV_MANAGER
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment ENV_MATRIX_MULTIPLY
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_ENV_MATRIX_MULTIPLY ENV_MATRIX_MULTIPLY
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++/UnitTesting --environment INTEGRATION_TESTING
+    %VECTORCAST_DIR%\vpython  vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_INTEGRATION_TESTING INTEGRATION_TESTING
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
     %VECTORCAST_DIR%\vpython  vc_scripts\extract_build_dir.py leaveFiles
