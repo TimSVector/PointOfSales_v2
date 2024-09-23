@@ -15,6 +15,7 @@ def parse_args():
     parser.add_argument('--copy_extract', help='Run the copy/extract test',                   action="store_true", dest="run_copy_extract", default=False)
     parser.add_argument('-a', '--all',    help='Run all the tests',                           action="store_true", dest="run_all", default=False)
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store", dest="vc_version", default=None)
+    parser.add_argument('--quick',        help='Run very quick test',                         action="store_true", dest="quick_test", default=False)
     parser.add_argument('-c', '--cov_types',   
         help='Run specified test for specifc coverage types [default is all] (STATEMENT+MC/DC,STATEMENT+BRANCH,FUNCTION+FUNCTION_CALL,FUNCTION,MC/DC,BRANCH,STATEMENT)',   
         action="store", 
@@ -34,7 +35,6 @@ def parse_args():
     return args
     
 def run_2018_post(args):
-
         
     cli_args = ["                                          ",
                 "            MODIFY                        ",  
@@ -54,6 +54,11 @@ def run_2018_post(args):
     else:
         coverage_types = args.cov_types.split(",")
 
+    if args.quick_test:
+        print("Quick Test: ", args.quick_test)
+        coverage_types = ["STATEMENT+MC/DC ", "FUNCTION+FUNCTION_CALL"]
+        cli_args = "SFP IMPORT MODIFY DO_MERGE                "        
+        
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 
     orig_dir = os.getcwd()
@@ -98,6 +103,15 @@ def run_copy_extract_test(args):
     orig_dir = os.getcwd()
 
     if args.run_all or args.run_copy_extract:
+        
+        if args.cov_types is None:
+            coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
+        else:
+            coverage_types = args.cov_types.split(",")
+
+        if args.quick_test:
+            coverage_types = ["STATEMENT+MC/DC ", "FUNCTION+FUNCTION_CALL"]
+            
         directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
         
         for directory in directories:
@@ -133,7 +147,7 @@ if __name__ == '__main__':
     dt2018, dtPost = run_2018_post(args)
     
     copyExtDT = datetime.now()
-    run_copy_extract_test()
+    run_copy_extract_test(args)
     
     pluginDT = datetime.now()
     

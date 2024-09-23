@@ -1,5 +1,5 @@
 
-set WORKSPACE=%~dp0
+if "%WORKSPACE%"=="" set WORKSPACE=%~dp0
 
 set SOFTCONSOLE_INSTALL=D:\vector\tools\microchip-riscv
 set path=%SOFTCONSOLE_INSTALL%\renode\bin;%SOFTCONSOLE_INSTALL%\riscv-unknown-elf-gcc\bin;%path%
@@ -17,6 +17,7 @@ rem set PATH=%PATH%;d:\Vector\tools\pc-lint-plus\1.4.1\windows;C:\VCAST\Vector.T
 set path=%VECTORCAST_DIR%\mingw\bin;%path%;D:\vector\tools\pc-lint-plus\2.2\pclp
 
 set SQ_INSTALL_DIR=D:\vector\tools\sonarqube-10.2.1.78527\bin\windows-x86-64
+
 set path=%SQ_INSTALL_DIR%\jdk-17.0.8.1\bin;%SQ_INSTALL_DIR%\build-wrapper-win-x86;%SQ_INSTALL_DIR%\sonar-scanner-5.0.1.3006-windows\bin;%PATH%
 
 rem set VCAST_NUM_JOBS=8

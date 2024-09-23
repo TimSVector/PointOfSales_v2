@@ -5,7 +5,7 @@
       <key>WHITEBOX</key>
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
-      <value>STATEMENT+BRANCH</value>
+      <value>FUNCTION+FUNCTION_CALL</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
       <value>TRUE</value>
       <key>VCAST_DISPLAY_UNINST_EXPR</key>
