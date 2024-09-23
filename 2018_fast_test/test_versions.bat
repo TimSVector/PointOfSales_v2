@@ -25,10 +25,10 @@ echo sfp: %DO_SFP% import: %DO_IMPORT% modify: %DO_MODIFY% merge: %DO_MERGE% cop
 
 if "%VC_VERSION%"=="" (
 
-    call single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% 0
-    call single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% 0
-    call single_test.bat c:\vcast\2020sp7 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% 0
-    call single_test.bat c:\vcast\2024sp3 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% 0
+    call single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call single_test.bat c:\vcast\2020sp7 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call single_test.bat c:\vcast\2024sp3 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
 ) else (
     call single_test.bat c:\vcast\%VC_VERSION% %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
 )

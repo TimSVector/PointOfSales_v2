@@ -11,8 +11,8 @@ set DO_COPY_EXTRACT=%6
 
 echo %* 
 
-git clean -fxd 
-git reset --hard HEAD
+git clean -fxd
+git checkout HEAD 2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean

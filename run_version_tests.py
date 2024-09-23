@@ -33,15 +33,6 @@ def parse_args():
         
     return args
     
-def run_copy_extract_test():
-    os.environ['VC_VERSION'] = "2024sp3"
-    os.environ['VCAST_CODE_COVERAGE_TYPE'] = "STATEMENT+BRANCH"
-    callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
-    p = subprocess.Popen(callCmd, universal_newlines=True)
-    p.wait()
-    if not os.path.exists("copy_extract_full_status.html"):
-        sys.exit("Missing copy_extract_full_status.html")
-    
 def run_2018_post(args):
 
         
@@ -79,18 +70,11 @@ def run_2018_post(args):
         elif count == 1:
             dtPost = datetime.now()
             
-        if args.run_copy_extract:
-            os.chdir(directory)
-            run_copy_extract_test()
-            os.chdir(orig_dir)
-            continue
-
-        elif args.run_all:
+        if args.run_all:
             pass
             
-        elif directory.startswith("2018"):
-            if args.run_2018:
-                pass
+        elif directory.startswith("2018") and args.run_2018:
+            pass
                         
         elif args.run_post and directory.startswith("CurrentRelease"):
             dtPost = datetime.now()
@@ -109,12 +93,33 @@ def run_2018_post(args):
         os.chdir(orig_dir)
         
     return dt2018, dtPost
+    
+def run_copy_extract_test(args):
+    orig_dir = os.getcwd()
+
+    if args.run_all or args.run_copy_extract:
+        directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
+        
+        for directory in directories:
+            for coverage_type in coverage_types:
+                
+                os.chdir(directory)
+                os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type            
+                
+                callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
+
+                p = subprocess.Popen(callCmd, universal_newlines=True)
+                p.wait()
+                if not os.path.exists("copy_extract_full_status.html"):
+                    sys.exit("Missing copy_extract_full_status.html")
+                os.chdir(orig_dir)
+
 
 def run_plugin(args):
 
     ## Additional tests -- plugin testing
     if args.run_all or args.run_plgn:
-        for vcd in [r'C:\VCAST\2023sp5']:
+        for vcd in [r'C:\VCAST\2024sp3']:
             os.environ['VECTORCAST_DIR'] = vcd
             p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
             p.wait()
@@ -127,6 +132,9 @@ if __name__ == '__main__':
     
     dt2018, dtPost = run_2018_post(args)
     
+    copyExtDT = datetime.now()
+    run_copy_extract_test()
+    
     pluginDT = datetime.now()
     
     run_plugin(args)
@@ -134,7 +142,8 @@ if __name__ == '__main__':
     endDT = datetime.now()
     
     print("2018   : ", dtPost-dt2018)
-    print("PoST   : ", pluginDT-dtPost)
+    print("PoST   : ", copyExtDT-dtPost)
+    print("CopyExt: ", pluginDT-copyExtDT)
     print("Plugin : ", endDT-pluginDT)
     print("Total  : ", endDT-startDT)
     
