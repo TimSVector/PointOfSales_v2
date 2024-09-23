@@ -3,13 +3,13 @@
 call %WORKSPACE%\setenv.bat > nul
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test\2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
 set ORIG_VCD=%VECTORCAST_DIR%
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test\2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 set VECTORCAST_DIR=c:\vcast\2018sp5
 %VECTORCAST_DIR%\manage -p 2018_fast_test\2018_fast_test.vcm --clean
@@ -17,7 +17,7 @@ set VECTORCAST_DIR=c:\vcast\2018sp5
 pause 
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test\2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 %VECTORCAST_DIR%\manage -p 2018_fast_test\2018_fast_test.vcm --clean
 set VECTORCAST_DIR=c:\vcast\2019sp6
@@ -25,7 +25,7 @@ set VECTORCAST_DIR=c:\vcast\2019sp6
 pause 
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test\2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 %VECTORCAST_DIR%\manage -p 2018_fast_test\2018_fast_test.vcm --clean
 set VECTORCAST_DIR=c:\vcast\2020sp7
@@ -33,7 +33,7 @@ set VECTORCAST_DIR=c:\vcast\2020sp7
 pause 
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test\2018_fast_test.vcm
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 %VECTORCAST_DIR%\manage -p 2018_fast_test\2018_fast_test.vcm --clean
 set VECTORCAST_DIR=c:\vcast\2024sp3
