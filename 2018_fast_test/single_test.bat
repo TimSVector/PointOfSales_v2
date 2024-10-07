@@ -9,10 +9,15 @@ set DO_MODIFY=%4
 set DO_MERGE=%5
 set DO_COPY_EXTRACT=%6
 
+set VC2018=0
+echo %VECTORCAST_DIR% | findstr /i 2018 > nul
+if "%errorlevel%"=="0" set VC2018=1
+
 echo %* 
 
 git clean -fxd
-git checkout HEAD 2018_fast_test.vcm
+git checkout HEAD 2018_fast_test.vcm tutorial\c\manager.c
+
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
 %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
@@ -20,7 +25,7 @@ xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
 if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
 
-if "%DO_COPY_EXTRACT%"=="1" (
+if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
 
   %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
   %VECTORCAST_DIR%\manage -p 2018_fast_test --build-execute --level VectorCAST_MinGW_C/TestSuite --environment DATABASE_C
@@ -53,11 +58,14 @@ if "%DO_COPY_EXTRACT%"=="1" (
 %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\getjobs.py 2018_fast_test.vcm --type
 
 :: do original clean build
-%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=6
-copy PointOfSales_Manage_build.log unstashed_build.log
+set JOBS=6
+if "%VC2018%"=="1" set JOBS=1
 
-::Skip CBT if we don't import, mnodify, or merge
-if "%DO_IMPORT%"=="" if "%DO_MODIFY%"=="" if "%DO_MERGE%"=="" goto END
+%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=%JOBS%
+copy 2018_fast_test_build.log unstashed_build.log
+
+::Skip CBT if we don't import, modify, or merge
+if "%DO_IMPORT%"=="0" if "%DO_MODIFY%"=="0" if "%DO_MERGE%"=="0" goto END
 
 if "%DO_IMPORT%"=="1" (
   :: get the results, clean, import
@@ -71,7 +79,7 @@ if "%DO_MODIFY%"=="1" (
   echo void change_code(void) {} >> tutorial\c\manager.c
 
   :: CBT run
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py 2018_fast_test --jobs 6 --incremental
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py 2018_fast_test --build-execute --jobs %JOBS% --incremental
   copy 2018_fast_test_build.log unstashed_build.log
 )
 
