@@ -45,7 +45,8 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
 
   %VECTORCAST_DIR%\manage -p 2018_fast_test --clean
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\extract_build_dir.py leaveFiles
-
+  %VECTORCAST_DIR%\manage -p 2018_fast_test --refresh
+  
   %VECTORCAST_DIR%\manage -p 2018_fast_test --full-status=copy_extract_full_status.html
   if exist "copy_extract_full_status.html" (
     echo Copy/Extract Test PASSED
