@@ -3,19 +3,19 @@
 
 namespace {
 class managerFixture : public ::vunit::Fixture {
-protected:
+  protected:
 
-  Manager * mgr;
+    Manager * mgr;
 
-  void SetUp(void) override {
-    // Set up code goes here.
-    mgr = new Manager();
-  }
+    void SetUp(void) override {
+      // Set up code goes here.
+      mgr = new Manager();
+    }
 
-  void TearDown(void) override {
-    // Tear down code goes here.
-  }
-};
+    void TearDown(void) override {
+      delete mgr;
+    }
+  };
 } // namespace
 
 VTEST(managerTests, ExampleTestCase) {
