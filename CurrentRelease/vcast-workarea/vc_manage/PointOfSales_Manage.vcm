@@ -6,6 +6,8 @@
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
       <value>FUNCTION+FUNCTION_CALL</value>
+      <key>VCAST_CODED_TESTS_SUPPORT</key>
+      <value>FALSE</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
       <value>TRUE</value>
       <key>VCAST_DISPLAY_UNINST_EXPR</key>
@@ -24,6 +26,8 @@
     <base-directories>
       <key>POST_BASE_DIRECTORY</key>
       <value>$(VCAST_DEMO_SRC_BASE)</value>
+      <key>VCAST_TUT</key>
+      <value>$(tut)</value>
     </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
@@ -102,6 +106,13 @@
     <config>
       <apply-inst>BUILD</apply-inst>
       <original-environment-directory>PointOfSales_Manage/build/1594661117</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="TUTORIAL_CPP" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>C:/VCAST/2024sp4/examples/environments/tutorial_cpp</original-environment-directory>
     </config>
   </environment>
   <group name="Group"/>
@@ -200,6 +211,20 @@
   </compiler>
   <compiler>
     <compiler>
+      <name>VectorCAST_MinGW_C++17</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_CPP17</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="codeTest">
+      <environment name="TUTORIAL_CPP"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
       <name>VectorCAST_MinGW_C++_ST</name>
       <config>
         <config>
@@ -211,5 +236,6 @@
     <testsuite name="ST">
       <group name="ST"/>
     </testsuite>
+    <testsuite name="codeTest"/>
   </compiler>
 </project>
