@@ -15,7 +15,7 @@ if "%errorlevel%"=="0" set VC2018=1
 echo %* 
 
 git clean -fxd
-git checkout HEAD PointOfSales_Manage.vcm tutorial\c\manager.c
+git checkout HEAD PointOfSales_Manage.vcm %VCAST_DEMO_SRC_BASE%\CurrentRelease\order_entry\src\manager.c
 
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
@@ -67,8 +67,16 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
     %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++/UnitTesting PointOfSales_Manage_VectorCAST_MinGW_C++_UnitTesting_INTEGRATION_TESTING INTEGRATION_TESTING
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++_ST/ST --environment System_Testing
+    %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++_ST/ST PointOfSales_Manage_VectorCAST_MinGW_C++_ST_ST_System_Testing System_Testing
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --level VectorCAST_MinGW_C++17/codeTest --environment TUTORIAL_CPP
+    %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\copy_build_dir.py PointOfSales_Manage.vcm VectorCAST_MinGW_C++17/codeTest PointOfSales_Manage_VectorCAST_MinGW_C++17_codeTest_TUTORIAL_CPP TUTORIAL_CPP
+
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
     %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\extract_build_dir.py leaveFiles
-  %VECTORCAST_DIR%\manage -p 2018_fast_test --refresh
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --refresh
 
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status=copy_extract_full_status.html
     if exist "copy_extract_full_status.html" (
@@ -99,7 +107,7 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-    echo void change_code(void) {} >> tutorial\c\manager.c
+    echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\CurrentRelease\order_entry\src\manager.c
 
     :: CBT run
     %VECTORCAST_DIR%\vpython%WORKSPACE%\vc_scripts\vcast_exec.py PointOfSales_Manage  --build-execute--jobs %JOBS% --incremental
@@ -116,7 +124,7 @@ if "%DO_MERGE%"=="1" (
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result temp_result.vcr
 
     :: 3rd build-execute with no changes - should only build system tests
-    %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py 2018_fast_test --jobs 6 --incremental
+    %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py PointOfSales_Manage --jobs 6 --incremental
     copy PointOfSales_Manage_build.log unstashed_build.log
 )
 

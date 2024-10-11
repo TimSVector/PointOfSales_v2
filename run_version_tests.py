@@ -114,7 +114,16 @@ def run_copy_extract_test(args):
             
         directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
         
-        for directory in directories:
+        if args.run_post and directory.startswith("CurrentRelease"):
+            run_dirs.append(directories[1])
+        
+        if directory.startswith("2018") and args.run_2018:
+            run_dirs.append(directories[0])
+            
+        if args.run_all:
+            run_dirs = directories
+        
+        for directory in run_dirs:
             for coverage_type in coverage_types:
                 
                 os.chdir(directory)
