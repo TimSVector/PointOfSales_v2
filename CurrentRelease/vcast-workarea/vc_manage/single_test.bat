@@ -15,7 +15,7 @@ if "%errorlevel%"=="0" set VC2018=1
 echo %* 
 
 git clean -fxd
-git checkout HEAD PointOfSales_Manage.vcm %VCAST_DEMO_SRC_BASE%\CurrentRelease\order_entry\src\manager.c
+git checkout HEAD PointOfSales_Manage.vcm %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
@@ -107,7 +107,7 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-    echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\CurrentRelease\order_entry\src\manager.c
+    echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 
     :: CBT run
     %VECTORCAST_DIR%\vpython%WORKSPACE%\vc_scripts\vcast_exec.py PointOfSales_Manage  --build-execute--jobs %JOBS% --incremental
