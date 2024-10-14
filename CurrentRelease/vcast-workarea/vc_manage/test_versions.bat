@@ -23,7 +23,7 @@ set ORIG_VCD=%VECTORCAST_DIR%
 
 echo sfp: %DO_SFP% import: %DO_IMPORT% modify: %DO_MODIFY% merge: %DO_MERGE% copy-extract: %DO_COPY_EXTRACT%
 
-call single_test.bat %VECTORCAST_DIR% %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+call %~dp0single_test.bat %VECTORCAST_DIR% %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
 
 set VECTORCAST_DIR=%ORIG_VCD%
 
