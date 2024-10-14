@@ -14,6 +14,10 @@
   <al>order_entry</al>
   <al>utils</al>
  </base>
+ <base>
+  <name>VCAST_TUT</name>
+  <path>$(tut)</path>
+ </base>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
