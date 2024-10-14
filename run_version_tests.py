@@ -63,27 +63,16 @@ def run_2018_post(args):
 
     orig_dir = os.getcwd()
     
-    dt2018 = datetime.now()
-    dtPost = datetime.now()
-    count =10
+    dt2018 = None
+    dtPost = None
     for directory in directories:
-                
-        # setup time info
-        if count == 0:
-            dt2018 = datetime.now()
-            count += 1
-        elif count == 1:
-            dtPost = datetime.now()
-            
+                            
         if args.run_all:
             pass
-            
-        elif directory.startswith("2018") and args.run_2018:
-            pass
-                        
+        elif args.run_2018 and directory.startswith("2018"):
+            dt2018 = datetime.now()                        
         elif args.run_post and directory.startswith("CurrentRelease"):
             dtPost = datetime.now()
-            pass
         else:
             continue
             
