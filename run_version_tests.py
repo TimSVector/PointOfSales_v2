@@ -14,7 +14,8 @@ def parse_args():
     parser.add_argument('-p', '--plugin', help='Run the tests on the PluginTesting',          action="store_true", dest="run_plgn", default=False)
     parser.add_argument('--copy_extract', help='Run the copy/extract test',                   action="store_true", dest="run_copy_extract", default=False)
     parser.add_argument('-a', '--all',    help='Run all the tests',                           action="store_true", dest="run_all", default=False)
-    parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store", dest="vc_version", default=None)
+    parser.add_argument('--new_css',      help='Run tests against the new CSS files',         action="store_true", dest="run_new_css", default=False)
+    parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store",      dest="vc_version", default=None)
     parser.add_argument('--quick',        help='Run very quick test',                         action="store_true", dest="quick_test", default=False)
     parser.add_argument('-c', '--cov_types',   
         help='Run specified test for specifc coverage types [default is all] (STATEMENT+MC/DC,STATEMENT+BRANCH,FUNCTION+FUNCTION_CALL,FUNCTION,MC/DC,BRANCH,STATEMENT)',   
@@ -63,8 +64,8 @@ def run_2018_post(args):
 
     orig_dir = os.getcwd()
     
-    dt2018 = None
-    dtPost = None
+    dt2018 = datetime.now()
+    dtPost = datetime.now()
     for directory in directories:
                             
         if args.run_all:
@@ -136,6 +137,47 @@ def run_plugin(args):
             p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
             p.wait()
     
+def run_new_css(args):
+
+    ## Additional tests -- plugin testing
+    if args.run_all or args.run_new_css:
+        vcd = r'c:\vcast\vc25_nightly'
+        os.environ["VECTORCAST_DIR"] = vcd
+        os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
+        
+        # cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
+        # p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+        # p.wait()
+
+        # cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
+        # p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+        # p.wait()
+
+        ccsFiles = ["default", "condensed", "dark_mode", "rounded", "drop_shadow"]
+        for cssFile in ccsFiles:
+            
+            if cssFile == "default":    
+                cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --unset-config VCAST_RPTS_CUSTOM_CSS"
+            else:
+                cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --config VCAST_RPTS_CUSTOM_CSS=" + cssFile
+                
+            p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+            p.wait()
+
+            cmdStr = vcd + "/vpython vc_scripts/full_report_no_toc.py 2018_fast_test/2018_fast_test.vcm"
+            p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+            p.wait()
+            
+            import glob
+            import shutil
+
+            destination_dir = "./htmls/" + cssFile
+            shutil.rmtree(destination_dir)
+            os.makedirs(destination_dir, exist_ok=True)
+
+            for file in glob.glob("*.html*"):
+                shutil.move(file, destination_dir)
+    
 if __name__ == '__main__':
 
     startDT = datetime.now()
@@ -151,13 +193,17 @@ if __name__ == '__main__':
     
     run_plugin(args)
     
+    newCssDT = datetime.now()
+    run_new_css(args)
+    
     endDT = datetime.now()
     
-    print("2018   : ", dtPost-dt2018)
-    print("PoST   : ", copyExtDT-dtPost)
-    print("CopyExt: ", pluginDT-copyExtDT)
-    print("Plugin : ", endDT-pluginDT)
-    print("Total  : ", endDT-startDT)
+    print("2018    : ", dtPost-dt2018)
+    print("PoST    : ", copyExtDT-dtPost)
+    print("CopyExt : ", pluginDT-copyExtDT)
+    print("Plugin  : ", newCssDT-pluginDT)
+    print("New CSS : ", endDT-newCssDT)
+    print("Total   : ", endDT-startDT)
     
     
     
