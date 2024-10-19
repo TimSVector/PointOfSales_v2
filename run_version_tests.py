@@ -104,12 +104,12 @@ def run_copy_extract_test(args):
             
         directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
         
-        if args.run_post and directory.startswith("CurrentRelease"):
-            run_dirs.append(directories[1])
-        
-        if directory.startswith("2018") and args.run_2018:
+        if args.run_2018:
             run_dirs.append(directories[0])
             
+        if args.run_post:
+            run_dirs.append(directories[1])
+        
         if args.run_all:
             run_dirs = directories
         
@@ -145,13 +145,13 @@ def run_new_css(args):
         os.environ["VECTORCAST_DIR"] = vcd
         os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
         
-        # cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
-        # p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-        # p.wait()
+        cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
+        p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+        p.wait()
 
-        # cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
-        # p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-        # p.wait()
+        cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
+        p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+        p.wait()
 
         ccsFiles = ["default", "condensed", "dark_mode", "rounded", "drop_shadow"]
         for cssFile in ccsFiles:
