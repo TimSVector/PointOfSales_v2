@@ -77,15 +77,13 @@ def run_2018_post(args):
         else:
             continue
             
-        os.chdir(directory)
         
         for coverage_type in coverage_types:
             os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
             for cargs in cli_args:
-                callCmd = ["test_versions.bat"] + cargs.split()
+                callCmd = [directory + "/test_versions.bat"] + cargs.split()
                 p = subprocess.Popen(callCmd, universal_newlines=True)
                 p.wait()
-        os.chdir(orig_dir)
         
     return dt2018, dtPost
     
@@ -116,16 +114,14 @@ def run_copy_extract_test(args):
         for directory in run_dirs:
             for coverage_type in coverage_types:
                 
-                os.chdir(directory)
                 os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type            
                 
-                callCmd = ["test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
+                callCmd = [directory + "/test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
 
                 p = subprocess.Popen(callCmd, universal_newlines=True)
                 p.wait()
                 if not os.path.exists("copy_extract_full_status.html"):
                     sys.exit("Missing copy_extract_full_status.html")
-                os.chdir(orig_dir)
 
 
 def run_plugin(args):
