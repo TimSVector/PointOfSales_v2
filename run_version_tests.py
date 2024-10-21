@@ -81,7 +81,7 @@ def run_2018_post(args):
         for coverage_type in coverage_types:
             os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
             for cargs in cli_args:
-                callCmd = [directory + "/test_versions.bat"] + cargs.split()
+                callCmd = [directory + "\\test_versions.bat"] + cargs.split()
                 p = subprocess.Popen(callCmd, universal_newlines=True)
                 p.wait()
         
@@ -116,7 +116,7 @@ def run_copy_extract_test(args):
                 
                 os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type            
                 
-                callCmd = [directory + "/test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
+                callCmd = [directory + "\\test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
 
                 p = subprocess.Popen(callCmd, universal_newlines=True)
                 p.wait()
