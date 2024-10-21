@@ -168,7 +168,12 @@ def run_new_css(args):
             import shutil
 
             destination_dir = "./htmls/" + cssFile
-            shutil.rmtree(destination_dir)
+            
+            try:
+                shutil.rmtree(destination_dir)
+            except:
+                pass
+                
             os.makedirs(destination_dir, exist_ok=True)
 
             for file in glob.glob("*.html*"):
