@@ -17,6 +17,7 @@ def parse_args():
     parser.add_argument('--new_css',      help='Run tests against the new CSS files',         action="store_true", dest="run_new_css", default=False)
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store",      dest="vc_version", default=None)
     parser.add_argument('--quick',        help='Run very quick test',                         action="store_true", dest="quick_test", default=False)
+    parser.add_argument('--dryrun',       help='Prints all command that would be run',        action="store_true", dest="dryrun", default=False)
     parser.add_argument('-c', '--cov_types',   
         help='Run specified test for specifc coverage types [default is all] (STATEMENT+MC/DC,STATEMENT+BRANCH,FUNCTION+FUNCTION_CALL,FUNCTION,MC/DC,BRANCH,STATEMENT)',   
         action="store", 
@@ -49,9 +50,15 @@ def get_coverage_types(args):
         
     return coverage_types
         
+def run_command(args, callCmd):
+    if not args.dryrun:
+        p = subprocess.Popen(callCmd, universal_newlines=True)
+        p.wait()
+    else:
+        print(" ".join(callCmd))
 
 def run_test_versions_bat(args, directory):
-    coverage_type  = get_coverage_types()
+    coverage_types  = get_coverage_types(args)
         
     if args.quick_test:
         print("Quick Test: ", args.quick_test)
@@ -74,8 +81,7 @@ def run_test_versions_bat(args, directory):
         os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
         for cargs in cli_args:
             callCmd = [directory + "\\test_versions.bat"] + cargs.split()
-            p = subprocess.Popen(callCmd, universal_newlines=True)
-            p.wait()
+            run_command(args, callCmd)
             
 def run_copy_extract_test(args):
     
@@ -83,6 +89,7 @@ def run_copy_extract_test(args):
 
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
     
+    run_dirs = []
     if args.run_2018:
         run_dirs.append(directories[0])
         
@@ -96,19 +103,16 @@ def run_copy_extract_test(args):
             
             callCmd = [directory + "\\test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
 
-            p = subprocess.Popen(callCmd, universal_newlines=True)
-            p.wait()
-            if not os.path.exists("copy_extract_full_status.html"):
+            run_command(args, callCmd)
+            if not args.dryrun and not os.path.exists("copy_extract_full_status.html"):
                 sys.exit("Missing copy_extract_full_status.html")
 
 
 def run_plugin(args):
 
     ## Additional tests -- plugin testing
-    for vcd in [r'C:\VCAST\2024sp3']:
-        os.environ['VECTORCAST_DIR'] = vcd
-        p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
-        p.wait()
+    os.environ['VECTORCAST_DIR'] = r'C:\VCAST\2024sp4'
+    run_command(args, ["PluginTestRunner.bat"])
     
 def run_new_css(args):
 
@@ -118,12 +122,10 @@ def run_new_css(args):
     os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
     
     cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
-    p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-    p.wait()
+    run_command(args, cmdStr.split())
 
     cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
-    p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-    p.wait()
+    run_command(args, cmdStr.split())
 
     ccsFiles = ["default", "condensed", "dark_mode", "rounded", "drop_shadow"]
     for cssFile in ccsFiles:
@@ -132,31 +134,29 @@ def run_new_css(args):
             cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --unset-config VCAST_RPTS_CUSTOM_CSS"
         else:
             cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --config VCAST_RPTS_CUSTOM_CSS=" + cssFile
-            
-        p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-        p.wait()
+        run_command(args, cmdStr.split())
 
         cmdStr = vcd + "/vpython vc_scripts/full_report_no_toc.py 2018_fast_test/2018_fast_test.vcm"
-        p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-        p.wait()
+        run_command(args, cmdStr.split())
         
-        import glob
-        import shutil
+        if not args.dryrun:
+            import glob
+            import shutil
 
-        destination_dir = "./htmls/" + cssFile
-        
-        try:
-            shutil.rmtree(destination_dir)
-        except:
-            pass
+            destination_dir = "./htmls/" + cssFile
             
-        os.makedirs(destination_dir, exist_ok=True)
+            try:
+                shutil.rmtree(destination_dir)
+            except:
+                pass
+                
+            os.makedirs(destination_dir, exist_ok=True)
 
-        for file in glob.glob("*.html*"):
-            shutil.move(file, destination_dir)
+            for file in glob.glob("*.html*"):
+                shutil.move(file, destination_dir)
     
 if __name__ == '__main__':
-
+    
     startDT = datetime.now()
 
     args = parse_args()
