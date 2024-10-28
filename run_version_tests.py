@@ -27,6 +27,12 @@ def parse_args():
     
     args = parser.parse_args()
     
+    if args.run_all:
+        args.run_2018 = True
+        args.run_post = True
+        args.run_plgn = True
+        args.run_new_css = True
+    
     if args.vc_version and os.path.exists("c:/vcast/"+args.vc_version):
         os.environ['VC_VERSION'] = args.vc_version
     elif args.vc_version:
@@ -35,149 +41,119 @@ def parse_args():
         
     return args
     
-def run_2018_post(args):
-        
-    cli_args = ["                                          ",
-                "            MODIFY                        ",  
-                "    IMPORT                                ", 
-                "    IMPORT        DO_MERGE                ", 
-                "    IMPORT MODIFY                         ", 
-                "    IMPORT MODIFY DO_MERGE                ", 
-                "SFP                                       ", 
-                "SFP        MODIFY                         ", 
-                "SFP IMPORT                                ", 
-                "SFP IMPORT        DO_MERGE                ", 
-                "SFP IMPORT MODIFY                         ", 
-                "SFP IMPORT MODIFY DO_MERGE                "] 
-                
+def get_coverage_types(args):
     if args.cov_types is None:
         coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
     else:
         coverage_types = args.cov_types.split(",")
+        
+    return coverage_types
+        
 
+def run_test_versions_bat(args, directory):
+    coverage_type  = get_coverage_types()
+        
     if args.quick_test:
         print("Quick Test: ", args.quick_test)
-        coverage_types = ["STATEMENT+MC/DC ", "FUNCTION+FUNCTION_CALL"]
         cli_args = "SFP IMPORT MODIFY DO_MERGE                "        
-        
-    directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
-
-    orig_dir = os.getcwd()
+    else:
+        cli_args = ["                                          ",
+                    "            MODIFY                        ",  
+                    "    IMPORT                                ", 
+                    "    IMPORT        DO_MERGE                ", 
+                    "    IMPORT MODIFY                         ", 
+                    "    IMPORT MODIFY DO_MERGE                ", 
+                    "SFP                                       ", 
+                    "SFP        MODIFY                         ", 
+                    "SFP IMPORT                                ", 
+                    "SFP IMPORT        DO_MERGE                ", 
+                    "SFP IMPORT MODIFY                         ", 
+                    "SFP IMPORT MODIFY DO_MERGE                "] 
     
-    dt2018 = datetime.now()
-    dtPost = datetime.now()
-    for directory in directories:
-                            
-        if args.run_all:
-            pass
-        elif args.run_2018 and directory.startswith("2018"):
-            dt2018 = datetime.now()                        
-        elif args.run_post and directory.startswith("CurrentRelease"):
-            dtPost = datetime.now()
-        else:
-            continue
+    for coverage_type in coverage_types:
+        os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
+        for cargs in cli_args:
+            callCmd = [directory + "\\test_versions.bat"] + cargs.split()
+            p = subprocess.Popen(callCmd, universal_newlines=True)
+            p.wait()
             
-        
-        for coverage_type in coverage_types:
-            os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
-            for cargs in cli_args:
-                callCmd = [directory + "\\test_versions.bat"] + cargs.split()
-                p = subprocess.Popen(callCmd, universal_newlines=True)
-                p.wait()
-        
-    return dt2018, dtPost
-    
 def run_copy_extract_test(args):
-    orig_dir = os.getcwd()
+    
+    coverage_types = get_coverage_types(args)
 
-    if args.run_all or args.run_copy_extract:
+    directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
+    
+    if args.run_2018:
+        run_dirs.append(directories[0])
         
-        if args.cov_types is None:
-            coverage_types = ["STATEMENT+MC/DC ","STATEMENT+BRANCH ","FUNCTION+FUNCTION_CALL","FUNCTION","MC/DC","BRANCH","STATEMENT"]
-        else:
-            coverage_types = args.cov_types.split(",")
-
-        if args.quick_test:
-            coverage_types = ["STATEMENT+MC/DC ", "FUNCTION+FUNCTION_CALL"]
+    if args.run_post:
+        run_dirs.append(directories[1])
+    
+    for directory in run_dirs:
+        for coverage_type in coverage_types:
             
-        directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
-        
-        if args.run_2018:
-            run_dirs.append(directories[0])
+            os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type            
             
-        if args.run_post:
-            run_dirs.append(directories[1])
-        
-        if args.run_all:
-            run_dirs = directories
-        
-        for directory in run_dirs:
-            for coverage_type in coverage_types:
-                
-                os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type            
-                
-                callCmd = [directory + "\\test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
+            callCmd = [directory + "\\test_versions.bat", os.environ['VECTORCAST_DIR'] ,"COPY_EXTRACT"]     
 
-                p = subprocess.Popen(callCmd, universal_newlines=True)
-                p.wait()
-                if not os.path.exists("copy_extract_full_status.html"):
-                    sys.exit("Missing copy_extract_full_status.html")
+            p = subprocess.Popen(callCmd, universal_newlines=True)
+            p.wait()
+            if not os.path.exists("copy_extract_full_status.html"):
+                sys.exit("Missing copy_extract_full_status.html")
 
 
 def run_plugin(args):
 
     ## Additional tests -- plugin testing
-    if args.run_all or args.run_plgn:
-        for vcd in [r'C:\VCAST\2024sp3']:
-            os.environ['VECTORCAST_DIR'] = vcd
-            p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
-            p.wait()
+    for vcd in [r'C:\VCAST\2024sp3']:
+        os.environ['VECTORCAST_DIR'] = vcd
+        p = subprocess.Popen(["PluginTestRunner.bat"], universal_newlines=True)
+        p.wait()
     
 def run_new_css(args):
 
     ## Additional tests -- plugin testing
-    if args.run_all or args.run_new_css:
-        vcd = r'c:\vcast\vc25_nightly'
-        os.environ["VECTORCAST_DIR"] = vcd
-        os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
+    vcd = r'c:\vcast\vc25_nightly'
+    os.environ["VECTORCAST_DIR"] = vcd
+    os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
+    
+    cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
+    p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+    p.wait()
+
+    cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
+    p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
+    p.wait()
+
+    ccsFiles = ["default", "condensed", "dark_mode", "rounded", "drop_shadow"]
+    for cssFile in ccsFiles:
         
-        cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
+        if cssFile == "default":    
+            cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --unset-config VCAST_RPTS_CUSTOM_CSS"
+        else:
+            cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --config VCAST_RPTS_CUSTOM_CSS=" + cssFile
+            
         p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
         p.wait()
 
-        cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --build-execute"
+        cmdStr = vcd + "/vpython vc_scripts/full_report_no_toc.py 2018_fast_test/2018_fast_test.vcm"
         p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
         p.wait()
+        
+        import glob
+        import shutil
 
-        ccsFiles = ["default", "condensed", "dark_mode", "rounded", "drop_shadow"]
-        for cssFile in ccsFiles:
+        destination_dir = "./htmls/" + cssFile
+        
+        try:
+            shutil.rmtree(destination_dir)
+        except:
+            pass
             
-            if cssFile == "default":    
-                cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --unset-config VCAST_RPTS_CUSTOM_CSS"
-            else:
-                cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test.vcm --config VCAST_RPTS_CUSTOM_CSS=" + cssFile
-                
-            p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-            p.wait()
+        os.makedirs(destination_dir, exist_ok=True)
 
-            cmdStr = vcd + "/vpython vc_scripts/full_report_no_toc.py 2018_fast_test/2018_fast_test.vcm"
-            p = subprocess.Popen(cmdStr.split(), universal_newlines=True)
-            p.wait()
-            
-            import glob
-            import shutil
-
-            destination_dir = "./htmls/" + cssFile
-            
-            try:
-                shutil.rmtree(destination_dir)
-            except:
-                pass
-                
-            os.makedirs(destination_dir, exist_ok=True)
-
-            for file in glob.glob("*.html*"):
-                shutil.move(file, destination_dir)
+        for file in glob.glob("*.html*"):
+            shutil.move(file, destination_dir)
     
 if __name__ == '__main__':
 
@@ -185,17 +161,25 @@ if __name__ == '__main__':
 
     args = parse_args()
     
-    dt2018, dtPost = run_2018_post(args)
+    dt2018 = datetime.now()
+    if args.run_2018: 
+        run_test_versions_bat(args,"2018_fast_test")
+    
+    dtPost = datetime.now()
+    if args.run_post: 
+        run_test_versions_bat(args,"CurrentRelease/vcast-workarea/vc_manage")
     
     copyExtDT = datetime.now()
-    run_copy_extract_test(args)
+    if args.run_new_css: 
+        run_copy_extract_test(args)
     
     pluginDT = datetime.now()
-    
-    run_plugin(args)
+    if args.run_plgn: 
+        run_plugin(args)
     
     newCssDT = datetime.now()
-    run_new_css(args)
+    if args.run_new_css: 
+        run_new_css(args)
     
     endDT = datetime.now()
     
