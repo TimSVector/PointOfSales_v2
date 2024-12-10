@@ -1,8 +1,8 @@
--- VectorCAST 24.sp3 (07/14/24)
+-- VectorCAST 24.sp4 (08/26/24)
 -- Test Case Script
 --
 -- Environment    : INTEGRATION_TEST
--- Unit(s) Under Test: database manager manager_driver
+-- Unit(s) Under Test: database manager manager_driver no_code whitebox
 --
 -- Script Features
 TEST.SCRIPT_FEATURE:C_DIRECT_ARRAY_INDEXING
