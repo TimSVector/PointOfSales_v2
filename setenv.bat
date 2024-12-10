@@ -30,4 +30,6 @@ REM if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
 
 REM set VECTORCAST_DIR=%VECTORCAST_DIR%@%EXECUTOR_NUMBER%
 
+set vector_license_file=7650@vadcpctlic1.vi.vector.int
+
 :END

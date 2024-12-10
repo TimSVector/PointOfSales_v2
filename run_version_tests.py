@@ -117,7 +117,7 @@ def run_plugin(args):
 def run_new_css(args):
 
     ## Additional tests -- plugin testing
-    vcd = r'c:\vcast\vc25_nightly'
+    vcd = r'c:\vcast\vc25_rc1'
     os.environ["VECTORCAST_DIR"] = vcd
     os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
     
