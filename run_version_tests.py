@@ -111,7 +111,7 @@ def run_copy_extract_test(args):
 def run_plugin(args):
 
     ## Additional tests -- plugin testing
-    os.environ['VECTORCAST_DIR'] = r'C:\VCAST\2024sp4'
+    os.environ['VECTORCAST_DIR'] = r'C:\VCAST\2024sp6'
     run_command(args, ["PluginTestRunner.bat"])
     
 def run_new_css(args):
