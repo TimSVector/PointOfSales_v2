@@ -15,6 +15,7 @@ def parse_args():
     parser.add_argument('--copy_extract', help='Run the copy/extract test',                   action="store_true", dest="run_copy_extract", default=False)
     parser.add_argument('-a', '--all',    help='Run all the tests',                           action="store_true", dest="run_all", default=False)
     parser.add_argument('--new_css',      help='Run tests against the new CSS files',         action="store_true", dest="run_new_css", default=False)
+    parser.add_argument('--vc_scripts_submodule',      help='Run tests against the new CSS files',         action="store_true", dest="vc_scripts_submodule", default=False)
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store",      dest="vc_version", default=None)
     parser.add_argument('--quick',        help='Run very quick test',                         action="store_true", dest="quick_test", default=False)
     parser.add_argument('--dryrun',       help='Prints all command that would be run',        action="store_true", dest="dryrun", default=False)
@@ -33,7 +34,10 @@ def parse_args():
         args.run_post = True
         args.run_plgn = True
         args.run_new_css = True
-    
+        
+    if args.vc_scripts_submodule:
+        os.environ['VCAST_VC_SCRIPTS'] = r'D:\vector\github\vc_scripts_submodule'
+        
     if args.vc_version and os.path.exists("c:/vcast/"+args.vc_version):
         os.environ['VC_VERSION'] = args.vc_version
     elif args.vc_version:
@@ -51,6 +55,13 @@ def get_coverage_types(args):
     return coverage_types
         
 def run_command(args, callCmd):
+    
+    
+    if os.name == "nt":
+        callCmd[0] = callCmd[0].replace("/","\\")
+    else:
+        callCmd[0] = callCmd[0].replace("\\","/")
+        
     if not args.dryrun:
         p = subprocess.Popen(callCmd, universal_newlines=True)
         p.wait()
@@ -58,6 +69,7 @@ def run_command(args, callCmd):
         print(" ".join(callCmd))
 
 def run_test_versions_bat(args, directory):
+
     coverage_types  = get_coverage_types(args)
         
     if args.quick_test:
@@ -81,6 +93,7 @@ def run_test_versions_bat(args, directory):
         os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
         for cargs in cli_args:
             callCmd = [directory + "\\test_versions.bat"] + cargs.split()
+            print(callCmd)
             run_command(args, callCmd)
             
 def run_copy_extract_test(args):
@@ -121,6 +134,10 @@ def run_new_css(args):
     os.environ["VECTORCAST_DIR"] = vcd
     os.environ["VECTOR_LICENSE_FILE"] = r'7650@vadcpctlic1.vi.vector.int'
     
+    if not os.path.exists(vcd + "/manage.exe"):
+        print("Can't find ", vcd + "/manage.exe - skipping new_css test")
+        return
+        
     cmdStr = vcd + "/manage -p 2018_fast_test/2018_fast_test --clean"
     run_command(args, cmdStr.split())
 
@@ -166,6 +183,7 @@ if __name__ == '__main__':
         run_test_versions_bat(args,"2018_fast_test")
     
     dtPost = datetime.now()
+    
     if args.run_post: 
         run_test_versions_bat(args,"CurrentRelease/vcast-workarea/vc_manage")
     
