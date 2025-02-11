@@ -125,7 +125,8 @@ if "%DO_MERGE%"=="1" (
 
 :END
 
-%VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\generate-results.py  %~dp0PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %~dp0unstashed_build.log --print_exc
+if exist "WORKSPACE%\vc_scripts\generate-results.py" %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\generate-results.py  %~dp0PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %~dp0unstashed_build.log --print_exc
+
 %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage.vcm --cobertura_extended --lcov --junit --sonarqube --aggregate --metrics --fullstatus
 
 tree /f xml_data
