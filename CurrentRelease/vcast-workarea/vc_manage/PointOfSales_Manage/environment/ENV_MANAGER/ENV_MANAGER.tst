@@ -126,16 +126,6 @@ TEST.UNIT:manager
 TEST.SUBPROGRAM:Place_Order
 TEST.NEW
 TEST.NAME:manager_Place_Order_Fish
-TEST.IMPORT_FAILURES:
-(E) @LINE: 133 TEST.VALUE:manager.Place_Order.Order.Entree:FISH
-    >>> Value for 'Enumeral' out of range
-    >>>   Read "FISH"
-    >>>   Command Ignored
-(E) @LINE: 138 TEST.EXPECTED:uut_prototype_stubs.Update_Record.Data.Order[1].Entree:FISH
-    >>> Value for 'Enumeral' out of range
-    >>>   Read "FISH"
-    >>>   Command Ignored
-TEST.END_IMPORT_FAILURES:
 TEST.VALUE:manager.Place_Order.Table:1
 TEST.VALUE:manager.Place_Order.Seat:1
 TEST.VALUE:manager.Place_Order.Order.Beverage:WINE
