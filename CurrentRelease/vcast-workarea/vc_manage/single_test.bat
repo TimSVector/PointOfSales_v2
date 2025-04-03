@@ -16,6 +16,7 @@ git checkout HEAD %~dp0PointOfSales_Manage.vcm %VCAST_DEMO_SRC_BASE%\order_entry
 
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
+%VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --status
 %VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --clean
 %VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
 
@@ -87,7 +88,7 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
 %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\getjobs.py  %~dp0PointOfSales_Manage.vcm --type
 
 :: do original clean build
-%VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage.vcm --build-execute --jobs=6
+%VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage.vcm --build-execute --jobs=12
 copy PointOfSales_Manage_build.log unstashed_build.log
 
 ::Skip CBT if we don't import, modify, or merge
@@ -105,7 +106,7 @@ if "%DO_MODIFY%"=="1" (
     echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 
     :: CBT run
-    %VECTORCAST_DIR%\vpython%WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage  --build-execute --jobs=6 --incremental
+    %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage  --build-execute --jobs=6 --incremental
     copy PointOfSales_Manage_build.log unstashed_build.log
 )
 if "%DO_MERGE%"=="1" (
