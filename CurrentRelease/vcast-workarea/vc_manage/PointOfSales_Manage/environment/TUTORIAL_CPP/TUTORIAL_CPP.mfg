@@ -4,5 +4,5 @@
     <key>COVERAGE_TYPE</key>
     <value>STATEMENT</value>
   </config>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\cpp</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/cpp</search-directory>
 </manage-config-options>

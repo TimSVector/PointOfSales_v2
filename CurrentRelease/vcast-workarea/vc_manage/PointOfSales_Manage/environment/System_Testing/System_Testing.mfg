@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manage-config-options version="7">
   <config/>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\database\src</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\encrypt\src</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\main</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\order_entry\src</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\inc</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/main</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
   <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)</search-directory>
 </manage-config-options>

@@ -5,7 +5,9 @@
       <key>WHITEBOX</key>
       <value>YES</value>
       <key>COVERAGE_TYPE</key>
-      <value>FUNCTION+FUNCTION_CALL</value>
+      <value>Statement+MCDC</value>
+      <key>VCAST_DEPENDENCY_CACHE_DIR</key>
+      <value>./vcqik</value>
       <key>VCAST_CODED_TESTS_SUPPORT</key>
       <value>FALSE</value>
       <key>VCAST_DISPLAY_FUNCTION_COVERAGE</key>
