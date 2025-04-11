@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="35">
+<project version="36">
   <config>
     <config>
       <key>WHITEBOX</key>
@@ -26,8 +26,6 @@
     <base-directories>
       <key>POST_BASE_DIRECTORY</key>
       <value>$(VCAST_DEMO_SRC_BASE)</value>
-      <key>VCAST_TUT</key>
-      <value>$(tut)</value>
     </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
