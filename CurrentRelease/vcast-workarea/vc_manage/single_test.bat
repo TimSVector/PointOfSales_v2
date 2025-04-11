@@ -116,7 +116,7 @@ if "%DO_MERGE%"=="1" (
     copy temp_result.vcr orig_temp_result.vcr
     %VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --force --export-result temp_result.vcr
     %VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --remove-imported-result temp_result.vcr
-    %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr   
+    %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr   
     %VECTORCAST_DIR%\manage -p %~dp0PointOfSales_Manage --import-result temp_result.vcr
 
     :: 3rd build-execute with no changes - should only build system tests
@@ -126,7 +126,7 @@ if "%DO_MERGE%"=="1" (
 
 :END
 
-if exist "WORKSPACE%\vc_scripts\generate-results.py" %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\generate-results.py  %~dp0PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %~dp0unstashed_build.log --print_exc
+if exist "%WORKSPACE%\vc_scripts\generate-results.py" %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\generate-results.py  %~dp0PointOfSales_Manage.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %~dp0unstashed_build.log --print_exc
 
 %VECTORCAST_DIR%\vpython  %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage.vcm --cobertura_extended --lcov --junit --sonarqube --aggregate --metrics --fullstatus
 
