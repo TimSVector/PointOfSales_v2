@@ -11,5 +11,4 @@
   <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\inc</search-directory>
   <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\utils\src</search-directory>
   <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)</search-directory>
-  <search-directory type="TESTABLE_SOURCE_DIR">$(tut)</search-directory>
 </manage-config-options>
