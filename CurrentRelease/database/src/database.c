@@ -4,10 +4,10 @@
  * Purpose: Used as a demostration module for point of sales termainal                 *
  *                                                                                     *
  * Public API:                                                                         *
- *      - struct table_data_type Get_Record(table_index_type Table)              *
- *      - void Update_Record(table_index_type Table,                             *
+ *      - struct table_data_type Get_Record(table_index_type Table)                    *
+ *      - void Update_Record(table_index_type Table,                                   *
  *           struct table_data_type Data)                                              *
- *      - void Remove_Record(table_index_type Table)                             *
+ *      - void Remove_Record(table_index_type Table)                                   *
  *                                                                                     *
  *                                                                                     *
  * Private API:                                                                        *
@@ -34,10 +34,10 @@
  *  Purpose: Sets the unit private variable CurrentColor                              *
  *                                                                                    * 
  *  Inputs:                                                                           *
- *       - Table - uint32_t                                                   *
+ *       - Table - uint32_t                                                           *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - struct data_type                                                     *
+ *       - struct data_type                                                           *
  *                                                                                    * 
  **************************************************************************************/
 
@@ -68,13 +68,13 @@ data_type Get_Record(uint32_t Table)
 }
 
 /**************************************************************************************
- *  Subprogram: Update_Record                                                   *
+ *  Subprogram: Update_Record                                                         *
  *                                                                                    * 
  *  Purpose: Updates the current table record with input information                  *
  *                                                                                    * 
  *  Inputs:                                                                           *
- *       - Table - int                                                   *
- *       - Data - struct data_type                                              *
+ *       - Table - int                                                                *
+ *       - Data - struct data_type                                                    *
  *                                                                                    * 
  *  Outputs:                                                                          *
  *       - None                                                                       *
@@ -101,7 +101,7 @@ void Update_Record(uint32_t Table, data_type Data)
 }
 
 /**************************************************************************************
- *  Subprogram: Remove_Record                                                   *
+ *  Subprogram: Remove_Record                                                         *
  *                                                                                    * 
  *  Purpose: Removes the record from the database                                     *
  *                                                                                    * 
