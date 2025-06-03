@@ -41,7 +41,7 @@
 #include "database.h"
 #include "encrypt.h"
 
-#define TAX_RATE 1.09F
+#define TAX_RATE 1.00F
 
 /***************************************************************************************
  *                        Private local variables                                      *

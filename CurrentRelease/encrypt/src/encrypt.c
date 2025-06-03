@@ -38,10 +38,10 @@ void __SystemReset(const int8_t *);
 /***************************************************************************************
  *                            Private Prototypes                                       *
  ***************************************************************************************/
-static int sendData(struct matrix_t data);
+static uint32_t sendData(const struct matrix_t data);
 static struct matrix_t generate_private_key(void);
-static int Encrypt_Info(const struct matrix_t private_key, const char * name, const char number[16], const char secCode[3],  float Info);
-static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t private_key);
+static uint32_t Encrypt_Info(const struct matrix_t* private_key, const int8_t * name, const int8_t number[16], const int8_t secCode[3], const uint32_t total);
+static uint32_t encrypt_and_send(const int8_t * inData, const uint32_t row, const uint32_t col,  const struct matrix_t * private_key);
 
 /**************************************************************************************
  *  Subprogram: sendData                                                              *
