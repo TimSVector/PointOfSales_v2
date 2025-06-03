@@ -1,19 +1,19 @@
 /***************************************************************************************
  * Unit: manager.c                                                                     *
  *                                                                                     *
- * Purpose: Used as a demostration module for point of sales termainal                 *
+ * Purpose: Used as a demostration module for point32_t of sales termainal                 *
  *                                                                                     *
  * Public API:                                                                         *
  *      - void Add_Included_Dessert(struct order_type* Order)                          *
- *      - int Place_Order(table_index_type Table,                                      *
+ *      - int32_t Place_Order(table_index_type Table,                                      *
  *              seat_index_type Seat,                                                  *
  *              struct order_type Order)                                               *
- *      - int Clear_Table(table_index_type Table)                                      *
- *      - float Get_Check_Total(table_index_type Table)                                *
- *      - int Pay_The_Bill(const char * name,                                          *
+ *      - int32_t Clear_Table(table_index_type Table)                                      *
+ *      - float_t Get_Check_Total(table_index_type Table)                                *
+ *      - int32_t Pay_The_Bill(const char * name,                                          *
  *              const char cardNumber[16],                                             *
  *              const char secCode[3],                                                 *
- *              int Table)                                                             *
+ *              int32_t Table)                                                             *
  *      - void Add_Party_To_Waiting_List(char* Name)                                   *
  *      - char* Get_Next_Party_To_Be_Seated(void)                                      *
  *                                                                                     *
@@ -41,17 +41,11 @@
 #include "database.h"
 #include "encrypt.h"
 
+#define TAX_RATE 1.09F
 
 /***************************************************************************************
  *                        Private local variables                                      *
  ***************************************************************************************/
-
-/* Allow 10 Parties to wait */
-static name_type WaitingList[10];
-static unsigned int WaitingListSize = 0;
-static unsigned int WaitingListIndex = 0;
-
-#define TAX_RATE 1.05
 
 /**************************************************************************************
  *  Subprogram: Add_Included_Dessert                                                  *
@@ -70,23 +64,27 @@ static unsigned int WaitingListIndex = 0;
 void Add_Included_Dessert(struct order_type* Order)
 {
   // Null pointer check
-  if (Order == 0)   return;
+  if (Order != NULL) {
   
-  // if special steak order
-  if(Order->Entree == STEAK &&
+    // if special steak order
+    if(Order->Entree == STEAK &&
      Order->Salad == CAESAR &&
      Order->Beverage == MIXED_DRINK) 
-  {
-    Order->Dessert = PIE;
-  } 
-  
-  // if special lobster order
-  else if(Order->Entree == LOBSTER &&
+    {
+      Order->Dessert = PIE;
+    } 
+
+    // if special lobster order
+    else if(Order->Entree == LOBSTER &&
             Order->Salad == GREEN &&
             Order->Beverage == WINE) 
-  {  
-    Order->Dessert = CAKE;  
-  }
+    {  
+      Order->Dessert = CAKE;  
+    }
+    else {
+      Order->Dessert = FRUIT;  
+    }
+  }      
 }
 
 /**************************************************************************************
@@ -104,7 +102,7 @@ void Add_Included_Dessert(struct order_type* Order)
  *                                                                                    * 
  **************************************************************************************/
 
-int Place_Order(table_index_type Table,
+int32_t Place_Order(table_index_type Table,
                 seat_index_type Seat,
                 struct order_type Order)
 {
@@ -126,28 +124,29 @@ int Place_Order(table_index_type Table,
   switch(Order.Entree)
   {
     case NO_ENTREE : 
-       break;
+      break;
     case STEAK :
-       Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_STEAK;
-       break;
+      Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_STEAK;
+      break;
     case CHICKEN :
-       Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_CHICKEN;
-       break;
+      Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_CHICKEN;
+      break;
     case LOBSTER :
-       Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_LOBSTER;
-       break;
+      Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_LOBSTER;
+      break;
     case PASTA :
-       Table_Data.Check_Total = Table_Data.Check_Total + COST_OF_PASTA;
-       break;
+      Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_PASTA;
+      break;
     default:
-        break;
+      break;
   }
 
   // add sales tax
-  Table_Data.Check_Total *= 1.00;
+  Table_Data.Check_Total *= TAX_RATE;
 
   // Updated the database with the new information
   Update_Record(Table, Table_Data);
+  
   return 0;
 }
 
@@ -163,40 +162,22 @@ int Place_Order(table_index_type Table,
  *       - 0/-1 - Pass/Fail (bill not paid)                                           *
  *                                                                                    * 
  **************************************************************************************/
-int Clear_Table(table_index_type Table)
+int32_t Clear_Table(table_index_type Table)
 {
-  // Local return value
-  int ret_val = 0;
-  int Seat = 0;
-
+  int32_t ret_val = SUCCESS;
+  
   // Local Table Data
-  struct table_data_type Table_Data = Get_Record(Table);
+  const struct table_data_type Table_Data = Get_Record(Table);
 
   // can't clear the table is the bill isn't paid
-  if (!Table_Data.Is_Bill_Paid)
+  if (Table_Data.Is_Bill_Paid == v_true)
   {
-    ret_val = -1;
+    // Remove the record from the database
+    Remove_Record(Table);
   }
   else
   {
-    Table_Data.Is_Occupied = v_false;
-    Table_Data.Number_In_Party = 0;
-	Table_Data.Is_Bill_Paid = 0;
-
-    for (Seat=0; Seat < SEATS_AT_ONE_TABLE; Seat++){
-      Table_Data.Order[Seat].Soup     = NO_SOUP;
-      Table_Data.Order[Seat].Salad    = NO_SALAD;
-      Table_Data.Order[Seat].Entree   = NO_ENTREE;
-      Table_Data.Order[Seat].Dessert  = NO_DESSERT;
-      Table_Data.Order[Seat].Beverage = NO_BEVERAGE;
-    }
-	  
-    Table_Data.Check_Total = 0;
- 
-    Update_Record(Table, Table_Data);
-    
-    // Remove the record from the database
-    Remove_Record(Table);
+    ret_val = FAILURE;
   }
 
   // return pass
@@ -212,12 +193,12 @@ int Clear_Table(table_index_type Table)
  *       - Table - table_index_type - table number                                    *
  *                                                                                    *
  *  Outputs:                                                                          *
- *       - Check Total - float                                                        *
+ *       - Check Total - float_t                                                        *
  *                                                                                    * 
  **************************************************************************************/
-float Get_Check_Total(table_index_type Table)
+float_t Get_Check_Total(table_index_type Table)
 {
-  float largePartyAutoTip = 0;
+  float_t largePartyAutoTip = 0.0F;
 
   struct table_data_type Table_Data;
   Table_Data = Get_Record(Table);
@@ -225,13 +206,12 @@ float Get_Check_Total(table_index_type Table)
   // Parties over 8 get an automatic large party tip added
   if (Table_Data.Number_In_Party >= 8)
   {
-    largePartyAutoTip = Table_Data.Check_Total * 0.12;
+    largePartyAutoTip = Table_Data.Check_Total * 0.18F;
   }
   
   Table_Data.Check_Total *= TAX_RATE;
   Table_Data.Check_Total += largePartyAutoTip;
   
-  // return the check total for the table
   return (Table_Data.Check_Total);
 }
 
@@ -251,27 +231,31 @@ float Get_Check_Total(table_index_type Table)
  *                                                                                    * 
  **************************************************************************************/
 
-int Pay_The_Bill(const char * name, const char cardNumber[16], const char secCode[3], int Table)
+int32_t Pay_The_Bill(const int8_t * name, const int8_t cardNumber[16], const int8_t secCode[3], int32_t Table)
 {
+  int32_t ret_value = FAILURE;
+  
   // local table dat
   struct table_data_type Table_Data = Get_Record(Table);
 
   // make call to transmit the CC info
-  if (transmit_Info(name,cardNumber,secCode,Table_Data.Check_Total) == 0)
+  if (transmit_Info(name,cardNumber,secCode,Table_Data.Check_Total) == SUCCESS)
   {
-      // if trasmission was good - set the bill to paid 
-	  Table_Data.Is_Bill_Paid = v_true;
+     
+    // if trasmission was good - set the bill to paid 
+    Table_Data.Is_Bill_Paid = v_true;
+    
+    // Reset check total
+    Table_Data.Check_Total = 0.0F;
       
-      // Reset check total
-	  Table_Data.Check_Total = 0;
-      
-      // Push the cleared record back into database
-	  Update_Record(Table, Table_Data);
+    // Push the cleared record back into database
+    Update_Record(Table, Table_Data);
 
-      // return PASSED
-	  return 0;
+    // return SUCCESS
+    ret_value = SUCCESS;
   }
 
-  // return FAILED
-  return -1;
+  // return FAILURE
+  return ret_value;
 }
+

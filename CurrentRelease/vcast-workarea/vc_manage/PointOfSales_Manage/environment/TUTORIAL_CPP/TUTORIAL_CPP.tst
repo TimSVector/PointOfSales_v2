@@ -1,4 +1,4 @@
--- VectorCAST 24.sp4 (08/26/24)
+-- VectorCAST 25 (02/24/25)
 -- Test Case Script
 --
 -- Environment    : TUTORIAL_CPP
@@ -30,6 +30,32 @@ TEST.UNIT:manager
 TEST.SUBPROGRAM:Manager::PlaceOrder
 TEST.NEW
 TEST.NAME:MANAGER::PLACEORDER.001
+TEST.IMPORT_FAILURES:
+(E) @LINE: 44 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
+    >>> Could not find function DataBase::GetTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 45 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
+    >>> Could not find function DataBase::GetTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 46 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 47 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 48 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Pies
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 49 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+TEST.END_IMPORT_FAILURES:
 TEST.NOTES:
 
 This test is the the same test case that should be created
@@ -68,6 +94,32 @@ TEST.UNIT:manager
 TEST.SUBPROGRAM:Manager::PlaceOrder
 TEST.NEW
 TEST.NAME:MANAGER::PLACEORDER.002
+TEST.IMPORT_FAILURES:
+(E) @LINE: 82 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
+    >>> Could not find function DataBase::GetTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 83 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
+    >>> Could not find function DataBase::GetTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 84 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 85 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 86 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Cake
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+(E) @LINE: 87 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
+    >>> Could not find function DataBase::UpdateTableRecord
+    >>>    in unit uut_prototype_stubs.
+    >>> Value Line Error - Command Ignored
+TEST.END_IMPORT_FAILURES:
 TEST.NOTES:
 
 This test is the the same test case that should be created

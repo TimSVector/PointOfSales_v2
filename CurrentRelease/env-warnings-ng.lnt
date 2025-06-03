@@ -1,0 +1,19 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2019. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.gimpel.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+
+/*  env-xml.lnt
+    The following options cause the output of PC-lint Plus to
+    assume the format of an Jenkins Warnings-NG format
+ */
+
+
+-v // turn off verbosity
+-width(0) // don't insert line breaks (unlimited output width)
+-"format=%f(%l): %t %n: %m"
+-hs1 // The height of a message should be 1

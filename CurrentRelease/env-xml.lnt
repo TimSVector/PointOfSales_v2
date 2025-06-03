@@ -18,6 +18,8 @@
 
 -width(0)   // don't insert line breaks (unlimited output width).
 
+// +xml(?xml version="1.0" ?)   // add version information
+
 +xml(doc)   // turn on xml escapes; the whole is bracketed with the
             // pair <doc> ... </doc>
 

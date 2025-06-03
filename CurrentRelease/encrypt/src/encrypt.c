@@ -17,7 +17,6 @@
  ***************************************************************************************/
 
 #include "ctypes.h"
-
 #include "matrix_multiply.h"
 
 /***************************************************************************************
@@ -27,11 +26,11 @@
 
 #ifdef USING_TRUST_ZONE
 struct matrix_t TZ_Get_Private_Key(void);
-int TZ_Write_Data(struct matrix_t);
-int TZ_Reset_Hardware(int);
-void log_Error(const char *, int);
-int TZ_Wait_Reset(int);
-void __SystemReset(const char *);
+uint32_t TZ_Write_Data(struct matrix_t);
+uint32_t TZ_Reset_Hardware(uint32_t);
+void log_Error(const int8_t *, uint32_t);
+uint32_t TZ_Wait_Reset(uint32_t);
+void __SystemReset(const int8_t *);
 #define ON_ERROR 1
 #define TIMEOUT_10MSEC 1000
 #endif
@@ -53,16 +52,17 @@ static int encrypt_and_send(const char * inData, int row, int col, const struct 
  *       - data - struct matrix_t                                                     *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - int - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
 
-static int sendData(struct matrix_t data)
+static uint32_t sendData(const struct matrix_t data)
 {
+    uint32_t ret_val;
+
 #ifdef USING_TRUST_ZONE
-    int ret_val = SUCCESS;
     
-    static int failureCount = 0;
+    static uint32_t failureCount = 0;
     
     ret_val = TZ_Write_Data(data);
     
@@ -90,26 +90,25 @@ static int sendData(struct matrix_t data)
     }
     return ret_val;
 #else
-    int i,j;
-   
     // display result matrix
-    printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
+    //-e534
+    ret_val = (uint32_t)printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
    
     // loop over the data rows
-    for (i = 0; i < data.row && i < MAX_MATRIX; i++)
+    for (uint32_t i = 0; (i < data.row) && (i < MAX_MATRIX); i++)
     {
         // loop over the data columns
-        for (j = 0; j < data.col && j < MAX_MATRIX; j++)
+        for (uint32_t j = 0; (j < data.col) && (j < MAX_MATRIX); j++)
         {
             // print the resulting data
-            printf ("%02X ",data.matrix[i][j]); 
+            ret_val |= (uint32_t)printf ("%02X ",data.matrix[i][j]);
         }
     }
             
     // clean up printf       
-    printf ("\n");
+    ret_val |= (uint32_t)printf ("\n");
 
-    return SUCCESS;
+    return ret_val;
 #endif    
 }
 
@@ -127,6 +126,8 @@ static int sendData(struct matrix_t data)
  **************************************************************************************/
 static struct matrix_t generate_private_key(void)
 {
+    srand(0);
+
     // set up default key
     static struct matrix_t private_key = {-1,-1,};
 
@@ -134,25 +135,22 @@ static struct matrix_t generate_private_key(void)
     // use the hardware's trust zone to generate a private key
     private_key = TZ_Get_Private_Key();
 #else
-    
-    // local variables
-    int i = 0,j = 0;
  
     // if no data corruption has occurred...
-    if (private_key.row == -1 && private_key.col == -1)
+    if ((private_key.row == -1) && (private_key.col == -1))
     {
         // set the private key to be 4x4
- 	    private_key.row = 4;
- 	    private_key.col = 4;
+        private_key.row = 4;
+        private_key.col = 4;
         
         // loop over the matrix rows
- 	    for (i = 0; i < MAX_MATRIX; i++)
+        for (uint32_t i = 0; i < MAX_MATRIX; i++)
         {
             // and loop over the matrix rows
- 	        for (j = 0; j < MAX_MATRIX; j++)
+            for (uint32_t j = 0; j < MAX_MATRIX; j++)
             {
                 // store random data (for now)
-                    private_key.matrix[i][j] = rand() & 0xff;    
+                private_key.matrix[i][j] = rand() % 0xff;
             }
         }
     }
@@ -166,33 +164,56 @@ static struct matrix_t generate_private_key(void)
  *                                                                                    * 
  *  Purpose: Encrypts the information and transmits it                                * 
  *  Inputs:                                                                           *
- *       - inData - const char *                                                      *
- *       - row - int                                                                  *
- *       - column - int                                                               *
+ *       - inData - const int8_t *                                                      *
+ *       - row - uint32_t                                                                  *
+ *       - column - uint32_t                                                               *
  *       - private_key - void *                                                       *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - int - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
- static int encrypt_and_send(const char * inData, int row, int col, const struct matrix_t private_key)  
+ static uint32_t encrypt_and_send(const int8_t * inData, const uint32_t row, const uint32_t col,  const struct matrix_t * private_key)  
  {
-     // Initialize the local variables
+     
+    uint32_t ret_val;
+    
+    // Initialize the local variables
     struct matrix_t data2BSent = NULL_MATRIX;
     struct matrix_t result     = NULL_MATRIX;
     
     // sets the data into the out matrix
-    setDataMatrix(inData, data2BSent, row, col);
-         
+    if (inData != NULL)   
+    {                                                             
+        uint32_t inEnd = 0;                                              
+        for (uint32_t i = 0; i < row; i++) {            
+            for (uint32_t j = 0; j < col ; j++) {                                                       
+                if (*inData == 0) {
+                    inEnd = 1;                                      
+                }
+                if (inEnd > 0) {
+                    data2BSent.matrix[i][j] = *inData;               
+                    inData++;
+                } else {
+                    data2BSent.matrix[i][j] = 0;                       
+                }
+            }                                                       
+        }
+        data2BSent.row = row;                                        
+        data2BSent.col = col;                                        
+    } 
+    
     // call the matrix multiply routine to encrypt the data
-    if (matrix_multiply(&data2BSent, &private_key, &result) == FAILURE)
+    if (matrix_multiply(&data2BSent, private_key, &result) == FAILURE)
     {
         // if the matrix multiply failed, return FAILURE
-        return FAILURE;
+        ret_val = FAILURE;
+    } else {
+        ret_val = sendData(result);
     }
 
     // otherwise send the data
-    return sendData (result);
+    return ret_val;
  }
  
 /**************************************************************************************
@@ -201,32 +222,37 @@ static struct matrix_t generate_private_key(void)
  *  Purpose: Encrypts the credit card information and transmits it in chucks          * 
  *  Inputs:                                                                           *
  *       - private_key - void *                                                       *
- *       - name        - const char *                                                 *
- *       - number      - const char[16]                                               *
- *       - secCode     - const char [3]                                               *
- *       - Info  - float                                                              *
+ *       - name        - const int8_t *                                                 *
+ *       - number      - const int8_t[16]                                               *
+ *       - secCode     - const int8_t [3]                                               *
+ *       - Info  - float_t                                                              *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - int - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
-static int Encrypt_Info(const struct matrix_t private_key, const char * name, const char number[16], const char secCode[3],  float Info)
+static uint32_t Encrypt_Info(const struct matrix_t* private_key, const int8_t * name, const int8_t number[16], const int8_t secCode[3],  const uint32_t total)
 {
     // init the return value
-    int ret_val = SUCCESS;
+    uint32_t ret_val = SUCCESS;
     
     // send the name
-    ret_val |= encrypt_and_send(name      , MAX_MATRIX, MAX_MATRIX, private_key);
+    if ((name != NULL) && (total > 0)){
     
-    // send the cardNumber
-    ret_val |= encrypt_and_send(number, MAX_MATRIX, MAX_MATRIX, private_key);
+        ret_val |= encrypt_and_send(name    , MAX_MATRIX, MAX_MATRIX, private_key);
+        ret_val |= encrypt_and_send(number  , MAX_MATRIX, MAX_MATRIX, private_key);
+        ret_val |= encrypt_and_send(secCode , 1         , MAX_MATRIX, private_key);
+        
+        // send the total
+        uint8_t byteArray[4];
+        byteArray[0] = (uint8_t)  (total & 0x000000FFU);
+        byteArray[1] = (uint8_t) ((total & 0x0000FF00U) >> 8U);
+        byteArray[2] = (uint8_t) ((total & 0x00FF0000U) >> 16U);
+        byteArray[3] = (uint8_t) ((total & 0x00FF0000U) >> 24U);
+        
+        ret_val |= encrypt_and_send(&byteArray[0], MAX_MATRIX, MAX_MATRIX, private_key);
+    }
     
-    // send the secCode
-    ret_val |= encrypt_and_send(secCode   , 1         , MAX_MATRIX, private_key);
-    
-    // send the total
-    ret_val |= encrypt_and_send((const char *)&Info, MAX_MATRIX, MAX_MATRIX, private_key);
-
     // return SUCCESS/FAILURE
     return ret_val;
 }
@@ -237,27 +263,24 @@ static int Encrypt_Info(const struct matrix_t private_key, const char * name, co
  *  Purpose: Transmit the credit card information                                     *
  *                                                                                    * 
  *  Inputs:                                                                           *
- *       - name        - const char *                                                 *
- *       - number      - const char[16]                                               *
- *       - secCode     - const char [3]                                               *
- *       - Info        - float                                                        *
+ *       - name        - const int8_t *                                                 *
+ *       - number      - const int8_t[16]                                               *
+ *       - secCode     - const int8_t [3]                                               *
+ *       - Info        - float_t                                                        *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - int - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                      *
  *                                                                                    * 
  **************************************************************************************/
 
-int transmit_Info (const char * name, const char number[16], const char secCode[3], float Info)
+uint32_t transmit_Info (const int8_t * name, const int8_t number[16], const int8_t secCode[3], float_t Info)
 {
-    // init the return value
-    int ret_val = SUCCESS;
-
     // generate a private key
-    // struct matrix_t private_key = generate_private_key();
+    const struct matrix_t private_key = generate_private_key();
+
+    const uint32_t total = (uint32_t) Info * 100;
 
     // Encrypt and send the data
-    ret_val |= Encrypt_Info(generate_private_key(),name,number,secCode, Info);
-
-    return ret_val;
+    return Encrypt_Info(&private_key,name,number,secCode, total);
+   
 }
-

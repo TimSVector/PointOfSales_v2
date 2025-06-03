@@ -1,0 +1,2734 @@
+// ---------------------------------------------------------------------------
+// Copyright Vector Informatik GmbH 2024. All rights reserved.
+//
+// This file is provided by Vector Informatik GmbH (https://www.vector.com) for
+// use with PC-lint Plus. Redistribution is permitted but any redistribution
+// must preserve this notice and, if the redistributed file has been modified,
+// provide notice that the file has been modified from the original.
+// ---------------------------------------------------------------------------
+
+// au-misra-cpp2.lnt -- Author options - MISRA C++ 2023
+
+/*
+    This options file can be used to explicitly activate those
+    checks advocated by the Motor Industry Software Reliability
+    Association for C++ code.
+
+    You can use this file directly when linting your programs as in:
+
+    pclp au-misra-cpp2.lnt files
+
+    Vector Informatik GmbH relies on the document, "MISRA-C++:2023
+    Guidelines for the use of C++17 in critical systems", copyright 2023
+    by The MISRA Consortium Limited, as the primary source for this file.
+    Vector Informatik GmbH makes no warranty as to the completeness or
+    applicability of this options file and reserves the right to amend or
+    alter the official contents of such at any time.
+
+    "MISRA" is a registered trademark of The MISRA Consortium Limited.
+
+ */
+
+/* version check */ -cond('%PCLP_NO_LNT_VERSION_CHECK%' != '1' && (%LINT_MAJOR_VERSION% != 2025 || %LINT_MINOR_VERSION% != 0),
+    +fatal_error(This configuration file is intended for PC-lint Plus 2025.
+                 You are attempting to use it with PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.
+                 It is recommended that you use configuration files intended
+                 for PC-lint Plus %LINT_MAJOR_VERSION%.%LINT_MINOR_VERSION%.)
+)
+
+/* Add an indication to message 900 that this file was employed */
+    -append(900,[MISRA C++:2023])
+
+
+
+/**** Rule 0.0.1 (Req) ************/
+
+    /* 527 - statement is unreachable */
+    +e527
+    +elib(527)
+    -append(527,[MISRA C++:2023 Rule 0.0.1, required])
+
+    /* 681 - loop not entered */
+    +e681
+    +elib(681)
+    -append(681,[MISRA C++:2023 Rule 0.0.1, required])
+
+    /* 827 - loop not reachable */
+    +e827
+    +elib(827)
+    -append(827,[MISRA C++:2023 Rule 0.0.1, required])
+
+
+/**** Rule 0.0.2 (Adv) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 685 - relational always evaluates to true/false */
+    +e685
+    +elib(685)
+    -append(685,[MISRA C++:2023 Rule 0.0.2, advisory])
+
+    /* 774 - boolean always evaluates to true/false */
+    +e774
+    +elib(774)
+    -append(774,[MISRA C++:2023 Rule 0.0.2, advisory])
+
+    /* 650 - constant out of range for operator */
+    +e650
+    +elib(650)
+    -append(650,[MISRA C++:2023 Rule 0.0.2, advisory])
+
+
+/**** Rule 0.1.1 (Adv) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 438 - last value assigned not used */
+    +e438
+    +elib(438)
+    -append(438,[MISRA C++:2023 Rule 0.1.1, advisory])
+
+    /* 838 - previous value assigned to not used */
+    +e838
+    +elib(838)
+    -append(838,[MISRA C++:2023 Rule 0.1.1, advisory])
+
+
+/**** Rule 0.1.2 (Req) ************/
+
+    /* 534 - ignoring return value of function */
+    +e534
+    +elib(534)
+    -append(534,[MISRA C++:2023 Rule 0.1.2, required])
+
+
+/**** Rule 0.2.1 (Adv) ************/
+
+    /* 529 - local variable not subsequently referenced */
+    +e529
+    +elib(529)
+    -append(529,[MISRA C++:2023 Rule 0.2.1, advisory])
+
+
+/**** Rule 0.2.2 (Req) ************/
+
+    /* 715 - named function parameter not referenced */
+    +e715
+    +elib(715)
+    -append(715,[MISRA C++:2023 Rule 0.2.2, required])
+
+
+/**** Rule 0.2.3 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 0.2.4 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Dir 0.3.1 (Adv) ************/
+
+    /* not statically checkable */
+
+
+/**** Dir 0.3.2 (Req) ************/
+
+    /* not statically checkable */
+
+
+/**** Rule 4.1.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 4.1.2 (Adv) ************/
+
+    /* 829 - warn on header usage */
+    +e829
+    +elib(829)
+
+    +headerwarn(codecvt)
+    -append(829(codecvt),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    /* 986 - target type of type alias is deprecated */
+    +e986
+    +elib(986)
+
+    -deprecate(function, std::uncaught_exception)
+    -append(586(std::uncaught_exception),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(function, std::not1)
+    -append(586(std::not1),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(function, std::not2)
+    -append(586(std::not2),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(function, std::get_temporary_buffer)
+    -append(586(std::get_temporary_buffer),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(function, std::return_temporary_buffer)
+    -append(586(std::return_temporary_buffer),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::iterator)
+    -append(586(std::iterator),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::iterator)
+    -append(586(std::iterator),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::raw_storage_iterator)
+    -append(586(std::raw_storage_iterator),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::raw_storage_iterator)
+    -append(586(std::raw_storage_iterator),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::unary_negate)
+    -append(586(std::unary_negate),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::unary_negate)
+    -append(586(std::unary_negate),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::binary_negate)
+    -append(586(std::binary_negate),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::binary_negate)
+    -append(586(std::binary_negate),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::wbuffer_convert)
+    -append(586(std::wbuffer_convert),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::wbuffer_convert)
+    -append(586(std::wbuffer_convert),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    -deprecate(type, std::wstring_convert)
+    -append(586(std::wstring_convert),[MISRA C++:2023 Rule 4.1.2, advisory])
+    -deprecate(basetype, std::wstring_convert)
+    -append(586(std::wstring_convert),[MISRA C++:2023 Rule 4.1.2, advisory])
+
+    /* 1906 - exception specification for function */
+    +e1906
+    +elib(1906)
+    -append(1906,[MISRA C++:2023 Rule 4.1.2, advisory])
+
+
+/**** Rule 4.1.3 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 4.6.1 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 564 - variable depends on order of evaluation */
+    +e564
+    +elib(564)
+    -append(564,[MISRA C++:2023 Rule 4.6.1, required])
+
+
+/**** Rule 5.0.1 (Adv) ************/
+
+    /* 584 - trigraph sequence detected (when trigraphs are disabled with -ftg) */
+    +e584
+    +elib(584)
+    -append(584,[MISRA C++:2023 Rule 5.0.1, advisory])
+
+    /* 854 - trigraph sequence converted (when trigraphs are enabled) */
+    +e854
+    +elib(854)
+    -append(854,[MISRA C++:2023 Rule 5.0.1, advisory])
+
+    /* 9060 - trigraph sequence in comment */
+    +e9060
+    +elib(9060)
+    -append(9060,[MISRA C++:2023 Rule 5.0.1, advisory])
+
+
+/**** Rule 5.7.1 (Req) ************/
+
+    /* 602 - nested C-style comment */
+    +e602
+    +elib(602)
+    -append(602,[MISRA C++:2023 Rule 5.7.1, required])
+
+
+/**** Dir 5.7.2 (Adv) ************/
+
+    /* 9184 - condition of #if directive is integer literal zero */
+    +e9184
+    +elib(9184)
+    -append(9184,[MISRA C++:2023 Directive 5.7.2, advisory])
+
+    /* 9155 - comment may contain commented-out code */
+    +e9155
+    +elib(9155)
+    -append(9155,[MISRA C++:2023 Directive 5.7.2, advisory])
+
+
+/**** Rule 5.7.3 (Req) ************/
+
+    /* 427 - C++ style comment continued via back-slash */
+    +e427
+    +elib(427)
+    -append(427,[MISRA C++:2023 Rule 5.7.3, required])
+
+
+/**** Rule 5.10.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 5.13.1 (Req) ************/
+
+    /* 606 - non-ANSI escape sequence */
+    +e606
+    +elib(606)
+    -append(606,[MISRA C++:2023 Rule 5.13.1, required])
+
+
+/**** Rule 5.13.2 (Req) ************/
+
+    /* 9039 - potentially confusing escape sequence usage */
+    +e9039
+    +elib(9039)
+    -append(9039,[MISRA C++:2023 Rule 5.13.2, required])
+
+/**** Rule 5.13.3 (Req) ************/
+
+    /* 9001 - octal constant used */
+    +e9001
+    +elib(9001)
+    -append(9001,[MISRA C++:2023 Rule 5.13.3, required])
+
+
+/**** Rule 5.13.4 (Req) ************/
+
+    /* 9048 - unsigned integer literal without a 'U' suffix */
+    +e9048
+    +elib(9048)
+    -append(9048,[MISRA C++:2023 Rule 5.13.4, required])
+
+
+/**** Rule 5.13.5 (Req) ************/
+
+    /* 620 -suspicious constant (L or one?) */
+    +e620
+    +elib(620)
+    -append(620,[MISRA C++:2023 Rule 5.13.5, required])
+
+
+/**** Rule 5.13.6 (Req) ************/
+
+    /* 9251 - integer literal with L/l suffix should have LL/ll suffix */
+    +e9251
+    +elib(9251)
+    -append(9251,[MISRA C++:2023 Rule 5.13.6, required])
+
+
+/**** Rule 5.13.7 (Req) ************/
+
+    /* 707 - mixing narrow and wide string literals in concatenation */
+    +e707
+    +elib(707)
+    -append(707,[MISRA C++:2023 Rule 5.13.7, required])
+
+    /* 1107 - invalid concatenation of wide string literals of different kinds */
+    +e1107
+    +elib(1107)
+    -append(1107,[MISRA C++:2023 Rule 5.13.7, required])
+
+
+/**** Rule 6.0.1 (Req) ************/
+
+    /* 3704 - empty parentheses here declare a function, not a variable */
+    +e3704
+    +elib(3704)
+    -append(3704,[MISRA C++:2023 Rule 6.0.1, required])
+
+    /* 3705 - parenthetic disambiguation results in function declaration */
+    +e3705
+    +elib(3705)
+    -append(3705,[MISRA C++:2023 Rule 6.0.1, required])
+
+    /* 9108 - function declared at block scope */
+    +e9108
+    +elib(9108)
+    -append(9108,[MISRA C++:2023 Rule 6.0.1, required])
+
+
+/**** Rule 6.0.2 (Adv) ************/
+
+    /* 9067 - extern array declared without size or initializer */
+    +e9067
+    +elib(9067)
+    -append(9067,[MISRA C++:2023 Rule 6.0.2, advisory])
+
+
+/**** Rule 6.0.3 (Adv) ************/
+
+    /* 9141 - global declaration of symbol */
+    +equery(9141,"!msgSymbolParam(1).NamespaceAliasDecl")
+    +elib(9141)
+    -append(9141,[MISRA C++:2023 Rule 6.0.3, advisory])
+
+    /* 9255 - global inline namespace */
+    +e9255
+    +elib(9255)
+    -append(9255,[MISRA C++:2023 Rule 6.0.3, advisory])
+
+
+/**** Rule 6.0.4 (Req) ************/
+
+    /* 9142 - function main declared outside the global namespace */
+    +e9142
+    +elib(9142)
+    -append(9142,[MISRA C++:2023 Rule 6.0.4, required])
+
+
+/**** Rule 6.2.1 (Req) ************/
+
+    /* 631 - tag defined differently */
+    +e631
+    +elib(631)
+    -append(631,[MISRA C++:2023 Rule 6.2.1, required])
+
+    /* 2467 - multiple definitions of function */
+    +e2467
+    +elib(2467)
+    -append(2467,[MISRA C++:2023 Rule 6.2.1, required])
+
+    /* 2469 - multiple definitions of variable */
+    +e2469
+    +elib(2469)
+    -append(2469,[MISRA C++:2023 Rule 6.2.1, required])
+
+
+/**** Rule 6.2.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 6.2.3 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 6.2.4 (Req) ************/
+
+    /* 9107 - header cannot be included in more than one translation unit because of the definition of symbol */
+    +e9107
+    +elib(9107)
+    -append(9107,[MISRA C++:2023 Rule 6.2.4, required])
+
+
+/**** Rule 6.4.1 (Req) ************/
+
+    /* 578 - declaration hides outer scope symbol */
+    +e578
+    +elib(578)
+    -append(578,[MISRA C++:2023 Rule 6.4.1, required])
+
+
+/**** Rule 6.4.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 6.4.3 (Req) ************/
+
+    /* 9250 - unqualified name lookup in class template with dependent base class */
+    +e9250
+    +elib(9250)
+    -append(9250,[MISRA C++:2023 Rule 6.4.3, required])
+
+
+/**** Rule 6.5.1 (Adv) ************/
+
+    /* 902 - non-static function __symbol__ declared outside of a header */
+    +e902
+    +elib(902)
+    -append(902,[MISRA C++:2023 Rule 6.5.1, advisory])
+
+
+/**** Rule 6.5.2 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 6.7.1 (Req) ************/
+
+    /* 9257 - local non-const variable has static/thread storage duration */
+    +e9257
+    +elib(9257)
+    -append(9257,[MISRA C++:2023 Rule 6.7.1, required])
+
+
+/**** Rule 6.7.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 6.8.1 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 449 - memory was likely previously deallocated */
+    +e449
+    +elib(449)
+    -append(449,[MISRA C++:2023 Rule 6.8.1, required])
+
+
+/**** Rule 6.8.2 (Mand) ************/
+
+    /* 604 - returning address of auto variable */
+    +e604
+    +elib(604)
+    -append(604,[MISRA C++:2023 Rule 6.8.2, mandatory])
+
+
+/**** Rule 6.8.3 (Req) ************/
+
+    /* 733 - likely assigning address of local variable to outer scope pointer */
+    +e733
+    +elib(733)
+    -append(733,[MISRA C++:2023 Rule 6.8.3, required])
+
+    /* 789 - assigning address of auto variable to static */
+    +e789
+    +elib(789)
+    -append(789,[MISRA C++:2023 Rule 6.8.3, required])
+
+
+/**** Rule 6.8.4 (Adv) ************/
+
+    /* 1806 - member function returning reference to its object is not ref-qualified appropriately */
+    +e1806
+    +elib(1806)
+    -append(1806,[MISRA C++:2023 Rule 6.8.4, advisory])
+
+
+/**** Rule 6.9.1 (Req) ************/
+
+    /* 9073 - parameter of function has type alias name type difference with previous declaration */
+    +e9073
+    +elib(9073)
+    -append(9073,[MISRA C++:2023 Rule 6.9.1, required])
+
+    /* 9168 - variable has type alias name difference with previous declaration */
+    +e9168
+    +elib(9168)
+    -append(9168,[MISRA C++:2023 Rule 6.9.1, required])
+
+    /* 9094 - return type has type alias name difference with previous declaration */
+    +e9094
+    +elib(9094)
+    -append(9094,[MISRA C++:2023 Rule 6.9.1, required])
+
+
+/**** Rule 6.9.2 (Adv) ************/
+
+    /* 970 - use of modifier or type outside of a typedef */
+    +e970
+    +elib(970)
+    -append(970,[MISRA C++:2023 Rule 6.9.2, advisory])
+    -estring(970,bool)
+    -estring(970,char)
+
+
+/**** Rule 7.0.1 (Req) ************/
+
+    /* 483 - switching on a boolean value */
+    +e483
+    +elib(483)
+    -append(483,[MISRA C++:2023 Rule 7.0.1, required])
+
+    /* 921 - explicit cast */
+    +etype(921,_Bool)
+    +etype(921,bool)
+    +e921
+    +elib(921)
+    -append(921,[MISRA C++:2023 Rule 7.0.1, required])
+
+    /* 1785 - implicit conversion from Boolean */
+    +e1785
+    +elib(1785)
+    -append(1785,[MISRA C++:2023 Rule 7.0.1, required])
+
+    /* 9111 - boolean expression used with non-permitted operator */
+    +e9111
+    +elib(9111)
+    -append(9111,[MISRA C++:2023 Rule 7.0.1, required])
+
+
+/**** Rule 7.0.2 (Req) ************/
+
+    /* 909 - implicit boolean conversion */
+    +equery(909,"!msgTypeParam(1).isPointerType")
+    +elib(909)
+    -append(909,[MISRA C++:2023 Rule 7.0.2, required])
+
+    /* 1564 - converting integer constant expression to bool */
+    +e1564
+    +elib(1564)
+    -append(1564,[MISRA C++:2023 Rule 7.0.2, required])
+
+    /* 1786 - implicit conversion to Boolean */
+    +e1786
+    +elib(1786)
+    -append(1786,[MISRA C++:2023 Rule 7.0.2, required])
+
+
+/**** Rule 7.0.3 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 7.0.4 (Req) ************/
+
+    /* 9265 - inappropriate bitwise/shift operand */
+    +e9265
+    +elib(9265)
+    -append(9265,[MISRA C++:2023 Rule 7.0.4, required])
+
+
+/**** Rule 7.0.5 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 7.0.6 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 7.11.1 (Req) ************/
+
+    /* 910 - implicit conversion of null pointer constant to pointer */
+    +e910
+    +elib(910)
+    -append(910,[MISRA C++:2023 Rule 7.11.1, required])
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(macro, NULL)
+    -append(586(NULL),[MISRA C++:2023 Rule 7.11.1, required])
+
+
+/**** Rule 7.11.2 (Req) ************/
+
+    /* 9132 - array type passed to function expecting a pointer */
+    +e9132
+    +elib(9132)
+    -append(9132,[MISRA C++:2023 Rule 7.11.2, required])
+
+
+/**** Rule 7.11.3 (Req) ************/
+
+    /* 9147 - implicit function-to-pointer decay */
+    +e9147
+    +elib(9147)
+    -append(9147,[MISRA C++:2023 Rule 7.11.3, required])
+
+
+/**** Rule 8.0.1 (Adv) ************/
+
+    /* 9050 - dependence placed on operator precedence */
+    +e9050
+    +elib(9050)
+    -append(9050,[MISRA C++:2023 Rule 8.0.1, advisory])
+
+    /* 9097 - unparenthesized argument to sizeof operator */
+    +e9097
+    +elib(9097)
+    -append(9097,[MISRA C++:2023 Rule 8.0.1, advisory])
+
+
+/**** Rule 8.1.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.1.2 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.2.1 (Req) ************/
+
+    /* 3418 - 'reinterpret_cast' behaves differently than 'static_cast' */
+    +e3418
+    +elib(3418)
+    -append(3418(virtual base),[MISRA C++:2023 Rule 8.2.1, required])
+
+
+/**** Rule 8.2.2 (Req) ************/
+
+    /* 1924 - use of c-style cast (except to void) */
+    +e1924
+    +elib(1924)
+    -append(1924,[MISRA C++:2023 Rule 8.2.2, required])
+
+    /* 1946 - use of functional-style cast */
+    +e1946
+    +elib(1946)
+    -append(1946,[MISRA C++:2023 Rule 8.2.2, required])
+
+
+/**** Rule 8.2.3 (Req) ************/
+
+    /* 9005 - cast drops qualifier */
+    +e9005
+    +elib(9005)
+    -append(9005,[MISRA C++:2023 Rule 8.2.3, required])
+
+
+/**** Rule 8.2.4 (Req) ************/
+
+    /* 9074 - conversion between pointer to function type and differing type */
+    +e9074
+    +elib(9074)
+    -append(9074,[MISRA C++:2023 Rule 8.2.4, required])
+
+
+/**** Rule 8.2.5 (Req) ************/
+
+    /* 9164 - reinterpret_cast used */
+    +equery(9164,
+        not msgTypeParam(1).isDependentType
+        not msgTypeParam(2).isDependentType
+        not (msgTypeParam(1).isPointerType and msgTypeParam(1).getPointeeType.isObjectType and
+            msgTypeParam(2).isPointerType and {
+                $pointee_type = msgTypeParam(2).getPointeeType
+                $pointee_type == getVoidType or $pointee_type == getCharType or
+                $pointee_type == getUnsignedCharType or $pointee_type.isStdByteType
+            })
+        not (msgTypeParam(1).isPointerType and msgTypeParam(2).isIntegerType and
+            msgTypeParam(2).getTypeSizeInBits >= msgTypeParam(1).getTypeSizeInBits)
+    )
+    +elib(9164)
+    -append(9164,[MISRA C++:2023 Rule 8.2.5, required])
+
+
+/**** Rule 8.2.6 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.2.7 (Adv) ************/
+
+    /* 9091 - casting from pointer type to integer type */
+    +e9091
+    +elib(9091)
+    -append(9091,[MISRA C++:2023 Rule 8.2.7, advisory])
+
+
+/**** Rule 8.2.8 (Req) ************/
+
+    /* 9078 - conversion between object pointer type and integer */
+    +equery(9078,"msgTypeParam(1).isPointerType")
+    -etype(9078,std::intptr_t)
+    -etype(9078,std::uintptr_t)
+    +elib(9078)
+    -append(9078,[MISRA C++:2023 Rule 8.2.8, required])
+
+
+/**** Rule 8.2.9 (Req) ************/
+
+    /* 9161 - operand to typeid operator has polymorphic type */
+    +e9161
+    +elib(9161)
+    -append(9161,[MISRA C++:2023 Rule 8.2.9, required])
+
+
+/**** Rule 8.2.10 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 9070 - function is recursive */
+    +e9070
+    +elib(9070)
+    -append(9070,[MISRA C++:2023 Rule 8.2.10, required])
+
+
+/**** Rule 8.2.11 (Req) ************/
+
+    /* 4078 - cannot pass object of type through variadic; call will abort at runtime */
+    +e4078
+    +elib(4078)
+    -append(4078,[MISRA C++:2023 Rule 8.2.11, required])
+
+
+/**** Rule 8.3.1 (Adv) ************/
+
+    /* 9134 - unary minus applied to operand with unsigned underlying type */
+    +e9134
+    +elib(9134)
+    -append(9134,[MISRA C++:2023 Rule 8.3.1, advisory])
+
+
+/**** Rule 8.3.2 (Adv) ************/
+
+    /* 9207 - built-in unary plus operator encountered */
+    +e9207
+    +elib(9207)
+    -append(9207,[MISRA C++:2023 Rule 8.3.2, advisory])
+
+
+/**** Rule 8.7.1 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 415 - likely out of bounds pointer access */
+    +e415
+    +elib(415)
+    -append(415,[MISRA C++:2023 Rule 8.7.1, required])
+
+    /* 416 - likely creating out-of-bounds pointer */
+    +e416
+    +elib(416)
+    -append(416,[MISRA C++:2023 Rule 8.7.1, required])
+
+    /* 419 - apparent data overrun for function */
+    +e419
+    +elib(419)
+    -append(419,[MISRA C++:2023 Rule 8.7.1, required])
+
+    /* 420 - apparent access beyond array for function */
+    +e420
+    +elib(420)
+    -append(420,[MISRA C++:2023 Rule 8.7.1, required])
+
+    /* 428 - likely indexing before the beginning of an allocation */
+    +e428
+    +elib(428)
+    -append(428,[MISRA C++:2023 Rule 8.7.1, required])
+
+
+/**** Rule 8.7.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.9.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.14.1 (Adv) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 9007 - side effects on right hand of logical operator */
+    +e9007
+    +elib(9007)
+    -append(9007,[MISRA C++:2023 Rule 8.14.1, advisory])
+
+
+/**** Rule 8.18.1 (Mand) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 8.18.2 (Adv) ************/
+
+    /* 720 - boolean test of assignment */
+    +e720
+    +elib(720)
+    -append(720,[MISRA C++:2023 Rule 8.18.2, advisory])
+
+    /* 820 - boolean test of parenthesized assignment */
+    +e820
+    +elib(820)
+    -append(820,[MISRA C++:2023 Rule 8.18.2, advisory])
+
+    /* 9084 - result of assignment operator used */
+    +e9084
+    +elib(9084)
+    -append(9084,[MISRA C++:2023 Rule 8.18.2, advisory])
+
+
+/**** Rule 8.19.1 (Adv) ************/
+
+    /* 9008 - comma operator used */
+    +e9008
+    +elib(9008)
+    -append(9008,[MISRA C++:2023 Rule 8.19.1, advisory])
+
+
+/**** Rule 8.20.1 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 9.2.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 9.3.1 (Req) ************/
+
+    /* 9012 - body should be a compound statement */
+    +e9012
+    +elib(9012)
+    -append(9012,[MISRA C++:2023 Rule 9.3.1, required])
+
+
+/**** Rule 9.4.1 (Req) ************/
+
+    /* 9013 - no 'else' at end of 'if ... else if' chain */
+    +e9013
+    +elib(9013)
+    -append(9013,[MISRA C++:2023 Rule 9.4.1, required])
+
+
+/**** Rule 9.4.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 9.5.1 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 9.5.2 (Req) ************/
+
+    /* 3907 - multiple calls in for-range-init */
+    +e3907
+    +elib(3907)
+    -append(3907,[MISRA C++:2023 Rule 9.5.2, required])
+
+
+/**** Rule 9.6.1 (Adv) ************/
+
+    /* 801 - goto statement used */
+    +e801
+    +elib(801)
+    -append(801,[MISRA C++:2023 Rule 9.6.1, advisory])
+
+
+/**** Rule 9.6.2 (Req) ************/
+
+    /* 9041 - goto appears in block which is not nested in block containing label */
+    +e9041
+    +elib(9041)
+    -append(9041,[MISRA C++:2023 Rule 9.6.2, required])
+
+
+/**** Rule 9.6.3 (Req) ************/
+
+    /* 9064 - goto references earlier label */
+    +e9064
+    +elib(9064)
+    -append(9064,[MISRA C++:2023 Rule 9.6.3, required])
+
+
+/**** Rule 9.6.4 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 2436 - function declared 'noreturn' should not return */
+    +e2436
+    +elib(2436)
+    -append(2436,[MISRA C++:2023 Rule 9.6.4, required])
+
+
+/**** Rule 9.6.5 (Req) ************/
+
+    /* 533 - function should return a value */
+    +e533
+    +elib(533)
+    -append(533,[MISRA C++:2023 Rule 9.6.5, required])
+
+
+/**** Rule 10.0.1 (Adv) ************/
+
+    /* 9146 - multiple declarators in a declaration */
+    +e9146
+    +elib(9146)
+    -append(9146,[MISRA C++:2023 Rule 10.0.1, advisory])
+
+
+/**** Rule 10.1.1 (Adv) ************/
+
+    /* Enable "could be made const" messages for unreferenced variables */
+    +fuv
+
+    /* Report parameters even if exclusively cast to void */
+    -fcv
+
+    /* 818 - parameter of function could be pointer to const */
+    +e818
+    +elib(818)
+    -append(818,[MISRA C++:2023 Rule 10.1.1, advisory])
+
+    /* 1764 - reference parameter of function could be reference to const */
+    +e1764
+    +elib(1764)
+    -append(1764,[MISRA C++:2023 Rule 10.1.1, advisory])
+
+
+/**** Rule 10.1.2 (Req) ************/
+
+    /* 9256 - inappropriate volatile qualifier */
+    +e9256
+    +elib(9256)
+    -append(9256,[MISRA C++:2023 Rule 10.1.2, required])
+
+
+/**** Rule 10.2.1 (Req) ************/
+
+    /* 9418 - enum does not have an explicitly specified underlying type */
+    +equery(9418,
+        not msgSymbolParam(1).getDeclContext.LinkageSpecDecl.isCLanguageLinkage &&
+        not msgSymbolParam(1).EnumDecl : {
+            $initialized_enums = 0
+            $num_enums = getNumEnumerators
+            $cur_enum = 1
+            while ($cur_enum <= $num_enums && $initialized_enums == 0) {
+                if (getEnumerator($cur_enum).getInitExpr) { $initialized_enums += 1 }
+                $cur_enum += 1
+            }
+            $initialized_enums == 0
+        }
+    )
+    +elib(9418)
+    -append(9418,[MISRA C++:2023 Rule 10.2.1, required])
+
+
+/**** Rule 10.2.2 (Adv) ************/
+
+    /* 9419 - enum is not a scoped enumeration */
+    +equery(9419,"!msgSymbolParam(1).EnumDecl.getDeclContext.RecordDecl")
+    +elib(9419)
+    -append(9419,[MISRA C++:2023 Rule 10.2.2, advisory])
+
+
+/**** Rule 10.2.3 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 10.3.1 (Adv) ************/
+
+    /* 1751 - anonymous namespace declared in a header file */
+    +e1751
+    +elib(1751)
+    -append(1751,[MISRA C++:2023 Rule 10.3.1, advisory])
+
+
+/**** Rule 10.4.1 (Req) ************/
+
+    /* 9217 - assembly language instruction within a function */
+    +e9217
+    +elib(9217)
+    -append(9217,[MISRA C++:2023 Rule 10.4.1, required])
+
+    /* 9220 - assembly language instruction is not encapsulated in a function */
+    +e9220
+    +elib(9220)
+    -append(9220,[MISRA C++:2023 Rule 10.4.1, required])
+
+
+/**** Rule 11.3.1 (Adv) ************/
+
+    /* 9436 - symbol has array type */
+    +equery(9436,
+        not msgSymbolParam(1).ValueDecl.getType.isReferenceType &&
+        not msgSymbolParam(1).VarDecl:{getType.isConstQualified && getAnyInitializer.StringLiteral} &&
+        not msgSymbolParam(1).FieldDecl:{getType.isConstQualified && getInClassInitializer.StringLiteral}
+    )
+
+    +elib(9436)
+    -append(9436,[MISRA C++:2023 Rule 11.3.1, advisory])
+
+
+/**** Rule 11.3.2 (Adv) ************/
+
+    /* 9025 - more than two levels of pointer indirection */
+    +e9025
+    +elib(9025)
+    -append(9025,[MISRA C++:2023 Rule 11.3.2, advisory])
+
+
+/**** Rule 11.6.1 (Adv) ************/
+
+    /* 901 - variable not initialized by definition */
+    +e901
+    +elib(901)
+    -append(901,[MISRA C++:2023 Rule 11.6.1, advisory])
+
+
+/**** Rule 11.6.2 (Mand) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 530 - likely using an uninitialized value */
+    +e530
+    +elib(530)
+    -append(530,[MISRA C++:2023 Rule 11.6.2, mandatory])
+
+
+/**** Rule 11.6.3 (Req) ************/
+
+    /* 488 - duplicate enumerator values */
+    +e488
+    +elib(488)
+    -append(488,[MISRA C++:2023 Rule 11.6.3, required])
+
+
+/**** Rule 12.2.1 (Adv) ************/
+
+    /* 9253 - bit-field declared */
+    +e9253
+    +elib(9253)
+    -append(9253,[MISRA C++:2023 Rule 12.2.1, advisory])
+
+
+/**** Rule 12.2.2 (Req) ************/
+
+    /* 9212 - bit field type is not explicitly signed int or unsigned int */
+    +e9212
+    -equery(9212,
+        $t = msgTypeParam(1).getCanonicalType
+        not $t.isChar16Type
+        not $t.isChar32Type
+        not $t.isWideCharType
+        not $t == getCharType
+        
+        $invalid_enum = false
+        if ($t.isEnumeralType) {
+            $ut = $t.getAsTagDecl.EnumDecl.getIntegerType
+            if ($ut.isChar16Type || $ut.isChar32Type || $ut.isWideCharType || $ut == getCharType) { $invalid_enum = true }
+            if (!$t.getAsTagDecl.EnumDecl.isFixed) { $invalid_enum = true }
+        }   
+        not $invalid_enum
+    )
+    +elib(9212)
+    -append(9212,[MISRA C++:2023 Rule 12.2.2, required])
+
+    /* 678 - member field length too small for enum precision */
+    +e678
+    +elib(678)
+    -append(678,[MISRA C++:2023 Rule 12.2.2, required])
+
+
+/**** Rule 12.2.3 (Req) ************/
+
+    /* 9088 - named signed single-bit bit-field */
+    +e9088
+    +elib(9088)
+    -append(9088,[MISRA C++:2023 Rule 12.2.3, required])
+
+
+/**** Rule 12.3.1 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(keyword, union)
+    -append(586(union),[MISRA C++:2023 Rule 12.3.1, required])
+
+
+/**** Rule 13.1.1 (Adv) ************/
+
+    /* 9174 - inheriting from virtual base class */
+    +e9174
+    +elib(9174)
+    -append(9174,[MISRA C++:2023 Rule 13.1.1, advisory])
+
+
+/**** Rule 13.1.2 (Req) ************/
+
+    /* 1748 - non-virtual base class included twice in class */
+    +equery(1748,"isVirtuallyDerivedFrom(msgSymbolParam(2).CXXRecordDecl msgSymbolParam(1).CXXRecordDecl)")
+    +elib(1748)
+    -append(1748,[MISRA C++:2023 Rule 13.1.2, required])
+
+
+/**** Rule 13.3.1 (Req) ************/
+
+    /* 9421 - virtual function overrides and is not marked with 'override' or 'final' */
+    +e9421
+    +elib(9421)
+    -append(9421,[MISRA C++:2023 Rule 13.3.1, required])
+
+    /* 9422 - virtual function should specify exactly one of 'virtual', 'override', or 'final' */
+    +e9422
+    +elib(9422)
+    -append(9422,[MISRA C++:2023 Rule 13.3.1, required])
+
+
+/**** Rule 13.3.2 (Req) ************/
+
+    /* 1953 - default argument of parameter in function is not a constant expression with the same value as the overridden function */
+    +e1953
+    +elib(1953)
+    -append(1953,[MISRA C++:2023 Rule 13.3.2, required])
+
+/**** Rule 13.3.3 (Req) ************/
+
+    /* 9072 - parameter has different name than previous declaration  */
+    +e9072
+    +elib(9072)
+    -append(9072,[MISRA C++:2023 Rule 13.3.3, required])
+
+    /* 9272 - parameter of function has different name than overridden function */
+    +e9272
+    +elib(9272)
+    -append(9272,[MISRA C++:2023 Rule 13.3.3, required])
+
+
+/**** Rule 13.3.4 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 14.1.1 (Adv) ************/
+
+    /* 9413 - class contains data members of differing access levels */
+    +e9413
+    +elib(9413)
+    -append(9413,[MISRA C++:2023 Rule 14.1.1, advisory])
+
+    /* 9417 - data member has protected access level */
+    +e9417
+    +elib(9417)
+    -append(9417,[MISRA C++:2023 Rule 14.1.1, advisory])
+
+
+/**** Rule 15.0.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 15.0.2 (Adv) ************/
+
+    /* 1724 - parameter of copy constructor should be a const reference */
+    +e1724
+    +elib(1724)
+    -append(1724,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 3401 - parameter to move constructor is an rvalue reference to const */
+    +e3401
+    +elib(3401)
+    -append(3401,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9185 - assignment operator declared without lvalue ref-qualifier */
+    +equery(9185,msgSymbolParam(1).CXXMethodDecl:{isCopyAssignmentOperator||isMoveAssignmentOperator})
+    +elib(9185)
+    -append(9185,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9405 - move constructor for class should be declared 'noexcept' */
+    +e9405
+    +elib(9405)
+    -append(9405,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9406 - move assignment operator should be declared 'noexcept' */
+    +e9406
+    +elib(9406)
+    -append(9406,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9407 - copy assignment operator should not be virtual */
+    +e9407
+    +elib(9407)
+    -append(9407,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9408 - copy assignment operator should take a const reference type */
+    +e9408
+    +elib(9408)
+    -append(9408,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9409 - copy assignment operator should return a non-const lvalue-reference type */
+    +equery(9409,"!msgSymbolParam(1).FunctionDecl.getReturnType.isVoidType")
+    +elib(9409)
+    -append(9409,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9410 - move assignment operator should not be virtual */
+    +e9410
+    +elib(9410)
+    -append(9410,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9411 - move assignment operator should take a non-const reference type */
+    +e9411
+    +elib(9411)
+    -append(9411,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+    /* 9412 - move assignment operator should return a non-const lvalue-reference type */
+    +equery(9412,"!msgSymbolParam(1).FunctionDecl.getReturnType.isVoidType")
+    +elib(9412)
+    -append(9412,[MISRA C++:2023 Rule 15.0.2, advisory])
+
+
+/**** Rule 15.1.1 (Req) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 1506 - call to virtual function within a constructor/destructor */
+    +e1506
+    +elib(1506)
+    -append(1506,[MISRA C++:2023 Rule 15.1.1, required])
+
+
+/**** Rule 15.1.2 (Adv) ************/
+
+    /* 1928 - call to virtual function within a constructor/destructor */
+    +equery(1928,"!msgTypeParam(1).getAsCXXRecordDecl.isEmpty")
+    +elib(1928)
+    -append(1928,[MISRA C++:2023 Rule 15.1.2, advisory])
+
+
+/**** Rule 15.1.3 (Req) ************/
+
+    /* 1930 - (non-explicit) conversion operator found */
+    +e1930
+    +elib(1930)
+    -append(1930,[MISRA C++:2023 Rule 15.1.3, required])
+
+    /* 1931 - constructor can be used for implicit conversions */
+    +e1931
+    +elib(1931)
+    -append(1931,[MISRA C++:2023 Rule 15.1.3, required])
+
+
+/**** Rule 15.1.4 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 15.1.5 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Dir 15.8.1 (Req) ************/
+
+    /* 1529 - assignment operator should check for self-assignment */
+    +e1529
+    +elib(1529)
+    -append(1529,[MISRA C++:2023 Directive 15.8.1, required])
+
+
+/**** Rule 16.5.1 (Req) ************/
+
+    /* 1753 - overloading operator precludes short-circuit evaluation */
+    +e1753
+    +elib(1753)
+    -estring(1753,",")
+    -append(1753,[MISRA C++:2023 Rule 16.5.1, required])
+
+
+/**** Rule 16.5.2 (Req) ************/
+
+    /* 9135 - unary operator & overloaded */
+    +e9135
+    +elib(9135)
+    -append(9135,[MISRA C++:2023 Rule 16.5.2, required])
+
+
+/**** Rule 16.6.1 (Adv) ************/
+
+    /* 1956 - symmetric operator should be a non-member function */
+    +e1956
+    +elib(1956)
+    -append(1956,[MISRA C++:2023 Rule 16.6.1, advisory])
+
+
+/**** Rule 17.8.1 (Req) ************/
+
+    /* 9179 - explicit function template specialization */
+    +e9179
+    +elib(9179)
+    -append(9179,[MISRA C++:2023 Rule 17.8.1, required])
+
+/**** Rule 18.1.1 (Req) ************/
+
+    /* 9154 - throwing a pointer */
+    +e9154
+    +elib(9154)
+    -append(9154,[MISRA C++:2023 Rule 18.1.1, required])
+
+
+/**** Rule 18.1.2 (Req) ************/
+
+    /* 9156 - rethrow outside of catch block */
+    +e9156
+    +elib(9156)
+    -append(9156,[MISRA C++:2023 Rule 18.1.2, required])
+
+
+/**** Rule 18.3.1 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 18.3.2 (Req) ************/
+
+    /* 1752 - catch parameter is not a reference */
+    +e1752
+    +elib(1752)
+    -append(1752,[MISRA C++:2023 Rule 18.3.2, required])
+
+
+/**** Rule 18.3.3 (Req) ************/
+
+    /* 3433 - constructor/destructor function-try-block handler references non-static member */
+    +e3433
+    +elib(3433)
+    -append(3433,[MISRA C++:2023 Rule 18.3.3, required])
+
+
+/**** Rule 18.4.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 18.5.1 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 18.5.2 (Adv) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(function, abort)
+    -append(586(abort),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, exit)
+    -append(586(exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, _Exit)
+    -append(586(_Exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, quick_exit)
+    -append(586(quick_exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, terminate)
+    -append(586(terminate),[MISRA C++:2023 Rule 18.5.2, advisory])
+
+    -deprecate(function, std::abort)
+    -append(586(std::abort),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, std::exit)
+    -append(586(std::exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, std::_Exit)
+    -append(586(std::_Exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, std::quick_exit)
+    -append(586(std::quick_exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(function, std::terminate)
+    -append(586(std::terminate),[MISRA C++:2023 Rule 18.5.2, advisory])
+
+    -deprecate(macro, abort)
+    -append(586(abort),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(macro, exit)
+    -append(586(exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(macro, _Exit)
+    -append(586(_Exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(macro, quick_exit)
+    -append(586(quick_exit),[MISRA C++:2023 Rule 18.5.2, advisory])
+    -deprecate(macro, terminate)
+    -append(586(terminate),[MISRA C++:2023 Rule 18.5.2, advisory])
+
+    /* Allow abort to be called from the assert macro */
+    -emacro(586,assert)
+
+
+/**** Rule 19.0.1 (Req) ************/
+
+    /* 16 - unknown preprocessor directive */
+    +e16
+    +elib(16)
+    -append(16,[MISRA C++:2023 Rule 19.0.1, required])
+
+    /* 544 - directive not followed by EOL */
+    +e544
+    +elib(544)
+    -append(544,[MISRA C++:2023 Rule 19.0.1, required])
+
+    /* 9160 - unknown preprocessor directive in conditionally excluded region */
+    +e9160
+    +elib(9160)
+    -append(9160,[MISRA C++:2023 Rule 19.0.1, required])
+
+
+/**** Rule 19.0.2 (Req) ************/
+
+    /* You may use:
+            -emacro(9026, *macro-name*)
+       to suppress this message for macros whose definitions contain __LINE__,
+       __FILE__, __func__, #, or ## as specified by the guideline exception,
+       as appropriate.
+    */
+
+    /* 9026 - function-like macro defined */
+    +e9026
+    +elib(9026)
+    -append(9026,[MISRA C++:2023 Rule 19.0.2, required])
+
+
+/**** Rule 19.0.3 (Adv) ************/
+
+    /* 9019 - declaration before #include */
+    +e9019
+    +elib(9019)
+    -append(9019,[MISRA C++:2023 Rule 19.0.3, advisory])
+
+
+/**** Rule 19.0.4 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 19.1.1 (Req) ************/
+
+    /* 491 - non-standard use of 'defined' preprocessor operator */
+    +e491
+    +elib(491)
+    -append(491,[MISRA C++:2023 Rule 19.1.1, required])
+
+
+/**** Rule 19.1.2 (Req) ************/
+
+    /* 8 - unclosed #if */
+    +e8
+    +elib(8)
+    -append(8,[MISRA C++:2023 Rule 19.1.2, required])
+
+
+/**** Rule 19.1.3 (Req) ************/
+
+    /* 553 - undefined preprocessor variable */
+    +e553
+    +elib(553)
+    -append(553,[MISRA C++:2023 Rule 19.1.3, required])
+
+
+/**** Rule 19.2.1 (Req) ************/
+
+    /* 967 - header file does not have a standard include guard */
+    +e967
+    +elib(967)
+    -append(967,[MISRA C++:2023 Rule 19.2.1, required])
+
+
+/**** Rule 19.2.2 (Req) ************/
+
+    /* 12 - need < or " after #include */
+    +e12
+    +elib(12)
+    -append(12,[MISRA C++:2023 Rule 19.2.2, required])
+
+
+/**** Rule 19.2.3 (Req) ************/
+
+    /* 9020 - header file name contains non-standard character */
+    +e9020
+    +elib(9020)
+    -append(9020,[MISRA C++:2023 Rule 19.2.3, required])
+
+
+/**** Rule 19.3.1 (Adv) ************/
+
+    /* 9024 -pasting/stringize operator used in definition of macro */
+    +e9024
+    +elib(9024)
+    -append(9024,[MISRA C++:2023 Rule 19.3.1, advisory])
+
+
+/**** Rule 19.3.2 (Req) ************/
+
+    /* 484 - stringize operator followed by macro parameter followed by pasting operator */
+    +e484
+    +elib(484)
+    -append(484,[MISRA C++:2023 Rule 19.3.2, required])
+
+
+/**** Rule 19.3.3 (Req) ************/
+
+    /* 9015 - macro appearing in argument of macro is used both with and without '#/##' and is subject to further replacement */
+    +e9015
+    +elib(9015)
+    -append(9015,[MISRA C++:2023 Rule 19.3.3, required])
+
+
+/**** Rule 19.3.4 (Req) ************/
+
+    /* 665 - unparenthesized parameter in macro is passed an expression */
+    +e665
+    +elib(665)
+    -append(665,[MISRA C++:2023 Rule 19.3.4, required])
+
+
+/**** Rule 19.3.5 (Req) ************/
+
+    /* 436 - preprocessor directive in invocation of macro */
+    +e436
+    +elib(436)
+    -append(436,[MISRA C++:2023 Rule 19.3.5, required])
+
+
+/**** Rule 19.6.1 (Adv) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(ppw, pragma)
+    -append(586(pragma),[MISRA C++:2023 Rule 19.6.1, advisory])
+    -deprecate(macro, _Pragma)
+    -append(586(_Pragma),[MISRA C++:2023 Rule 19.6.1, advisory])
+
+
+/**** Rule 21.2.1 (Req) ************/
+
+    +e586
+    +elib(586)
+
+    -deprecate(function, atof)
+    -append(586(atof),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, atoi)
+    -append(586(atoi),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, atol)
+    -append(586(atol),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, atoll)
+    -append(586(atoll),[MISRA C++:2023 Rule 21.2.1, required])
+
+    -deprecate(function, std::atof)
+    -append(586(std::atof),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, std::atoi)
+    -append(586(std::atoi),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, std::atol)
+    -append(586(std::atol),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(function, std::atoll)
+    -append(586(std::atoll),[MISRA C++:2023 Rule 21.2.1, required])
+
+    -deprecate(macro, atof)
+    -append(586(atof),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(macro, atoi)
+    -append(586(atoi),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(macro, atol)
+    -append(586(atol),[MISRA C++:2023 Rule 21.2.1, required])
+    -deprecate(macro, atoll)
+    -append(586(atoll),[MISRA C++:2023 Rule 21.2.1, required])
+
+
+/**** Rule 21.2.2 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, strcat)
+    -append(586(strcat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strchr)
+    -append(586(strchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strcmp)
+    -append(586(strcmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strcoll)
+    -append(586(strcoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strcpy)
+    -append(586(strcpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strcspn)
+    -append(586(strcspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strerror)
+    -append(586(strerror),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strlen)
+    -append(586(strlen),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strncat)
+    -append(586(strncat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strncmp)
+    -append(586(strncmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strncpy)
+    -append(586(strncpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strpbrk)
+    -append(586(strpbrk),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strrchr)
+    -append(586(strrchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strspn)
+    -append(586(strspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strstr)
+    -append(586(strstr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtok)
+    -append(586(strtok),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strxfrm)
+    -append(586(strxfrm),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtol)
+    -append(586(strtol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtoll)
+    -append(586(strtoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtoul)
+    -append(586(strtoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtoull)
+    -append(586(strtoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtod)
+    -append(586(strtod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtof)
+    -append(586(strtof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtold)
+    -append(586(strtold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, fgetwc)
+    -append(586(fgetwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, fputwc)
+    -append(586(fputwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstol)
+    -append(586(wcstol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstoll)
+    -append(586(wcstoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstoul)
+    -append(586(wcstoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstoull)
+    -append(586(wcstoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstod)
+    -append(586(wcstod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstof)
+    -append(586(wcstof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstold)
+    -append(586(wcstold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtoumax)
+    -append(586(strtoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, strtoimax)
+    -append(586(strtoimax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstoumax)
+    -append(586(wcstoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, wcstoimax)
+    -append(586(wcstoimax),[MISRA C++:2023 Rule 21.2.2, required])
+
+    -deprecate(function, std::strcat)
+    -append(586(std::strcat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strchr)
+    -append(586(std::strchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strcmp)
+    -append(586(std::strcmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strcoll)
+    -append(586(std::strcoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strcpy)
+    -append(586(std::strcpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strcspn)
+    -append(586(std::strcspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strerror)
+    -append(586(std::strerror),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strlen)
+    -append(586(std::strlen),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strncat)
+    -append(586(std::strncat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strncmp)
+    -append(586(std::strncmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strncpy)
+    -append(586(std::strncpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strpbrk)
+    -append(586(std::strpbrk),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strrchr)
+    -append(586(std::strrchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strspn)
+    -append(586(std::strspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strstr)
+    -append(586(std::strstr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtok)
+    -append(586(std::strtok),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strxfrm)
+    -append(586(std::strxfrm),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtol)
+    -append(586(std::strtol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtoll)
+    -append(586(std::strtoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtoul)
+    -append(586(std::strtoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtoull)
+    -append(586(std::strtoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtod)
+    -append(586(std::strtod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtof)
+    -append(586(std::strtof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtold)
+    -append(586(std::strtold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::fgetwc)
+    -append(586(std::fgetwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::fputwc)
+    -append(586(std::fputwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstol)
+    -append(586(std::wcstol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstoll)
+    -append(586(std::wcstoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstoul)
+    -append(586(std::wcstoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstoull)
+    -append(586(std::wcstoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstod)
+    -append(586(std::wcstod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstof)
+    -append(586(std::wcstof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstold)
+    -append(586(std::wcstold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtoumax)
+    -append(586(std::strtoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::strtoimax)
+    -append(586(std::strtoimax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstoumax)
+    -append(586(std::wcstoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(function, std::wcstoimax)
+    -append(586(std::wcstoimax),[MISRA C++:2023 Rule 21.2.2, required])
+
+    -deprecate(macro, strcat)
+    -append(586(strcat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strchr)
+    -append(586(strchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strcmp)
+    -append(586(strcmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strcoll)
+    -append(586(strcoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strcpy)
+    -append(586(strcpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strcspn)
+    -append(586(strcspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strerror)
+    -append(586(strerror),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strlen)
+    -append(586(strlen),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strncat)
+    -append(586(strncat),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strncmp)
+    -append(586(strncmp),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strncpy)
+    -append(586(strncpy),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strpbrk)
+    -append(586(strpbrk),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strrchr)
+    -append(586(strrchr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strspn)
+    -append(586(strspn),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strstr)
+    -append(586(strstr),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtok)
+    -append(586(strtok),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strxfrm)
+    -append(586(strxfrm),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtol)
+    -append(586(strtol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtoll)
+    -append(586(strtoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtoul)
+    -append(586(strtoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtoull)
+    -append(586(strtoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtod)
+    -append(586(strtod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtof)
+    -append(586(strtof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtold)
+    -append(586(strtold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, fgetwc)
+    -append(586(fgetwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, fputwc)
+    -append(586(fputwc),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstol)
+    -append(586(wcstol),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstoll)
+    -append(586(wcstoll),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstoul)
+    -append(586(wcstoul),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstoull)
+    -append(586(wcstoull),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstod)
+    -append(586(wcstod),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstof)
+    -append(586(wcstof),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstold)
+    -append(586(wcstold),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtoumax)
+    -append(586(strtoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, strtoimax)
+    -append(586(strtoimax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstoumax)
+    -append(586(wcstoumax),[MISRA C++:2023 Rule 21.2.2, required])
+    -deprecate(macro, wcstoimax)
+    -append(586(wcstoimax),[MISRA C++:2023 Rule 21.2.2, required])
+
+
+/**** Rule 21.2.3 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(function, system)
+    -append(586(system),[MISRA C++:2023 Rule 21.2.3, required])
+    -deprecate(function, std::system)
+    -append(586(std::system),[MISRA C++:2023 Rule 21.2.3, required])
+    -deprecate(macro, system)
+    -append(586(system),[MISRA C++:2023 Rule 21.2.3, required])
+
+
+/**** Rule 21.2.4 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+    -deprecate(macro, offsetof)
+    -append(586(offsetof),[MISRA C++:2023 Rule 21.2.4, required])
+
+
+/**** Rule 21.6.1 (Adv) ************/
+
+    /* While MISRA has declared this rule to be "undecidable", the
+     * following options are provided to assist: */
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, calloc)
+    -append(586(calloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, malloc)
+    -append(586(malloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, realloc)
+    -append(586(realloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, free)
+    -append(586(free),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, aligned_alloc)
+    -append(586(aligned_alloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+
+    -deprecate(function, std::calloc)
+    -append(586(std::calloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, std::malloc)
+    -append(586(std::malloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, std::realloc)
+    -append(586(std::realloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, std::free)
+    -append(586(std::free),[MISRA C++:2023 Rule 21.6.1, advisory])
+    -deprecate(function, std::aligned_alloc)
+    -append(586(std::aligned_alloc),[MISRA C++:2023 Rule 21.6.1, advisory])
+
+
+/**** Rule 21.6.2 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, calloc)
+    -append(586(calloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, malloc)
+    -append(586(malloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, realloc)
+    -append(586(realloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, free)
+    -append(586(free),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, aligned_alloc)
+    -append(586(aligned_alloc),[MISRA C++:2023 Rule 21.6.2, required])
+
+    -deprecate(function, std::calloc)
+    -append(586(std::calloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, std::malloc)
+    -append(586(std::malloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, std::realloc)
+    -append(586(std::realloc),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, std::free)
+    -append(586(std::free),[MISRA C++:2023 Rule 21.6.2, required])
+    -deprecate(function, std::aligned_alloc)
+    -append(586(std::aligned_alloc),[MISRA C++:2023 Rule 21.6.2, required])
+
+    /* 9173 - use of non-placement allocation function */
+    +e9173
+    +elib(9173)
+    -append(9173,[MISRA C++:2023 Rule 21.6.2, required])
+
+
+/**** Rule 21.6.3 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 21.6.4 (Req) ************/
+
+    +fzd   /* Enable sized deallocations */
+
+    /* 3904 - globally defined unsized/sized operator delete does not have complimentary sized/unsized definition */
+    +e3904
+    +elib(3904)
+    -append(3904,[MISRA C++:2023 Rule 21.6.4, required])
+
+
+/**** Rule 21.6.5 (Req) ************/
+
+    /* 1404 - deleting an object before that type is defined */
+    +e1404
+    +elib(1404)
+    -append(1404,[MISRA C++:2023 Rule 21.6.5, required])
+
+
+/**** Rule 21.10.1 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(macro, va_arg)
+    -append(586(va_arg),[MISRA C++:2023 Rule 21.10.1, required])
+    -deprecate(macro, va_start)
+    -append(586(va_start),[MISRA C++:2023 Rule 21.10.1, required])
+    -deprecate(macro, va_end)
+    -append(586(va_end),[MISRA C++:2023 Rule 21.10.1, required])
+    -deprecate(macro, va_copy)
+    -append(586(va_copy),[MISRA C++:2023 Rule 21.10.1, required])
+    -deprecate(type, va_list)
+    -append(586(va_list),[MISRA C++:2023 Rule 21.10.1, required])
+    -deprecate(type, std::va_list)
+    -append(586(std::va_list),[MISRA C++:2023 Rule 21.10.1, required])
+
+
+/**** Rule 21.10.2 (Req) ************/
+
+    /* 829 - warn on header usage */
+    +e829
+    +elib(829)
+
+    +headerwarn(setjmp.h)
+    -append(829(setjmp.h),[MISRA C++:2023 Rule 21.10.2, required])
+    +headerwarn(csetjmp)
+    -append(829(csetjmp),[MISRA C++:2023 Rule 21.10.2, required])
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, setjmp)
+    -append(586(setjmp),[MISRA C++:2023 Rule 21.10.2, required])
+    -deprecate(function, longjmp)
+    -append(586(longjmp),[MISRA C++:2023 Rule 21.10.2, required])
+    -deprecate(function, std::setjmp)
+    -append(586(std::setjmp),[MISRA C++:2023 Rule 21.10.2, required])
+    -deprecate(function, std::longjmp)
+    -append(586(std::longjmp),[MISRA C++:2023 Rule 21.10.2, required])
+
+    -deprecate(macro, setjmp)
+    -append(586(setjmp),[MISRA C++:2023 Rule 21.10.2, required])
+    -deprecate(macro, longjmp)
+    -append(586(longjmp),[MISRA C++:2023 Rule 21.10.2, required])
+
+    -deprecate(type, jmp_buf)
+    -append(586(jmp_buf),[MISRA C++:2023 Rule 21.10.2, required])
+    -deprecate(type, std::jmp_buf)
+    -append(586(std::jmp_buf),[MISRA C++:2023 Rule 21.10.2, required])
+
+
+/**** Rule 21.10.3 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, signal)
+    -append(586(signal),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(function, raise)
+    -append(586(raise),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(function, std::signal)
+    -append(586(std::signal),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(function, std::raise)
+    -append(586(std::raise),[MISRA C++:2023 Rule 21.10.3, required])
+
+    -deprecate(macro, SIGABRT)
+    -append(586(SIGABRT),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIGFPE)
+    -append(586(SIGFPE),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIGILL)
+    -append(586(SIGILL),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIGINT)
+    -append(586(SIGINT),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIGSEGV)
+    -append(586(SIGSEGV),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIGTERM)
+    -append(586(SIGTERM),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIG_DFL)
+    -append(586(SIG_DFL),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIG_ERR)
+    -append(586(SIG_ERR),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(macro, SIG_IGN)
+    -append(586(SIG_IGN),[MISRA C++:2023 Rule 21.10.3, required])
+
+    -deprecate(type, sig_atomic_t)
+    -append(586(sig_atomic_t),[MISRA C++:2023 Rule 21.10.3, required])
+    -deprecate(type, std::sig_atomic_t)
+    -append(586(std::sig_atomic_t),[MISRA C++:2023 Rule 21.10.3, required])
+
+
+/**** Rule 22.3.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 22.4.1 (Req) ************/
+
+    /* 9180 - modification of errno other than by zero assignment */
+    +e9180
+    +elib(9180)
+    -append(9180,[MISRA C++:2023 Rule 22.4.1, required])
+
+/**** Rule 23.11.1 (Adv) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 24.5.1 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, isalnum)
+    -append(586(isalnum),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isalpha)
+    -append(586(isalpha),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, islower)
+    -append(586(islower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isupper)
+    -append(586(isupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isdigit)
+    -append(586(isdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isxdigit)
+    -append(586(isxdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iscntrl)
+    -append(586(iscntrl),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isgraph)
+    -append(586(isgraph),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isspace)
+    -append(586(isspace),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isblank)
+    -append(586(isblank),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, isprint)
+    -append(586(isprint),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, ispunct)
+    -append(586(ispunct),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, tolower)
+    -append(586(tolower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, toupper)
+    -append(586(toupper),[MISRA C++:2023 Rule 24.5.1, required])
+
+    -deprecate(function, iswalnum)
+    -append(586(iswalnum),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswalpha)
+    -append(586(iswalpha),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswlower)
+    -append(586(iswlower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswupper)
+    -append(586(iswupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswdigit)
+    -append(586(iswdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswxdigit)
+    -append(586(iswxdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswcntrl)
+    -append(586(iswcntrl),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswgraph)
+    -append(586(iswgraph),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswspace)
+    -append(586(iswspace),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswblank)
+    -append(586(iswblank),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswprint)
+    -append(586(iswprint),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswpunct)
+    -append(586(iswpunct),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, iswctype)
+    -append(586(iswctype),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, wctype)
+    -append(586(wctype),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, towlower)
+    -append(586(towlower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, towupper)
+    -append(586(towupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, towctrans)
+    -append(586(towctrans),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(function, wctrans)
+    -append(586(wctrans),[MISRA C++:2023 Rule 24.5.1, required])
+
+    -deprecate(macro, isalnum)
+    -append(586(isalnum),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isalpha)
+    -append(586(isalpha),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, islower)
+    -append(586(islower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isupper)
+    -append(586(isupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isdigit)
+    -append(586(isdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isxdigit)
+    -append(586(isxdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iscntrl)
+    -append(586(iscntrl),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isgraph)
+    -append(586(isgraph),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isspace)
+    -append(586(isspace),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isblank)
+    -append(586(isblank),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, isprint)
+    -append(586(isprint),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, ispunct)
+    -append(586(ispunct),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, tolower)
+    -append(586(tolower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, toupper)
+    -append(586(toupper),[MISRA C++:2023 Rule 24.5.1, required])
+
+    -deprecate(macro, iswalnum)
+    -append(586(iswalnum),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswalpha)
+    -append(586(iswalpha),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswlower)
+    -append(586(iswlower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswupper)
+    -append(586(iswupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswdigit)
+    -append(586(iswdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswxdigit)
+    -append(586(iswxdigit),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswcntrl)
+    -append(586(iswcntrl),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswgraph)
+    -append(586(iswgraph),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswspace)
+    -append(586(iswspace),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswblank)
+    -append(586(iswblank),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswprint)
+    -append(586(iswprint),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswpunct)
+    -append(586(iswpunct),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, iswctype)
+    -append(586(iswctype),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, wctype)
+    -append(586(wctype),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, towlower)
+    -append(586(towlower),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, towupper)
+    -append(586(towupper),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, towctrans)
+    -append(586(towctrans),[MISRA C++:2023 Rule 24.5.1, required])
+    -deprecate(macro, wctrans)
+    -append(586(wctrans),[MISRA C++:2023 Rule 24.5.1, required])
+
+
+/**** Rule 24.5.2 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, memcpy)
+    -append(586(memcpy),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(function, memmove)
+    -append(586(memmove),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(function, memcmp)
+    -append(586(memcmp),[MISRA C++:2023 Rule 24.5.2, required])
+
+    -deprecate(function, std::memcpy)
+    -append(586(std::memcpy),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(function, std::memmove)
+    -append(586(std::memmove),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(function, std::memcmp)
+    -append(586(std::memcmp),[MISRA C++:2023 Rule 24.5.2, required])
+
+    -deprecate(macro, memcpy)
+    -append(586(memcpy),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(macro, memmove)
+    -append(586(memmove),[MISRA C++:2023 Rule 24.5.2, required])
+    -deprecate(macro, memcmp)
+    -append(586(memcmp),[MISRA C++:2023 Rule 24.5.2, required])
+
+
+/**** Rule 25.5.1 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, setlocale)
+    -append(586(setlocale),[MISRA C++:2023 Rule 25.5.1, required])
+    -deprecate(function, std::setlocale)
+    -append(586(std::setlocale),[MISRA C++:2023 Rule 25.5.1, required])
+    -deprecate(function, std::locale::global)
+    -append(586(std::locale::global),[MISRA C++:2023 Rule 25.5.1, required])
+
+
+/**** Rule 25.5.2 (Mand) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 25.5.3 (Mand) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 26.3.1 (Adv) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(basetype, std::vector<bool>)
+    -append(586(std::vector<bool>),[MISRA C++:2023 Rule 26.3.1, advisory])
+
+
+/**** Rule 28.3.1 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 28.6.1 (Req) ************/
+
+    /* 3711 - move called with argument of const-qualified type */
+    +e3711
+    +elib(3711)
+    -append(3711,[MISRA C++:2023 Rule 28.6.1, required])
+
+    /* 3911 - move called with rvalue argument */
+    +e3911
+    +elib(3911)
+    -append(3911,[MISRA C++:2023 Rule 28.6.1, required])
+
+
+/**** Rule 28.6.2 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 28.6.3 (Req) ************/
+
+    /* 1424 - object has been previously moved but is used */
+    +e1424
+    +elib(1424)
+    -append(1424,[MISRA C++:2023 Rule 28.6.3, required])
+
+    /* 1765 - object has been previously self-moved but is used */
+    +e1765
+    +elib(1765)
+    -append(1765,[MISRA C++:2023 Rule 28.6.3, required])
+
+/**** Rule 28.6.4 (Req) ************/
+
+    /* not currently supported */
+
+
+/**** Rule 30.0.1 (Req) ************/
+
+    /* 586 - name is deprecated */
+    +e586
+    +elib(586)
+
+    -deprecate(function, clearerr)
+    -append(586(clearerr),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fclose)
+    -append(586(fclose),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, feof)
+    -append(586(feof),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, ferror)
+    -append(586(ferror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fflush)
+    -append(586(fflush),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fgetc)
+    -append(586(fgetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fgetpos)
+    -append(586(fgetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fgets)
+    -append(586(fgets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fgetwc)
+    -append(586(fgetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fgetws)
+    -append(586(fgetws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fopen)
+    -append(586(fopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fprintf)
+    -append(586(fprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fputc)
+    -append(586(fputc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fputs)
+    -append(586(fputs),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fputwc)
+    -append(586(fputwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fputws)
+    -append(586(fputws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fread)
+    -append(586(fread),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fscanf)
+    -append(586(fscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fseek)
+    -append(586(fseek),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fsetpos)
+    -append(586(fsetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, freopen)
+    -append(586(freopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, ftell)
+    -append(586(ftell),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fwide)
+    -append(586(fwide),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fwprintf)
+    -append(586(fwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fwrite)
+    -append(586(fwrite),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, fwscanf)
+    -append(586(fwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, getc)
+    -append(586(getc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, getchar)
+    -append(586(getchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, gets)
+    -append(586(gets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, getwc)
+    -append(586(getwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, getwchar)
+    -append(586(getwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, perror)
+    -append(586(perror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, printf)
+    -append(586(printf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, putc)
+    -append(586(putc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, putchar)
+    -append(586(putchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, puts)
+    -append(586(puts),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, putwc)
+    -append(586(putwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, putwchar)
+    -append(586(putwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, remove)
+    -append(586(remove),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, rename)
+    -append(586(rename),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, rewind)
+    -append(586(rewind),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, scanf)
+    -append(586(scanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, setbuf)
+    -append(586(setbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, setvbuf)
+    -append(586(setvbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, snprintf)
+    -append(586(snprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, sprintf)
+    -append(586(sprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, sscanf)
+    -append(586(sscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, swprintf)
+    -append(586(swprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, swscanf)
+    -append(586(swscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, tmpfile)
+    -append(586(tmpfile),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, tmpnam)
+    -append(586(tmpnam),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, ungetc)
+    -append(586(ungetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, ungetwc)
+    -append(586(ungetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vfprintf)
+    -append(586(vfprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vfscanf)
+    -append(586(vfscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vfwprintf)
+    -append(586(vfwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vfwscanf)
+    -append(586(vfwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vprintf)
+    -append(586(vprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vscanf)
+    -append(586(vscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vsnprintf)
+    -append(586(vsnprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vsprintf)
+    -append(586(vsprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vsscanf)
+    -append(586(vsscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vswprintf)
+    -append(586(vswprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vswscanf)
+    -append(586(vswscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vwprintf)
+    -append(586(vwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, vwscanf)
+    -append(586(vwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, wprintf)
+    -append(586(wprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, wscanf)
+    -append(586(wscanf),[MISRA C++:2023 Rule 30.0.1, required])
+
+    -deprecate(function, std::clearerr)
+    -append(586(std::clearerr),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fclose)
+    -append(586(std::fclose),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::feof)
+    -append(586(std::feof),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::ferror)
+    -append(586(std::ferror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fflush)
+    -append(586(std::fflush),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fgetc)
+    -append(586(std::fgetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fgetpos)
+    -append(586(std::fgetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fgets)
+    -append(586(std::fgets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fgetwc)
+    -append(586(std::fgetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fgetws)
+    -append(586(std::fgetws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fopen)
+    -append(586(std::fopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fprintf)
+    -append(586(std::fprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fputc)
+    -append(586(std::fputc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fputs)
+    -append(586(std::fputs),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fputwc)
+    -append(586(std::fputwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fputws)
+    -append(586(std::fputws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fread)
+    -append(586(std::fread),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fscanf)
+    -append(586(std::fscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fseek)
+    -append(586(std::fseek),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fsetpos)
+    -append(586(std::fsetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::freopen)
+    -append(586(std::freopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::ftell)
+    -append(586(std::ftell),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fwide)
+    -append(586(std::fwide),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fwprintf)
+    -append(586(std::fwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fwrite)
+    -append(586(std::fwrite),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::fwscanf)
+    -append(586(std::fwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::getc)
+    -append(586(std::getc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::getchar)
+    -append(586(std::getchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::gets)
+    -append(586(std::gets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::getwc)
+    -append(586(std::getwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::getwchar)
+    -append(586(std::getwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::perror)
+    -append(586(std::perror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::printf)
+    -append(586(std::printf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::putc)
+    -append(586(std::putc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::putchar)
+    -append(586(std::putchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::puts)
+    -append(586(std::puts),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::putwc)
+    -append(586(std::putwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::putwchar)
+    -append(586(std::putwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::remove)
+    -append(586(std::remove),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::rename)
+    -append(586(std::rename),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::rewind)
+    -append(586(std::rewind),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::scanf)
+    -append(586(std::scanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::setbuf)
+    -append(586(std::setbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::setvbuf)
+    -append(586(std::setvbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::snprintf)
+    -append(586(std::snprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::sprintf)
+    -append(586(std::sprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::sscanf)
+    -append(586(std::sscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::swprintf)
+    -append(586(std::swprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::swscanf)
+    -append(586(std::swscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::tmpfile)
+    -append(586(std::tmpfile),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::tmpnam)
+    -append(586(std::tmpnam),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::ungetc)
+    -append(586(std::ungetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::ungetwc)
+    -append(586(std::ungetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vfprintf)
+    -append(586(std::vfprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vfscanf)
+    -append(586(std::vfscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vfwprintf)
+    -append(586(std::vfwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vfwscanf)
+    -append(586(std::vfwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vprintf)
+    -append(586(std::vprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vscanf)
+    -append(586(std::vscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vsnprintf)
+    -append(586(std::vsnprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vsprintf)
+    -append(586(std::vsprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vsscanf)
+    -append(586(std::vsscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vswprintf)
+    -append(586(std::vswprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vswscanf)
+    -append(586(std::vswscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vwprintf)
+    -append(586(std::vwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::vwscanf)
+    -append(586(std::vwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::wprintf)
+    -append(586(std::wprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(function, std::wscanf)
+    -append(586(std::wscanf),[MISRA C++:2023 Rule 30.0.1, required])
+
+    -deprecate(macro, clearerr)
+    -append(586(clearerr),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fclose)
+    -append(586(fclose),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, feof)
+    -append(586(feof),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, ferror)
+    -append(586(ferror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fflush)
+    -append(586(fflush),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fgetc)
+    -append(586(fgetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fgets)
+    -append(586(fgets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fgetpos)
+    -append(586(fgetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fgetwc)
+    -append(586(fgetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fgetws)
+    -append(586(fgetws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fopen)
+    -append(586(fopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fprintf)
+    -append(586(fprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fputc)
+    -append(586(fputc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fputs)
+    -append(586(fputs),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fputwc)
+    -append(586(fputwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fputws)
+    -append(586(fputws),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fread)
+    -append(586(fread),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fscanf)
+    -append(586(fscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fseek)
+    -append(586(fseek),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fsetpos)
+    -append(586(fsetpos),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, freopen)
+    -append(586(freopen),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, ftell)
+    -append(586(ftell),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fwide)
+    -append(586(fwide),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fwprintf)
+    -append(586(fwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fwrite)
+    -append(586(fwrite),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, fwscanf)
+    -append(586(fwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, getc)
+    -append(586(getc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, getchar)
+    -append(586(getchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, gets)
+    -append(586(gets),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, getwc)
+    -append(586(getwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, getwchar)
+    -append(586(getwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, perror)
+    -append(586(perror),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, printf)
+    -append(586(printf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, putc)
+    -append(586(putc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, putchar)
+    -append(586(putchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, puts)
+    -append(586(puts),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, putwc)
+    -append(586(putwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, putwchar)
+    -append(586(putwchar),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, remove)
+    -append(586(remove),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, rename)
+    -append(586(rename),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, rewind)
+    -append(586(rewind),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, scanf)
+    -append(586(scanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, setbuf)
+    -append(586(setbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, setvbuf)
+    -append(586(setvbuf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, snprintf)
+    -append(586(snprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, sprintf)
+    -append(586(sprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, sscanf)
+    -append(586(sscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, swprintf)
+    -append(586(swprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, swscanf)
+    -append(586(swscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, tmpfile)
+    -append(586(tmpfile),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, tmpnam)
+    -append(586(tmpnam),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, ungetc)
+    -append(586(ungetc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, ungetwc)
+    -append(586(ungetwc),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vfprintf)
+    -append(586(vfprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vfscanf)
+    -append(586(vfscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vfwprintf)
+    -append(586(vfwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vfwscanf)
+    -append(586(vfwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vprintf)
+    -append(586(vprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vscanf)
+    -append(586(vscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vsnprintf)
+    -append(586(vsnprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vsprintf)
+    -append(586(vsprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vsscanf)
+    -append(586(vsscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vswprintf)
+    -append(586(vswprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vswscanf)
+    -append(586(vswscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vwprintf)
+    -append(586(vwprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, vwscanf)
+    -append(586(vwscanf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, wprintf)
+    -append(586(wprintf),[MISRA C++:2023 Rule 30.0.1, required])
+    -deprecate(macro, wscanf)
+    -append(586(wscanf),[MISRA C++:2023 Rule 30.0.1, required])
+
+
+/**** Rule 30.0.2 (Req) ************/
+
+    /* not currently supported */

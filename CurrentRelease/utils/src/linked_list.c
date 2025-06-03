@@ -191,7 +191,7 @@ int InsertDataItem(struct DataItem * Data)
   // if we had a memory problem...
   if (nodeData == NULL)
   {
-    //return failure
+    return FAILURE;
   }
   
   // copy the data into the allocated structure
@@ -206,7 +206,6 @@ int InsertDataItem(struct DataItem * Data)
   {
     // set the points for both beginning and end to the newly allocated data
     linkedList = linkedListEnd = nodeData;
-    return SUCCESS;
   }
   else
   {

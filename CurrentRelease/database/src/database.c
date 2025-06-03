@@ -34,14 +34,14 @@
  *  Purpose: Sets the unit private variable CurrentColor                              *
  *                                                                                    * 
  *  Inputs:                                                                           *
- *       - Table - int                                                   *
+ *       - Table - uint32_t                                                   *
  *                                                                                    * 
  *  Outputs:                                                                          *
  *       - struct data_type                                                     *
  *                                                                                    * 
  **************************************************************************************/
 
-data_type Get_Record(int Table)
+data_type Get_Record(uint32_t Table)
 {
   // setup the local variables 
   struct DataItem * dPtr;
@@ -80,7 +80,7 @@ data_type Get_Record(int Table)
  *       - None                                                                       *
  *                                                                                    * 
  **************************************************************************************/
-void Update_Record(int Table, data_type Data)
+void Update_Record(uint32_t Table, data_type Data)
 {
   // setup the local variables
   struct DataItem dataItem = BLANK_DATA_ITEM;
@@ -112,7 +112,7 @@ void Update_Record(int Table, data_type Data)
  *       - None                                                                       *
  *                                                                                    * 
  **************************************************************************************/
-void Remove_Record(int Table)
+void Remove_Record(uint32_t Table)
 {
   // setup local variables
   struct DataItem dataItem;
