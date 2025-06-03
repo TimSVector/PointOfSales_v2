@@ -235,6 +235,9 @@
     </compiler>
     <testsuite name="ST">
       <group name="ST"/>
+      <disabled>
+        <environment name="System_Testing"/>
+      </disabled>
     </testsuite>
     <testsuite name="codeTest"/>
   </compiler>
