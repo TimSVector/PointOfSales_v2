@@ -52,13 +52,13 @@ static uint32_t encrypt_and_send(const int8_t * inData, const uint32_t row, cons
  *       - data - struct matrix_t                                                     *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - uint32_t - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                 *
  *                                                                                    * 
  **************************************************************************************/
 
 static uint32_t sendData(const struct matrix_t data)
 {
-    uint32_t ret_val;
+    uint32_t ret_val = SUCCESS;
 
 #ifdef USING_TRUST_ZONE
     
@@ -92,7 +92,7 @@ static uint32_t sendData(const struct matrix_t data)
 #else
     // display result matrix
     //-e534
-    ret_val = (uint32_t)printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
+    printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
    
     // loop over the data rows
     for (uint32_t i = 0; (i < data.row) && (i < MAX_MATRIX); i++)
@@ -101,12 +101,12 @@ static uint32_t sendData(const struct matrix_t data)
         for (uint32_t j = 0; (j < data.col) && (j < MAX_MATRIX); j++)
         {
             // print the resulting data
-            ret_val |= (uint32_t)printf ("%02X ",data.matrix[i][j]);
+            printf ("%02X ",data.matrix[i][j]);
         }
     }
             
     // clean up printf       
-    ret_val |= (uint32_t)printf ("\n");
+    printf ("\n");
 
     return ret_val;
 #endif    
@@ -164,13 +164,13 @@ static struct matrix_t generate_private_key(void)
  *                                                                                    * 
  *  Purpose: Encrypts the information and transmits it                                * 
  *  Inputs:                                                                           *
- *       - inData - const int8_t *                                                      *
- *       - row - uint32_t                                                                  *
- *       - column - uint32_t                                                               *
+ *       - inData - const int8_t *                                                    *
+ *       - row - uint32_t                                                             *
+ *       - column - uint32_t                                                          *
  *       - private_key - void *                                                       *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - uint32_t - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                 *
  *                                                                                    * 
  **************************************************************************************/
  static uint32_t encrypt_and_send(const int8_t * inData, const uint32_t row, const uint32_t col,  const struct matrix_t * private_key)  
@@ -222,13 +222,13 @@ static struct matrix_t generate_private_key(void)
  *  Purpose: Encrypts the credit card information and transmits it in chucks          * 
  *  Inputs:                                                                           *
  *       - private_key - void *                                                       *
- *       - name        - const int8_t *                                                 *
- *       - number      - const int8_t[16]                                               *
- *       - secCode     - const int8_t [3]                                               *
- *       - Info  - float_t                                                              *
+ *       - name        - const int8_t *                                               *
+ *       - number      - const int8_t[16]                                             *
+ *       - secCode     - const int8_t [3]                                             *
+ *       - Info  - float_t                                                            *
  *                                                                                    * 
  *  Outputs:                                                                          *
- *       - uint32_t - SUCCESS/FAILURE                                                      *
+ *       - uint32_t - SUCCESS/FAILURE                                                 *
  *                                                                                    * 
  **************************************************************************************/
 static uint32_t Encrypt_Info(const struct matrix_t* private_key, const int8_t * name, const int8_t number[16], const int8_t secCode[3],  const uint32_t total)
