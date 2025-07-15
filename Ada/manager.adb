@@ -144,7 +144,7 @@ package body MANAGER is
       end if;
       for IDX in reverse 1 .. RET'length loop
          if RET(IDX) /= ' ' then
-            return RET(1..IDX);
+            return RET;
          end if;
       end loop;
       return "";
