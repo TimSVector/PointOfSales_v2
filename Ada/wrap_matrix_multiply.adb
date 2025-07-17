@@ -12,9 +12,9 @@ package body WRAP_MATRIX_MULTIPLY is
       Ret := Matrix_Multiply (Matrix1'Access, Matrix2'Access, Result'Access);
 
       if Ret = 1 then
-         Put_Line ("Matrix multiplication failed (FAILURE).");
+         PUT_LINE ("Matrix multiplication failed (FAILURE).");
       else
-         Put_Line ("Matrix multiplication succeeded (SUCCESS).");
+         PUT_LINE ("Matrix multiplication succeeded (SUCCESS).");
       end if;
    end Try_Matrix_Multiply;
 

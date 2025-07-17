@@ -1,1 +1,3 @@
-/2018_fast_test/tutorial/c/*.QIK
+*.QIK
+*.ali
+*.o

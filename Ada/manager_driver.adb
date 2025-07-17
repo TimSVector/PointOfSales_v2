@@ -18,13 +18,13 @@ begin
    TEXT_IO.GET_LINE(CHOICE,LEN);
 
    if LEN /= 100 then
-     TEXT_IO.PUT("Test: Len != 100");
+     TEXT_IO.PUT_LINE("Test: Len != 100");
    end if;
    
    Try_Matrix_Multiply;
     
    if LEN /= 50 then
-     TEXT_IO.PUT("Test: Len != 50");
+     TEXT_IO.PUT_LINE("Test: Len != 50");
    end if;
 
    if LEN > 0 then
