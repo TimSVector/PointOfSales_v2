@@ -3,7 +3,6 @@
 ---------------------------------------------
 
  with TEXT_IO; use TEXT_IO;
---target=apex with ADA.COMMAND_LINE;
 with unchecked_conversion;
 with VCAST_Ada_Options;
 package body VCAST_COVER_IO is
@@ -19,123 +18,18 @@ package body VCAST_COVER_IO is
    subtype VCAST_BITS_TYPE is VCAST_BIT_ARRAY_TYPE (0..BITS_SUBTYPE_LIMIT);
    type VCAST_BITS_TYPE_PTR is access VCAST_BITS_TYPE;
 
---target=gmart   package IND_IO is
---target=gmart      type Call_ID is private;
---target=gmart      subtype Chars_Ptr is System.Address;
---target=gmart
---target=gmart      SC_Read         : constant Call_ID;
---target=gmart      SC_Write        : constant Call_ID;
---target=gmart      SC_Open         : constant Call_ID;
---target=gmart      SC_Open2        : constant Call_ID;
---target=gmart      SC_Close        : constant Call_ID;
---target=gmart      SC_Creat        : constant Call_ID;
---target=gmart      Sc_LSeek        : constant Call_ID;
---target=gmart      SC_Unlink       : constant Call_ID;
---target=gmart
---target=gmart      Error : constant := -1;
---target=gmart
---target=gmart      Flag_Read  : constant Integer := 0;
---target=gmart      Flag_Write : constant Integer := 1;
---target=gmart      Flag_RW    : constant Integer := 2;
---target=gmart
---target=gmart      type Rel_Pos is (Start, Current, EOF);
---target=gmart
---target=gmart      -- Use this for SC_Read, SC_Write.
---target=gmart      function GHS_SC (Call    : Call_ID;
---target=gmart                 File_No : Integer;
---target=gmart                 Buf     : Chars_Ptr;
---target=gmart                 Size    : Integer) return Integer;
---target=gmart
---target=gmart      -- Use this for SC_Open or SC_Creat.
---target=gmart      -- F_or_P is Flags for SC_Open.
---target=gmart      -- F_or_P is Prot for SC_Creat.
---target=gmart      function GHS_SC (Call     : Call_ID;
---target=gmart                 Filename : Chars_Ptr;
---target=gmart                 F_or_P    : Integer) return Integer;
---target=gmart
---target=gmart      -- Use this for SC_Open2
---target=gmart      function GHS_SC (Call     : Call_ID := SC_Open2;
---target=gmart                 Filename : Chars_Ptr;
---target=gmart                 Flags    : Integer;
---target=gmart                 Mode     : Integer) return Integer;
---target=gmart
---target=gmart      -- Use this for SC_Close.
---target=gmart      function GHS_SC (Call    : Call_ID := SC_Close;
---target=gmart                 File_No : Integer) return Integer;
---target=gmart
---target=gmart      -- Use this for SC_Unlink.
---target=gmart      function GHS_SC (Call     : Call_ID := SC_Unlink;
---target=gmart                 Filename : Chars_Ptr) return Integer;
---target=gmart
---target=gmart      -- Use this for SC_LSeek.
---target=gmart      function GHS_SC (Call    : Call_ID := SC_LSeek;
---target=gmart                 File_No : Integer;
---target=gmart                 Offset  : Long_Integer;
---target=gmart                 Rel     : Rel_Pos) return Long_Integer;
---target=gmart
---target=gmart   private
---target=gmart      type Call_ID is new Integer;
---target=gmart
---target=gmart      SC_Read         : constant Call_ID := 16#40000#;
---target=gmart      SC_Write        : constant Call_ID := 16#40001#;
---target=gmart      SC_Open         : constant Call_ID := 16#30004#;
---target=gmart      SC_Open2        : constant Call_ID := 16#40004#;
---target=gmart      SC_Close        : constant Call_ID := 16#20005#;
---target=gmart      SC_Creat        : constant Call_ID := 16#30006#;
---target=gmart      Sc_LSeek        : constant Call_ID := 16#40007#;
---target=gmart      SC_Unlink       : constant Call_ID := 16#20008#;
---target=gmart
---target=gmart      pragma Import (C, GHS_SC, "__ghs_syscall");
---target=gmart
---target=gmart   end Ind_IO;
 
    IS_OPEN     : boolean := false;
 
    OUTPUT_FILE : TEXT_IO.FILE_TYPE;
---target=gmart     OUTPUT_FILE : integer;
 
 
---target=apex   function GET_PROCESS return vcast_string is
---target=apex      RET_VAL : constant string := ADA.COMMAND_LINE.COMMAND_NAME;
---target=apex   begin
---target=apex      for INDEX in reverse RET_VAL'first .. RET_VAL'last - 1 loop
---target=apex         if RET_VAL(INDEX) = '/' or else
---target=apex            RET_VAL(INDEX) = '\' or else
---target=apex            RET_VAL(INDEX) = ']' or else
---target=apex            RET_VAL(INDEX) = ':'
---target=apex         then
---target=apex            return "-" & RET_VAL(INDEX + 1 .. RET_VAL'last);
---target=apex         end if;
---target=apex      end loop;
---target=apex      return "-" & RET_VAL;
---target=apex   exception
---target=apex      when others =>
---target=apex         return "";
---target=apex   end GET_PROCESS;
---target=apex
---target=apex   function GETPID return vcast_string is
---target=apex      function C_GETPID return integer;
---target=apex      pragma IMPORT ( C, C_GETPID, "getpid" );
---target=apex      PID : integer;
---target=apex   begin
---target=apex      PID := C_GETPID;
---target=apex      declare
---target=apex         RETVAL : constant string := integer'image ( PID );
---target=apex      begin
---target=apex         return "-" & RETVAL(RETVAL'first+1..RETVAL'last);
---target=apex      end;
---target=apex   exception
---target=apex      when others =>
---target=apex         return "";
---target=apex   end GETPID;
 
    function TESTINSS_DAT return string is
       FILENAME  : constant string := "TESTINSS";
       EXTENSION : constant string := ".DAT";
    begin
       return FILENAME &
---target=apex             GET_PROCESS &
---target=apex             GETPID &
              EXTENSION;
    end TESTINSS_DAT;
 
@@ -155,50 +49,15 @@ package body VCAST_COVER_IO is
             --    end;
             -- end if;
 
---target=apex            -- Apex will always allow APPEND_TO_TESTINSS
---target=apex            if not IS_OPEN and VCAST_ADA_OPTIONS.VCAST_APPEND_TO_TESTINSS then
---target=apex               begin
---target=apex                  TEXT_IO.OPEN (OUTPUT_FILE, TEXT_IO.APPEND_FILE, TESTINSS_DAT);
---target=apex                  IS_OPEN := true;
---target=apex               exception
---target=apex                  when others => null;
---target=apex               end;
---target=apex            end if;
 
       if not IS_OPEN then
          TEXT_IO.CREATE (OUTPUT_FILE, TEXT_IO.OUT_FILE, TESTINSS_DAT);
          IS_OPEN := true;
       end if;
---target=apex                       exception
---target=apex                          when TEXT_IO.USE_ERROR =>
---target=apex                             TEXT_IO.OPEN (OUTPUT_FILE, TEXT_IO.OUT_FILE, TESTINSS_DAT);
---target=apex                             IS_OPEN := true;
    end OPEN_FILE;
 
---target=gmart   procedure OPEN_FILE is
---target=gmart      C_Name : constant string := TESTINSS_DAT & Ascii.NUL;
---target=gmart   begin
---target=gmart      if not IS_OPEN then
---target=gmart         OUTPUT_FILE :=
---target=gmart            Ind_IO.GHS_SC (Call => Ind_IO.SC_Creat,
---target=gmart                Filename => C_Name'Address,
---target=gmart                 F_or_P => 8#666#); -- Unix file Permission
---target=gmart
---target=gmart         OUTPUT_FILE :=
---target=gmart           Ind_IO.GHS_SC (
---target=gmart              Call     => Ind_IO.SC_Open,
---target=gmart              Filename => C_Name'Address,
---target=gmart              F_or_P   => Ind_IO.Flag_Write);
---target=gmart         IS_OPEN := true;
---target=gmart      end if;
---target=gmart   end OPEN_FILE;
 
    ------------------------------------------------------
---target=general,apex,ada83   procedure WRITE_TO_INST_FILE (S : string) is
---target=general,apex,ada83   begin
---target=general,apex,ada83      OPEN_FILE;
---target=general,apex,ada83      TEXT_IO.PUT_LINE (OUTPUT_FILE, S);
---target=general,apex,ada83   end WRITE_TO_INST_FILE;
 
    procedure C_WRITE_TO_INST_FILE ( STR   : SYSTEM.ADDRESS;
                                     FLUSH : integer );
@@ -209,39 +68,10 @@ package body VCAST_COVER_IO is
       C_WRITE_TO_INST_FILE ( STR'address, 1 );
    end WRITE_TO_INST_FILE;
 
---target=gmart   procedure WRITE_TO_INST_FILE (S : string) is
---target=gmart      STR               : constant string := S & ASCII.LF;
---target=gmart      Total_Written     : Natural := 0;
---target=gmart      Str_Len           : Natural := STR'Length;
---target=gmart      To_Write          : Natural;
---target=gmart      This_Start        : Natural;
---target=gmart      Written_This_Time : Integer;
---target=gmart   begin
---target=gmart      -- Uncomment this line for Ada / C Environments
---target=gmart      --ADA_AND_C-- C_WRITE_TO_INST_FILE ( STR'address );
---target=gmart
---target=gmart      -- Comment out the following 2 lines for Ada / C.
---target=gmart      OPEN_FILE;
---target=gmart
---target=gmart      while Total_Written < Str_Len loop
---target=gmart         To_Write := Str_Len - Total_Written;
---target=gmart         This_Start := STR'First + Total_Written;
---target=gmart         Written_This_Time :=
---target=gmart            Ind_IO.GHS_SC(Call    => Ind_IO.SC_Write,
---target=gmart              File_No => OUTPUT_FILE,
---target=gmart              Buf     => STR(This_Start)'address,
---target=gmart              Size    => To_Write);
---target=gmart         if Written_This_Time = Ind_IO.Error then
---target=gmart            exit; -- Maybe raise an exception?
---target=gmart         end if;
---target=gmart         Total_Written := Total_Written + Written_This_Time;
---target=gmart      end loop;
---target=gmart   end WRITE_TO_INST_FILE;
 
    ------------------------------------------------------
    ------------------------------------------------------
    procedure CLOSE_FILE is
---target=gmart Status : Integer;
    begin
       -- Uncomment this line for Ada / C Environments
       --ADA_AND_C-- C_CLOSE_FILE;
@@ -249,9 +79,6 @@ package body VCAST_COVER_IO is
       -- Comment out the following 4 lines for Ada / C.
       if IS_OPEN then
          TEXT_IO.CLOSE ( OUTPUT_FILE );
---target=gmart         Status := Ind_IO.GHS_SC(
---target=gmart               Call    => Ind_IO.SC_Close,
---target=gmart               File_No => OUTPUT_FILE);
          IS_OPEN := false;
       end if;
 
