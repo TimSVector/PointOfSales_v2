@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manage-config-options version="7">
-  <config>
-    <key>COVERAGE_TYPE</key>
-    <value>STATEMENT</value>
-  </config>
+  <config/>
   <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/cpp</search-directory>
 </manage-config-options>

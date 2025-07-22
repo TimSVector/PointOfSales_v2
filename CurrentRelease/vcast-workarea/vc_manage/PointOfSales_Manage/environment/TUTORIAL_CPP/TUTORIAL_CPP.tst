@@ -1,4 +1,4 @@
--- VectorCAST 25 (02/24/25)
+-- VectorCAST 25.sp2 (05/18/25)
 -- Test Case Script
 --
 -- Environment    : TUTORIAL_CPP
@@ -21,138 +21,490 @@ TEST.SCRIPT_FEATURE:STATIC_HEADER_FUNCS_IN_UUTS
 TEST.SCRIPT_FEATURE:VCAST_MAIN_NOT_RENAMED
 --
 
+-- Unit: database
+
+-- Subprogram: DataBase::DataBase
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:database
+TEST.SUBPROGRAM:DataBase::DataBase
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+No path constraints
+   Test Case Generation Notes:
+      We didn't set any values -- maybe we have no visibility/static variable?
+TEST.END_NOTES:
+TEST.END
+
+-- Subprogram: DataBase::DeleteRecord
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:database
+TEST.SUBPROGRAM:DataBase::DeleteRecord
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  this->DeleteOneRecord(Table, TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:database.<<GLOBAL>>.(cl).DataBase.DataBase.<<constructor>>.DataBase().<<call>>:0
+TEST.VALUE:database.DataBase::DeleteRecord.Table:0
+TEST.END
+
+-- Subprogram: DataBase::GetTableRecord
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:database
+TEST.SUBPROGRAM:DataBase::GetTableRecord
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  *Data := TableData[Table]
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:database.<<GLOBAL>>.(cl).DataBase.DataBase.<<constructor>>.DataBase().<<call>>:0
+TEST.VALUE:database.DataBase::GetTableRecord.Table:4
+TEST.VALUE:database.DataBase::GetTableRecord.Data:<<malloc 1>>
+TEST.END
+
+-- Subprogram: DataBase::UpdateTableRecord
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:database
+TEST.SUBPROGRAM:DataBase::UpdateTableRecord
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  TableData[Table] := *Data
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:database.<<GLOBAL>>.(cl).DataBase.DataBase.<<constructor>>.DataBase().<<call>>:0
+TEST.VALUE:database.DataBase::UpdateTableRecord.Table:5
+TEST.VALUE:database.DataBase::UpdateTableRecord.Data:<<malloc 1>>
+TEST.END
+
+-- Subprogram: DataBase::~DataBase
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:database
+TEST.SUBPROGRAM:DataBase::~DataBase
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+No path constraints
+   Test Case Generation Notes:
+
+TEST.END_NOTES:
+TEST.VALUE:database.<<GLOBAL>>.(cl).DataBase.DataBase.<<constructor>>.DataBase().<<call>>:0
+TEST.END
+
 -- Unit: manager
+
+-- Subprogram: Manager::AddIncludedDessert
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddIncludedDessert
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (!Order) ==> FALSE
+      (2) if ((Order->Entree == (Steak) && Order->Salad == (Caesar)) && Order->Beverage == (MixedDrink)) ==> FALSE
+      (3) if ((Order->Entree == (Lobster) && Order->Salad == (Green)) && Order->Beverage == (Wine)) ==> FALSE
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Salad:Green
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:Lobster
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Beverage:NoBeverage
+TEST.END
+
+-- Test Case: ATG-TEST-2
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddIncludedDessert
+TEST.NEW
+TEST.NAME:ATG-TEST-2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (!Order) ==> FALSE
+      (2) if ((Order->Entree == (Steak) && Order->Salad == (Caesar)) && Order->Beverage == (MixedDrink)) ==> FALSE
+      (3) if ((Order->Entree == (Lobster) && Order->Salad == (Green)) && Order->Beverage == (Wine)) ==> TRUE
+       #  Order->Dessert := Cake
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Salad:Green
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:Lobster
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Dessert:NoDessert
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Beverage:Wine
+TEST.END
+
+-- Test Case: ATG-TEST-3
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddIncludedDessert
+TEST.NEW
+TEST.NAME:ATG-TEST-3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 3
+      (1) if (!Order) ==> FALSE
+      (2) if ((Order->Entree == (Steak) && Order->Salad == (Caesar)) && Order->Beverage == (MixedDrink)) ==> TRUE
+       #  Order->Dessert := Pies
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Salad:Caesar
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:Steak
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Dessert:NoDessert
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Beverage:MixedDrink
+TEST.END
+
+-- Test Case: ATG-TEST-4
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddIncludedDessert
+TEST.NEW
+TEST.NAME:ATG-TEST-4
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 4
+      (1) if (!Order) ==> TRUE
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order:<<null>>
+TEST.END
+
+-- Subprogram: Manager::AddPartyToWaitingList
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddPartyToWaitingList
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  i := 0
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> FALSE
+       #  WaitingList[(WaitingListSize)++][i] := 0
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.WaitingListSize:4
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name[0]:16#0#
+TEST.END
+
+-- Test Case: ATG-TEST-2
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddPartyToWaitingList
+TEST.NEW
+TEST.NAME:ATG-TEST-2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+       #  i := 0
+      (1) if (WaitingListSize > (9)) ==> FALSE
+      (2) while (Name && *Name) ==> TRUE
+       #  WaitingList[WaitingListSize][i++] := *Name
+       #  Name++
+       #  WaitingList[(WaitingListSize)++][i] := 0
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.WaitingListSize:7
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name[0]:-114
+TEST.END
+
+-- Test Case: ATG-TEST-3
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::AddPartyToWaitingList
+TEST.NEW
+TEST.NAME:ATG-TEST-3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 3
+       #  i := 0
+      (1) if (WaitingListSize > (9)) ==> TRUE
+       #  WaitingListSize := 0
+      (2) while (Name && *Name) ==> FALSE
+       #  WaitingList[(WaitingListSize)++][i] := 0
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.WaitingListSize:131081
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name:<<malloc 1>>
+TEST.VALUE:manager.Manager::AddPartyToWaitingList.Name[0]:16#0#
+TEST.END
+
+-- Subprogram: Manager::ClearTable
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::ClearTable
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  (Data).DeleteRecord(Table)
+   Test Case Generation Notes:
+
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::ClearTable.Table:0
+TEST.END
+
+-- Subprogram: Manager::GetCheckTotal
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::GetCheckTotal
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  return TableData.CheckTotal
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::GetCheckTotal.Table:0
+TEST.END
+
+-- Subprogram: Manager::GetNextPartyToBeSeated
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::GetNextPartyToBeSeated
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+      (1) if (WaitingListIndex > (9)) ==> FALSE
+       #  return WaitingList[(WaitingListIndex)++]
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.WaitingListIndex:9
+TEST.END
+
+-- Test Case: ATG-TEST-2
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::GetNextPartyToBeSeated
+TEST.NEW
+TEST.NAME:ATG-TEST-2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+      (1) if (WaitingListIndex > (9)) ==> TRUE
+       #  WaitingListIndex := 0
+       #  return WaitingList[(WaitingListIndex)++]
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.WaitingListIndex:131081
+TEST.END
+
+-- Subprogram: Manager::Manager
+
+-- Test Case: ATG-TEST-1
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::Manager
+TEST.NEW
+TEST.NAME:ATG-TEST-1
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 1
+       #  DataBase::DataBase()
+       #  WaitingListSize := 0
+       #  WaitingListIndex := 0
+   Test Case Generation Notes:
+      We didn't set any values -- maybe we have no visibility/static variable?
+TEST.END_NOTES:
+TEST.END
 
 -- Subprogram: Manager::PlaceOrder
 
--- Test Case: MANAGER::PLACEORDER.001
+-- Test Case: ATG-TEST-1
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Manager::PlaceOrder
 TEST.NEW
-TEST.NAME:MANAGER::PLACEORDER.001
-TEST.IMPORT_FAILURES:
-(E) @LINE: 44 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
-    >>> Could not find function DataBase::GetTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 45 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
-    >>> Could not find function DataBase::GetTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 46 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 47 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 48 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Pies
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 49 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-TEST.END_IMPORT_FAILURES:
+TEST.NAME:ATG-TEST-1
 TEST.NOTES:
-
-This test is the the same test case that should be created
-by following all of the steps in the first part of the
-"C Tutorials -> Basic Tutorial" from the VectorCAST
-Getting Started manual.
-
-It shows the basic concepts associated with setting input and
-expected values for both the Unit Under Test and Stub Functions.
-
-TEST.END_NOTES:
-TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
-TEST.VALUE:manager.Manager::PlaceOrder.Table:2
-TEST.VALUE:manager.Manager::PlaceOrder.Seat:0
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Soup:Onion
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Salad:Caesar
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:Steak
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Beverage:MixedDrink
-TEST.END
-
--- Test Case: MANAGER::PLACEORDER.001
-TEST.UNIT:manager
-TEST.SUBPROGRAM:Manager::PlaceOrder
-TEST.ADD
-TEST.NAME:MANAGER::PLACEORDER.001
-TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
-TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Pies
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
-TEST.END
-
--- Test Case: MANAGER::PLACEORDER.002
-TEST.UNIT:manager
-TEST.SUBPROGRAM:Manager::PlaceOrder
-TEST.NEW
-TEST.NAME:MANAGER::PLACEORDER.002
-TEST.IMPORT_FAILURES:
-(E) @LINE: 82 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
-    >>> Could not find function DataBase::GetTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 83 TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
-    >>> Could not find function DataBase::GetTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 84 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 85 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 86 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Cake
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-(E) @LINE: 87 TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
-    >>> Could not find function DataBase::UpdateTableRecord
-    >>>    in unit uut_prototype_stubs.
-    >>> Value Line Error - Command Ignored
-TEST.END_IMPORT_FAILURES:
-TEST.NOTES:
-
-This test is the the same test case that should be created
-by following all of the steps in the second part of the
-"C Tutorials -> Basic Tutorial" from the VectorCAST
-Getting Started manual.
-
-It is similar to the first test, but it uses a stub for the internal
-to manager.c function: Add_Included_Dessert.
-
+This is an automatically generated test case.
+   Test Path 1
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  TableData.IsOccupied := true
+       #  (TableData.NumberInParty)++
+       #  TableData.Order[Seat] := Order
+       #  this->AddIncludedDessert(&(TableData.Order[Seat]))
+      (1) case (Order.Entree) ==> Steak 1
+       #  TableData.CheckTotal += 14
+       #  (Data).UpdateTableRecord(Table, &TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
 TEST.END_NOTES:
 TEST.STUB:manager.Manager::AddIncludedDessert
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
 TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
-TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Dessert:Cake
-TEST.VALUE:manager.Manager::PlaceOrder.Table:2
-TEST.VALUE:manager.Manager::PlaceOrder.Seat:0
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Soup:Onion
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Salad:Caesar
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:4383
+TEST.VALUE:manager.Manager::PlaceOrder.Table:0
+TEST.VALUE:manager.Manager::PlaceOrder.Seat:2
 TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:Steak
-TEST.VALUE:manager.Manager::PlaceOrder.Order.Beverage:MixedDrink
 TEST.END
 
--- Test Case: MANAGER::PLACEORDER.002
+-- Test Case: ATG-TEST-2
 TEST.UNIT:manager
 TEST.SUBPROGRAM:Manager::PlaceOrder
-TEST.ADD
-TEST.NAME:MANAGER::PLACEORDER.002
-TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].NumberInParty:0
-TEST.VALUE:uut_prototype_stubs.DataBase::GetTableRecord.Data[0].CheckTotal:0
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].IsOccupied:true
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].NumberInParty:1
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].Order[0].Dessert:Cake
-TEST.EXPECTED:uut_prototype_stubs.DataBase::UpdateTableRecord.Data[0].CheckTotal:12..16
+TEST.NEW
+TEST.NAME:ATG-TEST-2
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 2
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  TableData.IsOccupied := true
+       #  (TableData.NumberInParty)++
+       #  TableData.Order[Seat] := Order
+       #  this->AddIncludedDessert(&(TableData.Order[Seat]))
+      (2) case (Order.Entree) ==> Chicken 2
+       #  TableData.CheckTotal += 10
+       #  (Data).UpdateTableRecord(Table, &TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.STUB:manager.Manager::AddIncludedDessert
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:4383
+TEST.VALUE:manager.Manager::PlaceOrder.Table:0
+TEST.VALUE:manager.Manager::PlaceOrder.Seat:2
+TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:Chicken
+TEST.END
+
+-- Test Case: ATG-TEST-3
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::PlaceOrder
+TEST.NEW
+TEST.NAME:ATG-TEST-3
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 3
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  TableData.IsOccupied := true
+       #  (TableData.NumberInParty)++
+       #  TableData.Order[Seat] := Order
+       #  this->AddIncludedDessert(&(TableData.Order[Seat]))
+      (3) case (Order.Entree) ==> Lobster 3
+       #  TableData.CheckTotal += 18
+       #  (Data).UpdateTableRecord(Table, &TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.STUB:manager.Manager::AddIncludedDessert
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:4383
+TEST.VALUE:manager.Manager::PlaceOrder.Table:0
+TEST.VALUE:manager.Manager::PlaceOrder.Seat:2
+TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:Lobster
+TEST.END
+
+-- Test Case: ATG-TEST-4
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::PlaceOrder
+TEST.NEW
+TEST.NAME:ATG-TEST-4
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 4
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  TableData.IsOccupied := true
+       #  (TableData.NumberInParty)++
+       #  TableData.Order[Seat] := Order
+       #  this->AddIncludedDessert(&(TableData.Order[Seat]))
+      (4) case (Order.Entree) ==> Pasta 4
+       #  TableData.CheckTotal += 12
+       #  (Data).UpdateTableRecord(Table, &TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.STUB:manager.Manager::AddIncludedDessert
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:4383
+TEST.VALUE:manager.Manager::PlaceOrder.Table:0
+TEST.VALUE:manager.Manager::PlaceOrder.Seat:2
+TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:Pasta
+TEST.END
+
+-- Test Case: ATG-TEST-5
+TEST.UNIT:manager
+TEST.SUBPROGRAM:Manager::PlaceOrder
+TEST.NEW
+TEST.NAME:ATG-TEST-5
+TEST.NOTES:
+This is an automatically generated test case.
+   Test Path 5
+       #  (Data).DeleteTableRecord(&TableData)
+       #  (Data).GetTableRecord(Table, &TableData)
+       #  TableData.IsOccupied := true
+       #  (TableData.NumberInParty)++
+       #  TableData.Order[Seat] := Order
+       #  this->AddIncludedDessert(&(TableData.Order[Seat]))
+      (5) case (Order.Entree) ==> default -1
+       #  (Data).UpdateTableRecord(Table, &TableData)
+   Test Case Generation Notes:
+      ATG constructed a complete test-case.
+TEST.END_NOTES:
+TEST.STUB:manager.Manager::AddIncludedDessert
+TEST.VALUE:<<OPTIONS>>.SHOW_ONLY_DATA_WITH_EXPECTED_RESULTS:TRUE
+TEST.VALUE:manager.<<GLOBAL>>.(cl).Manager.Manager.<<constructor>>.Manager().<<call>>:0
+TEST.VALUE:manager.Manager::AddIncludedDessert.Order[0].Entree:4382
+TEST.VALUE:manager.Manager::PlaceOrder.Table:0
+TEST.VALUE:manager.Manager::PlaceOrder.Seat:3
+TEST.VALUE:manager.Manager::PlaceOrder.Order.Entree:65536
 TEST.END
 
 -- Subprogram: coded_tests_driver

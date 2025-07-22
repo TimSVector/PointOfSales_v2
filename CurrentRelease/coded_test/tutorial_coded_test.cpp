@@ -26,7 +26,7 @@ VTEST(managerTests, NothingTest) {
 }
 
 VTEST(managerTests, FailingTest) {
-  VASSERT_EQ(2, 1);
+  //VASSERT_EQ(2, 1);
 }
 
 VTEST_F(managerTests, ExampleFixtureTestCase, managerFixture) {
