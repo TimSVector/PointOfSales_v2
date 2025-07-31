@@ -7,8 +7,8 @@
 
 
 // Predefined Compiler Macros and Declarations
-+libh(co-gcc.h)
--header(co-gcc.h)
++libh(CurrentRelease\co-gcc.h)
+-header(CurrentRelease\co-gcc.h)
 
 
 // Include Options:

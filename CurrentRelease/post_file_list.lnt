@@ -5,23 +5,23 @@
 -e9141
 -e952
 
-+libdir(database\inc)
-+libdir(encrypt\inc)
-+libdir(order_entry\inc)
-+libdir(utils\inc)
++libdir(CurrentRelease\database\inc)
++libdir(CurrentRelease\encrypt\inc)
++libdir(CurrentRelease\order_entry\inc)
++libdir(CurrentRelease\utils\inc)
 
--idatabase\inc 
--iencrypt\inc 
--iorder_entry\inc 
--iutils\inc
+-iCurrentRelease\database\inc 
+-iCurrentRelease\encrypt\inc 
+-iCurrentRelease\order_entry\inc 
+-iCurrentRelease\utils\inc
 
-"database\src\database.c"
-"encrypt\src\encrypt.c"
-"encrypt\src\matrix_multiply.c"
-"order_entry\src\manager.c"
-"main\pos_driver.c"
-"order_entry\src\waiting_list.c"
-"utils\src\whitebox.c"
-"utils\src\linked_list.c"
+"CurrentRelease\database\src\database.c"
+"CurrentRelease\encrypt\src\encrypt.c"
+"CurrentRelease\encrypt\src\matrix_multiply.c"
+"CurrentRelease\order_entry\src\manager.c"
+"CurrentRelease\main\pos_driver.c"
+"CurrentRelease\order_entry\src\waiting_list.c"
+"CurrentRelease\utils\src\whitebox.c"
+"CurrentRelease\utils\src\linked_list.c"
 
 -env_pop
