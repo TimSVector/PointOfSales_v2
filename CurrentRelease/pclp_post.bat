@@ -4,6 +4,7 @@ set PCLP_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEwMCwiaWF0IjoxNzQz
 
 if "%1"=="SQ" goto  SONARQUBE
 if "%1"=="WNG" goto WARNINGSNG
+if "%1"=="SQUORE" goto SQUORE
 if "%1"=="JSON" goto JSON
 
 set LINT_LIST=CurrentRelease\co-gcc.lnt CurrentRelease\env-xml.lnt -w1 CurrentRelease\au-misra-cpp.lnt -wlib=4 -wlib=1 CurrentRelease\post_file_list.lnt
@@ -18,6 +19,11 @@ goto PCLP
 :SONARQUBE
 set LINT_LIST=CurrentRelease\post_sq.lnt
 set LINT_OUTPUT=CurrentRelease\pclp_post_sq_results.xml
+goto PCLP
+
+:SQUORE
+set LINT_LIST=CurrentRelease\co-gcc.lnt CurrentRelease\env-json.lnt CurrentRelease\env-xml.lnt -w1 CurrentRelease\au-misra4.lnt -wlib=4 -wlib=1 -server_data="CurrentRelease" "+metric_report(scope=all,format=json,filename=CurrentRelease\metrics.json)" CurrentRelease\post_file_list.lnt
+set LINT_OUTPUT=CurrentRelease\pclp_post_results.xml
 goto PCLP
 
 :JSON
