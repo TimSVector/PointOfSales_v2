@@ -13,8 +13,13 @@ echo %1
 :: Getting the Squore "version"
 for /f %%i in ('git rev-list --count HEAD') do set REV_COUNT=%%i
 
-set SQUORE_VERSION=%CI_PROJECT_TITLE%-%REV_COUNT%-%CI_PIPELINE_ID%-%GITLAB_USER_LOGIN%
-set SQUORE_VERSION=%SQUORE_VERSION:~0,64%
+if not "%JENKINS_URL%"=="" (
+    set SQUORE_VERSION=%BUILD_TAG%-%REV_COUNT%
+    set SQUORE_VERSION=%SQUORE_VERSION:~0,64%
+) else (
+    set SQUORE_VERSION=%CI_PROJECT_TITLE%-%REV_COUNT%-%CI_PIPELINE_ID%-%GITLAB_USER_LOGIN%
+    set SQUORE_VERSION=%SQUORE_VERSION:~0,64%
+)
 
 if not exist "%~dp0xml_data\squore" (
     mkdir "%~dp0xml_data\squore"
