@@ -110,11 +110,41 @@
   </environment>
   <compiler>
     <compiler>
+      <name>GNU_Target_Bare_Board_ARM_Cortex-M7_MPS2-AN500_QEMU_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>GNUARM_CORTEXM7_QEMU_MPS2AN500_C</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="UnitTesting">
+      <config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
+      </config>
+      <environment name="ENV_ENCRYPT"/>
+      <environment name="ENV_LINKED_LIST"/>
+      <environment name="ENV_MANAGER"/>
+      <environment name="ENV_MATRIX_MULTIPLY"/>
+      <environment name="INTEGRATION_TESTING"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
       <name>GNU_Target_Bare_Board_ARM_STM32F746G_C</name>
       <config>
         <config>
           <key>COVERAGE_TYPE</key>
           <value>Statement+Branch</value>
+          <key>TEST_CASE_TIMEOUT</key>
+          <value>20</value>
           <key>C_EXECUTE_CMD</key>
           <value>$(VECTORCAST_DIR)/DATA/gnu_target/execute_gdb.py --ipaddr localhost --port 61234 --gdb_command arm-none-eabi-gdb --type stlink-stm32f746G</value>
           <key>C_COMPILER_TAG</key>
