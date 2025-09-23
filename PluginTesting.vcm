@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="35">
+<project version="36">
   <config>
     <config>
+      <key>VCAST_RPTS_SELF_CONTAINED</key>
+      <value>TRUE</value>
       <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
       <value>TRUE</value>
       <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
-      <value>TRUE</value>
+      <value>FALSE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
@@ -128,6 +130,8 @@
           <value>gdb</value>
           <key>VCAST_COMMAND_LINE_DEBUGGER</key>
           <value>TRUE</value>
+          <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+          <value>FALSE</value>
         </config>
       </config>
     </compiler>
