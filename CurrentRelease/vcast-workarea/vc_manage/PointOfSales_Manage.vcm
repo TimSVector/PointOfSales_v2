@@ -110,7 +110,7 @@
   </environment>
   <compiler>
     <compiler>
-      <name>GNU_Target_Bare_Board_ARM_Cortex-M7_MPS2-AN500_QEMU_C</name>
+      <name>GNU_Target_Bare_Board_ARM_QEMU_C</name>
       <config>
         <config>
           <key>C_COMPILER_TAG</key>
