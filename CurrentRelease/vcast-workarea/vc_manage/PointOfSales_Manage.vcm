@@ -27,7 +27,7 @@
     </config>
     <base-directories>
       <key>POST_BASE_DIRECTORY</key>
-      <value>$(VCAST_DEMO_SRC_BASE)</value>
+      <value>$(VCAST_DEMO_SRC_BASE)/</value>
     </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
@@ -91,13 +91,6 @@
       <original-environment-directory>PointOfSales_Manage/build/2589301442</original-environment-directory>
     </config>
   </environment>
-  <environment name="PointOfSales_Coverage" type="COVER">
-    <language>3</language>
-    <is-monitored>1</is-monitored>
-    <config>
-      <original-environment-directory>../vc_coverage</original-environment-directory>
-    </config>
-  </environment>
   <environment name="System_Testing" type="COVER">
     <system-test-module>System_Testing_system_tests</system-test-module>
     <system-test-template>default</system-test-template>
@@ -115,30 +108,52 @@
       <original-environment-directory>C:/VCAST/2024sp4/examples/environments/tutorial_cpp</original-environment-directory>
     </config>
   </environment>
-  <group name="Group"/>
-  <group name="Group_1"/>
-  <group name="Group_2"/>
-  <group name="Group_3"/>
-  <group name="Group_4"/>
-  <group name="Group_5"/>
-  <group name="IT-Group"/>
-  <group name="New_Name"/>
-  <group name="ST">
-    <environment name="System_Testing"/>
-  </group>
-  <group name="ST-Group">
-    <environment name="PointOfSales_Coverage"/>
-  </group>
-  <group name="UT-Group">
-    <environment name="ENV_ENCRYPT"/>
-    <environment name="ENV_LINKED_LIST"/>
-    <environment name="ENV_MANAGER"/>
-    <environment name="ENV_MATRIX_MULTIPLY"/>
-    <environment name="INTEGRATION_TESTING"/>
-  </group>
-  <group name="c++_Testing">
-    <environment name="MANAGER"/>
-  </group>
+  <compiler>
+    <compiler>
+      <name>GNU_Target_Bare_Board_ARM_STM32F746G_C</name>
+      <config>
+        <config>
+          <key>COVERAGE_TYPE</key>
+          <value>Statement+Branch</value>
+          <key>C_EXECUTE_CMD</key>
+          <value>$(VECTORCAST_DIR)/DATA/gnu_target/execute_gdb.py --ipaddr localhost --port 61234 --gdb_command arm-none-eabi-gdb --type stlink-stm32f746G</value>
+          <key>C_COMPILER_TAG</key>
+          <value>GNUARM_CORTEXM4_T32_C</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>arm-none-eabi-gcc -E -C -mcpu=cortex-m4 -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb</value>
+          <key>C_COMPILE_CMD</key>
+          <value>arm-none-eabi-gcc -c -g -mcpu=cortex-m4 -mno-unaligned-access  -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb</value>
+          <key>C_DEBUG_CMD</key>
+          <value>$(VECTORCAST_DIR)/DATA/gnu_target/execute_gdb.py --ipaddr localhost --port 61234 --gdb_command arm-none-eabi-gdb --type=stlink-stm32f746G --debug</value>
+          <key>C_LINK_CMD</key>
+          <value>arm-none-eabi-gcc -mcpu=cortex-m4 -g  -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb startup_stm32f746nghx.o system_stm32f7xx.o</value>
+          <key>C_LINK_OPTIONS</key>
+          <value>-Wl,-Map=vcast.map --specs=nano.specs --specs=nosys.specs -TSTM32F746NGHX_RAM.ld</value>
+          <key>C_EDG_FLAGS</key>
+          <value>-w --gcc --gnu_version 100301</value>
+          <key>VCAST_ENVIRONMENT_FILES</key>
+          <value>$(VCAST_SUPPORT_FILES)/STM32F746NGHX_RAM.ld,$(VCAST_SUPPORT_FILES)/startup_stm32f746nghx.o,$(VCAST_SUPPORT_FILES)/stlink-stm32f746G.ini,$(VCAST_SUPPORT_FILES)/system_stm32f7xx.o</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="UnitTesting">
+      <config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/database/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/encrypt/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
+      </config>
+      <environment name="ENV_ENCRYPT"/>
+      <environment name="ENV_LINKED_LIST"/>
+      <environment name="ENV_MANAGER"/>
+      <environment name="ENV_MATRIX_MULTIPLY"/>
+      <environment name="INTEGRATION_TESTING"/>
+    </testsuite>
+  </compiler>
   <compiler>
     <compiler>
       <name>TRUST_ZONE</name>
@@ -172,7 +187,11 @@
       </config>
     </compiler>
     <testsuite name="UnitTesting">
-      <group name="UT-Group"/>
+      <environment name="ENV_ENCRYPT"/>
+      <environment name="ENV_LINKED_LIST"/>
+      <environment name="ENV_MANAGER"/>
+      <environment name="ENV_MATRIX_MULTIPLY"/>
+      <environment name="INTEGRATION_TESTING"/>
     </testsuite>
   </compiler>
   <compiler>
@@ -206,7 +225,11 @@
       </config>
     </compiler>
     <testsuite name="UnitTesting">
-      <group name="UT-Group"/>
+      <environment name="ENV_ENCRYPT"/>
+      <environment name="ENV_LINKED_LIST"/>
+      <environment name="ENV_MANAGER"/>
+      <environment name="ENV_MATRIX_MULTIPLY"/>
+      <environment name="INTEGRATION_TESTING"/>
     </testsuite>
   </compiler>
   <compiler>
@@ -234,7 +257,7 @@
       </config>
     </compiler>
     <testsuite name="ST">
-      <group name="ST"/>
+      <environment name="System_Testing"/>
     </testsuite>
   </compiler>
 </project>

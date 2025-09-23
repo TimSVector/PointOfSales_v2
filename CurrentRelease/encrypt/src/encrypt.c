@@ -56,62 +56,33 @@ static uint32_t encrypt_and_send(const int8_t * inData, const uint32_t row, cons
  *                                                                                    * 
  **************************************************************************************/
 
-static uint32_t sendData(const struct matrix_t data)
-{
-    uint32_t ret_val = SUCCESS;
+static uint32_t sendData(const struct matrix_t data) {
+        uint32_t ret_val = SUCCESS;
 
 #ifdef USING_TRUST_ZONE
-    
-    static uint32_t failureCount = 0;
-    
-    ret_val = TZ_Write_Data(data);
-    
-    // send data via the Trust Zone Data Write
-    if (ret_val == FAILURE && failureCount < 10)
-    {
-        
-        /* Log the data error */
-        log_Error("Trust Zone Write Error", ++failureCount);
-        
-        /* Reset the trust zone hardware */
-        TZ_Reset_Hardware(ON_ERROR);
-        
-        /* Wait for trust zone to reset */
-        while (TZ_Wait_Reset(TIMEOUT_10MSEC)) 
-        {
-            // loop until TZ resets
-            ;        
+        static uint32_t failureCount = 0;
+        ret_val = TZ_Write_Data(data);
+        // send data via the Trust Zone Data Write
+        if (ret_val == FAILURE && failureCount < 10) {
+            log_Error("Trust Zone Write Error", ++failureCount);
+            TZ_Reset_Hardware(ON_ERROR);
+            while (TZ_Wait_Reset(TIMEOUT_10MSEC)) ;    // loop until TZ resets                    
         }
-    }
-    
-    if (failureCount >= 10)
-    {
-        __SystemReset("Encryption Failure");
-    }
-    return ret_val;
+        if (failureCount >= 10) __SystemReset("Encryption Failure");
+        return ret_val;
 #else
-    // display result matrix
-    //-e534
-    printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
-   
-    // loop over the data rows
-    for (uint32_t i = 0; (i < data.row) && (i < MAX_MATRIX); i++)
-    {
-        // loop over the data columns
-        for (uint32_t j = 0; (j < data.col) && (j < MAX_MATRIX); j++)
-        {
-            // print the resulting data
-            printf ("%02X ",data.matrix[i][j]);
-        }
-    }
-            
-    // clean up printf       
-    printf ("\n");
+        // display result matrix
+        //-e534
+        printf ("ENCRYPTED DATA (%dx%d): ", data.row, data.col);
 
-    return ret_val;
-#endif    
+        for (uint32_t i = 0; (i < data.row) && (i < MAX_MATRIX); i++)
+            for (uint32_t j = 0; (j < data.col) && (j < MAX_MATRIX); j++)
+                printf ("%02X ",data.matrix[i][j]);
+                
+        printf ("\n");
+        return ret_val;
+#endif
 }
-
 /**************************************************************************************
  *  Subprogram: generate_private_key                                                  *
  *                                                                                    * 
