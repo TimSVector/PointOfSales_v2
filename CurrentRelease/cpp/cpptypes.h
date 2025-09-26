@@ -37,4 +37,15 @@ struct TableDataType
 
 typedef char name_type[32];
 
+#define COST_OF_STEAK   14
+#define COST_OF_CHICKEN 10
+#define COST_OF_LOBSTER 18
+#define COST_OF_PASTA   12
+
+#ifndef SUCCESS
+#ifndef FAILURE
+enum {SUCCESS = 0, FAILURE = -1};
+#endif
+#endif
+
 #endif

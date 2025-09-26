@@ -48,16 +48,16 @@ void Manager::PlaceOrder(unsigned int Table, unsigned int Seat, OrderType Order)
 
   switch(Order.Entree) {
     case Steak :
-      TableData.CheckTotal += 14;
+      TableData.CheckTotal += COST_OF_STEAK;
       break;
     case Chicken :
-      TableData.CheckTotal += 10;
+      TableData.CheckTotal += COST_OF_CHICKEN;
       break;
     case Lobster :
-      TableData.CheckTotal += 18;
+      TableData.CheckTotal += COST_OF_LOBSTER;
       break;
     case Pasta :
-      TableData.CheckTotal += 12;
+      TableData.CheckTotal += COST_OF_PASTA;
       break;
     default :
       break;

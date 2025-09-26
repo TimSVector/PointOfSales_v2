@@ -146,7 +146,10 @@ int main(int argc, const char *argv[])
                 
             // Clear the table    
             case 'T': case 't':
-                Pay_The_Bill("NoOne", "0000","919",1);
+                const char cardnum[16] = "1234568711115508";
+                const char secCode[3] = "918";
+
+                Pay_The_Bill("NoOne", cardnum,secCode,1);
                 if (Clear_Table(1) == -1)
                 {
                     printf ("Clear_Table: FAILED %d\n", --ret_val);

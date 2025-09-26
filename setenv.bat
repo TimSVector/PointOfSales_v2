@@ -19,8 +19,6 @@ set SQ_INSTALL_DIR=D:\vector\tools\sonarqube-10.2.1.78527\bin\windows-x86-64
 
 set path=%SQ_INSTALL_DIR%\jdk-17.0.8.1\bin;%SQ_INSTALL_DIR%\build-wrapper-win-x86;%SQ_INSTALL_DIR%\sonar-scanner-5.0.1.3006-windows\bin;%VECTORCAST_DIR%\mingw\bin;%PCLP_INSTALL_DIR%;%PATH%
 
-set VCAST_NUM_JOBS=8
-
 REM goto :END
 REM if EXECUTOR_NUMBER exists and hasn't already been appended to VECTORCAST_DIR...
 REM if "%EXECUTOR_NUMBER%" == "" goto :END
@@ -29,7 +27,13 @@ REM if "%VECTORCAST_DIR:~-2,1%" == "@" goto :end
 
 REM set VECTORCAST_DIR=%VECTORCAST_DIR%@%EXECUTOR_NUMBER%
 
-set vector_license_file=7650@vadcpctlic1.vi.vector.int
+set vector_license_file=c:\VCAST\flexlm\vector-DEMO.lic;7650@vadcpctlic1.vi.vector.int
 
+
+set VCAST_ST_INSTALL_DIR=D:\vector\tools\st\STM32CubeIDE_1.19.0\STM32CubeIDE
+set VCAST_GCC_INSTALL_DIR=%VCAST_ST_INSTALL_DIR%\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin
+set path=%PATH%;%VCAST_GCC_INSTALL_DIR%
+
+set VCAST_SUPPORT_FILES=D:\vector\customers\snph\SupportFiles
 
 :END
