@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manage-config-options version="7">
+  <config>
+    <key>WHITEBOX</key>
+    <value>YES</value>
+    <key>COVERAGE_TYPE</key>
+    <value>STATEMENT+MCDC</value>
+    <key>MANAGE_PARENT_LIB</key>
+    <value>D:\dev\PointOfSales_v2\Ada</value>
+  </config>
+</manage-config-options>

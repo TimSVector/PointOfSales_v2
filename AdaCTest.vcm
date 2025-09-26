@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="36">
+  <config>
+    <config>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+      <value>FALSE</value>
+    </config>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1757345083</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="combined_system_test" type="COVER">
+    <system-test-module>combined_system_test_system_tests</system-test-module>
+    <system-test-template>default</system-test-template>
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <apply-inst>BUILD</apply-inst>
+      <original-environment-directory>AdaCTest/build/1967840498</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="INTEGRATION_TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>AdaCTest/build/2570557369</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="SIMPLE_ADA_TEST" type="UNIT">
+    <language>0</language>
+    <imported-from>REGRESSION</imported-from>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>.</original-environment-directory>
+    </config>
+  </environment>
+  <compiler>
+    <compiler>
+      <name>GNAT</name>
+      <config>
+        <config>
+          <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+          <value>FALSE</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <environment name="SIMPLE_ADA_TEST"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>GREEN_HILLS_95</name>
+      <config>
+        <config>
+          <key>COMPILATION_SYSTEM</key>
+          <value>GREEN HILLS 95</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="SystemTest">
+      <environment name="combined_system_test"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+          <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+          <value>TRUE</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2\2018_fast_test\tutorial\c</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="C_TestSuite">
+      <environment name="INTEGRATION_TEST"/>
+    </testsuite>
+  </compiler>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\dev\PointOfSales_v2</search-directory>
+</project>
