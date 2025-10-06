@@ -102,8 +102,8 @@ void Add_Included_Dessert(struct order_type* Order)
  *                                                                                    * 
  **************************************************************************************/
 
-int32_t Place_Order(table_index_type Table,
-                seat_index_type Seat,
+int32_t Place_Order(table_index_type Table,  // B = 0, 5 [min, min-1, min+1, max, max+1, max-1]
+                seat_index_type Seat,        // B = 0, 4
                 struct order_type Order)
 {
   // Local Table Data

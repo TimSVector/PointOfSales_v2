@@ -1,3 +1,4 @@
+@echo off
 
 set orig_path=%PATH%
 call %WORKSPACE%\setenv.bat > nul
@@ -103,7 +104,7 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-    echo void change_code(void) {} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
+    echo void change_code(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 
     :: CBT run
     %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp0PointOfSales_Manage  --build-execute --jobs=6 --incremental

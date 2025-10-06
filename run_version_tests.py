@@ -58,7 +58,6 @@ def get_coverage_types(args):
         
 def run_command(args, callCmd):
     
-    
     if os.name == "nt":
         callCmd[0] = callCmd[0].replace("/","\\")
     else:
@@ -76,7 +75,7 @@ def run_test_versions_bat(args, directory):
         
     if args.quick_test:
         print("Quick Test: ", args.quick_test)
-        cli_args = "SFP IMPORT MODIFY DO_MERGE                "        
+        cli_args = ["SFP IMPORT MODIFY DO_MERGE                "]
     else:
         cli_args = ["                                          ",
                     "            MODIFY                        ",  
