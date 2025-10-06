@@ -77,7 +77,8 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-  echo void change_code(void) {} >> tutorial\c\manager.c
+  echo void change_code(void) ^{^} >> %~dp0tutorial\c\manager.c
+  c:\cygwin64\bin\chmod a+wr %~dp0tutorial\c\manager.c
 
   :: CBT run
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --build-execute --jobs %JOBS% --incremental

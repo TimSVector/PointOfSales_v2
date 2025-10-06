@@ -28,10 +28,16 @@ if "%VC_VERSION%"=="" (
     call %~dp0single_test.bat c:\vcast\2018sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
     call %~dp0single_test.bat c:\vcast\2019sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
     call %~dp0single_test.bat c:\vcast\2020sp7 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call %~dp0single_test.bat c:\vcast\2021sp8 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call %~dp0single_test.bat c:\vcast\2022sp8 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call %~dp0single_test.bat c:\vcast\2023sp5 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
     call %~dp0single_test.bat c:\vcast\2024sp6 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+    call %~dp0single_test.bat c:\vcast\2025sp4 %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
+
 ) else (
     call %~dp0single_test.bat c:\vcast\%VC_VERSION% %DO_SFP% %DO_IMPORT% %DO_MODIFY% %DO_MERGE% %DO_COPY_EXTRACT%
 )
+
 
 set VECTORCAST_DIR=%ORIG_VCD%
 
