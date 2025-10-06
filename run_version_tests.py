@@ -19,11 +19,13 @@ def parse_args():
     parser.add_argument('--vc_version',   help='Run specified test for specifc VC version',   action="store",      dest="vc_version", default=None)
     parser.add_argument('--quick',        help='Run very quick test',                         action="store_true", dest="quick_test", default=False)
     parser.add_argument('--dryrun',       help='Prints all command that would be run',        action="store_true", dest="dryrun", default=False)
-    parser.add_argument('-c', '--cov_types',   
-        help='Run specified test for specifc coverage types [default is all] (STATEMENT+MC/DC,STATEMENT+BRANCH,FUNCTION+FUNCTION_CALL,FUNCTION,MC/DC,BRANCH,STATEMENT)',   
+
+    parser.add_argument('--cov_types',
+        choices=['STATEMENT+MC/DC','STATEMENT+BRANCH','FUNCTION+FUNCTION_CALL','FUNCTION','MC/DC','BRANCH','STATEMENT'], 
+        default='STATEMENT+BRANCH', 
         action="store", 
-        dest="cov_types", 
-        default=None)
+        dest="cov_types",         
+        help='Run specified test for specifc coverage types [default is STATEMENT+BRANCH]')
 
     os.environ['WORKSPACE'] = os.getcwd()
     
