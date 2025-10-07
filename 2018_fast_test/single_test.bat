@@ -81,10 +81,10 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-  echo "void change_code(void) ^{^}" >> tutorial\c\manager.c
+  echo "void change_code(void) ^{^}" >> %~dp0tutorial\c\manager.c
 
   :: CBT run
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --build-execute --jobs %JOBS% --incremental > %~dp02018_fast_test_build.log
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs %JOBS% --incremental > %~dp02018_fast_test_build.log
   type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
   type %~dp02018_fast_test_build.log
   
@@ -101,7 +101,7 @@ if "%DO_MERGE%"=="1" (
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --import-result %~dp0temp_result.vcr
 
   :: 3rd build-execute with no changes - should only build system tests
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --jobs 6 --incremental > %~dp02018_fast_test_build.log
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --jobs 6 --incremental > %~dp02018_fast_test_build.log
   type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
   type %~dp02018_fast_test_build.log
 
