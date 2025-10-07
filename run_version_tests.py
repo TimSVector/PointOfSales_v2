@@ -74,7 +74,7 @@ def run_test_versions_bat(args, directory):
     coverage_types  = get_coverage_types(args)
         
     if args.quick_test:
-        print("Quick Test: ", args.quick_test)
+        print("Quick Test: " + str(args.quick_test))
         cli_args = ["SFP IMPORT MODIFY DO_MERGE                "]
     else:
         cli_args = ["                                          ",
@@ -203,12 +203,12 @@ if __name__ == '__main__':
     endDT = datetime.now()
     
     if not args.dryrun:
-        print("2018    : ", dtPost-dt2018)
-        print("PoST    : ", copyExtDT-dtPost)
-        print("CopyExt : ", pluginDT-copyExtDT)
-        print("Plugin  : ", newCssDT-pluginDT)
-        print("New CSS : ", endDT-newCssDT)
-        print("Total   : ", endDT-startDT)
+        print("2018    : " + str(dtPost-dt2018))
+        print("PoST    : " + str(copyExtDT-dtPost))
+        print("CopyExt : " + str(pluginDT-copyExtDT))
+        print("Plugin  : " + str(newCssDT-pluginDT))
+        print("New CSS : " + str(endDT-newCssDT))
+        print("Total   : " + str(endDT-startDT))
     else:
         print("Dry run complete")
     
