@@ -94,7 +94,7 @@ def run_test_versions_bat(args, directory):
         os.environ['VCAST_CODE_COVERAGE_TYPE'] = coverage_type
         for cargs in cli_args:
             callCmd = [directory + "\\test_versions.bat"] + cargs.split()
-            print(callCmd)
+            if not args.dryrun: print(callCmd)
             run_command(args, callCmd)
             
 def run_copy_extract_test(args):
@@ -202,12 +202,15 @@ if __name__ == '__main__':
     
     endDT = datetime.now()
     
-    print("2018    : ", dtPost-dt2018)
-    print("PoST    : ", copyExtDT-dtPost)
-    print("CopyExt : ", pluginDT-copyExtDT)
-    print("Plugin  : ", newCssDT-pluginDT)
-    print("New CSS : ", endDT-newCssDT)
-    print("Total   : ", endDT-startDT)
+    if not args.dryrun:
+        print("2018    : ", dtPost-dt2018)
+        print("PoST    : ", copyExtDT-dtPost)
+        print("CopyExt : ", pluginDT-copyExtDT)
+        print("Plugin  : ", newCssDT-pluginDT)
+        print("New CSS : ", endDT-newCssDT)
+        print("Total   : ", endDT-startDT)
+    else:
+        print("Dry run complete")
     
     
     
