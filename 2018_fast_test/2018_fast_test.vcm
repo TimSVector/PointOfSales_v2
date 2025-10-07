@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="28">
+<project version="27">
   <config>
     <config>
       <key>COVERAGE_TYPE</key>
-      <value></value>
-      <key>VCAST_CUSTOM_REPORT_FORMAT</key>
-      <value>HTML</value>
+      <value>STATEMENT+BRANCH</value>
     </config>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
