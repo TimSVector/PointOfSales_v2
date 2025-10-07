@@ -43,7 +43,9 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --build-execute --level VectorCAST_MinGW_C/TestSuite2 --environment INTEGRATION_TEST  >> %~dp02018_fast_test_build.log
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\copy_build_dir.py %~dp02018_fast_test.vcm VectorCAST_MinGW_C/TestSuite2 2018_fast_test_VectorCAST_MinGW_C_TestSuite2_INTEGRATION_TEST INTEGRATION_TEST
 
-  type  %~dp02018_fast_test_build.log
+  type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
+  type %~dp02018_fast_test_build.log
+  
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --clean
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\extract_build_dir.py leaveFiles
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --refresh
@@ -63,8 +65,9 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
 set JOBS=6
 if "%VC2018%"=="1" set JOBS=1
 
-%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs=%JOBS% >> %~dp02018_fast_test_build.log
+%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs=%JOBS% > %~dp02018_fast_test_build.log
 type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
+type %~dp02018_fast_test_build.log
 
 ::Skip CBT if we don't import, modify, or merge
 if "%DO_IMPORT%"=="0" if "%DO_MODIFY%"=="0" if "%DO_MERGE%"=="0" goto END
@@ -81,8 +84,10 @@ if "%DO_MODIFY%"=="1" (
   echo "void change_code(void) ^{^}" >> tutorial\c\manager.c
 
   :: CBT run
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --build-execute --jobs %JOBS% --incremental >> %~dp02018_fast_test_build.log
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --build-execute --jobs %JOBS% --incremental > %~dp02018_fast_test_build.log
   type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
+  type %~dp02018_fast_test_build.log
+  
 )
 
 if "%DO_MERGE%"=="1" (
@@ -96,8 +101,10 @@ if "%DO_MERGE%"=="1" (
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --import-result %~dp0temp_result.vcr
 
   :: 3rd build-execute with no changes - should only build system tests
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --jobs 6 --incremental >> %~dp02018_fast_test_build.log
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test --jobs 6 --incremental > %~dp02018_fast_test_build.log
   type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
+  type %~dp02018_fast_test_build.log
+
 )
 
 :END
