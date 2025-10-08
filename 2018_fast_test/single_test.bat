@@ -24,7 +24,7 @@ git checkout HEAD %~dp02018_fast_test.vcm %~dp0tutorial\c\manager.c
 
 xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %WORKSPACE%\vc_scripts > nul
 
-%VECTORCAST_DIR%\manage -p %~dp02018_fast_test --clean
+%VECTORCAST_DIR%\manage -p %~dp02018_fast_test --status
 %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --config=COVERAGE_TYPE=%VCAST_CODE_COVERAGE_TYPE%
 
 if "%DO_SFP%"=="1" %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE
@@ -88,7 +88,7 @@ if "%DO_MODIFY%"=="1" (
   copy /y %~dp0tutorial\c\manager_update.c %~dp0tutorial\c\manager.c
 
   :: CBT run
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs %JOBS% --incremental
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --incremental
   type %WORKSPACE%\2018_fast_test_build.log >> %WORKSPACE%\unstashed_build.log
   type %WORKSPACE%\2018_fast_test_build.log  
 )
@@ -104,7 +104,7 @@ if "%DO_MERGE%"=="1" (
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --import-result %~dp0temp_result.vcr
 
   :: 3rd build-execute with no changes - should only build system tests
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --jobs 6 --incremental 
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --incremental 
   type %WORKSPACE%\2018_fast_test_build.log >> %WORKSPACE%\unstashed_build.log
   type %WORKSPACE%\2018_fast_test_build.log
 
