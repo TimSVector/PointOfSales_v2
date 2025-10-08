@@ -65,7 +65,7 @@ if "%VC2018%"=="0" if "%DO_COPY_EXTRACT%"=="1" (
 set JOBS=6
 if "%VC2018%"=="1" set JOBS=1
 
-%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs=%JOBS% > %~dp02018_fast_test_build.log
+%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs=%JOBS% 
 type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
 type %~dp02018_fast_test_build.log
 
@@ -100,7 +100,7 @@ if "%DO_MERGE%"=="1" (
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --import-result %~dp0temp_result.vcr
 
   :: 3rd build-execute with no changes - should only build system tests
-  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --jobs 6 --incremental > %~dp02018_fast_test_build.log
+  %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --jobs 6 --incremental 
   type %~dp02018_fast_test_build.log >> %~dp0unstashed_build.log
   type %~dp02018_fast_test_build.log
 
