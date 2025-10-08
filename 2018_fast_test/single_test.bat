@@ -15,6 +15,10 @@ if "%errorlevel%"=="0" set VC2018=1
 
 echo %* 
 
+if "%VCAST_CODE_COVERAGE_TYPE%"=="" (
+  set VCAST_CODE_COVERAGE_TYPE=STATEMENT+BRANCH
+)
+
 git clean -fxd
 git checkout HEAD %~dp02018_fast_test.vcm %~dp0tutorial\c\manager.c
 
