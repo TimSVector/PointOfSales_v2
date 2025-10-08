@@ -85,7 +85,7 @@ if "%DO_IMPORT%"=="1" (
 
 :: modify manager.c to trigger CBT with changes
 if "%DO_MODIFY%"=="1" (
-  copy %~dp0tutorial\c\manager_update.c %~dp0tutorial\c\manager.c
+  copy /y %~dp0tutorial\c\manager_update.c %~dp0tutorial\c\manager.c
 
   :: CBT run
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --build-execute --jobs %JOBS% --incremental
@@ -97,7 +97,7 @@ if "%DO_MERGE%"=="1" (
   echo doing the merge
 
   :: copy original results then get the current results, remove original results, clean, merge, import
-  copy %~dp0temp_result.vcr %~dp0orig_temp_result.vcr
+  copy /y %~dp0temp_result.vcr %~dp0orig_temp_result.vcr
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --force --export-result temp_result.vcr
   %VECTORCAST_DIR%\manage -p %~dp02018_fast_test --remove-imported-result temp_result.vcr
   %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\merge_vcr.py --orig=%~dp0orig_temp_result.vcr --new=%~dp0temp_result.vcr
@@ -112,7 +112,7 @@ if "%DO_MERGE%"=="1" (
 
 :END
 
-%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\generate-results.py %~dp02018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %~dp0unstashed_build.log --print_exc
+%VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\generate-results.py %~dp02018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog %WORKSPACE%\unstashed_build.log --print_exc
 %VECTORCAST_DIR%\vpython %WORKSPACE%\vc_scripts\vcast_exec.py %~dp02018_fast_test.vcm --cobertura_extended --lcov --junit --sonarqube --aggregate --metrics --fullstatus
 
 tree /f xml_data
