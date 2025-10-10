@@ -68,14 +68,6 @@ def parse_args():
 
     return args
 
-                             
-                              
-                                                                                                                                                                                                   
-         
-                                                  
-        
-                         
-        
 def run_command(args, callCmd):
 
     if os.name == "nt":
@@ -95,8 +87,6 @@ def run_command(args, callCmd):
 
 def run_test_versions_bat(args, directory):
 
-                                              
-        
     if args.quick_test:
         print("Quick Test: " + str(args.quick_test))
         cli_args = ["SFP IMPORT MODIFY DO_MERGE                "]
@@ -123,8 +113,6 @@ def run_test_versions_bat(args, directory):
             run_command(args, callCmd)
 
 def run_copy_extract_test(args):
-    
-                                             
 
     directories = ["2018_fast_test", "CurrentRelease/vcast-workarea/vc_manage"]
 
