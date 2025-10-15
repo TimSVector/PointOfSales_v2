@@ -1,9 +1,16 @@
 @echo off
 setlocal enabledelayedexpansion
 
+rem === Default list of VectorCAST versions ===
+set "VC_LIST=2018sp5 2019sp6 2020sp7 2021sp8 2022sp8 2023sp5 2024sp6 2025sp4"
+
+rem === Allow command line override (example: run.bat 2024sp6) ===
+if not "%~1"=="" set "VC_LIST=%~1"
+
 set "BASE_PATH=%PATH%"
 
-for %%V in (2018sp5 2019sp6 2020sp7 2021sp8 2022sp8 2023sp5 2024sp6 2025sp4) do (
+for %%V in (%VC_LIST%) do (
+
     set "VECTORCAST_DIR=C:\vcast\%%V"
     set "PATH=!VECTORCAST_DIR!;!BASE_PATH!"
 
