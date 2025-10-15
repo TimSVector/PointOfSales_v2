@@ -1,8 +1,11 @@
-setlocal
+@echo off
+setlocal enabledelayedexpansion
+
+set "BASE_PATH=%PATH%"
 
 for %%V in (2018sp5 2019sp6 2020sp7 2021sp8 2022sp8 2023sp5 2024sp6 2025sp4) do (
-    set VECTORCAT_DIR=C:\vcast\%%V
-    set PATH=%VECTORCAST_DIR%;%PATH%
+    set "VECTORCAST_DIR=C:\vcast\%%V"
+    set "PATH=!VECTORCAST_DIR!;!BASE_PATH!"
 
     git clean -fxd
     git checkout HEAD 2018_fast_test.vcm tutorial\c\manager.c
@@ -13,10 +16,8 @@ for %%V in (2018sp5 2019sp6 2020sp7 2021sp8 2022sp8 2023sp5 2024sp6 2025sp4) do 
     manage -p 2018_fast_test --config=COVERAGE_TYPE=STATEMENT+BRANCH
     manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE 
 
-    set JOBS=6
-
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\getjobs.py 2018_fast_test.vcm --type
-    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=%JOBS% --verbose
+    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=6 --verbose
 
     copy 2018_fast_test_build.log D:\vector\github\PointOfSales_v2\unstashed_build.log
 
