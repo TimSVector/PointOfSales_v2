@@ -1,4 +1,4 @@
-@echo off
+@echo on
 setlocal enabledelayedexpansion
 
 rem === Default list of VectorCAST versions ===
@@ -24,7 +24,10 @@ for %%V in (%VC_LIST%) do (
     manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE 
 
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\getjobs.py 2018_fast_test.vcm --type
+    if errorlevel 1 goto END
+
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute --jobs=6 --verbose
+    if errorlevel 1 goto END
 
     copy 2018_fast_test_build.log D:\vector\github\PointOfSales_v2\unstashed_build.log
 
@@ -35,6 +38,7 @@ for %%V in (%VC_LIST%) do (
     copy /y tutorial\c\manager_update.c tutorial\c\manager.c  
 
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --build-execute  --incremental --jobs=6 --verbose
+    if errorlevel 1 goto END
 
     copy 2018_fast_test_build.log D:\vector\github\PointOfSales_v2\unstashed_build.log
 
@@ -46,8 +50,14 @@ for %%V in (%VC_LIST%) do (
     REM manage -p 2018_fast_test --import-result temp_result.vcr
 
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --incremental --junit --cobertura_extended --lcov --aggregate --metrics --fullstatus
+    
+    if errorlevel 1 goto END
 
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
+
+    if errorlevel 1 goto END
 )
+
+:END
 
 endlocal
