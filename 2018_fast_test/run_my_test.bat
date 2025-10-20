@@ -34,6 +34,7 @@ for %%V in (%VC_LIST%) do (
     manage -p 2018_fast_test --export-result temp_result.vcr
     manage -p 2018_fast_test --clean  
     manage -p 2018_fast_test --import-result temp_result.vcr
+    manage -p 2018_fast_test --status
 
     copy /y tutorial\c\manager_update.c tutorial\c\manager.c  
 
@@ -42,14 +43,7 @@ for %%V in (%VC_LIST%) do (
 
     copy 2018_fast_test_build.log D:\vector\github\PointOfSales_v2\unstashed_build.log
 
-    REM copy /y temp_result.vcr orig_temp_result.vcr
-
-    REM manage -p 2018_fast_test --force --export-result temp_result.vcr  
-    REM manage -p 2018_fast_test --remove-imported-result temp_result.vcr  
-    REM vpython d:\vector\github\PointOfSales_v2\vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr  
-    REM manage -p 2018_fast_test --import-result temp_result.vcr
-
-    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --incremental --junit --cobertura_extended --lcov --aggregate --metrics --fullstatus
+    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --junit --cobertura_extended --lcov --aggregate --metrics --fullstatus
     
     if errorlevel 1 goto END
 
