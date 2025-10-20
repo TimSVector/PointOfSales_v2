@@ -8,8 +8,11 @@ rem === Allow command line override (example: run.bat 2024sp6) ===
 if not "%~1"=="" set "VC_LIST=%~1"
 
 set "BASE_PATH=%PATH%"
+set "orig_start=%time%"
 
 for %%V in (%VC_LIST%) do (
+
+    set "start=%time%"
 
     set "VECTORCAST_DIR=C:\vcast\%%V"
     set "PATH=!VECTORCAST_DIR!;!BASE_PATH!"
@@ -50,7 +53,16 @@ for %%V in (%VC_LIST%) do (
     vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
 
     if errorlevel 1 goto END
+    
+    set "end=%time%"
+    
+    echo Time for %%V
+    powershell -NoProfile -Command "(New-TimeSpan -Start '%start%' -End '%end%').TotalSeconds"
+
 )
+
+echo Total Time
+powershell -NoProfile -Command "(New-TimeSpan -Start '%orig_start%' -End '%end%').TotalSeconds"
 
 :END
 
