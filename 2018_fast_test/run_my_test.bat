@@ -47,7 +47,11 @@ for %%V in (%VC_LIST%) do (
     
     if errorlevel 1 goto END
 
-    vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
+    IF EXIST "d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py" (
+        vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
+    ) ELSE (
+        vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate_results.py 2018_fast_test.vcm 
+    )
 
     if errorlevel 1 goto END
 )
