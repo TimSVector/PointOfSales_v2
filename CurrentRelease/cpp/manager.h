@@ -3,6 +3,8 @@
 
 #include "cpptypes.h"
 #include "database.h"
+#include "database_shim.h"
+#include "manager_types_shim.h"
 
 class Manager
 {
@@ -19,7 +21,9 @@ public:
 
 
 private:
-   DataBase Data;
+   DatabaseShim Data;
+
+//   DataBase Data;
    name_type WaitingList[10]; 
    unsigned int WaitingListSize;
    unsigned int WaitingListIndex;

@@ -1,9 +1,4 @@
-#include "cpptypes.h"
-#include "database.h"
 #include "manager.h"
-
-
-
 
 
 Manager::Manager(){
@@ -23,7 +18,7 @@ void Manager::AddIncludedDessert(OrderType* Order)
      Order->Salad == Caesar &&
      Order->Beverage == MixedDrink) {
     
-    Order->Dessert = Pies;
+    Order->Dessert = Pie;
   
   } else if(Order->Entree == Lobster &&
             Order->Salad == Green &&
@@ -39,12 +34,12 @@ void Manager::PlaceOrder(unsigned int Table, unsigned int Seat, OrderType Order)
   Data.DeleteTableRecord(&TableData);
   Data.GetTableRecord(Table, &TableData);
 
-  TableData.IsOccupied = true;
+  TableData.IsOccupied = v_true;
   TableData.NumberInParty++;
   TableData.Order[Seat] = Order;
  
   /* Add a free dessert in some case */ 
-  AddIncludedDessert(&TableData.Order[Seat]);
+  AddIncludedDessert(reinterpret_cast<OrderType*>(&TableData.Order[Seat]));
 
   switch(Order.Entree) {
     case Steak :
@@ -95,6 +90,7 @@ char* Manager::GetNextPartyToBeSeated()
 {
   if(WaitingListIndex > 9)
     WaitingListIndex = 0;
-  return WaitingList[WaitingListIndex++];
+  return legacy_c_str(WaitingList[WaitingListIndex++]);
+
 }
 
