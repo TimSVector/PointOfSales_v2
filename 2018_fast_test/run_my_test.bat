@@ -17,7 +17,7 @@ for %%V in (%VC_LIST%) do (
     git clean -fxd
     git checkout HEAD 2018_fast_test.vcm tutorial\c\manager.c
 
-    xcopy /E /S /Y /I D:\vector\github\vectorcast-execution-plugin_079\src\main\resources\scripts\*.* d:\vector\github\PointOfSales_v2\vc_scripts > nul 2>&1
+    xcopy /E /S /Y /I D:\vector\github\vc_scripts_submodule\*.* d:\vector\github\PointOfSales_v2\vc_scripts > nul 2>&1
 
     manage -p 2018_fast_test --status 
     manage -p 2018_fast_test --config=COVERAGE_TYPE=STATEMENT+BRANCH
@@ -34,6 +34,7 @@ for %%V in (%VC_LIST%) do (
     manage -p 2018_fast_test --export-result temp_result.vcr
     manage -p 2018_fast_test --clean  
     manage -p 2018_fast_test --import-result temp_result.vcr
+    manage -p 2018_fast_test --status
 
     copy /y tutorial\c\manager_update.c tutorial\c\manager.c  
 
@@ -42,18 +43,15 @@ for %%V in (%VC_LIST%) do (
 
     copy 2018_fast_test_build.log D:\vector\github\PointOfSales_v2\unstashed_build.log
 
-    REM copy /y temp_result.vcr orig_temp_result.vcr
-
-    REM manage -p 2018_fast_test --force --export-result temp_result.vcr  
-    REM manage -p 2018_fast_test --remove-imported-result temp_result.vcr  
-    REM vpython d:\vector\github\PointOfSales_v2\vc_scripts\merge_vcr.py --orig=orig_temp_result.vcr --new=temp_result.vcr  
-    REM manage -p 2018_fast_test --import-result temp_result.vcr
-
-    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --incremental --junit --cobertura_extended --lcov --aggregate --metrics --fullstatus
+    vpython d:\vector\github\PointOfSales_v2\vc_scripts\vcast_exec.py 2018_fast_test.vcm --junit --cobertura_extended --lcov --aggregate --metrics --fullstatus
     
     if errorlevel 1 goto END
 
-    vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --junit --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
+    IF EXIST "d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py" (
+        vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate-results.py 2018_fast_test.vcm --wait_time 30 --wait_loops 1 --buildlog D:\vector\github\PointOfSales_v2\unstashed_build.log --print_exc   
+    ) ELSE (
+        vpython d:\vector\github\PointOfSales_v2\vc_scripts\generate_results.py 2018_fast_test.vcm 
+    )
 
     if errorlevel 1 goto END
 )
