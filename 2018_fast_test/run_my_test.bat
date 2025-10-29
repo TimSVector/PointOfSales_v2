@@ -17,7 +17,8 @@ for %%V in (%VC_LIST%) do (
     git clean -fxd
     git checkout HEAD 2018_fast_test.vcm tutorial\c\manager.c
 
-    xcopy /E /S /Y /I D:\vector\github\vc_scripts_submodule\*.* d:\vector\github\PointOfSales_v2\vc_scripts > nul 2>&1
+    ::xcopy /E /S /Y /I D:\vector\github\vc_scripts_submodule\*.* d:\vector\github\PointOfSales_v2\vc_scripts > nul 2>&1
+    xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* d:\vector\github\PointOfSales_v2\vc_scripts > nul 2>&1
 
     manage -p 2018_fast_test --status 
     manage -p 2018_fast_test --config=COVERAGE_TYPE=STATEMENT+BRANCH
@@ -54,6 +55,10 @@ for %%V in (%VC_LIST%) do (
     )
 
     if errorlevel 1 goto END
+    
+    IF EXIST "d:\vector\github\PointOfSales_v2\vc_scripts\parallel_full_reports.py" (
+        vpython d:\vector\github\PointOfSales_v2\vc_scripts\parallel_full_reports.py 2018_fast_test.vcm --jobs max
+    )
 )
 
 :END
