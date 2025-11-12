@@ -9,7 +9,7 @@ static std::vector<data_type> gTables;
 
 
 // ---------------------------------------------------------------------------
-// Initialization and CRUD
+// Initialization and stuff
 // ---------------------------------------------------------------------------
 
 extern "C" void Initialize_Database(void)
@@ -43,7 +43,7 @@ extern "C" void Clear_Table(table_index_type table)
 }
 
 // ---------------------------------------------------------------------------
-// Seat management (structural only — no business logic)
+// Seat management (structural only - no business logic)
 // ---------------------------------------------------------------------------
 
 extern "C" bool Reserve_Seat(table_index_type table, seat_index_type seat)
