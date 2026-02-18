@@ -17,9 +17,9 @@ for %%V in (%VC_LIST%) do (
     git clean -fxd
     git checkout HEAD 2018_fast_test.vcm tutorial\c\manager.c
 
-    ::xcopy /E /S /Y /I D:\vector\github\vc_scripts_submodule\*.* %~dp0..\vc_scripts > nul 2>&1
-    xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %~dp0..\vc_scripts > nul 2>&1
-
+    ::xcopy /E /S /Y /I %VCAST_VC_SCRIPTS%\*.* %~dp0..\vc_scripts > nul 2>&1
+    xcopy /E /S /Y /I D:\vector\github\vectorcast-execution-plugin_079\src\main\resources\scripts\*.* %~dp0..\vc_scripts 
+    
     manage -p 2018_fast_test --status 
     manage -p 2018_fast_test --config=COVERAGE_TYPE=STATEMENT+BRANCH
     manage -p 2018_fast_test --config VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE=TRUE 

@@ -7,19 +7,23 @@
  </options>
  <base>
   <name>POST_BASE_DIRECTORY</name>
-  <path>$(VCAST_DEMO_SRC_BASE)</path>
+  <path>$(VCAST_DEMO_SRC_BASE)/</path>
   <al>database</al>
+  <dl>database/inc</dl>
   <al>encrypt</al>
+  <dl>encrypt/inc</dl>
   <al>main</al>
   <al>order_entry</al>
+  <dl>order_entry/inc</dl>
   <al>utils</al>
+  <dl>utils/inc</dl>
  </base>
  <source>
   <regressionable_path>
    <base>POST_BASE_DIRECTORY</base>
    <subpath>database/src/database.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_MCDC</coverage>
+  <coverage>STATEMENT_BRANCH</coverage>
  </source>
  <source>
   <regressionable_path>
@@ -41,7 +45,7 @@
    <subpath>main/pos_driver.c</subpath>
   </regressionable_path>
   <append_cover_io>true</append_cover_io>
-  <coverage>STATEMENT_MCDC</coverage>
+  <coverage>STATEMENT_BRANCH</coverage>
  </source>
  <source>
   <regressionable_path>
@@ -55,7 +59,7 @@
    <base>POST_BASE_DIRECTORY</base>
    <subpath>order_entry/src/waiting_list.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_MCDC</coverage>
+  <coverage>STATEMENT_BRANCH</coverage>
  </source>
  <source>
   <regressionable_path>
@@ -69,7 +73,7 @@
    <base>POST_BASE_DIRECTORY</base>
    <subpath>utils/src/whitebox.c</subpath>
   </regressionable_path>
-  <coverage>STATEMENT_MCDC</coverage>
+  <coverage>STATEMENT_BRANCH</coverage>
  </source>
 </cover>
 

@@ -58,5 +58,6 @@ TEST.END
 TEST.SUBPROGRAM:<<COMPOUND>>
 TEST.NEW
 TEST.NAME:FuzzTesting.001
+TEST.SLOT: "1", "manager", "Place_Order", "1", "Place_Order.Fuzz.Random"
 TEST.END
 --
