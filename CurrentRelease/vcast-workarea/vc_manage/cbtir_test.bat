@@ -36,7 +36,7 @@ echo  5.  Change one source file s1
 c:\cygwin64\bin\cksum.exe D:\dev\PointOfSales_v2\CurrentRelease\order_entry\src\manager.c
 echo void change_code1(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 c:\cygwin64\bin\cksum.exe D:\dev\PointOfSales_v2\CurrentRelease\order_entry\src\manager.c
-pause
+::pause
 
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --incremental 
