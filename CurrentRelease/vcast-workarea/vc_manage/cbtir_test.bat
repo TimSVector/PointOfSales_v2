@@ -40,6 +40,7 @@ c:\cygwin64\bin\cksum.exe D:\dev\PointOfSales_v2\CurrentRelease\order_entry\src\
 
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --incremental 
+copy PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_PointOfSales_Manage_manage_incremental_rebuild_report.html
 ::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
