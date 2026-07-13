@@ -17,7 +17,7 @@ git clean -fxd PointOfSales_Manage
 
 echo  1.  Build and execute the original project
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --jobs 12
-::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
 echo  2.  Export its results to a result_r1.vcr file
@@ -29,7 +29,7 @@ echo  3.  Clean project
 echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r1.vcr
 copy result_r1.vcr orig_result_r1.vcr
-::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
 echo  5.  Change one source file s1
@@ -41,7 +41,7 @@ c:\cygwin64\bin\cksum.exe D:\dev\PointOfSales_v2\CurrentRelease\order_entry\src\
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --incremental 
 copy PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_PointOfSales_Manage_manage_incremental_rebuild_report.html
-::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
 echo  7.  Export its results to a .vcr file r2
@@ -58,7 +58,7 @@ copy result_r3.vcr orig_result_r3.vcr
 echo  10. Remove existing r2 and import r3
 copy orig_result_r1.vcr result_r1.vcr
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --remove-imported-result result_r1.vcr
-::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
 echo  11. Clean project p
@@ -66,7 +66,7 @@ echo  11. Clean project p
 
 echo  12. Import that r3 file into project p and store r3
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r3.vcr
-::%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
 echo  13. Change one source file s2.
