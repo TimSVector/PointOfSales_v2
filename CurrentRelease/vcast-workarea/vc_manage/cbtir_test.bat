@@ -16,7 +16,7 @@ git clean -fxd PointOfSales_Manage
 
 
 echo  1.  Build and execute the original project
-%VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --jobs 12
+%VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --jobs 12 --verbose
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
