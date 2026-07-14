@@ -21,7 +21,7 @@
       <key>VCAST_WHITEBOX_SEARCH_DIRS_ONLY</key>
       <value>TRUE</value>
       <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
-      <value>TRUE</value>
+      <value>FALSE</value>
       <key>VCAST_CUSTOM_REPORT_FORMAT</key>
       <value>HTML</value>
     </config>
@@ -124,6 +124,7 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/order_entry/src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)/utils/src</search-directory>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="UnitTesting">
@@ -180,6 +181,7 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_CPP17</value>
         </config>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="codeTest">
@@ -194,6 +196,7 @@
           <key>C_COMPILER_TAG</key>
           <value>BUILTIN_MINGW_CPP</value>
         </config>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="ST">

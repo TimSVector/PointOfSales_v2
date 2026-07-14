@@ -32,7 +32,6 @@ if "%~1"=="" (
     copy %1 result_r1.vcr
 )
 
-
 echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r1.vcr
 copy result_r1.vcr orig_result_r1.vcr
