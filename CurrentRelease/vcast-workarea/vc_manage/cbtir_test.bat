@@ -20,8 +20,14 @@ echo  1.  Build and execute the original project
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 ::pause
 
-echo  2.  Export its results to a result_r1.vcr file
-%VECTORCAST_DIR%\manage -p PointOfSales_Manage --export-result result_r1.vcr
+if "%1"=="" (
+    echo  2.  Export its results to a result_r1.vcr file
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --export-result result_r1.vcr
+
+) else (
+    echo  2.  Copy Original File
+    copy d:\dev\PointOfSales_v2\CurrentRelease\vcast-workarea\vc_manage\result_r1.vcr result_r1.vcr
+)
 
 echo  3.  Clean project
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
@@ -30,7 +36,8 @@ echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r1.vcr
 copy result_r1.vcr orig_result_r1.vcr
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
-::pause
+
+pause
 
 echo  5.  Change one source file s1
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
