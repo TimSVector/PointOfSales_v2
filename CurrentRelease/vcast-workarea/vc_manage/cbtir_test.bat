@@ -6,7 +6,7 @@ del /q *result_r2.vcr
 del /q *result_r3.vcr
 del /q *result_r4.vcr
 
-git checkout HEAD PointOfSales_Manage.vcm ..\..\order_entry\src\manager.c
+git checkout HEAD PointOfSales_Manage.vcm ..\..\order_entry\src\manager.c ..\..\encrypt\src\encrypt.c %~1
 git clean -fxd PointOfSales_Manage
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --status
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --disable --compiler TRUST_ZONE
@@ -16,20 +16,22 @@ git clean -fxd PointOfSales_Manage
 
 if "%~1"=="" (
     echo  1.  Build and execute the original project
-    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --jobs 12 --verbose
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --jobs 12
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 
     echo  2.  Export its results to a result_r1.vcr file
     %VECTORCAST_DIR%\manage -p PointOfSales_Manage --export-result result_r1.vcr
 
+    echo  3.  Clean project
+    %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
+
 ) else (
     echo  1.  Use base project with no results
-    echo  2.  Copy Original File
-    copy d:\dev\PointOfSales_v2\CurrentRelease\vcast-workarea\vc_manage\result_r1.vcr result_r1.vcr
+    echo  2.  Using %1 as results base
+    echo  3.  Project already cleaned
+    copy %1 result_r1.vcr
 )
 
-echo  3.  Clean project
-%VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
 
 echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r1.vcr
@@ -76,9 +78,9 @@ echo  12. Import that r3 file into project p and store r3
 REM pause
 
 echo  13. Change one source file s2.
-c:\cygwin64\bin\cksum.exe ..\..\order_entry\src\manager.c
-echo void change_code2(void) ^{^} >> ..\..\order_entry\src\manager.c
-c:\cygwin64\bin\cksum.exe ..\..\order_entry\src\manager.c
+c:\cygwin64\bin\cksum.exe ..\..\encrypt\src\encrypt.c
+echo void WB_change_code2(void) ^{^} >> ..\..\encrypt\src\encrypt.c
+c:\cygwin64\bin\cksum.exe ..\..\encrypt\src\encrypt.c
 
 echo  14. Build and execute incremental p again the change to s2 is not picked up.
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --build-execute --incremental
