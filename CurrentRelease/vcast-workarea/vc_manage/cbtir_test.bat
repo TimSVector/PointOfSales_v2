@@ -42,7 +42,7 @@ REM pause
 
 echo  5.  Change one source file s1
 c:\cygwin64\bin\cksum.exe ..\..\order_entry\src\manager.c
-echo void change_code1(void) ^{^} >> ..\..\order_entry\src\manager.c
+echo void MGR_change_code1(void) ^{^} >> ..\..\order_entry\src\manager.c
 c:\cygwin64\bin\cksum.exe ..\..\order_entry\src\manager.c
 REM pause
 
@@ -63,7 +63,7 @@ copy result_r2.vcr result_r3.vcr
 echo  9.  Store r3
 copy result_r3.vcr orig_result_r3.vcr
 
-echo  10. Remove existing r2 and import r3
+echo  10. Remove existing r1 from project
 copy orig_result_r1.vcr result_r1.vcr
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --remove-imported-result result_r1.vcr
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
@@ -72,7 +72,7 @@ REM pause
 echo  11. Clean project p
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --clean
 
-echo  12. Import that r3 file into project p and store r3
+echo  12. Import that r3 file into project p
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --import-result result_r3.vcr
 %VECTORCAST_DIR%\manage -p PointOfSales_Manage --full-status
 REM pause
