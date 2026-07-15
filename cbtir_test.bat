@@ -48,7 +48,7 @@ REM pause
 
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --build-execute --incremental 
-copy %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_%VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage_manage_incremental_rebuild_report.html
+copy PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_PointOfSales_Manage_manage_incremental_rebuild_report.html
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
 REM pause
 
