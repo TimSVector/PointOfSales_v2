@@ -35,8 +35,8 @@ if "%~1"=="" (
 
 echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --import-result result_r1.vcr
-
-REM pause
+%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --build-execute --incremental 
+pause
 
 echo  5.  Change one source file s1
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
@@ -47,13 +47,13 @@ REM pause
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --build-execute --incremental 
 copy PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_PointOfSales_Manage_manage_incremental_rebuild_report.html
-REM pause
+pause
 
 echo  7.  Export its results to a .vcr file r2
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --export-result result_r2.vcr
 
 echo  8.  Call merge_vcr.py r1 r2 to make r3
-%VECTORCAST_DIR%\vpython D:\vector\github\vc_scripts_submodule\merge_vcr.py --orig result_r1.vcr --new result_r2.vcr --out result_r3.vcr
+%VECTORCAST_DIR%\vpython vc_scripts\merge_vcr.py --orig result_r1.vcr --new result_r2.vcr --out result_r3.vcr
 
 echo  10. Remove existing r1 from project
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --remove-imported-result result_r1.vcr
