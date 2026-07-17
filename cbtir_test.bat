@@ -35,8 +35,6 @@ if "%~1"=="" (
 
 echo  4.  Import r1 file into project p and store copy of r1
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --import-result result_r1.vcr
-copy result_r1.vcr orig_result_r1.vcr
-%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
 
 REM pause
 
@@ -49,33 +47,22 @@ REM pause
 echo  6.  Build and execute incremental p - the change to s1 is picked up
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --build-execute --incremental 
 copy PointOfSales_Manage_manage_incremental_rebuild_report.html step_6_PointOfSales_Manage_manage_incremental_rebuild_report.html
-%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
 REM pause
 
 echo  7.  Export its results to a .vcr file r2
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --export-result result_r2.vcr
-copy result_r2.vcr orig_result_r2.vcr
 
 echo  8.  Call merge_vcr.py r1 r2 to make r3
-%VECTORCAST_DIR%\vpython D:\vector\github\vc_scripts_submodule\merge_vcr.py --orig result_r1.vcr --new result_r2.vcr --out merged_results.vcr
-copy merged_results.vcr result_r3.vcr
-
-echo  9.  Store r3
-copy result_r3.vcr orig_result_r3.vcr
+%VECTORCAST_DIR%\vpython D:\vector\github\vc_scripts_submodule\merge_vcr.py --orig result_r1.vcr --new result_r2.vcr --out result_r3.vcr
 
 echo  10. Remove existing r1 from project
-copy orig_result_r1.vcr result_r1.vcr
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --remove-imported-result result_r1.vcr
-%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
-pause
 
 echo  11. Clean project p
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --clean
 
 echo  12. Import that r3 file into project p
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --import-result result_r3.vcr
-%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
-REM pause
 
 echo  13. Change one source file s2.
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
@@ -84,7 +71,5 @@ c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
 
 echo  14. Build and execute incremental p again the change to s2 is not picked up.
 %VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --build-execute --incremental
-%VECTORCAST_DIR%\manage -p %VCAST_DEMO_SRC_BASE%\vcast-workarea\vc_manage\PointOfSales_Manage --full-status
-
 
 :END
