@@ -40,7 +40,7 @@ REM pause
 
 echo  5.  Change one source file s1
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
-echo void MGR_change_code1(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
+echo void MGR_foo(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\order_entry\src\manager.c
 REM pause
 
@@ -66,7 +66,7 @@ echo  12. Import that r3 file into project p
 
 echo  13. Change one source file s2.
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
-echo void WB_change_code2(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
+echo void ENC_foo(void) ^{^} >> %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
 c:\cygwin64\bin\cksum.exe %VCAST_DEMO_SRC_BASE%\encrypt\src\encrypt.c
 
 echo  14. Build and execute incremental p again the change to s2 is not picked up.
